@@ -15,7 +15,7 @@ class MapController {
         // Set up the canvas click event to detect location selection
         this.canvas.addEventListener("click", (event) => this.handleCanvasClick(event));
         this.decocanvas.addEventListener("click", (event) => this.handleDecoCanvasClick(event));
-        
+
         // Draw location markers initially
         this.drawMarkers();
     }
@@ -50,7 +50,7 @@ class MapController {
     // Draws a single location marker
     drawMarker(location) {
         this.context.beginPath();
-        this.context.arc(location.x, location.y, 5, 0, 2 * Math.PI);
+        this.context.arc(location.x, location.y, 10, 0, 2 * Math.PI);
         this.context.fillStyle = "red";
         this.context.fill();
     }
@@ -175,7 +175,7 @@ class MapController {
             const markerX = loc.x;  // Replace with actual coordinates if available
             const markerY = loc.y;
             this.decocontext.beginPath();
-            this.decocontext.arc(markerX, markerY, 5, 0, 2 * Math.PI);
+            this.decocontext.arc(markerX, markerY, 10, 0, 2 * Math.PI);
             this.decocontext.fillStyle = "blue";
             this.decocontext.fill();
           }
