@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game-container">
+    <div id="left-panel">
+        <!-- Decoration area -->
+        <div id="decoration-container">
+          <canvas id="decoration-display" width="600" height="600"></canvas>
+        </div>
+        <!-- Map display area -->
+        <div id="map-container">
+          <img id="city-map" src="images/map.jpg" alt="City Map">
+          <canvas id="location-display"></canvas>
+        </div>
+    </div>
+    <div id="right-panel">
+      <h2>Simulation Details</h2>
+      <div>
+        <p>Day: <span id="day-counter">1</span></p>
+        <p>Energy: <span id="energy-counter">100</span></p>
+        <button id="rest-button">Rest (Next Day)</button>
+        <button id="map-button">Map</button>
+      </div>
+    </div>
+  </div>
+  <script src="location.js"></script>
+  <script src="character.js"></script>
+  <script src="mapcontroller.js"></script>
+  <script src="simulationcontroller.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

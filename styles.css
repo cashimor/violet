@@ -1,0 +1,62 @@
+#game-container {
+    display: flex;
+}
+
+#left-panel {
+    position: relative;
+    width: 600px;
+    min-height: 600px;
+    background-image: url('images/default.jpg'); /* Default background image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#right-panel {
+    flex: 1;
+    padding: 20px;
+}
+
+#map-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Adjust height as needed */
+    display: none; /* Initially hidden */
+    border: 1px solid #333;
+}
+
+#city-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Background layer */
+}
+
+#location-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Overlay layer */
+}
+
+#location-list {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 3; /* Foreground layer */
+}
+
+#location-list p {
+    margin: 0;
+    font-weight: bold;
+}
