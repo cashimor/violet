@@ -30,6 +30,7 @@ const mountainArea = new Location("Mountain Area", "images/mountain.jpg", "Map",
 const cityBlock1 = new Location("City Block 1", "images/cityblock1.jpg", "Map", 300, 300);
 
 const room1 = new Location("Room 1", "images/room1.jpg", "City Block 1", 80, 50, true, 1500, 2);
+const room2 = new Location("Room 2", "images/room2.jpg", "City Block 1", 550, 70, true, 2200, 3);
 
 // Array of locations
-const locations = [bambooForest, riverSide, mountainArea, cityBlock1, room1];
+const locations = [bambooForest, riverSide, mountainArea, cityBlock1, room1, room2];
