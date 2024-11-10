@@ -9,6 +9,12 @@
 <body>
   <div id="game-container">
     <div id="left-panel">
+        <div id="rent-popup" class="popup hidden">
+            <h3 id="location-name"></h3>
+            <p id="location-details"></p>
+            <button id="rent-button">Rent</button>
+            <button id="close-popup">Close</button>
+        </div>
         <!-- Decoration area -->
         <div id="decoration-container">
           <canvas id="decoration-display" width="600" height="600"></canvas>
@@ -24,6 +30,8 @@
       <div>
         <p>Day: <span id="day-counter">1</span></p>
         <p>Energy: <span id="energy-counter">100</span></p>
+        <p>Money: <span id="money-counter">¥75,000</span></p>
+        <p>Daily Cost: <span id="daily-cost">¥75,000</span></p>
         <button id="rest-button">Rest (Next Day)</button>
         <button id="map-button">Map</button>
       </div>

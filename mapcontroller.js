@@ -16,6 +16,9 @@ class MapController {
         this.canvas.addEventListener("click", (event) => this.handleCanvasClick(event));
         this.decocanvas.addEventListener("click", (event) => this.handleDecoCanvasClick(event));
 
+        // Add event listeners for hovering and clicking
+        this.decocanvas.addEventListener("mousemove", (event) => this.handleHover(event));
+
         // Draw location markers initially
         this.drawMarkers();
     }
@@ -96,13 +99,69 @@ class MapController {
         this.locations.forEach(location => {
             if (location.ref === this.currentLocation.name) { // Nearby location check
                 const distance = Math.sqrt((x - location.x) ** 2 + (y - location.y) ** 2);
-                if (distance < 10) {  // Threshold for click
+                if (distance < 30) {  // Threshold for click
                     if (this.simulationController.deductEnergy(1)) { // Deduct smaller energy
                         this.loadLocation(location);  // Move to the clicked location
-                    } else {
-                        console.log("Not enough energy to move.");
+                        return;
                     }
                 }
+            }
+        });
+
+        const previousLocation = this.locations.find(loc => loc.name === this.currentLocation.ref);
+        if (previousLocation) {
+          // Check if the click is within the back arrow bounds
+          const arrowBounds = { x: 20, y: 20, width: 30, height: 30 };
+          if (x >= arrowBounds.x && x <= arrowBounds.x + arrowBounds.width &&
+            y >= arrowBounds.y && y <= arrowBounds.y + arrowBounds.height) {
+            // Go back to the referenced location
+
+            this.simulationController.deductEnergy(1);
+            this.loadLocation(previousLocation);
+            return;  // Exit early to avoid handling as another click event
+          }
+        }
+    }
+
+    handleHover(event) {
+        if (this.currentLocation == null) return;
+
+        const rect = this.decocanvas.getBoundingClientRect();
+        const mouseX = (event.clientX - rect.left) * (this.decocanvas.width / rect.width);
+        const mouseY = (event.clientY - rect.top) * (this.decocanvas.height / rect.height);
+    
+        // Redraw only the specific area of previous hover outlines, so we don't clear the entire canvas
+        this.clearHoverIndicators();
+    
+        // Loop through nearby locations and check if mouse is within 50x50 rectangle centered on each
+        this.locations.forEach(location => {
+            if (location.ref === this.currentLocation.name) {
+                const centerX = location.x;
+                const centerY = location.y;
+                const halfSize = 25;
+    
+                if (
+                    mouseX >= centerX - halfSize &&
+                    mouseX <= centerX + halfSize &&
+                    mouseY >= centerY - halfSize &&
+                    mouseY <= centerY + halfSize
+                ) {
+                    // Draw rectangle outline to indicate interactive area
+                    this.decocontext.strokeStyle = "blue";
+                    this.decocontext.lineWidth = 2;
+                    this.decocontext.strokeRect(centerX - halfSize, centerY - halfSize, 50, 50);
+                }
+            }
+        });
+    }
+    
+    clearHoverIndicators() {
+        // Clear just the area where hover indicators would appear, without affecting the rest of the canvas
+        this.locations.forEach(location => {
+            if (location.ref === this.currentLocation.name) {
+                const centerX = location.x;
+                const centerY = location.y;
+                this.decocontext.clearRect(centerX - 26, centerY - 26, 52, 52);  // Adjust size as needed
             }
         });
     }
@@ -169,16 +228,54 @@ class MapController {
             }
         });
 
-        // Draw markers for nearby locations
-        this.locations.forEach(loc => {
-          if (loc.ref === location.name) { // Location is nearby
-            const markerX = loc.x;  // Replace with actual coordinates if available
-            const markerY = loc.y;
-            this.decocontext.beginPath();
-            this.decocontext.arc(markerX, markerY, 10, 0, 2 * Math.PI);
-            this.decocontext.fillStyle = "blue";
-            this.decocontext.fill();
-          }
-        });
+        // Draw the back arrow if this location has a ref
+        if (location.ref && location.ref !== "Map") {
+          this.drawBackArrow();
+        }
+
+        // Check if the location is rented by Violet and apply the border
+        if (location.owner === "Violet") {
+          this.decocanvas.style.border = "5px solid violet";
+        } else {
+          this.decocanvas.style.border = "none"; // Remove border if not rented by Violet
+        }
+
+        // Check if location is available
+        if (location.available && location.dailyCost <= this.simulationController.money) {
+          const rentPopup = document.getElementById("rent-popup");
+          document.getElementById("location-name").textContent = location.name;
+          document.getElementById("location-details").textContent = 
+              `Daily Cost: ¥${location.dailyCost}, Size: ${location.size} people`;
+          rentPopup.classList.remove("hidden");
+
+          // Handle Rent button click
+          document.getElementById("rent-button").onclick = () => {
+                // Deduct money and mark location as rented by Violet
+                location.rentTo("Violet");
+                this.simulationController.recalculateDailyCost(locations);
+                this.decocanvas.style.border = "5px solid violet";
+                // Hide popup
+                rentPopup.classList.add("hidden");
+          };
+
+          // Handle Close button click
+          document.getElementById("close-popup").onclick = () => {
+            rentPopup.classList.add("hidden");
+          };
+        }
+    }
+
+    drawBackArrow() {
+        const arrowX = 20;  // X position
+        const arrowY = 20;  // Y position
+        const arrowSize = 30;  // Size of the arrow
+    
+        this.decocontext.beginPath();
+        this.decocontext.moveTo(arrowX + arrowSize, arrowY); // Right point
+        this.decocontext.lineTo(arrowX, arrowY + arrowSize / 2); // Left middle point
+        this.decocontext.lineTo(arrowX + arrowSize, arrowY + arrowSize); // Bottom point
+        this.decocontext.closePath();
+        this.decocontext.fillStyle = "yellow";
+        this.decocontext.fill();
     }
 }
