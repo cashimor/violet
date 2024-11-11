@@ -6,6 +6,7 @@ Welcome to my lair!
 
 label1:
 Ah, well, you should turn back while you can!
+!shock
 ?Are you sure you’re ready to proceed?
 [label3] Absolutely.
 [label4] Maybe not…
@@ -14,7 +15,9 @@ label2:
 I see, brave one! Be careful.
 
 label3:
+!neutral
 Good luck! You’ll need it.
 
 label4:
+!neutral
 Wise choice. Stay safe out there.

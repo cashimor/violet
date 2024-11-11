@@ -166,29 +166,52 @@ class DialogController {
         document.getElementById("choice-popup-holder").appendChild(choiceContainer);
     }
 
-    // Modified start method to handle dialog choices
-    start() {
-        const dialogContent = this.getNextLine();
-        if (!dialogContent) {
-            this.closeDialog();
-            return;
-        }
-        if (dialogContent && dialogContent.startsWith("?")) {
-            this.drawSpeechBubble(this.characterX, this.characterY, dialogContent.slice(1));
-            // Parse choices when line starts with "<label>"
-            const choices = [];
-            let line;
-            
-            while ((line = this.getNextLine()) !== null) {
-                if (line.startsWith("[")) { // Check for choice format "<label> message"
-                    const [label, text] = line.slice(1).split("] ");
-                    choices.push([label.trim(), text.trim()]);
-                }
-            }            
-            this.showChoices(choices);
+// Modified start method to handle dialog choices and emotions
+start() {
+    let dialogContent = this.getNextLine();
+
+    if (!dialogContent) {
+        this.closeDialog();
+        return;
+    }
+
+    // Handle emotion change if line starts with "!"
+    if (dialogContent.startsWith("!")) {
+        this.handleEmotion(dialogContent);
+        dialogContent = this.getNextLine();
+    }
+
+    // Handle dialog choices if line starts with "?"
+    if (dialogContent && dialogContent.startsWith("?")) {
+        this.drawSpeechBubble(this.characterX, this.characterY, dialogContent.slice(1));
+        const choices = this.parseChoices();
+        this.showChoices(choices);
+    } else if (dialogContent) {
+        // Regular dialog line
+        this.drawSpeechBubble(this.characterX, this.characterY, dialogContent);
+    }
+}
+
+// New helper method to handle emotion changes
+handleEmotion(line) {
+    const emotion = line.slice(1); // Extract the emotion keyword
+    this.characterController.updateEmotion(emotion);
+}
+
+// New helper method to parse dialog choices
+parseChoices() {
+    const choices = [];
+    let line;
+
+    while ((line = this.getNextLine()) !== null) {
+        if (line.startsWith("[")) { // Check for choice format "[label] message"
+            const [label, text] = line.slice(1).split("] ");
+            choices.push([label.trim(), text.trim()]);
         } else {
-            // Regular dialog line
-            this.drawSpeechBubble(this.characterX, this.characterY, dialogContent);
+            break;  // Stop parsing if a non-choice line is encountered
         }
     }
+
+    return choices;
+}
 }
