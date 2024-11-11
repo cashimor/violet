@@ -96,6 +96,11 @@ class MapController {
         const x = (event.clientX - rect.left) * scaleX;
         const y = (event.clientY - rect.top) * scaleY;
     
+        if (this.dialogue && this.dialogue.state == "ACTIVE") {
+            if (this.dialogue.handleCanvasClick(event, x, y)) {
+                return;
+            }
+        }
         this.locations.forEach(location => {
             if (location.ref === this.currentLocation.name) { // Nearby location check
                 const distance = Math.sqrt((x - location.x) ** 2 + (y - location.y) ** 2);
@@ -172,31 +177,12 @@ class MapController {
         return distance < 10; // Threshold for clicking
     }
 
-    drawSpeechBubble(context, characterX, characterY, dialogue) {
-        const bubbleImage = new Image();
-        bubbleImage.src = "images/bubble.png";  // Path to your speech bubble image
-
-        bubbleImage.onload = () => {
-            // Position the speech bubble above the character’s image
-            const bubbleX = characterX + 50;  // Adjust based on bubble position
-            const bubbleY = characterY - 100; // Adjust to appear above the character
-
-            // Draw the bubble background image
-            context.drawImage(bubbleImage, bubbleX, bubbleY, 400, 100);
-
-            // Draw the text within the bubble
-            context.font = "14px Arial";
-            context.fillStyle = "black";
-            context.textAlign = "center";
-            context.fillText(dialogue, bubbleX + 100, bubbleY + 50);  // Center text in the bubble
-        };
-    }
-
     loadLocation(location) {
         this.closeMap();
         const leftPanel = document.getElementById("left-panel");
         leftPanel.style.backgroundImage = `url(${location.imageUrl})`;
         this.currentLocation = location;
+        if (this.dialogue) this.dialogue.state = "INACTIVE";
     
         // Clear the canvas to remove any previously drawn characters
         this.decocontext.clearRect(0, 0, this.decocanvas.width, this.decocanvas.height);
@@ -207,25 +193,17 @@ class MapController {
         // Draw characters in the current location with their names
         characters.forEach(character => {
             if (character.location === location.name) {
-                const characterImage = new Image();
-                characterImage.src = character.imageUrl;
-                characterImage.onload = () => {
-                    // Draw character image
-                    const characterX = 50;  // Adjust X position as needed
-                    const characterY = 315; // Adjust Y position as needed
-                    this.decocontext.drawImage(characterImage, characterX, characterY, 255, 285);
-    
-                    // Draw character name below the image
-                    this.decocontext.font = "16px Arial"; // Font style for the character name
-                    this.decocontext.fillStyle = "white";  // Text color
-                    this.decocontext.textAlign = "center";
-                    this.decocontext.fillText(character.name, characterX + 127, characterY + 270);  // Position text below image
-                    
-                    // Example dialogue for the character
-                    const dialogue = "Hello, traveler!";
-                    this.drawSpeechBubble(this.decocontext, characterX, characterY, dialogue);
-                };
-            }
+                let characterController;
+                characterController = new CharacterController(character, this.decocontext);      
+                fetch('testdialog.txt')
+                      .then(response => response.text())
+                      .then(data => {
+                        const dialogFileData = data.split('\n'); // Convert file content into an array of lines
+                        this.dialogue = new DialogController(dialogFileData, this.decocanvas, characterController);
+                        // Now, dialogController can be used to manage the dialog flow
+                        this.dialogue.start();
+                });
+            };
         });
 
         // Draw the back arrow if this location has a ref
