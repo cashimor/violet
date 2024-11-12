@@ -17,6 +17,7 @@ I see, brave one! Be careful.
 label3:
 !neutral
 Good luck! You’ll need it.
+~jobdialogue.txt
 
 label4:
 !neutral

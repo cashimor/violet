@@ -2,7 +2,7 @@ class DialogController {
   constructor(dialogFile, canvas, characterController) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
-    this.dialogMap = this.parseDialogFile(dialogFile);
+    this.loadDialogFile(dialogFile);
     this.characterController = characterController;
     this.currentLabel = "start"; // Begin at the default label or starting point
     this.character = characterController.character;
@@ -15,6 +15,11 @@ class DialogController {
     this.closeButtonX = this.characterX + 500; // Adjust based on bubble position
     this.closeButtonY = this.characterY - 90;
     this.closeButtonSize = 20;
+  }
+
+  // Method to load and parse a dialog file
+  loadDialogFile(dialogFile) {
+    this.dialogMap = this.parseDialogFile(dialogFile);
   }
 
   // Parse the dialog file into a structured format
@@ -46,14 +51,31 @@ class DialogController {
     return this.dialogMap.get(label) || [];
   }
 
+  // Fetches the next line and checks for special commands like ~<file>
   getNextLine() {
     if (this.currentLabel && this.dialogMap.has(this.currentLabel)) {
       const dialogLines = this.dialogMap.get(this.currentLabel);
       if (this.currentIndex < dialogLines.length) {
-        return dialogLines[this.currentIndex++];
+        let line = dialogLines[this.currentIndex++];
+
+        if (line.startsWith("~")) {
+          // Handle the command to load a new dialogue file
+          const newFile = line.slice(1).trim();
+          fetch(newFile)
+            .then((response) => response.text())
+            .then((data) => {
+              this.loadDialogFile(data.split("\n")); // Replace dialog file content
+              this.currentLabel = "start";
+              this.currentIndex = 0;
+              this.start(); // Restart dialog with the new file
+            });
+          return "..."; // Temporarily return ... while loading the new file
+        }
+
+        return line;
       }
     }
-    return null; // Return null if no more lines are available
+    return null;
   }
 
   hasMoreLines() {
@@ -85,10 +107,44 @@ class DialogController {
       this.context.font = "14px Arial";
       this.context.fillStyle = "black";
       this.context.textAlign = "center";
-      this.context.fillText(dialogue, bubbleX + 200, bubbleY + 50); // Center text in the bubble
+      // Split dialogue into lines with a max of 60 characters, keeping words intact
+      const maxLineLength = 60;
+      const wrappedText = this.wrapText(dialogue, maxLineLength);
+
+      // Calculate initial text Y position within the bubble
+      let textY = bubbleY + 40; // Start text a bit lower inside the bubble
+      const lineHeight = 20; // Line spacing for readability
+
+      // Draw each line of wrapped text
+      wrappedText.forEach((line) => {
+        this.context.fillText(line, bubbleX + 200, textY); // Center text in the bubble
+        textY += lineHeight;
+      });
       // Draw the "X" button
       this.drawCloseButton();
     };
+  }
+
+  // Helper function to wrap text into lines
+  wrapText(text, maxLineLength) {
+    const words = text.split(" ");
+    const lines = [];
+    let currentLine = "";
+
+    words.forEach((word) => {
+      const newLine = currentLine + (currentLine ? " " : "") + word;
+      if (newLine.length > maxLineLength) {
+        lines.push(currentLine);
+        currentLine = word;
+      } else {
+        currentLine = newLine;
+      }
+    });
+
+    if (currentLine) {
+      lines.push(currentLine);
+    }
+    return lines;
   }
 
   drawCloseButton() {
