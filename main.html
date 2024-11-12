@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Game</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div id="game-container">
-    <div id="left-panel">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <div id="left-panel">
         <div id="choice-popup-holder"></div>
         <div id="rent-popup" class="popup hidden">
-            <h3 id="location-name"></h3>
-            <p id="location-details"></p>
-            <button id="rent-button">Rent</button>
-            <button id="close-popup">Close</button>
+          <h3 id="location-name"></h3>
+          <p id="location-details"></p>
+          <button class="button-parchment" id="rent-button">Rent</button>
+          <button class="button-parchment" id="close-popup">Close</button>
         </div>
         <!-- Decoration area -->
         <div id="decoration-container">
@@ -22,28 +22,30 @@
         </div>
         <!-- Map display area -->
         <div id="map-container">
-          <img id="city-map" src="images/map.jpg" alt="City Map">
+          <img id="city-map" src="images/map.jpg" alt="City Map" />
           <canvas id="location-display" width="550" height="550"></canvas>
         </div>
-    </div>
-    <div id="right-panel">
-      <h2>Simulation Details</h2>
-      <div>
-        <p>Day: <span id="day-counter">1</span></p>
-        <p>Energy: <span id="energy-counter">100</span></p>
-        <p>Money: <span id="money-counter">¥75,000</span></p>
-        <p>Daily Cost: <span id="daily-cost">¥75,000</span></p>
-        <button id="rest-button">Rest (Next Day)</button>
-        <button id="map-button">Map</button>
+      </div>
+      <div id="right-panel">
+        <h2>Simulation Details</h2>
+        <div>
+          <p>Day: <span id="day-counter">1</span></p>
+          <p>Energy: <span id="energy-counter">100</span></p>
+          <p>Money: <span id="money-counter">¥75,000</span></p>
+          <p>Daily Cost: <span id="daily-cost">¥75,000</span></p>
+          <button class="button-parchment" id="rest-button">
+            Rest (Next Day)
+          </button>
+          <button class="button-parchment" id="map-button">Map</button>
+        </div>
       </div>
     </div>
-  </div>
-  <script src="location.js"></script>
-  <script src="character.js"></script>
-  <script src="charactercontroller.js"></script>
-  <script src="dialogcontroller.js"></script>
-  <script src="mapcontroller.js"></script>
-  <script src="simulationcontroller.js"></script>
-  <script src="game.js"></script>
-</body>
+    <script src="location.js"></script>
+    <script src="character.js"></script>
+    <script src="charactercontroller.js"></script>
+    <script src="dialogcontroller.js"></script>
+    <script src="mapcontroller.js"></script>
+    <script src="simulationcontroller.js"></script>
+    <script src="game.js"></script>
+  </body>
 </html>
