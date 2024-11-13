@@ -1,39 +1,67 @@
 class Location {
-  constructor(
-    name,
-    imageUrl,
-    ref,
-    x,
-    y,
-    musicUrl = null,
-    available = false,
-    dailyCost = 0,
-    size = 0
-  ) {
-    this.name = name;
-    this.imageUrl = imageUrl;
-    this.ref = ref;
-    this.x = x; // X coordinate on the map
-    this.y = y; // Y coordinate on the map
-    this.available = available; // Whether location is for rent
-    this.owner = null; // Current renter, if any
-    this.dailyCost = dailyCost; // Daily cost in Yen
-    this.size = size; // Size in tatami mats
-    this.musicUrl = musicUrl;
-  }
-
-  rentTo(characterName) {
-    if (this.available) {
-      this.owner = characterName;
-      this.available = false; // Mark as rented
+    constructor(
+      name,
+      imageUrl,
+      ref,
+      x,
+      y,
+      musicUrl = null,
+      available = false,
+      dailyCost = 0,
+      size = 0
+    ) {
+      this.name = name;
+      this.imageUrl = imageUrl;
+      this.ref = ref;
+      this.x = x;
+      this.y = y;
+      this.available = available;
+      this.owner = null;
+      this.dailyCost = dailyCost;
+      this.size = size;
+      this.musicUrl = musicUrl;
+      this.rooms = []; // Array to hold room data after renting
+      this.currentRoomIndex = 0; // Track which room is being viewed
+    }
+  
+    rentTo(characterName) {
+      if (this.available) {
+        this.owner = characterName;
+        this.available = false;
+        
+        if (characterName === "Violet") {
+          // Initialize the `rooms` array with default room entries
+          this.rooms = Array(this.size).fill({
+            use: "default",
+            url: this.imageUrl // Default to main apartment image
+          });
+        }
+      }
+    }
+  
+    vacate() {
+      this.owner = null;
+      this.available = true;
+      this.rooms = []; // Clear rooms when vacated
+      this.currentRoomIndex = 0;
+    }
+  
+    getImageUrl() {
+      // If rented with rooms, return the current room’s URL; otherwise, return the main image
+      return this.rooms.length > 0 ? this.rooms[this.currentRoomIndex].url : this.imageUrl;
+    }
+  
+    // Method to navigate rooms: accepts 'next' or 'prev' as direction
+    navigateRooms(direction) {
+      if (direction === "next") {
+        this.currentRoomIndex = (this.currentRoomIndex + 1) % this.rooms.length;
+      } else if (direction === "prev") {
+        this.currentRoomIndex =
+          (this.currentRoomIndex - 1 + this.rooms.length) % this.rooms.length;
+      }
+      console.log("" + this.currentRoomIndex);
     }
   }
-
-  vacate() {
-    this.owner = null;
-    this.available = true; // Mark as available again
-  }
-}
 
 const bambooForest = new Location(
   "Bamboo Forest",
@@ -78,6 +106,7 @@ const room1 = new Location(
   1500,
   2
 );
+
 const room2 = new Location(
   "Room 2",
   "images/room2.jpg",

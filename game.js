@@ -2,11 +2,13 @@
 const mapcanvas = document.getElementById("location-display");
 const decocanvas = document.getElementById("decoration-display");
 const simulationController = new SimulationController();
+const locationController = new LocationController(decocanvas, locations, simulationController);
 const mapController = new MapController(
   mapcanvas,
   decocanvas,
   locations,
-  simulationController
+  simulationController,
+  locationController
 );
 
 // Event listeners
