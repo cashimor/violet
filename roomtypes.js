@@ -1,7 +1,7 @@
 const roomTypes = {
-    gamblingDen: {
+    gambling: {
         name: "Gambling Den",
-        imageUrl: "path/to/gambling_den_image.jpg",
+        imageUrl: "images/gamblingden.jpg",
         cost: 5000, // Decoration cost in currency
         hint: "A place where fortunes are made... or lost.",
         upgrades: [
@@ -9,9 +9,9 @@ const roomTypes = {
             { level: 3, cost: 10000, imageUrl: "path/to/upgrade_gambling_den_level3.jpg" }
         ]
     },
-    loanSharking: {
+    loansharking: {
         name: "Loan Sharking",
-        imageUrl: "path/to/loan_sharking_image.jpg",
+        imageUrl: "images/loanshark.jpg",
         cost: 4500,
         hint: "Only the most desperate come to borrow...",
         upgrades: [
@@ -19,9 +19,9 @@ const roomTypes = {
             { level: 3, cost: 9000, imageUrl: "path/to/upgrade_loan_sharking_level3.jpg" }
         ]
     },
-    drugLab: {
+    druglab: {
         name: "Drug Laboratory",
-        imageUrl: "path/to/drug_lab_image.jpg",
+        imageUrl: "images/drugslab.jpg",
         cost: 6000,
         hint: "A shadowy operation...",
         upgrades: [
@@ -29,9 +29,9 @@ const roomTypes = {
             { level: 3, cost: 12000, imageUrl: "path/to/upgrade_drug_lab_level3.jpg" }
         ]
     },
-    otherEvilActivity: {
+    massageparlor: {
         name: "Massage Parlor",
-        imageUrl: "path/to/other_evil_activity_image.jpg",
+        imageUrl: "images/massageparlor.jpg",
         cost: 5500,
         hint: "Unholy dealings of various kinds...",
         upgrades: [
@@ -39,9 +39,9 @@ const roomTypes = {
             { level: 3, cost: 11000, imageUrl: "path/to/upgrade_other_evil_level3.jpg" }
         ]
     },
-    evilLair: {
+    evillair: {
         name: "Evil Lair",
-        imageUrl: "path/to/evil_lair_image.jpg",
+        imageUrl: "images/evillair.jpg",
         cost: 10000,
         hint: "The heart of all your dark plans...",
         upgrades: [

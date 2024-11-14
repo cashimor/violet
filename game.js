@@ -2,7 +2,12 @@
 const mapcanvas = document.getElementById("location-display");
 const decocanvas = document.getElementById("decoration-display");
 const simulationController = new SimulationController();
-const locationController = new LocationController(decocanvas, locations, simulationController);
+const locationController = new LocationController(
+  decocanvas,
+  locations,
+  roomTypes,
+  simulationController
+);
 const mapController = new MapController(
   mapcanvas,
   decocanvas,

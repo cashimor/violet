@@ -11,35 +11,49 @@
       <div id="left-panel">
         <div id="choice-popup-holder"></div>
         <div id="decoratePopup" class="popup hidden">
-          <h2>Choose Room Purpose</h2>
-          <button id="btnGambling" class="decorate-btn">Gambling Den</button>
-          <p id="hintGambling" class="hint-text">
-            A place where fortunes are made... or lost.
-          </p>
-
-          <button id="btnLoanSharking" class="decorate-btn">
+          <h2>Room Purpose</h2>
+          <button
+            id="btnGambling"
+            class="decorate-btn button-parchment"
+            data-hint="A gambling operation provides relatively steady income, at the risk of police intervention."
+          >
+            Gambling Den
+          </button>
+          <button
+            id="btnLoanSharking"
+            class="decorate-btn button-parchment"
+            data-hint="Loan sharking requires heavy financial investment and some violence, but can have a high payout."
+          >
             Loan Sharking
           </button>
-          <p id="hintLoanSharking" class="hint-text">
-            Only the most desperate come to borrow...
-          </p>
 
-          <button id="btnDrugDealing" class="decorate-btn">Drug Lab</button>
-          <p id="hintDrugDealing" class="hint-text">A shadowy operation...</p>
-
-          <button id="btnMassageParlor" class="decorate-btn">
-            Other Evil Activity
+          <button
+            id="btnDrugLab"
+            class="decorate-btn button-parchment"
+            data-hint="Allows the production of drugs, which can be sold. Best done in a less conspicuous place."
+          >
+            Drug Lab
           </button>
-          <p id="hintMassageParlor" class="hint-text">
-            Unholy dealings of various kinds...
-          </p>
 
-          <button id="btnEvilLair" class="decorate-btn">Evil Lair</button>
-          <p id="hintEvilLair" class="hint-text">
-            The heart of all your dark plans...
-          </p>
+          <button
+            id="btnMassageParlor"
+            class="decorate-btn button-parchment"
+            data-hint="Place for more physical services."
+          >
+            Massage Parlor
+          </button>
 
-          <button id="closeDecoratePopup">Close</button>
+          <button
+            id="btnEvilLair"
+            class="decorate-btn button-parchment"
+            data-hint="The heart of all your dark plans..."
+          >
+            Evil Lair
+          </button>
+
+          <button id="closeDecoratePopup" class="button-parchment">
+            Close
+          </button>
         </div>
         <div id="rent-popup" class="popup hidden">
           <h3 id="location-name"></h3>
@@ -73,6 +87,7 @@
     </div>
     <script src="location.js"></script>
     <script src="character.js"></script>
+    <script src="roomTypes.js"></script>
     <script src="charactercontroller.js"></script>
     <script src="dialogcontroller.js"></script>
     <script src="locationcontroller.js"></script>

@@ -197,6 +197,9 @@ class DialogController {
   }
 
   closeDialog() {
+    if (this.state == "INACTIVE") {
+      return;
+    }
     this.state = "INACTIVE";
     this.closePopup();
     // Clear the canvas to remove any previously drawn characters

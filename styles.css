@@ -106,3 +106,32 @@
   transform: scale(0.95); /* Press down effect */
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow */
 }
+
+.decorate-btn {
+  position: relative;
+}
+
+.decorate-btn::after {
+  width: 400px; /* Adjust this width as needed */
+  white-space: normal; /* Allows line wrapping */
+  word-wrap: break-word; /* Ensure long words break to fit */
+  content: attr(data-hint);
+  position: absolute;
+  bottom: 100%; /* Position above the button */
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px); /* Center horizontally and add a bit of space */
+  background-color: #f4e1c1; /* Light parchment color */
+  color: #333; /* Text color */
+  padding: 5px;
+  border: 1px solid #d19b73; /* Terracotta-like border */
+  border-radius: 5px;
+  font-size: 0.9em;
+  font-family: serif;
+  display: none;
+  z-index: 10;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.decorate-btn:hover::after {
+  display: block;
+}

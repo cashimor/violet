@@ -1,25 +1,40 @@
 class LocationController {
-  constructor(decocanvas, locations, simulationController) {
+  constructor(decocanvas, locations, roomTypes, simulationController) {
+    this.roomTypes = roomTypes;
     this.decocanvas = decocanvas;
     this.locations = locations;
     this.simulationController = simulationController;
     this.decocontext = decocanvas.getContext("2d");
     this.currentLocation = null; // The location currently being managed (e.g., the rented apartment)
-    this.currentRoomIndex = 0; // Tracks the currently displayed room in the rented apartment
     this.rentPopup = document.getElementById("rent-popup");
     this.dialogue = null;
     this.audio = new Audio(); // Audio element to manage playback
     this.currentMusic = null;
+    this.decoratePopup = document.getElementById("decoratePopup");
+    document.querySelectorAll(".decorate-btn").forEach(button => {
+        button.addEventListener("click", event => {
+            const roomKey = event.target.id.replace("btn", "").toLowerCase();
+            const roomData = roomTypes[roomKey];
+    
+            if (roomData) {
+                this.decorateRoom(roomData);
+            }
+        });
+    });
+    const closeButton = document.getElementById("closeDecoratePopup");
+    closeButton.addEventListener("click", () => {
+      this.hidePopups();
+    });
   }
 
   hidePopups() {
     this.rentPopup.classList.add("hidden");
+    this.decoratePopup.classList.add("hidden");
     if (this.dialogue) this.dialogue.closeDialog();
   }
 
   loadLocation(location) {
-    this.rentPopup.classList.add("hidden");
-    if (this.dialogue) this.dialogue.closeDialog();
+    this.hidePopups();
 
     // Check for background music and play if available
     if (location.musicUrl && location.musicUrl !== this.currentMusic) {
@@ -75,6 +90,9 @@ class LocationController {
     if (location.owner === "Violet") {
       this.decocanvas.style.border = "5px solid violet";
       this.drawRoomNavigationIcons();
+      if (this.currentLocation.getUse() === "default") {
+        this.decoratePopup.classList.remove("hidden");
+      }
     } else {
       this.decocanvas.style.border = "none"; // Remove border if not rented by Violet
     }
@@ -318,4 +336,15 @@ class LocationController {
     this.handleRoomNavigationClick(x, y);
 
   }
+
+  decorateRoom(roomData) {
+    // Deduct cost, set room image, and apply any upgrades as needed
+    if (this.simulationController.deductMoney(roomData.cost)) {
+        this.currentLocation.decorateLocation(roomData.imageUrl, roomData.name);
+        this.loadLocation(this.currentLocation);
+        // If there's an upgrade path, we can manage it here later
+        console.log(`Room decorated as ${roomData.name}`);
+
+    }
+}
 }

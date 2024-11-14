@@ -31,14 +31,14 @@ class Location {
         
         if (characterName === "Violet") {
           // Initialize the `rooms` array with default room entries
-          this.rooms = Array(this.size).fill({
+          this.rooms = Array.from({ length: this.size }, () => ({
             use: "default",
             url: this.imageUrl // Default to main apartment image
-          });
-        }
+          }));        }
       }
     }
   
+    // Untested.
     vacate() {
       this.owner = null;
       this.available = true;
@@ -47,10 +47,20 @@ class Location {
     }
   
     getImageUrl() {
+      if (this.rooms.length > 0) console.log("" + this.currentRoomIndex + ":" + this.rooms[this.currentRoomIndex].url);
       // If rented with rooms, return the current room’s URL; otherwise, return the main image
       return this.rooms.length > 0 ? this.rooms[this.currentRoomIndex].url : this.imageUrl;
     }
   
+    getUse() {
+      return this.rooms.length > 0 ? this.rooms[this.currentRoomIndex].use : "basic";
+    }
+
+    decorateLocation(url, type) {
+      this.rooms[this.currentRoomIndex].url = url;
+      this.rooms[this.currentRoomIndex].use = type;
+    }
+
     // Method to navigate rooms: accepts 'next' or 'prev' as direction
     navigateRooms(direction) {
       if (direction === "next") {

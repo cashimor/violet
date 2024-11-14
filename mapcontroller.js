@@ -1,5 +1,11 @@
 class MapController {
-  constructor(canvas, decocanvas, locations, simulationController, locationController) {
+  constructor(
+    canvas,
+    decocanvas,
+    locations,
+    simulationController,
+    locationController
+  ) {
     this.canvas = canvas;
     this.decocanvas = decocanvas;
     this.context = canvas.getContext("2d");
@@ -98,7 +104,7 @@ class MapController {
 
   handleDecoCanvasClick(event) {
     if (this.locationController.handleDecoCanvasClick(event)) {
-        this.closeMap();
+      this.closeMap();
     }
   }
 
