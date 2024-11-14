@@ -1,9 +1,10 @@
 class DialogController {
-  constructor(dialogFile, canvas, characterController) {
+  constructor(dialogFile, canvas, characterController, jobController) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
     this.loadDialogFile(dialogFile);
     this.characterController = characterController;
+    this.jobController = jobController;
     this.currentLabel = "start"; // Begin at the default label or starting point
     this.character = characterController.character;
     this.characterX = characterController.characterX;
@@ -15,6 +16,59 @@ class DialogController {
     this.closeButtonX = this.characterX + 500; // Adjust based on bubble position
     this.closeButtonY = this.characterY - 90;
     this.closeButtonSize = 20;
+
+    this.commandTable = {
+      test: (param) => this.test(param),
+      showJobChoices: (param) => this.showJobChoices(param),
+      // Add more functions as needed
+    };
+  }
+
+  getRoomTypeKeyByName(name) {
+    for (const key in roomTypes) {
+      if (roomTypes[key].name === name) {
+        return key;
+      }
+    }
+    return null; // Or handle error if name not found
+  }
+
+  showJobChoices(param) {
+    const availableJobs = this.jobController.getAvailableJobTypes();
+    let jobOptions = availableJobs.map(jobType => {
+      const jobInfo = roomTypes[this.getRoomTypeKeyByName(jobType)].job;
+      return `[${jobType}] ${jobInfo.job}.`;
+    });
+    
+    // Add a cancel option
+    jobOptions.push("[Cancel] Let me get back to you.");
+    return [
+      "?Which job would you like me to do?",
+      ...jobOptions
+    ];
+
+
+    // Create dialogue options based on available jobs
+    const choices = availableJobs.length > 0 
+      ? availableJobs.map(job => ({
+          label: job,
+          action: () => this.assignJob(dialogueContext.npcId, job)
+        }))
+      : [];
+
+    // Add a fallback option in case the player wants to decline or no jobs are available
+    choices.push({
+      label: "I'll get back to you",
+      action: () => console.log("Player chose to delay job assignment.")
+    });
+
+    // Returns formatted choices for use in the dialogue UI
+    return choices;
+  }
+
+  test(param) {
+    console.log("" + param);
+    return ["This is the end", "As we know it."];
   }
 
   // Method to load and parse a dialog file
@@ -255,6 +309,26 @@ class DialogController {
     if (dialogContent.startsWith("!")) {
       this.handleEmotion(dialogContent);
       dialogContent = this.getNextLine();
+    }
+    if (dialogContent.startsWith('@')) {
+      const commandMatch = dialogContent.match(/^@(\w+)\((.*)\)$/);
+      if (commandMatch) {
+        const commandName = commandMatch[1];
+        const param = commandMatch[2];
+        
+        // Look up and execute the command
+        const commandFunction = this.commandTable[commandName];
+        if (commandFunction) {
+          const result = commandFunction(param);
+          
+          // Handle the result if it returns dialogue text
+          if (result) {
+            this.dialogMap.set("commandResult", result);
+            this.chooseOption("commandResult");
+          }
+          dialogContent = this.getNextLine();
+        }
+      }
     }
 
     // Handle dialog choices if line starts with "?"

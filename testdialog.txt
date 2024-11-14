@@ -12,6 +12,7 @@ Ah, well, you should turn back while you can!
 [label4] Maybe not…
 
 label2:
+@test(bla)
 I see, brave one! Be careful.
 
 label3:

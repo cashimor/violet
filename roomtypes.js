@@ -1,6 +1,7 @@
 const roomTypes = {
     gambling: {
         name: "Gambling Den",
+        job: "Pit Boss",
         imageUrl: "images/gamblingden.jpg",
         cost: 5000, // Decoration cost in currency
         hint: "A place where fortunes are made... or lost.",
@@ -11,6 +12,7 @@ const roomTypes = {
     },
     loansharking: {
         name: "Loan Sharking",
+        job: "Debt Collector",
         imageUrl: "images/loanshark.jpg",
         cost: 4500,
         hint: "Only the most desperate come to borrow...",
@@ -21,6 +23,7 @@ const roomTypes = {
     },
     druglab: {
         name: "Drug Laboratory",
+        job: "Chemist",
         imageUrl: "images/drugslab.jpg",
         cost: 6000,
         hint: "A shadowy operation...",
@@ -31,6 +34,7 @@ const roomTypes = {
     },
     massageparlor: {
         name: "Massage Parlor",
+        job: "Practitioner",
         imageUrl: "images/massageparlor.jpg",
         cost: 5500,
         hint: "Unholy dealings of various kinds...",

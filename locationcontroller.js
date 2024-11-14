@@ -1,9 +1,10 @@
 class LocationController {
-  constructor(decocanvas, locations, roomTypes, simulationController) {
+  constructor(decocanvas, locations, roomTypes, simulationController, jobController) {
     this.roomTypes = roomTypes;
     this.decocanvas = decocanvas;
     this.locations = locations;
     this.simulationController = simulationController;
+    this.jobController = jobController;
     this.decocontext = decocanvas.getContext("2d");
     this.currentLocation = null; // The location currently being managed (e.g., the rented apartment)
     this.rentPopup = document.getElementById("rent-popup");
@@ -73,7 +74,8 @@ class LocationController {
             this.dialogue = new DialogController(
               dialogFileData,
               this.decocanvas,
-              characterController
+              characterController,
+              this.jobController,
             );
             // Now, dialogController can be used to manage the dialog flow
             this.dialogue.start();
@@ -341,10 +343,10 @@ class LocationController {
     // Deduct cost, set room image, and apply any upgrades as needed
     if (this.simulationController.deductMoney(roomData.cost)) {
         this.currentLocation.decorateLocation(roomData.imageUrl, roomData.name);
+        this.jobController.addRoom(this.currentLocation);
         this.loadLocation(this.currentLocation);
         // If there's an upgrade path, we can manage it here later
         console.log(`Room decorated as ${roomData.name}`);
-
     }
 }
 }
