@@ -1,21 +1,17 @@
 start:
-Hello, Violet. I was wondering if you'd be interested in a position here at my lair.
-?Do you want to discuss it?
-[label1] Yes, I’m curious.
-[label2] No, I’m not interested.
+@showJobChoices()
 
-label1:
-Great! There are a few tasks I need help with.
-?Would you prefer something with a bit of risk, or something more relaxed?
-[label3] I don’t mind a challenge.
-[label4] Maybe something low-key.
+Loan Office:
+I'll see if I have some weapons.
 
-label2:
-!neutral
-Alright, no worries. If you change your mind, let me know.
+Gambling Den:
+Different hours. Probably good.
 
-label3:
-I like that attitude! We could really use your skills on a more adventurous task.
+Drug Laboratory:
+Hopefully I don't get high.
 
-label4:
-No problem. I’ll find something less intense for you.
+Massage Parlor:
+Oh... Interesting...
+
+Evil Lair:
+I will be your trusted companion.

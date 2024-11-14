@@ -36,7 +36,7 @@ class DialogController {
   showJobChoices(param) {
     const availableJobs = this.jobController.getAvailableJobTypes();
     let jobOptions = availableJobs.map(jobType => {
-      const jobInfo = roomTypes[this.getRoomTypeKeyByName(jobType)].job;
+      const jobInfo = roomTypes[this.getRoomTypeKeyByName(jobType)];
       return `[${jobType}] ${jobInfo.job}.`;
     });
     
@@ -101,10 +101,6 @@ class DialogController {
     return dialogMap;
   }
 
-  getDialogText(label) {
-    return this.dialogMap.get(label) || [];
-  }
-
   // Fetches the next line and checks for special commands like ~<file>
   getNextLine() {
     if (this.currentLabel && this.dialogMap.has(this.currentLabel)) {
@@ -128,6 +124,8 @@ class DialogController {
 
         return line;
       }
+    } else {
+      console.log("Label " + this.currentLabel + " not found in dialogue.");
     }
     return null;
   }

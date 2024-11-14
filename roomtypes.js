@@ -11,7 +11,7 @@ const roomTypes = {
         ]
     },
     loansharking: {
-        name: "Loan Sharking",
+        name: "Loan Office",
         job: "Debt Collector",
         imageUrl: "images/loanshark.jpg",
         cost: 4500,
@@ -45,6 +45,7 @@ const roomTypes = {
     },
     evillair: {
         name: "Evil Lair",
+        job: "Partner",
         imageUrl: "images/evillair.jpg",
         cost: 10000,
         hint: "The heart of all your dark plans...",

@@ -1,5 +1,11 @@
 class LocationController {
-  constructor(decocanvas, locations, roomTypes, simulationController, jobController) {
+  constructor(
+    decocanvas,
+    locations,
+    roomTypes,
+    simulationController,
+    jobController
+  ) {
     this.roomTypes = roomTypes;
     this.decocanvas = decocanvas;
     this.locations = locations;
@@ -12,15 +18,15 @@ class LocationController {
     this.audio = new Audio(); // Audio element to manage playback
     this.currentMusic = null;
     this.decoratePopup = document.getElementById("decoratePopup");
-    document.querySelectorAll(".decorate-btn").forEach(button => {
-        button.addEventListener("click", event => {
-            const roomKey = event.target.id.replace("btn", "").toLowerCase();
-            const roomData = roomTypes[roomKey];
-    
-            if (roomData) {
-                this.decorateRoom(roomData);
-            }
-        });
+    document.querySelectorAll(".decorate-btn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        const roomKey = event.target.id.replace("btn", "").toLowerCase();
+        const roomData = roomTypes[roomKey];
+
+        if (roomData) {
+          this.decorateRoom(roomData);
+        }
+      });
     });
     const closeButton = document.getElementById("closeDecoratePopup");
     closeButton.addEventListener("click", () => {
@@ -75,7 +81,7 @@ class LocationController {
               dialogFileData,
               this.decocanvas,
               characterController,
-              this.jobController,
+              this.jobController
             );
             // Now, dialogController can be used to manage the dialog flow
             this.dialogue.start();
@@ -336,17 +342,16 @@ class LocationController {
     }
 
     this.handleRoomNavigationClick(x, y);
-
   }
 
   decorateRoom(roomData) {
     // Deduct cost, set room image, and apply any upgrades as needed
     if (this.simulationController.deductMoney(roomData.cost)) {
-        this.currentLocation.decorateLocation(roomData.imageUrl, roomData.name);
-        this.jobController.addRoom(this.currentLocation);
-        this.loadLocation(this.currentLocation);
-        // If there's an upgrade path, we can manage it here later
-        console.log(`Room decorated as ${roomData.name}`);
+      this.currentLocation.decorateLocation(roomData.imageUrl, roomData.name);
+      this.jobController.addRoom(this.currentLocation);
+      this.loadLocation(this.currentLocation);
+      // If there's an upgrade path, we can manage it here later
+      console.log(`Room decorated as ${roomData.name}`);
     }
-}
+  }
 }
