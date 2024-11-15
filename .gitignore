@@ -1,14 +1,5 @@
-# Ignore all log files
+# Ignore
 *.log
-
-# Ignore specific files
-config/local.env
-image/aikomassage.png
-
-# Ignore a directory
-image/large/
-
-# Ignore temp files
 *.tmp
 images/aikomassage.png
 images/large/aiko.png
@@ -24,3 +15,6 @@ images/large/tarodrugs.png
 images/large/taroloan.png
 images/large/taromassage.png
 images/large/taroshock.png
+images/large/tarogamble.png
+images/taropartner.png
+images/large/taropartner.png

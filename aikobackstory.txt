@@ -1,0 +1,46 @@
+start:
+Oh, hello there. My name is Aiko.
+?Is there something you'd like to talk about?
+[label1] Tell me about your past.
+[label2] What’s your secret?
+[label3] Just curious.
+[job] Can I offer you a job?
+
+label1:
+!neutral
+?Ah, it’s not much of a story. I grew up on the streets, learned how to fend for myself.
+[label4] You must have learned a lot from that.
+[label5] Did you have anyone to rely on?
+
+label2:
+!neutral
+?A secret? Ha, I wouldn’t call it that. When you’ve lived like I have, you pick up some skills. 
+[label6] What kind of skills? Are you tough?
+[label3] Never mind, I was just curious.
+
+label3:
+!neutral
+Suit yourself. But don’t expect me to trust you if you’re not willing to talk either.
+
+label4:
+!neutral
+Yeah, I guess you could say I learned a lot. Mostly the hard way, though.
+It’s why I don’t like people getting too close.
+
+label5:
+!neutral
+?Not really. People on the streets aren’t exactly looking out for you, you know?
+[label6] Must have made you tough.
+[label10] That sounds really lonely.
+
+label6:
+!neutral
+You could say that. I don’t like to brag, but I can handle myself in a fight.
+I don't really like to be touched, though.
+
+label10:
+!neutral
+Lonely? Maybe. But that’s just how life is sometimes.
+
+job:
+~jobdialogue.txt

@@ -1,8 +1,8 @@
 // Initialize the map controller
 const mapcanvas = document.getElementById("location-display");
 const decocanvas = document.getElementById("decoration-display");
-const simulationController = new SimulationController();
 const jobController = new JobController();
+const simulationController = new SimulationController(jobController);
 const locationController = new LocationController(
   decocanvas,
   locations,

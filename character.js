@@ -1,11 +1,35 @@
 class Character {
-  constructor(name, imageUrls, location = null) {
+  constructor(
+    name,
+    imageUrls,
+    location = null,
+    dialogue = "testdialog.txt",
+    strength,
+    weakness
+  ) {
     this.name = name;
     this.location = location;
     this.icon = "";
     this.imageUrlBases = imageUrls;
     this.currentEmotion = "";
     this.setEmotion("");
+    this.dialogue = dialogue;
+    this.strength = strength;
+    this.weakness = weakness;
+    this.skillLevel = 10; // Basic skill level is 10%
+  }
+
+  getSkillLevel() {
+    let skill = this.skillLevel;
+    if (this.icon == this.strength) {
+      skill = skill + 10;
+    }
+    if (this.icon == this.weakness) {
+      skill = skill / 2;
+    }
+    // Ensure skill level is between 0 and 100
+    skill = Math.max(0, Math.min(100, skill));
+    return skill;
   }
 
   setLocation(newLocation) {
@@ -65,7 +89,29 @@ class Character {
 }
 
 const characters = [
-  new Character("Aiko", ["aiko", "aikoshock", "aikomassage", "aikogamble", "aikodrugs", "aikopartner"], "Bamboo Forest"),
-  new Character("Taro", ["taro", "taroshock", "taroloan", "taromassage", "tarodrugs"], "City Block 1"),
+  new Character(
+    "Aiko",
+    [
+      "aiko",
+      "aikoshock",
+      "aikoloan",
+      "aikomassage",
+      "aikogamble",
+      "aikodrugs",
+      "aikopartner",
+    ],
+    "Bamboo Forest",
+    "aikobackstory.txt",
+    "loan",
+    "massage"
+  ),
+  new Character(
+    "Taro",
+    ["taro", "taroshock", "taroloan", "taromassage", "tarogamble", "tarodrugs", "taropartner"],
+    "City Block 1",
+    "tarobackstory.txt",
+    "drugs",
+    "gamble"
+  ),
   // Add more characters as needed
 ];

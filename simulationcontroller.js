@@ -1,8 +1,9 @@
 class SimulationController {
-  constructor() {
+  constructor(jobController) {
+    this.jobController = jobController;
     this.day = 1;
     this.energy = 100;
-    this.energyResetValue = 100; // Energy reset to this value each new day
+    this.energyResetValue = 50; // Energy reset to this value each new day
     this.money = 100000; // Adjust this initial value as needed
     this.dailyCost = 0;
     this.locationCost = 0;
@@ -64,11 +65,60 @@ class SimulationController {
   advanceDay() {
     this.day++;
     this.energy = this.energyResetValue;
-    this.money -= this.dailyCost;
+
+    let totalProfit = 0;
+    let evilLairBonus = 0;
+
+    // Prepare summary of daily activities
+    let summary = `<b>Day ${this.day}:</b><br>`;
+
+    // Calculate profits from all jobs
+    Object.entries(this.jobController.jobs).forEach(([roomId, job]) => {
+      const roomType = this.jobController.getRoomTypeByName(job.purpose); // Get room type from purpose
+      const assignedNpc = job.npcAssigned;
+      if (job.purpose === "Evil Lair") {
+        evilLairBonus = 25;
+        if (assignedNpc) {
+          evilLairBonus = 50;
+        }
+      }
+      if (roomType && assignedNpc) {
+        const result = roomType.calculateProfit(assignedNpc);
+
+        if (typeof result === "number") {
+          // Success: Add profit and report
+          totalProfit += result;
+          summary += `Income from ${
+            job.purpose
+          }: ¥${result.toLocaleString()}<br>`;
+        } else {
+          // Issue: Add issue to report
+          summary += `Event: ${result}<br>`;
+        }
+      }
+
+    });
+    this.energy = this.energy + evilLairBonus;
+    // Update money and handle end-of-day report
+    this.money += totalProfit; // Add total profit to money
+    this.money -= this.dailyCost; // Subtract daily costs
+
+    // Add daily cost and final balance to the summary
+    summary += `<br>Daily Costs: ¥${this.dailyCost.toLocaleString()}<br>`;
+    summary += `Net Income: ¥${(
+      totalProfit - this.dailyCost
+    ).toLocaleString()}<br>`;
+    summary += `<b>Total Money:</b> ¥${this.money.toLocaleString()}<br>`;
+
+    // Show the summary in the Simulation Details section
+    document.getElementById("summary-text").innerHTML = summary;
+
+    // Check for Game Over
     if (this.money < 0) {
       alert("Game Over! Violet ran out of money.");
       // Implement any additional game-over logic here
     }
+
     this.updateDisplay();
   }
 

@@ -22,8 +22,54 @@ class DialogController {
       test: (param) => this.test(param),
       showJobChoices: (param) => this.showJobChoices(param),
       selectJob: (param) => this.selectJob(param),
+      train: (param) => this.train(param),
+      showSkill: (param) => this.showSkill(param),
       // Add more functions as needed
     };
+  }
+
+  showSkill(param) {
+    const skillLevel = this.character.skillLevel;
+    const description = this.getSkillDescription(skillLevel);
+    return [
+      `Let me think...`,
+      `I feel like ${description} right now.`,
+    ];
+  }
+  
+  getSkillDescription(skillLevel) {
+    // Map skill level ranges to descriptions
+    if (skillLevel < 10) return "I know nothing about this.";
+    if (skillLevel < 20) return "I'm just starting to learn.";
+    if (skillLevel < 30) return "I have a basic understanding.";
+    if (skillLevel < 40) return "I'm getting the hang of it.";
+    if (skillLevel < 50) return "I'm fairly competent.";
+    if (skillLevel < 60) return "I'm doing well.";
+    if (skillLevel < 70) return "I'm quite skilled.";
+    if (skillLevel < 80) return "I'm very skilled.";
+    if (skillLevel < 90) return "I'm an expert.";
+    return "I've mastered this.";
+  }
+
+  train(param) {
+    const energyCost = 40; // Energy cost for training
+    const amount = parseInt(param, 10); // Extract the training amount
+  
+    if (isNaN(amount)) {
+      console.error("Invalid @train parameter. Expected a number.");
+      return;
+    }
+  
+    // Deduct energy from Violet
+    if (this.simulationController.deductEnergy(energyCost)) {  
+      // Update the skill level of the current character
+      if (this.character) {
+        this.character.skillLevel = Math.min(100, this.character.skillLevel + amount);
+        return ["Thank you for training me."];
+      }
+    } else {
+      return ["You seem to tired to help me."];
+    }
   }
 
   // In DialogController.js
@@ -63,24 +109,6 @@ class DialogController {
     // Add a cancel option
     jobOptions.push("[Cancel] Let me get back to you.");
     return ["?Which job would you like me to do?", ...jobOptions];
-
-    // Create dialogue options based on available jobs
-    const choices =
-      availableJobs.length > 0
-        ? availableJobs.map((job) => ({
-            label: job,
-            action: () => this.assignJob(dialogueContext.npcId, job),
-          }))
-        : [];
-
-    // Add a fallback option in case the player wants to decline or no jobs are available
-    choices.push({
-      label: "I'll get back to you",
-      action: () => console.log("Player chose to delay job assignment."),
-    });
-
-    // Returns formatted choices for use in the dialogue UI
-    return choices;
   }
 
   test(param) {
@@ -308,10 +336,10 @@ class DialogController {
       choiceButton.className = "button-parchment";
       choiceButton.style.margin = "5px";
       choiceButton.onclick = () => {
-        this.chooseOption(label); // Update dialog based on choice
-        this.start(); // Restart dialog with chosen label
         this.closePopup();
         this.state = "ACTIVE";
+        this.chooseOption(label); // Update dialog based on choice
+        this.start(); // Restart dialog with chosen label
       };
       this.choiceContainer.appendChild(choiceButton);
       this.state = "POPUP";

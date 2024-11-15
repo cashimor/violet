@@ -142,7 +142,7 @@ class LocationController {
     );
 
     // Fetch dialog file and initialize DialogController
-    fetch("testdialog.txt")
+    fetch(character.dialogue)
       .then((response) => response.text())
       .then((data) => {
         const dialogFileData = data.split("\n");

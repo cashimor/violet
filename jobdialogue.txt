@@ -20,3 +20,6 @@ Oh... Interesting...
 Evil Lair:
 I will be your trusted companion.
 @selectJob(Evil Lair)
+
+Cancel:
+Next time, then.
