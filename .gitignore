@@ -1,0 +1,12 @@
+# Ignore all log files
+*.log
+
+# Ignore specific files
+config/local.env
+image/aikomassage.png
+
+# Ignore a directory
+image/large/
+
+# Ignore temp files
+*.tmp
