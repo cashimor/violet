@@ -1,9 +1,10 @@
 class DialogController {
-  constructor(dialogFile, canvas, characterController, jobController) {
+  constructor(dialogFile, canvas, characterController, jobController, simulationController) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
     this.loadDialogFile(dialogFile);
     this.characterController = characterController;
+    this.simulationController = simulationController;
     this.jobController = jobController;
     this.currentLabel = "start"; // Begin at the default label or starting point
     this.character = characterController.character;
@@ -20,46 +21,62 @@ class DialogController {
     this.commandTable = {
       test: (param) => this.test(param),
       showJobChoices: (param) => this.showJobChoices(param),
+      selectJob: (param) => this.selectJob(param),
       // Add more functions as needed
     };
   }
 
-  getRoomTypeKeyByName(name) {
-    for (const key in roomTypes) {
-      if (roomTypes[key].name === name) {
-        return key;
+  // In DialogController.js
+  selectJob(roomTypeName) {
+    // Step 1: Retrieve available rooms for the specified job type
+    const availableRooms =
+      this.jobController.getAvailableJobsForPurpose(roomTypeName);
+
+    // Step 2: Check if there are no available rooms
+    if (availableRooms.length === 0) {
+      console.log(`No available rooms for job type: ${roomTypeName}`);
+      return ["There are no available rooms for this job type at the moment."];
+    }
+
+    // Step 3: Try assigning the NPC to the first available empty room
+    let assigned = false;
+    for (const room of availableRooms) {
+      assigned = this.jobController.assignNpcToJob(room, this.character);
+      if (assigned) {
+        this.simulationController.recalculateDailyCostJobs(jobController);
+        return [`Thank you for giving me a job in your ${roomTypeName}!`];
       }
     }
-    return null; // Or handle error if name not found
+
+    // Step 4: If no room assignment was successful, return a fallback message
+    console.log(`All rooms are occupied for job type: ${roomTypeName}`);
+    return ["All rooms for this job type are currently occupied."];
   }
 
   showJobChoices(param) {
     const availableJobs = this.jobController.getAvailableJobTypes();
-    let jobOptions = availableJobs.map(jobType => {
-      const jobInfo = roomTypes[this.getRoomTypeKeyByName(jobType)];
+    let jobOptions = availableJobs.map((jobType) => {
+      const jobInfo = this.jobController.getRoomTypeByName(jobType);
       return `[${jobType}] ${jobInfo.job}.`;
     });
-    
+
     // Add a cancel option
     jobOptions.push("[Cancel] Let me get back to you.");
-    return [
-      "?Which job would you like me to do?",
-      ...jobOptions
-    ];
-
+    return ["?Which job would you like me to do?", ...jobOptions];
 
     // Create dialogue options based on available jobs
-    const choices = availableJobs.length > 0 
-      ? availableJobs.map(job => ({
-          label: job,
-          action: () => this.assignJob(dialogueContext.npcId, job)
-        }))
-      : [];
+    const choices =
+      availableJobs.length > 0
+        ? availableJobs.map((job) => ({
+            label: job,
+            action: () => this.assignJob(dialogueContext.npcId, job),
+          }))
+        : [];
 
     // Add a fallback option in case the player wants to decline or no jobs are available
     choices.push({
       label: "I'll get back to you",
-      action: () => console.log("Player chose to delay job assignment.")
+      action: () => console.log("Player chose to delay job assignment."),
     });
 
     // Returns formatted choices for use in the dialogue UI
@@ -141,6 +158,14 @@ class DialogController {
   chooseOption(label) {
     this.currentLabel = label;
     this.currentIndex = 0; // Tracks the current line in the dialog
+  }
+
+  // Method to clear only the dialog bubble area
+  clearBubble() {
+    const bubbleX = this.characterX + 50; // Adjust based on bubble position
+    const bubbleY = this.characterY - 100; // Adjust to appear above the character
+    this.context.clearRect(bubbleX, bubbleY, 400, 100);
+    this.context.clearRect(this.closeButtonX - 20, this.closeButtonY - 20, 40, 40);
   }
 
   drawSpeechBubble(characterX, characterY, dialogue) {
@@ -255,7 +280,9 @@ class DialogController {
     this.state = "INACTIVE";
     this.closePopup();
     // Clear the canvas to remove any previously drawn characters
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.characterController.clearCharacter();
+    this.clearBubble();
+    // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   startDialog(label) {
@@ -308,17 +335,17 @@ class DialogController {
       this.handleEmotion(dialogContent);
       dialogContent = this.getNextLine();
     }
-    if (dialogContent.startsWith('@')) {
+    if (dialogContent.startsWith("@")) {
       const commandMatch = dialogContent.match(/^@(\w+)\((.*)\)$/);
       if (commandMatch) {
         const commandName = commandMatch[1];
         const param = commandMatch[2];
-        
+
         // Look up and execute the command
         const commandFunction = this.commandTable[commandName];
         if (commandFunction) {
           const result = commandFunction(param);
-          
+
           // Handle the result if it returns dialogue text
           if (result) {
             this.dialogMap.set("commandResult", result);

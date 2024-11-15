@@ -27,6 +27,19 @@ class LocationController {
           this.decorateRoom(roomData);
         }
       });
+
+      // Dynamically update the data-hint with cost and upkeep
+      const roomKey = button.id.replace("btn", "").toLowerCase();
+      const roomData = roomTypes[roomKey];
+
+      if (roomData) {
+        const formattedCost = roomData.cost
+          .toLocaleString("en")
+          .replace(/,/g, ".");
+        const upkeepPercentage = (roomData.upkeep * 100).toFixed(2); // Convert to percentage
+        const hintWithDetails = `${roomData.hint} (Cost: ¥${formattedCost}, Upkeep: ${upkeepPercentage}% daily)`;
+        button.setAttribute("data-hint", hintWithDetails);
+      }
     });
     const closeButton = document.getElementById("closeDecoratePopup");
     closeButton.addEventListener("click", () => {
@@ -68,24 +81,7 @@ class LocationController {
     // Draw characters in the current location with their names
     characters.forEach((character) => {
       if (character.location === location.name) {
-        let characterController;
-        characterController = new CharacterController(
-          character,
-          this.decocontext
-        );
-        fetch("testdialog.txt")
-          .then((response) => response.text())
-          .then((data) => {
-            const dialogFileData = data.split("\n"); // Convert file content into an array of lines
-            this.dialogue = new DialogController(
-              dialogFileData,
-              this.decocanvas,
-              characterController,
-              this.jobController
-            );
-            // Now, dialogController can be used to manage the dialog flow
-            this.dialogue.start();
-          });
+        this.renderCharacter(character);
       }
     });
 
@@ -101,6 +97,7 @@ class LocationController {
       if (this.currentLocation.getUse() === "default") {
         this.decoratePopup.classList.remove("hidden");
       }
+      this.renderCharacter(this.jobController.getCharacter(location));
     } else {
       this.decocanvas.style.border = "none"; // Remove border if not rented by Violet
     }
@@ -120,7 +117,7 @@ class LocationController {
       document.getElementById("rent-button").onclick = () => {
         // Deduct money and mark location as rented by Violet
         location.rentTo("Violet");
-        this.simulationController.recalculateDailyCost(locations);
+        this.simulationController.recalculateDailyCostLocations(locations);
         this.decocanvas.style.border = "5px solid violet";
         // Hide popup
         this.rentPopup.classList.add("hidden");
@@ -132,6 +129,32 @@ class LocationController {
         this.rentPopup.classList.add("hidden");
       };
     }
+  }
+
+  // Function to initialize and render a character in a specific room
+  renderCharacter(character) {
+    if (!character) return;
+
+    // Initialize the CharacterController for this character
+    const characterController = new CharacterController(
+      character,
+      this.decocontext
+    );
+
+    // Fetch dialog file and initialize DialogController
+    fetch("testdialog.txt")
+      .then((response) => response.text())
+      .then((data) => {
+        const dialogFileData = data.split("\n");
+        this.dialogue = new DialogController(
+          dialogFileData,
+          this.decocanvas,
+          characterController,
+          this.jobController,
+          this.simulationController
+        );
+        this.dialogue.start(); // Begin the dialog flow for the character
+      });
   }
 
   drawRoomNavigationIcons() {
@@ -350,6 +373,7 @@ class LocationController {
       this.currentLocation.decorateLocation(roomData.imageUrl, roomData.name);
       this.jobController.addRoom(this.currentLocation);
       this.loadLocation(this.currentLocation);
+      this.simulationController.recalculateDailyCostJobs(jobController);
       // If there's an upgrade path, we can manage it here later
       console.log(`Room decorated as ${roomData.name}`);
     }

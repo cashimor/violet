@@ -13,28 +13,43 @@ class CharacterController {
     this.drawCharacter();
   }
 
+  // Method to clear only the character's area
+  clearCharacter() {
+    this.context.clearRect(
+      this.characterX,
+      this.characterY,
+      this.width,
+      this.height
+    );
+  }
+
   drawCharacter() {
     const characterImage = new Image();
     characterImage.src = this.character.getCurrentImageUrl();
 
     characterImage.onload = () => {
-      // Clear the area where the character will be redrawn
-      this.context.clearRect(
-        this.characterX,
-        this.characterY,
-        this.width,
-        this.height
-      );
+      this.clearCharacter();
 
-      // Draw the updated character image
+      // Get the original dimensions of the image
+      const originalWidth = characterImage.width;
+      const originalHeight = characterImage.height;
+
+      // Calculate the aspect ratio and the scaled width
+      let scaledWidth = (this.height / originalHeight) * originalWidth;
+
+      // If scaled width exceeds the maximum allowed, cap it to this.width
+      if (scaledWidth > this.width) {
+        scaledWidth = this.width;
+      }
+
+      // Draw the character image with the scaled width and fixed height
       this.context.drawImage(
         characterImage,
         this.characterX,
         this.characterY,
-        this.width,
+        scaledWidth,
         this.height
       );
-
       // Draw character name below the image
       this.context.font = "16px Arial";
       this.context.fillStyle = "white";

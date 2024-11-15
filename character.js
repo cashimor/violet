@@ -2,43 +2,70 @@ class Character {
   constructor(name, imageUrls, location = null) {
     this.name = name;
     this.location = location;
-
-    // Check if imageUrls is a single string (one URL), convert it to a dictionary
-    if (typeof imageUrls === "string") {
-      this.imageUrls = { neutral: imageUrls }; // Default emotion as "neutral"
-    } else {
-      this.imageUrls = imageUrls; // If it's already a dictionary, use it as is
-    }
-
-    // Set initial emotion to "neutral" or first emotion in dictionary
-    this.currentEmotion = Object.keys(this.imageUrls)[0];
+    this.icon = "";
+    this.imageUrlBases = imageUrls;
+    this.currentEmotion = "";
+    this.setEmotion("");
   }
 
   setLocation(newLocation) {
     this.location = newLocation;
   }
 
+  // Helper to construct and verify the image URL
   setEmotion(emotion) {
-    if (this.imageUrls[emotion]) {
-      this.currentEmotion = emotion;
+    this.currentEmotion = emotion;
+    if (emotion === "neutral") this.currentEmotion = "";
+    const baseName = this.name.toLowerCase();
+
+    // Attempt 1: name_icon_emotion
+    const fullFilename = `${baseName}${this.icon}${this.currentEmotion}`;
+    if (this.imageUrlBases.includes(fullFilename)) {
+      this.currentImageUrl = this.buildImageUrl(fullFilename);
+      return;
     } else {
-      console.warn(
-        `Emotion "${emotion}" not found for character "${this.name}".`
-      );
+      console.log("No " + this.icon + this.currentEmotion + " URL");
     }
+
+    // Attempt 2: name_icon (if the specific emotion is missing)
+    const iconOnlyFilename = `${baseName}${this.icon}`;
+    if (this.imageUrlBases.includes(iconOnlyFilename)) {
+      this.currentEmotion = "";
+      this.currentImageUrl = this.buildImageUrl(iconOnlyFilename);
+      return;
+    }
+
+    // Attempt 3: name (just the base name)
+    if (this.imageUrlBases.includes(baseName)) {
+      this.currentEmotion = ""; // Fall back to neutral
+      this.currentImageUrl = this.buildImageUrl(baseName);
+      return;
+    }
+
+    // Log a warning if no matching image is found
+    console.warn(
+      `No image found for "${baseName}" with icon "${this.icon}" and emotion "${this.currentEmotion}".`
+    );
+    this.currentImageUrl = this.buildImageUrl("default_placeholder"); // Default fallback image
+  }
+
+  // Utility to add path and extension
+  buildImageUrl(filename) {
+    return `images/${filename}.png`;
   }
 
   getCurrentImageUrl() {
-    return this.imageUrls[this.currentEmotion];
+    return this.currentImageUrl;
+  }
+
+  setIcon(icon) {
+    this.icon = icon;
+    this.setEmotion("");
   }
 }
 
 const characters = [
-  new Character(
-    "Aiko",
-    { neutral: "images/aiko.png", shock: "images/aikoshock.png" },
-    "Bamboo Forest"
-  ),
-  new Character("Taro", "images/taro.png", "City Block 1"),
+  new Character("Aiko", ["aiko", "aikoshock", "aikomassage", "aikogamble", "aikodrugs", "aikopartner"], "Bamboo Forest"),
+  new Character("Taro", ["taro", "taroshock", "taroloan", "taromassage", "tarodrugs"], "City Block 1"),
   // Add more characters as needed
 ];

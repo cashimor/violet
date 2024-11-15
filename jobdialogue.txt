@@ -3,15 +3,20 @@ start:
 
 Loan Office:
 I'll see if I have some weapons.
+@selectJob(Loan Office)
 
 Gambling Den:
 Different hours. Probably good.
+@selectJob(Gambling Den)
 
 Drug Laboratory:
 Hopefully I don't get high.
+@selectJob(Drug Laboratory)
 
 Massage Parlor:
 Oh... Interesting...
+@selectJob(Massage Parlor)
 
 Evil Lair:
 I will be your trusted companion.
+@selectJob(Evil Lair)
