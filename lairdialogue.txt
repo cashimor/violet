@@ -1,0 +1,21 @@
+start:
+Oh, beautiful Violet. It is good to see you.
+You don't come here often enough.
+?What can I do for you?
+[relax] I would like to relax.
+[hint] You have some suggestions?
+[chat] Can we talk?
+
+relax:
+Oh... Violet... 
+It's good to be with you.
+I hope you feel better now.
+
+hint:
+#Make sure to talk to people.
+#Training people helps a lot.
+#Locations will eventually become occupied.
+Does that help?
+
+chat:
+Of course... I love talking to you.

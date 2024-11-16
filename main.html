@@ -8,6 +8,16 @@
   </head>
   <body>
     <div id="game-container">
+      <div id="config-screen" style="display: none">
+        <h2>Game Configuration</h2>
+        <label>
+          Music:
+          <input type="checkbox" id="music-toggle" />
+        </label>
+        <button id="save-button" class="button-parchment">Save Game</button>
+        <button id="load-button" class="button-parchment">Load Game</button>
+        <button id="close-config" class="button-parchment">Close</button>
+      </div>
       <div id="left-panel">
         <div id="choice-popup-holder"></div>
         <div id="decoratePopup" class="popup hidden">
@@ -82,6 +92,11 @@
             Rest (Next Day)
           </button>
           <button class="button-parchment" id="map-button">Map</button>
+          <div>
+            <button id="config-button" class="button-parchment">
+              Settings
+            </button>
+          </div>
         </div>
         <!-- Add a new section for text updates -->
         <div id="daily-results">
@@ -94,6 +109,7 @@
     <script src="character.js"></script>
     <script src="roomTypes.js"></script>
     <script src="jobcontroller.js"></script>
+    <script src="optioncontroller.js"></script>
     <script src="charactercontroller.js"></script>
     <script src="dialogcontroller.js"></script>
     <script src="locationcontroller.js"></script>

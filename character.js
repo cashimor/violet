@@ -113,5 +113,14 @@ const characters = [
     "drugs",
     "gamble"
   ),
+  new Character(
+    "Riku",
+    ["riku", "rikushock", "rikuloan", "rikumassage", "rikugamble", "rikudrugs", "rikupartner"],
+    "Riverside",
+    "tarobackstory.txt",
+    "gamble",
+    "loan"
+  ),
+
   // Add more characters as needed
 ];

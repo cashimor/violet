@@ -135,3 +135,48 @@
 .decorate-btn:hover::after {
   display: block;
 }
+
+#config-screen {
+  position: fixed; /* Overlay the viewport */
+  top: 100px; /* Center vertically */
+  left: 100px; /* Center horizontally */
+  transform: translate(100, 100); /* Adjust to perfect center */
+  background-color: #fff; /* White background */
+  border: 2px solid #ccc; /* Light border for clarity */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Internal spacing */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Drop shadow for depth */
+  z-index: 1000; /* Ensure it appears above all content */
+  width: 300px; /* Set width */
+  text-align: center; /* Center-align content */
+  display: none; /* Hidden by default */
+}
+
+#config-screen button {
+  margin-top: 10px; /* Add spacing between buttons */
+}
+
+#config-content {
+  background-color: #fff; /* White background */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Internal spacing */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow */
+  max-width: 400px; /* Limit width */
+  width: 90%; /* Make it responsive */
+  margin: auto; /* Extra safety for centering */
+  transform: translate(0, -20%); /* Slightly off-center for visual appeal */
+  text-align: center; /* Center-align text */
+}
+
+#config-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem; /* Slightly larger heading */
+  color: #333; /* Darker text for readability */
+}
+
+#config-content label {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #555;
+}

@@ -9,6 +9,8 @@ class RoomType {
     upkeep,
     hint,
     baseProfit,
+    music,
+    dialogue,
   }) {
     this.name = name;
     this.job = job;
@@ -19,6 +21,27 @@ class RoomType {
     this.upkeep = upkeep;
     this.hint = hint;
     this.baseProfit = baseProfit;
+    this.music = music;
+    this.dialogue = dialogue;
+    this.funds = 0;
+  }
+
+  static fromData(data) {
+    let roomType = new RoomType(
+      data.name,
+      data.job,
+      data.dailyWage,
+      data.icon,
+      data.imageUrl,
+      data.cost,
+      data.upkeep,
+      data.hint,
+      data.baseProfit,
+      data.music,
+      data.dialogue,
+    );
+    roomType.funds = data.funds;
+    return roomType;
   }
 
   // Calculate profit based on character skill and room-specific factors
@@ -30,10 +53,10 @@ class RoomType {
 
     // Calculate base profit reduced by lack of skill
     const skillEffect = character.getSkillLevel() / 100; // Skill level as a percentage
-    let profit = this.baseProfit * skillEffect;
+    let profit = Math.max(this.baseProfit, this.funds) * skillEffect;
 
     console.log("" + skillEffect + ":" + this.baseProfit + ":" + profit);
-    
+
     // Apply room-specific adjustments
     if (this.name === "Gambling Den" && this.isRaided()) {
         return "The gambling den was raided."
@@ -63,6 +86,8 @@ const roomTypes = {
     upkeep: 0.015,
     hint: "A place where fortunes are made... or lost.",
     baseProfit: 24000,
+    music: "music/gamblingden.mp3",
+    dialogue: "gambledialogue.txt",
   }),
   loansharking: new RoomType({
     name: "Loan Office",
@@ -73,7 +98,9 @@ const roomTypes = {
     cost: 20000,
     upkeep: 0.005,
     hint: "Only the most desperate come to borrow...",
-    baseProfit: 30000,
+    baseProfit: 0,
+    music: "music/loanshark.mp3",
+    dialogue: "loandialogue.txt",
   }),
   druglab: new RoomType({
     name: "Drug Laboratory",
@@ -85,6 +112,8 @@ const roomTypes = {
     upkeep: 0.025,
     hint: "A shadowy operation...",
     baseProfit: 36000,
+    music: "music/drugslab.mp3",
+    dialogue: "labdialogue.txt",
   }),
   massageparlor: new RoomType({
     name: "Massage Parlor",
@@ -96,6 +125,8 @@ const roomTypes = {
     upkeep: 0.01,
     hint: "Unholy dealings of various kinds...",
     baseProfit: 18000,
+    music: "music/massage.mp3",
+    dialogue: "massagedialogue.txt",
   }),
   evillair: new RoomType({
     name: "Evil Lair",
@@ -107,5 +138,7 @@ const roomTypes = {
     upkeep: 0,
     hint: "The heart of all your dark plans...",
     baseProfit: 0,
+    music: "music/evillair.mp3",
+    dialogue: "lairdialogue.txt",
   }),
 };

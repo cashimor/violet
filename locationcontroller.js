@@ -17,6 +17,7 @@ class LocationController {
     this.dialogue = null;
     this.audio = new Audio(); // Audio element to manage playback
     this.currentMusic = null;
+    this.musicOn = true;
     this.decoratePopup = document.getElementById("decoratePopup");
     document.querySelectorAll(".decorate-btn").forEach((button) => {
       button.addEventListener("click", (event) => {
@@ -57,12 +58,12 @@ class LocationController {
     this.hidePopups();
 
     // Check for background music and play if available
-    if (location.musicUrl && location.musicUrl !== this.currentMusic) {
-      this.audio.src = location.musicUrl;
+    if (this.musicOn && location.getMusicUrl() && location.getMusicUrl() !== this.currentMusic) {
+      this.audio.src = location.getMusicUrl();
       this.audio.loop = false; // Loop the music for continuous playback
       this.audio.play();
-      this.currentMusic = location.musicUrl;
-    } else if (!location.musicUrl) {
+      this.currentMusic = location.getMusicUrl();
+    } else if (!location.getMusicUrl()) {
       this.audio.pause(); // Pause audio if no music for this location
     }
 
@@ -370,7 +371,7 @@ class LocationController {
   decorateRoom(roomData) {
     // Deduct cost, set room image, and apply any upgrades as needed
     if (this.simulationController.deductMoney(roomData.cost)) {
-      this.currentLocation.decorateLocation(roomData.imageUrl, roomData.name);
+      this.currentLocation.decorateLocation(roomData.imageUrl, roomData.name, roomData.music);
       this.jobController.addRoom(this.currentLocation);
       this.loadLocation(this.currentLocation);
       this.simulationController.recalculateDailyCostJobs(jobController);

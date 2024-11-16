@@ -18,6 +18,12 @@ const mapController = new MapController(
   locationController
 );
 
+const optionsController = new OptionsController(
+  simulationController,
+  jobController,
+  locationController
+)
+
 // Event listeners
 document.getElementById("map-button").addEventListener("click", () => {
   mapController.toggleMap();

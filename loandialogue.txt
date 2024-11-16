@@ -1,0 +1,75 @@
+start:
+Hello, welcome to the Loan Shark Office.
+?What can I do for you today?
+[label1] How do you feel about your skills?
+[label2] Can we do some training?
+[label3] How are the funds looking?
+[bonus] Here is a bonus (¥5000)
+[label4] Just checking in.
+
+label1:
+!neutral
+@showSkill()
+
+showSkill:
+?Do you think I need to improve?
+[label2] Yes, let’s train.
+[label4] Not right now, just curious.
+
+label2:
+!neutral
+I’m always ready to learn more about collections.
+@train(10)
+
+label3:
+!neutral
+@getInvestmentAmount()
+
+getInvestmentAmount:
+?What would you like to do?
+[label5] Add money.
+[label6] Withdraw money.
+[label7] Leave it as it is.
+
+label5:
+!neutral
+?How much would you like to add?
+[label8] 10000
+[label9] 50000
+[label10] 100000
+
+label8:
+@invest(10000)
+
+label9:
+@invest(50000)
+
+label10:
+@invest(100000)
+
+label6:
+!neutral
+?How much would you like to withdraw?
+[label11] 10000
+[label12] 50000
+[label13] 100000
+
+label7:
+!neutral
+Alright, let’s keep things steady for now.
+
+label4:
+!neutral
+Alright, let me know if you need anything else.
+
+label11:
+@invest(-10000)
+
+label12:
+@invest(-50000)
+
+label13:
+@invest(-100000)
+
+bonus:
+@giveBonus(5000)

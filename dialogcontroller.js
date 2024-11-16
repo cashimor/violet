@@ -1,5 +1,87 @@
+/**
+ * Dialogue File Syntax Documentation
+ * 
+ * A dialogue file consists of labeled sections that define the NPC's interactions.
+ * Below are the key elements and features you can use in a dialogue file:
+ * 
+ * 1. **Labels**:
+ *    Labels act as entry points or sections in the dialogue. Define a label by ending a line with a colon (`:`).
+ *    Example:
+ *      start:
+ *        Hello there.
+ * 
+ *    - Labels cannot be created dynamically via function return values.
+ *    - Each label must be unique within the file.
+ * 
+ * 2. **Random Lines**:
+ *    Include random lines using a block of lines starting with `#`. 
+ *    A single line from the block will be chosen at random during parsing.
+ *    Example:
+ *      #The moon will rise tonight.
+ *      #Winter is coming.
+ *      #I will miss you. Stay.
+ * 
+ *    - Random blocks cannot be created dynamically via function return values.
+ *    - Random blocks can contain > for redirection.
+ * 
+ * 3. **Directing to Another Label**:
+ *    Use `>` to jump directly to another label within the same dialogue file.
+ *    Example:
+ *      >anotherLabel
+ * 
+ * 4. **Emotion Tags**:
+ *    Use `!` to set the NPC's emotion. This can update the NPC's expression or mood.
+ *    Example:
+ *      !neutral
+ *      !happy
+ *      !angry
+ * 
+ * 5. **Questions and Player Choices**:
+ *    Use `?` to pose a question or prompt the player to make a choice.
+ *    Choices are defined using square brackets (`[]`).
+ *    Example:
+ *      ?What would you like to do?
+ *      [label1] Learn more about your skills.
+ *      [label2] Let’s do some training.
+ * 
+ *    - Choices must reference valid labels.
+ * 
+ * 6. **Calling Functions**:
+ *    Use `@functionName(parameter)` to call functions defined in the `commandTable`.
+ *    Functions can return arrays of dialogue lines as if they were part of the label.
+ *    Example:
+ *      @showSkill()
+ *      @train(10)
+ * 
+ *    - Functions must exist in the `commandTable`.
+ *    - Functions can dynamically generate responses but cannot define labels or random blocks.
+ * 
+ * 7. **Combining Elements**:
+ *    Most elements can be combined in sequence within a label.
+ *    Example:
+ *      start:
+ *        !happy
+ *        Hello there!
+ *        ?What do you need?
+ *        [label1] Learn more.
+ *        [label2] Just passing by.
+ * 
+ * 
+ * Notes and Limitations:
+ * ----------------------
+ * - Labels and random lines must be defined in the static dialogue file and cannot be generated dynamically.
+ * - Functions are limited to modifying or returning dialogue within the confines of an existing label.
+ * - Ensure proper formatting for clarity and consistency.
+ * - Lines can't be too long, as they must fit in the text bubble.
+ */
 class DialogController {
-  constructor(dialogFile, canvas, characterController, jobController, simulationController) {
+  constructor(
+    dialogFile,
+    canvas,
+    characterController,
+    jobController,
+    simulationController
+  ) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
     this.loadDialogFile(dialogFile);
@@ -19,24 +101,102 @@ class DialogController {
     this.closeButtonSize = 20;
 
     this.commandTable = {
-      test: (param) => this.test(param),
       showJobChoices: (param) => this.showJobChoices(param),
       selectJob: (param) => this.selectJob(param),
       train: (param) => this.train(param),
       showSkill: (param) => this.showSkill(param),
+      invest: (param) => this.invest(param), // New function
+      getInvestmentAmount: (param) => this.getInvestmentAmount(param),
+      giveBonus: (amount) => this.giveBonus(amount),
       // Add more functions as needed
     };
+  }
+
+  giveBonus(amount) {
+    const bonus = parseInt(amount, 10);
+    if (!this.simulationController.deductMoney(bonus)) {
+      return ["You don't have enough money to give this bonus."];
+    }
+    // Boost skill with diminishing returns
+    const skillBoost = Math.min(5, Math.floor(amount / 5000));
+    this.character.skillLevel = Math.min(
+      100,
+      this.character.skillLevel + skillBoost
+    );
+
+    return [
+      `Thank you for your ¥${amount.toLocaleString()}.`,
+      skillBoost > 0 ? `I will work better!` : `Aw...`,
+    ];
+  }
+
+  getInvestmentAmount() {
+    // Fetch the room type object for the current job
+    const job = this.jobController.getRoomTypeByName(
+      this.jobController.jobs[this.character.location].purpose
+    );
+
+    // If the job exists and has funds, format and return the amount
+    if (job && job.funds !== undefined) {
+      return [
+        `We currently have ¥${job.funds.toLocaleString()} in funds.`,
+        ">getInvestmentAmount",
+      ];
+    } else {
+      return ["It seems we don’t have any funds yet.", ">getInvestmentAmount"];
+    }
+  }
+
+  invest(amount) {
+    const investmentAmount = parseInt(amount, 10);
+    if (isNaN(investmentAmount) || investmentAmount === 0) {
+      return ["Please enter a valid amount to invest or withdraw."];
+    }
+
+    const job = this.jobController.getRoomTypeByName(
+      this.jobController.jobs[this.character.location].purpose
+    );
+
+    // If withdrawing (negative investment)
+    if (investmentAmount < 0) {
+      const withdrawAmount = Math.abs(investmentAmount);
+      if ((job.funds || 0) < withdrawAmount) {
+        return [
+          "This loan office doesn't have enough funds to withdraw that amount.",
+        ];
+      }
+      job.funds -= withdrawAmount;
+      this.simulationController.money += withdrawAmount;
+
+      // Update display
+      this.simulationController.updateDisplay();
+
+      return [
+        `You withdrew ¥${withdrawAmount.toLocaleString()} from the ${
+          job.name
+        }.`,
+        `The ${job.name} now has ¥${job.funds.toLocaleString()} available.`,
+      ];
+    }
+    // If depositing (positive investment)
+    if (!this.simulationController.deductMoney(investmentAmount)) {
+      return ["You don't have enough money to invest that much."];
+    }
+    job.funds = (job.funds || 0) + investmentAmount;
+    // Update display
+    this.simulationController.updateDisplay();
+    return [
+      `You invested ¥${investmentAmount.toLocaleString()} in the ${job.name}.`,
+      `The ${job.name} now has ¥${job.funds.toLocaleString()} available.`,
+    ];
   }
 
   showSkill(param) {
     const skillLevel = this.character.skillLevel;
     const description = this.getSkillDescription(skillLevel);
-    return [
-      `Let me think...`,
-      `I feel like ${description} right now.`,
-    ];
+    return [`Let me think...`, `I feel like ${description}`, ">showSkill"];
   }
-  
+
   getSkillDescription(skillLevel) {
     // Map skill level ranges to descriptions
     if (skillLevel < 10) return "I know nothing about this.";
@@ -54,21 +214,24 @@ class DialogController {
   train(param) {
     const energyCost = 40; // Energy cost for training
     const amount = parseInt(param, 10); // Extract the training amount
-  
+
     if (isNaN(amount)) {
       console.error("Invalid @train parameter. Expected a number.");
       return;
     }
-  
+
     // Deduct energy from Violet
-    if (this.simulationController.deductEnergy(energyCost)) {  
+    if (this.simulationController.deductEnergy(energyCost)) {
       // Update the skill level of the current character
       if (this.character) {
-        this.character.skillLevel = Math.min(100, this.character.skillLevel + amount);
+        this.character.skillLevel = Math.min(
+          100,
+          this.character.skillLevel + amount
+        );
         return ["Thank you for training me."];
       }
     } else {
-      return ["You seem to tired to help me."];
+      return ["You seem too tired to help me."];
     }
   }
 
@@ -111,11 +274,6 @@ class DialogController {
     return ["?Which job would you like me to do?", ...jobOptions];
   }
 
-  test(param) {
-    console.log("" + param);
-    return ["This is the end", "As we know it."];
-  }
-
   // Method to load and parse a dialog file
   loadDialogFile(dialogFile) {
     this.dialogMap = this.parseDialogFile(dialogFile);
@@ -126,23 +284,42 @@ class DialogController {
     const dialogMap = new Map();
     let label = null;
     let dialogLines = [];
+    let randomBlock = [];
 
     for (let line of dialogFile) {
       line = line.trim();
+
       if (line.endsWith(":")) {
+        // Save the previous label and its lines
         if (label) {
           dialogMap.set(label, dialogLines);
         }
+        // Start a new label
         label = line.slice(0, -1); // Remove the ':' from the label
         dialogLines = [];
+      } else if (line.startsWith("#")) {
+        // Handle random line blocks
+        randomBlock.push(line.slice(1)); // Remove the '#' and add to the random block
+      } else if (randomBlock.length > 0) {
+        // If exiting a random block, pick one randomly and add it
+        const randomLine =
+          randomBlock[Math.floor(Math.random() * randomBlock.length)];
+        dialogLines.push(randomLine);
+        randomBlock = [];
+
+        // Process the current line normally if it's not empty
+        if (line !== "") dialogLines.push(line);
       } else if (label) {
-        if (line != "") dialogLines.push(line);
+        // Normal line processing
+        if (line !== "") dialogLines.push(line);
       }
     }
 
+    // Save the final label and its lines
     if (label) {
       dialogMap.set(label, dialogLines);
     }
+
     return dialogMap;
   }
 
@@ -193,7 +370,12 @@ class DialogController {
     const bubbleX = this.characterX + 50; // Adjust based on bubble position
     const bubbleY = this.characterY - 100; // Adjust to appear above the character
     this.context.clearRect(bubbleX, bubbleY, 400, 100);
-    this.context.clearRect(this.closeButtonX - 20, this.closeButtonY - 20, 40, 40);
+    this.context.clearRect(
+      this.closeButtonX - 20,
+      this.closeButtonY - 20,
+      40,
+      40
+    );
   }
 
   drawSpeechBubble(characterX, characterY, dialogue) {
@@ -363,6 +545,11 @@ class DialogController {
       this.handleEmotion(dialogContent);
       dialogContent = this.getNextLine();
     }
+    if (dialogContent.startsWith(">")) {
+      this.chooseOption(dialogContent.slice(1));
+      this.start();
+      return;
+    }
     if (dialogContent.startsWith("@")) {
       const commandMatch = dialogContent.match(/^@(\w+)\((.*)\)$/);
       if (commandMatch) {
@@ -380,6 +567,8 @@ class DialogController {
             this.chooseOption("commandResult");
           }
           dialogContent = this.getNextLine();
+        } else {
+          console.log("Couldn't find command " + commandName);
         }
       }
     }

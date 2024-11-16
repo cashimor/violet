@@ -35,8 +35,9 @@ class JobController {
     if (this.jobs[roomId] && !this.jobs[roomId].npcAssigned) {
       this.jobs[roomId].npcAssigned = character;
       const roomType = this.getRoomTypeByName(this.jobs[roomId].purpose)
-      character.location = "Job";
+      character.location = roomId;
       character.setIcon(roomType.icon);
+      character.dialogue = roomType.dialogue;
       return true;  
     }
     return false;
