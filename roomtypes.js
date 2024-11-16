@@ -11,6 +11,7 @@ class RoomType {
     baseProfit,
     music,
     dialogue,
+    funds = 0,
   }) {
     this.name = name;
     this.job = job;
@@ -23,25 +24,29 @@ class RoomType {
     this.baseProfit = baseProfit;
     this.music = music;
     this.dialogue = dialogue;
-    this.funds = 0;
+    this.funds = funds;
+  }
+
+  // Convert to plain data
+  toData() {
+    return {
+      name: this.name,
+      job: this.job,
+      dailyWage: this.dailyWage,
+      icon: this.icon,
+      imageUrl: this.imageUrl,
+      cost: this.cost,
+      upkeep: this.upkeep,
+      hint: this.hint,
+      baseProfit: this.baseProfit,
+      music: this.music,
+      dialogue: this.dialogue,
+      funds: this.funds,
+    };
   }
 
   static fromData(data) {
-    let roomType = new RoomType(
-      data.name,
-      data.job,
-      data.dailyWage,
-      data.icon,
-      data.imageUrl,
-      data.cost,
-      data.upkeep,
-      data.hint,
-      data.baseProfit,
-      data.music,
-      data.dialogue,
-    );
-    roomType.funds = data.funds;
-    return roomType;
+    return new RoomType(data);
   }
 
   // Calculate profit based on character skill and room-specific factors

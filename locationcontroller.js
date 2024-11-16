@@ -3,10 +3,12 @@ class LocationController {
     decocanvas,
     locations,
     roomTypes,
+    characters,
     simulationController,
     jobController
   ) {
     this.roomTypes = roomTypes;
+    this.characters = characters;
     this.decocanvas = decocanvas;
     this.locations = locations;
     this.simulationController = simulationController;
@@ -48,6 +50,10 @@ class LocationController {
     });
   }
 
+  getCharacterByName(name) {
+    return this.characters.find((char) => char.name === name) || null;
+  }
+  
   hidePopups() {
     this.rentPopup.classList.add("hidden");
     this.decoratePopup.classList.add("hidden");

@@ -5,18 +5,33 @@ class Character {
     location = null,
     dialogue = "testdialog.txt",
     strength,
-    weakness
+    weakness,
+    skillLevel = 10,
+    icon = "",
   ) {
     this.name = name;
     this.location = location;
-    this.icon = "";
+    this.icon = icon;
     this.imageUrlBases = imageUrls;
     this.currentEmotion = "";
     this.setEmotion("");
     this.dialogue = dialogue;
     this.strength = strength;
     this.weakness = weakness;
-    this.skillLevel = 10; // Basic skill level is 10%
+    this.skillLevel = skillLevel; // Basic skill level is 10%
+  }
+
+  static fromData(data) {
+    return new Character(
+      data.name,
+      data.imageUrlBases,
+      data.location,
+      data.dialogue,
+      data.strength,
+      data.weakness,
+      data.skilLevel,
+      data.icon,
+    );
   }
 
   getSkillLevel() {
@@ -117,7 +132,7 @@ const characters = [
     "Riku",
     ["riku", "rikushock", "rikuloan", "rikumassage", "rikugamble", "rikudrugs", "rikupartner"],
     "Riverside",
-    "tarobackstory.txt",
+    "rikubackstory.txt",
     "gamble",
     "loan"
   ),

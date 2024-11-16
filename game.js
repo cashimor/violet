@@ -7,6 +7,7 @@ const locationController = new LocationController(
   decocanvas,
   locations,
   roomTypes,
+  characters,
   simulationController,
   jobController,
 );
@@ -24,7 +25,14 @@ const optionsController = new OptionsController(
   locationController
 )
 
+optionsController.applyMusicSetting();
+
 // Event listeners
 document.getElementById("map-button").addEventListener("click", () => {
   mapController.toggleMap();
 });
+
+function updateSummaryText(message) {
+  const summaryElement = document.getElementById("summary-text");
+  summaryElement.textContent = message;
+}

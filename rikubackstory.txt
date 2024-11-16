@@ -1,0 +1,38 @@
+start:
+Ah, welcome to my part of town. Name’s Riku. 
+?What brings you here?
+[label1] Tell me about your past.
+[label2] What’s your secret?
+[label3] Just passing through.
+[job] Can I offer you a job?
+
+label1:
+!neutral
+?My past? Not much to it, honestly. 
+Grew up in luxury, got bored of it.
+?Bars were way more interesting.
+[label4] Bars?
+[label5] You had it easy.
+
+label2:
+!neutral
+?Secret? Ha! If you can read people, the game is yours.
+That’s why I’m so good at what I do.. Watching. Controlling.
+
+label3:
+!neutral
+Alright, well, let me know if you need something.
+
+label4:
+!neutral
+Oh, definitely. I love looking at people. 
+You get to know who’s bluffing, who’s serious, and who you shouldn’t mess with.
+It’s like a sport, really.
+
+label5:
+!neutral
+Easy? Maybe. But money doesn’t teach you how to live.
+That’s why I’m terrible at managing it.
+
+job:
+~jobdialogue.txt

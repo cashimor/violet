@@ -1,5 +1,5 @@
 class OptionsController {
-  constructor(simulationController, jobController, locationController) {
+  constructor(simulationController, jobController, locationController, characterController) {
     this.simulationController = simulationController;
     this.jobController = jobController;
     this.locationController = locationController;
@@ -52,19 +52,28 @@ class OptionsController {
       locationCost: this.simulationController.locationCost,
       jobCost: this.simulationController.jobCost,
       locations: this.locationController.locations,
-      roomTypes: this.locationController.roomTypes,
       currentLocation: this.locationController.currentLocation,
-      jobs: this.jobController.jobs,
-      music: this.locationController.musicOn, // Add a new field for the music toggle
+      jobs: this.jobController.toData(),
+      characters: this.locationController.characters,
     };
+
+    const roomTypesData = {};
+    for (const [key, roomType] of Object.entries(
+      this.locationController.roomTypes
+    )) {
+      roomTypesData[key] = roomType.toData(); // Assume `RoomType` has a `toData` method.
+    }
+    gameState.roomTypes = roomTypesData;
+
     localStorage.setItem("gameState", JSON.stringify(gameState));
-    alert("Game saved successfully!");
+    updateSummaryText("Game saved successfully!");
+    this.close();
   }
 
   loadGameState() {
     const gameState = JSON.parse(localStorage.getItem("gameState"));
     if (!gameState) {
-      alert("No saved game found.");
+      updateSummaryText("No saved game found.");
       return;
     }
     this.simulationController.day = gameState.day;
@@ -76,26 +85,43 @@ class OptionsController {
     this.locationController.locations = gameState.locations.map(
       Location.fromData
     );
-    console.log("" + gameState.roomTypes);
-    this.locationController.roomTypes = gameState.roomTypes.map(
-      RoomType.fromData
+    this.locationController.characters = gameState.characters.map(
+      Character.fromData
     );
+    Object.keys(gameState.roomTypes).forEach((key) => {
+      if (this.locationController.roomTypes[key]) {
+        this.locationController.roomTypes[key] = RoomType.fromData(
+          gameState.roomTypes[key]
+        );
+      } else {
+        console.warn(`Room type '${key}' not found in current roomTypes.`);
+      }
+    });
     this.locationController.currentLocation =
       this.locationController.locations.find(
-        (loc) => loc.name === gameState.currentLocation
+        (loc) => loc.name === gameState.currentLocation.name
       );
-    this.jobController.jobs = gameState.jobs;
-    this.locationController.musicOn = gameState.music || false;
+    this.jobController.fromData(gameState.jobs, locationController);
     this.simulationController.updateDisplay();
     this.locationController.loadLocation(
       this.locationController.currentLocation
     );
-    console.log("Game loaded successfully!");
+    updateSummaryText("Game loaded successfully!");
+    this.close();
   }
 
   toggleMusic() {
     this.locationController.musicOn = !this.locationController.musicOn;
     if (!this.locationController.musicOn) this.locationController.audio.pause();
+    localStorage.setItem("musicSetting", JSON.stringify(this.locationController.musicOn));
     // Logic to enable/disable music playback can go here.
+  }
+
+  applyMusicSetting() {
+    const musicSetting = localStorage.getItem("musicSetting");
+    if (musicSetting !== null) {
+      const isMusicOn = JSON.parse(musicSetting);
+      this.locationController.musicOn = isMusicOn;
+    }
   }
 }

@@ -8,7 +8,8 @@ class Location {
     musicUrl = null,
     available = false,
     dailyCost = 0,
-    size = 0
+    size = 0,
+    owner = null,
   ) {
     this.name = name;
     this.imageUrl = imageUrl;
@@ -16,7 +17,7 @@ class Location {
     this.x = x;
     this.y = y;
     this.available = available;
-    this.owner = null;
+    this.owner = owner,
     this.dailyCost = dailyCost;
     this.size = size;
     this.musicUrl = musicUrl;
@@ -35,6 +36,7 @@ class Location {
       data.available,
       data.dailyCost,
       data.size,
+      data.owner,
     );
     location.rooms = data.rooms;
     location.currentRoomIndex = data.currentRoomIndex;

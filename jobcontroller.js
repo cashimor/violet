@@ -3,6 +3,29 @@ class JobController {
     this.jobs = {}; // Keyed by room ID, with data about room use and assigned NPC
   }
 
+  toData() {
+    const jobData = {};
+    for (const [key, job] of Object.entries(this.jobs)) {
+      jobData[key] = {
+        purpose: job.purpose,
+        npcAssigned: job.npcAssigned ? job.npcAssigned.name : null, // Use character's name
+      };
+    }
+    return jobData;
+  }
+
+  fromData(data, locationController) {
+    this.jobs = {};
+    for (const [key, job] of Object.entries(data)) {
+      this.jobs[key] = {
+        purpose: job.purpose,
+        npcAssigned: job.npcAssigned
+          ? locationController.getCharacterByName(job.npcAssigned)
+          : null, // Find character by name or leave as null
+      };
+    }
+  }
+
   // Register a room with a specific purpose once decorated
   addRoom(location) {
     let roomId = location.name + "/" + location.currentRoomIndex;
