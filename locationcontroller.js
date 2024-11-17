@@ -148,6 +148,8 @@ class LocationController {
       this.decocontext
     );
 
+    if (character.dayTalk == this.simulationController.day) return;
+    if (!this.simulationController.deductEnergy(3)) return;
     // Fetch dialog file and initialize DialogController
     fetch(character.dialogue)
       .then((response) => response.text())

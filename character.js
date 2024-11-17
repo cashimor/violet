@@ -8,6 +8,7 @@ class Character {
     weakness,
     skillLevel = 10,
     icon = "",
+    dayTalk = 0,
   ) {
     this.name = name;
     this.location = location;
@@ -19,6 +20,7 @@ class Character {
     this.strength = strength;
     this.weakness = weakness;
     this.skillLevel = skillLevel; // Basic skill level is 10%
+    this.dayTalk = dayTalk;
   }
 
   static fromData(data) {
@@ -31,6 +33,7 @@ class Character {
       data.weakness,
       data.skilLevel,
       data.icon,
+      data.dayTalk,
     );
   }
 
@@ -135,6 +138,14 @@ const characters = [
     "rikubackstory.txt",
     "gamble",
     "loan"
+  ),
+  new Character(
+    "Sakura",
+    ["sakura", "sakurashock", "sakuraloan", "sakuramassage", "sakuragamble", "sakuradrugs", "sakurapartner", "sakurahappy"],
+    "Mountain Area",
+    "sakurabackstory.txt",
+    "massage",
+    "drugs"
   ),
 
   // Add more characters as needed

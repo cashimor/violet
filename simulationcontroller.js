@@ -1,6 +1,7 @@
 class SimulationController {
-  constructor(jobController) {
+  constructor(jobController, characters) {
     this.jobController = jobController;
+    this.characters = characters;
     this.day = 1;
     this.energy = 100;
     this.energyResetValue = 50; // Energy reset to this value each new day
@@ -69,6 +70,8 @@ class SimulationController {
     let totalProfit = 0;
     let evilLairBonus = 0;
 
+    this.randomizeNPCLocations();
+    
     // Prepare summary of daily activities
     let summary = `<b>Day ${this.day}:</b><br>`;
 
@@ -144,5 +147,27 @@ class SimulationController {
       alert("Not enough money to perform this action. Please acquire funds.");
       return false; // Deduction unsuccessful
     }
+  }
+
+  randomizeNPCLocations() {
+    const possibleLocations = ["Bamboo Forest", "Riverside", "Mountain Area", "City Block 1", "At Home"];
+  
+    // Shuffle the locations array (Fisher-Yates Shuffle)
+    for (let i = possibleLocations.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [possibleLocations[i], possibleLocations[j]] = [possibleLocations[j], possibleLocations[i]];
+    }
+  
+    // Assign NPCs to random locations
+    this.characters.forEach(character => {
+      // Skip characters with a job (i.e., those who have an icon)
+      if (character.icon) return;
+  
+      if (possibleLocations.length > 0) {
+        character.location = possibleLocations.pop(); // Assign and remove location
+      } else {
+        character.location = "At Home"; // Fallback if no locations are left
+      }
+    });
   }
 }

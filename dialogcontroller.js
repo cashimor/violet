@@ -1,41 +1,41 @@
 /**
  * Dialogue File Syntax Documentation
- * 
+ *
  * A dialogue file consists of labeled sections that define the NPC's interactions.
  * Below are the key elements and features you can use in a dialogue file:
- * 
+ *
  * 1. **Labels**:
  *    Labels act as entry points or sections in the dialogue. Define a label by ending a line with a colon (`:`).
  *    Example:
  *      start:
  *        Hello there.
- * 
+ *
  *    - Labels cannot be created dynamically via function return values.
  *    - Each label must be unique within the file.
- * 
+ *
  * 2. **Random Lines**:
- *    Include random lines using a block of lines starting with `#`. 
+ *    Include random lines using a block of lines starting with `#`.
  *    A single line from the block will be chosen at random during parsing.
  *    Example:
  *      #The moon will rise tonight.
  *      #Winter is coming.
  *      #I will miss you. Stay.
- * 
+ *
  *    - Random blocks cannot be created dynamically via function return values.
  *    - Random blocks can contain > for redirection.
- * 
+ *
  * 3. **Directing to Another Label**:
  *    Use `>` to jump directly to another label within the same dialogue file.
  *    Example:
  *      >anotherLabel
- * 
+ *
  * 4. **Emotion Tags**:
  *    Use `!` to set the NPC's emotion. This can update the NPC's expression or mood.
  *    Example:
  *      !neutral
  *      !happy
  *      !angry
- * 
+ *
  * 5. **Questions and Player Choices**:
  *    Use `?` to pose a question or prompt the player to make a choice.
  *    Choices are defined using square brackets (`[]`).
@@ -43,19 +43,19 @@
  *      ?What would you like to do?
  *      [label1] Learn more about your skills.
  *      [label2] Let’s do some training.
- * 
+ *
  *    - Choices must reference valid labels.
- * 
+ *
  * 6. **Calling Functions**:
  *    Use `@functionName(parameter)` to call functions defined in the `commandTable`.
  *    Functions can return arrays of dialogue lines as if they were part of the label.
  *    Example:
  *      @showSkill()
  *      @train(10)
- * 
+ *
  *    - Functions must exist in the `commandTable`.
  *    - Functions can dynamically generate responses but cannot define labels or random blocks.
- * 
+ *
  * 7. **Combining Elements**:
  *    Most elements can be combined in sequence within a label.
  *    Example:
@@ -65,8 +65,8 @@
  *        ?What do you need?
  *        [label1] Learn more.
  *        [label2] Just passing by.
- * 
- * 
+ *
+ *
  * Notes and Limitations:
  * ----------------------
  * - Labels and random lines must be defined in the static dialogue file and cannot be generated dynamically.
@@ -108,8 +108,18 @@ class DialogController {
       invest: (param) => this.invest(param), // New function
       getInvestmentAmount: (param) => this.getInvestmentAmount(param),
       giveBonus: (amount) => this.giveBonus(amount),
+      adjustLike: (param) => this.adjustLike(param),
       // Add more functions as needed
     };
+  }
+
+  adjustLike(amount) {
+    const like = parseInt(amount, 10);
+    this.character.like += like; // Adjust the like value
+    if (like > 0) {
+      return ["You're so nice."];
+    }
+    return ["Hm... Pity."];
   }
 
   giveBonus(amount) {
@@ -468,6 +478,7 @@ class DialogController {
       return true;
     }
     if (y > 200) {
+      this.character.dayTalk = this.simulationController.day;
       this.start();
       return true;
     }

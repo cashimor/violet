@@ -1,0 +1,36 @@
+start:
+Hello, I’m Sakura.
+?How can I help you today?
+[label1] How are you settling in?
+[label2] What do you enjoy?
+[label3] I just wanted to say hi.
+[job] Can I offer you a job?
+
+label1:
+!neutral
+It’s a bit challenging. 
+I came here to heal people, but bureaucracy doesn’t make that easy.
+[label4] What is wrong?
+[label5] Heal how?
+
+label2:
+!neutral
+I enjoy helping people, but I hope to do so on my own terms someday.
+But perhaps I can find work elsewhere.
+
+label3:
+!happy
+It’s nice of you to stop by. I appreciate that.
+
+label5:
+!happy
+Natural remedies are all about harmony with the body.
+It's what I studied at home, and now here.
+
+label4:
+!neutral
+My immigration status for one.
+But hospitals also don't like my attitude towards modern drugs.
+
+job:
+~jobdialogue.txt
