@@ -53,7 +53,7 @@ class LocationController {
   getCharacterByName(name) {
     return this.characters.find((char) => char.name === name) || null;
   }
-  
+
   hidePopups() {
     this.rentPopup.classList.add("hidden");
     this.decoratePopup.classList.add("hidden");
@@ -64,7 +64,11 @@ class LocationController {
     this.hidePopups();
 
     // Check for background music and play if available
-    if (this.musicOn && location.getMusicUrl() && location.getMusicUrl() !== this.currentMusic) {
+    if (
+      this.musicOn &&
+      location.getMusicUrl() &&
+      location.getMusicUrl() !== this.currentMusic
+    ) {
       this.audio.src = location.getMusicUrl();
       this.audio.loop = false; // Loop the music for continuous playback
       this.audio.play();
@@ -142,14 +146,15 @@ class LocationController {
   renderCharacter(character) {
     if (!character) return;
 
+    if (character.dayTalk == this.simulationController.day) return;
+    if (!this.simulationController.deductEnergy(3)) return;
+
     // Initialize the CharacterController for this character
     const characterController = new CharacterController(
       character,
       this.decocontext
     );
 
-    if (character.dayTalk == this.simulationController.day) return;
-    if (!this.simulationController.deductEnergy(3)) return;
     // Fetch dialog file and initialize DialogController
     fetch(character.dialogue)
       .then((response) => response.text())
@@ -280,7 +285,7 @@ class LocationController {
         const centerX = location.x;
         const centerY = location.y;
         const halfSize = 25;
-
+        if (this.isInside(location.x - 26, location.y - 26, 52, 52)) return;
         if (
           mouseX >= centerX - halfSize &&
           mouseX <= centerX + halfSize &&
@@ -301,12 +306,40 @@ class LocationController {
     });
   }
 
+  isInside(x, y, width, height) {
+    if (!this.dialogue) return false;
+    if (this.dialogue.state == "INACTIVE") return false;
+    // These values are from the character controller.js.
+    const charLeft = 50;
+    const charRight = 50 + 255;
+    const charTop = 315;
+    const charBottom = 315 + 285;
+
+    const rectLeft = x;
+    const rectRight = x + width;
+    const rectTop = y;
+    const rectBottom = y + height;
+
+    // Check for overlap
+    const overlap = !(
+      rectRight <= charLeft || // Rectangle is to the left of the character
+      rectLeft >= charRight || // Rectangle is to the right of the character
+      rectBottom <= charTop || // Rectangle is above the character
+      rectTop >= charBottom
+    ); // Rectangle is below the character
+
+    return overlap;
+  }
+
   clearHoverIndicators() {
     // Clear just the area where hover indicators would appear, without affecting the rest of the canvas
     this.locations.forEach((location) => {
       if (location.ref === this.currentLocation.name) {
         const centerX = location.x;
         const centerY = location.y;
+        if (this.isInside(location.x - 26, location.y - 26, 52, 52)) {
+          return;
+        }
         this.decocontext.clearRect(centerX - 26, centerY - 26, 52, 52); // Adjust size as needed
       }
     });
@@ -379,7 +412,11 @@ class LocationController {
   decorateRoom(roomData) {
     // Deduct cost, set room image, and apply any upgrades as needed
     if (this.simulationController.deductMoney(roomData.cost)) {
-      this.currentLocation.decorateLocation(roomData.imageUrl, roomData.name, roomData.music);
+      this.currentLocation.decorateLocation(
+        roomData.imageUrl,
+        roomData.name,
+        roomData.music
+      );
       this.jobController.addRoom(this.currentLocation);
       this.loadLocation(this.currentLocation);
       this.simulationController.recalculateDailyCostJobs(jobController);

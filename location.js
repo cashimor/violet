@@ -185,6 +185,41 @@ const roomtea = new Location(
   1
 );
 
+const roomtower = new Location(
+  "Room Tower",
+  "images/room1.jpg",
+  "Bamboo Forest",
+  160,
+  390,
+  "music/room.mp3",
+  true,
+  4000,
+  3
+)
+
+const roomriver = new Location(
+  "Room River",
+  "images/room2.jpg",
+  "Riverside",
+  520,
+  180,
+  "music/room.mp3",
+  true,
+  2900,
+  3
+)
+
+const roommountain = new Location(
+  "Room Mountain",
+  "images/room1.jpg",
+  "Mountain Area",
+  460,
+  200,
+  "music/room.mp3",
+  true,
+  5000,
+  2
+)
 // Array of locations
 const locations = [
   bambooForest,
@@ -194,4 +229,7 @@ const locations = [
   room1,
   room2,
   roomtea,
+  roomtower,
+  roomriver,
+  roommountain,
 ];
