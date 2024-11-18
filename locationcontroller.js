@@ -101,7 +101,7 @@ class LocationController {
       this.drawBackArrow();
     }
 
-    // Check if the location is rented by Violet and apply the border
+    // Check the owner of the location and apply the appropriate border
     if (location.owner === "Violet") {
       this.decocanvas.style.border = "5px solid violet";
       this.drawRoomNavigationIcons();
@@ -109,10 +109,12 @@ class LocationController {
         this.decoratePopup.classList.remove("hidden");
       }
       this.renderCharacter(this.jobController.getCharacter(location));
+    } else if (location.owner === "Xivato") {
+      this.decocanvas.style.border = "5px solid crimson";
+      // Add additional Xivato-specific actions here if needed
     } else {
-      this.decocanvas.style.border = "none"; // Remove border if not rented by Violet
+      this.decocanvas.style.border = "none"; // Remove border if no one owns the location
     }
-
     // Check if location is available
     if (
       location.available &&

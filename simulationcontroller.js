@@ -1,6 +1,7 @@
 class SimulationController {
-  constructor(jobController, characters) {
+  constructor(jobController, xivatoController, characters) {
     this.jobController = jobController;
+    this.xivatoController = xivatoController;
     this.characters = characters;
     this.day = 1;
     this.energy = 100;
@@ -122,7 +123,9 @@ class SimulationController {
       alert("Game Over! Violet ran out of money.");
       // Implement any additional game-over logic here
     }
-
+    if (this.xivatoController.onNewDay()) {
+      alert("Game Over! Violet is homeless.");      
+    }
     this.updateDisplay();
   }
 
@@ -151,7 +154,7 @@ class SimulationController {
   }
 
   randomizeNPCLocations() {
-    const possibleLocations = ["Bamboo Forest", "Riverside", "Mountain Area", "City Block 1", "At Home"];
+    const possibleLocations = ["Bamboo Forest", "Riverside", "Mountain Area", "City Block 1", "City Block 2", "At Home"];
   
     // Shuffle the locations array (Fisher-Yates Shuffle)
     for (let i = possibleLocations.length - 1; i > 0; i--) {

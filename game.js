@@ -2,7 +2,9 @@
 const mapcanvas = document.getElementById("location-display");
 const decocanvas = document.getElementById("decoration-display");
 const jobController = new JobController();
-const simulationController = new SimulationController(jobController, characters);
+const xivatoController = new XivatoController(locations);
+const simulationController = new SimulationController(jobController, xivatoController, characters);
+
 const locationController = new LocationController(
   decocanvas,
   locations,
@@ -11,6 +13,7 @@ const locationController = new LocationController(
   simulationController,
   jobController,
 );
+
 const mapController = new MapController(
   mapcanvas,
   decocanvas,

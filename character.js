@@ -151,5 +151,14 @@ const characters = [
     "drugs"
   ),
 
+  new Character(
+    "Ryo",
+    ["ryo", "ryoshock", "ryoloan", "ryomassage", "ryogamble", "ryodrugs", "ryopartner", "ryohappy"],
+    "City Block 2",
+    "ryobackstory.txt",
+    "loan",
+    "drugs"
+  ),
+
   // Add more characters as needed
 ];

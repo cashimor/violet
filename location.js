@@ -227,15 +227,15 @@ const cityBlock2 = new Location(
   "Map",
   350, // X-coordinate northeast of City Block 1
   150, // Y-coordinate northeast of City Block 1
-  "music/city2.mp3"
+  "music/city.mp3"
 );
 
 const room3 = new Location(
   "Room 3",
   "images/room1.jpg",
   "City Block 2",
-  500, // Adjusted for relative position within City Block 2
-  200,
+  480, // Adjusted for relative position within City Block 2
+  160,
   "music/room.mp3",
   true,
   1800, // Price to purchase the room
@@ -246,8 +246,8 @@ const room4 = new Location(
   "Room 4",
   "images/room2.jpg",
   "City Block 2",
-  500, // Adjusted for relative position within City Block 2
-  300,
+  340, // Adjusted for relative position within City Block 2
+  130,
   "music/room.mp3",
   true,
   2500, // Price to purchase the room

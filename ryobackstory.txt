@@ -1,0 +1,51 @@
+start:
+Ah, you’ve found me. Name’s Ryo. 
+?What’s on your mind?
+[label1] Tell me about your love.
+[label2] You seem… particular.
+[label3] Just browsing the area.
+[talk] Let’s talk.
+
+label1:
+!neutral
+I love money, in all its forms.
+?It’s not just currency—it’s a record of ambition, effort, and success.
+[label4] You must be great with finances.
+[label5] Sounds a bit obsessive.
+
+label2:
+!neutral
+Particular? I prefer refined.
+For example, I can’t stand unpleasant odors.
+?Honestly, if you ever want to scare me away, just bring something pungent.
+[label6] That’s oddly specific.
+[label7] You’d hate my cooking!
+
+label3:
+!neutral
+Alright, well, I’ll be here if you want to talk money or strategy.
+
+label4:
+!neutral
+Oh, absolutely.
+I’ve kept books for businesses, counted coins for merchants, and even turned debt into profit.
+It’s not about greed—it’s about making order from chaos.
+
+label5:
+!neutral
+Obsessive? Ha, maybe. But in this world, obsession often wins.
+You can call it what you want, but I’ll keep counting.
+
+label6:
+!neutral
+It’s not just specific—it’s survival.
+Some smells just... distract me too much to think.
+?Keep your air clean, and I’m at my best.
+
+label7:
+!neutral
+Ha! Well, as long as I don’t have to smell it, I’ll be fine.
+Let’s just keep business and cooking separate, shall we?
+
+Talk:
+~talkdialogue.txt
