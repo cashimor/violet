@@ -175,7 +175,7 @@ const room2 = new Location(
 
 const roomtea = new Location(
   "Room Tea",
-  "images/room2.jpg",
+  "images/tea.jpg",
   "Bamboo Forest",
   530,
   280,
@@ -211,7 +211,7 @@ const roomriver = new Location(
 
 const roommountain = new Location(
   "Room Mountain",
-  "images/room1.jpg",
+  "images/temple.jpg",
   "Mountain Area",
   460,
   200,
@@ -220,6 +220,40 @@ const roommountain = new Location(
   5000,
   2
 )
+
+const cityBlock2 = new Location(
+  "City Block 2",
+  "images/cityblock2.jpg",
+  "Map",
+  350, // X-coordinate northeast of City Block 1
+  150, // Y-coordinate northeast of City Block 1
+  "music/city2.mp3"
+);
+
+const room3 = new Location(
+  "Room 3",
+  "images/room1.jpg",
+  "City Block 2",
+  500, // Adjusted for relative position within City Block 2
+  200,
+  "music/room.mp3",
+  true,
+  1800, // Price to purchase the room
+  2 // Maintenance level or room difficulty
+);
+
+const room4 = new Location(
+  "Room 4",
+  "images/room2.jpg",
+  "City Block 2",
+  500, // Adjusted for relative position within City Block 2
+  300,
+  "music/room.mp3",
+  true,
+  2500, // Price to purchase the room
+  3 // Maintenance level or room difficulty
+);
+
 // Array of locations
 const locations = [
   bambooForest,
@@ -232,4 +266,7 @@ const locations = [
   roomtower,
   roomriver,
   roommountain,
+  cityBlock2,
+  room3,
+  room4,
 ];

@@ -51,6 +51,7 @@ class OptionsController {
       dailyCost: this.simulationController.dailyCost,
       locationCost: this.simulationController.locationCost,
       jobCost: this.simulationController.jobCost,
+      friendBoundary: this.simulationController.friendBoundary,
       locations: this.locationController.locations,
       currentLocation: this.locationController.currentLocation,
       jobs: this.jobController.toData(),
@@ -82,6 +83,7 @@ class OptionsController {
     this.simulationController.dailyCost = gameState.dailyCost;
     this.simulationController.locationCost = gameState.locationCost;
     this.simulationController.jobCost = gameState.jobCost;
+    this.simulationController.friendBoundary = gameState.friendBoundary;
     this.locationController.locations = gameState.locations.map(
       Location.fromData
     );

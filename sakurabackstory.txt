@@ -4,7 +4,7 @@ Hello, I’m Sakura.
 [label1] How are you settling in?
 [label2] What do you enjoy?
 [label3] I just wanted to say hi.
-[job] Can I offer you a job?
+[talk] Let's talk.
 
 label1:
 !neutral
@@ -32,5 +32,5 @@ label4:
 My immigration status for one.
 But hospitals also don't like my attitude towards modern drugs.
 
-job:
-~jobdialogue.txt
+talk:
+~talkdialogue.txt

@@ -4,7 +4,7 @@ Ah, welcome to my part of town. Name’s Riku.
 [label1] Tell me about your past.
 [label2] What’s your secret?
 [label3] Just passing through.
-[job] Can I offer you a job?
+[talk] Let's talk.
 
 label1:
 !neutral
@@ -34,5 +34,5 @@ label5:
 Easy? Maybe. But money doesn’t teach you how to live.
 That’s why I’m terrible at managing it.
 
-job:
-~jobdialogue.txt
+talk:
+~talkdialogue.txt

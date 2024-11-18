@@ -4,7 +4,7 @@ Oh, hello there. My name is Aiko.
 [label1] Tell me about your past.
 [label2] What’s your secret?
 [label3] Just curious.
-[job] Can I offer you a job?
+[talk] Let's talk.
 
 label1:
 !neutral
@@ -42,5 +42,5 @@ label10:
 !neutral
 Lonely? Maybe. But that’s just how life is sometimes.
 
-job:
-~jobdialogue.txt
+talk:
+~talkdialogue.txt

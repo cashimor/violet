@@ -1,0 +1,14 @@
+start:
+?What is it that you'd like to discuss?
+[job] You want a job?
+[like] Can you tell me more about you?
+[bribe] Here is ¥5000, hopefully it helps.
+
+job:
+~jobdialogue.txt
+
+like:
+~likedialogue.txt
+
+bribe:
+@giveLike(5000)

@@ -9,6 +9,7 @@ class SimulationController {
     this.dailyCost = 0;
     this.locationCost = 0;
     this.jobCost = 0;
+    this.friendBoundary = 0;
 
     // DOM elements for updating the UI
     this.dayCounterElement = document.getElementById("day-counter");
@@ -71,7 +72,7 @@ class SimulationController {
     let evilLairBonus = 0;
 
     this.randomizeNPCLocations();
-    
+
     // Prepare summary of daily activities
     let summary = `<b>Day ${this.day}:</b><br>`;
 

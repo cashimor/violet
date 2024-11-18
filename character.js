@@ -9,6 +9,7 @@ class Character {
     skillLevel = 10,
     icon = "",
     dayTalk = 0,
+    like = 0,
   ) {
     this.name = name;
     this.location = location;
@@ -21,6 +22,7 @@ class Character {
     this.weakness = weakness;
     this.skillLevel = skillLevel; // Basic skill level is 10%
     this.dayTalk = dayTalk;
+    this.like = 0;
   }
 
   static fromData(data) {
@@ -34,6 +36,7 @@ class Character {
       data.skilLevel,
       data.icon,
       data.dayTalk,
+      data.like,
     );
   }
 

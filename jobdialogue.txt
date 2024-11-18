@@ -1,4 +1,7 @@
 start:
+@friendCheck()
+
+friendCheck:
 @showJobChoices()
 
 Loan Office:

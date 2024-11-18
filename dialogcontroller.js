@@ -109,8 +109,19 @@ class DialogController {
       getInvestmentAmount: (param) => this.getInvestmentAmount(param),
       giveBonus: (amount) => this.giveBonus(amount),
       adjustLike: (param) => this.adjustLike(param),
+      friendCheck: (param) => this.friendCheck(param),
+      giveLike: (param) => this.giveLike(param),
       // Add more functions as needed
     };
+  }
+
+  friendCheck() {
+    const friendBoundary = this.simulationController.friendBoundary || 0;
+    if (this.character.like >= friendBoundary) {
+      return ["Of course, you're my friend.", ">friendCheck"]; // Success case
+    } else {
+      return ["I'm sorry, but I need more time to trust you."]; // Failure case
+    }
   }
 
   adjustLike(amount) {
@@ -120,6 +131,21 @@ class DialogController {
       return ["You're so nice."];
     }
     return ["Hm... Pity."];
+  }
+
+  giveLike(amount) {
+    const bonus = parseInt(amount, 10);
+    if (!this.simulationController.deductMoney(bonus)) {
+      return ["You don't have enough money to give this gift."];
+    }
+    // Boost like value with diminishing returns
+    const likeBoost = Math.min(5, Math.floor(amount / 3000));
+    this.character.like = Math.min(100, this.character.like + likeBoost);
+
+    return [
+      `Thank you for your generous gift of ¥${amount.toLocaleString()}!`,
+      likeBoost > 0 ? `I feel closer to you.` : `Oh, that's thoughtful...`,
+    ];
   }
 
   giveBonus(amount) {
@@ -263,6 +289,8 @@ class DialogController {
       assigned = this.jobController.assignNpcToJob(room, this.character);
       if (assigned) {
         this.simulationController.recalculateDailyCostJobs(jobController);
+        this.simulationController.friendBoundary =
+          this.simulationController.friendBoundary + 10;
         return [`Thank you for giving me a job in your ${roomTypeName}!`];
       }
     }

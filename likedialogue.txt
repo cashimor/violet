@@ -1,0 +1,212 @@
+start:
+#>s1m1
+#>s1m2
+#>s1m3
+#>s2m1
+#>s2m2
+#>s2m3
+#>s3m1
+#>s3m2
+#>s3m3
+#>s3m4
+#>s4m1
+#>s4m2
+#>s4m3
+#>s4m4
+#>s5m1
+#>s5m2
+#>s5m3
+#>s5m4
+#>s6m1
+#>s6m2
+#>s6m3
+#>s6m4
+
+s1m1: 
+!curious
+I was in a curious mood, trying to make sense of the world around me.
+At the traffic light, I saw a bird repeatedly pecking at its reflection in a car's side mirror.
+?It got me thinking about why it was doing that.
+[fail] Maybe it wanted a snack? 
+[success] It must think it's another bird. 
+[fail] Birds are so weird sometimes.
+
+s1m2: 
+!frustrated
+I was feeling frustrated, like everything was taking too long.
+The traffic light stayed red for what felt like forever, and the cars ahead didn’t move when it turned green.
+?It was so annoying.
+[fail] Why not honk at them? 
+[success] Ugh, people need to pay attention. 
+[fail] Maybe they were distracted?
+
+s1m3: 
+!playful
+I was in a playful mood, ready to find humor in the little things.
+While waiting at the traffic light, I noticed someone dancing in their car to the music.
+?It made me smile.
+[fail] Did you join them? 
+[success] That's hilarious! 
+[fail] People can be so silly.
+
+# Scenario 2: Choosing a Snack
+s2m1:
+I was in a thoughtful mood, considering every option carefully.
+I was staring at the vending machine, debating between chocolate or chips.
+?What would you pick?
+[success] Depends on your craving, right?
+[fail] Chocolate is always the answer!
+[fail] Chips. Crunch is life.
+
+# Scenario 3: Picking a Route
+s2m2:
+I felt like exploring something new, even if it was a small detour.
+Walking home, I decided to try a new route through an unfamiliar alleyway.
+?It seemed exciting.
+[fail] Aren’t you worried about getting lost?
+[success] Sounds like a fun little adventure.
+[fail] I’d stick to the main roads.
+
+# Scenario 4: Observing People
+s2m3:
+I was in a pensive mood, pondering the lives of others.
+In the park, I noticed three people chatting intently under a tree.
+?It caught my attention.
+[fail] They’re probably arguing over something silly.
+[fail] Maybe they’re planning a party?
+[success] What do you think their story is?
+
+s3m1:
+I was feeling adventurous today, ready to try something new.
+At the coffee shop, I couldn’t decide whether to stick to my usual drink or try something bold.
+?What do you think I chose?
+[success] You probably went for the bold choice—why not? 
+[fail] The usual—comfort is key.
+[fail] Maybe you skipped the coffee altogether?
+
+s3m2:
+I was in a reflective mood, thinking about how people adapt to challenges.
+While waiting at the bus stop, I noticed someone miss their bus and start laughing instead of getting upset.
+?How would you react in their place?
+[fail] I’d probably get mad—missing the bus is annoying.
+[success] I’d laugh too—sometimes that’s all you can do.
+[fail] I wouldn’t care—it’s just a bus.
+
+s3m3:
+I felt a little nostalgic today, thinking about simpler times.
+I noticed a child blowing bubbles in the park—such a carefree moment.
+?Does that bring back memories for you too?
+[fail] Not really, I never cared for stuff like that.
+[success] Absolutely—it’s such a pure joy!
+[fail] It’s cute, but I prefer bigger events.
+
+s34:
+I was in a playful mood, looking for little quirks to enjoy.
+At the park, I saw a dog barking at its own reflection in a puddle.
+?Isn’t that funny?
+[success] Hilarious—dogs can be so silly!
+[fail] Kind of, but not that interesting.
+[fail] Poor thing, it must have been confused.
+
+s4m1:
+I was feeling ambitious today, like I could tackle anything.
+While walking downtown, I saw a poster advertising a marathon.
+?What do you think I thought?
+[fail] I’d never do that—it’s too much work.
+[success] Maybe I should try that—it’d be a challenge!
+[fail] Oh no, running is the worst.
+
+s4m2:
+I was in a curious mood, eager to learn new things.
+At the library, I overheard someone discussing an unusual hobby—building miniature ships in bottles.
+?What would you say about that?
+[fail] Sounds boring, honestly.
+[fail] It’s impressive, but I’d never try it.
+[success] That’s fascinating! I’d love to see how it’s done.
+
+s4m3:
+I felt a bit philosophical today, pondering how little choices shape big outcomes.
+I had to choose between two routes home—one through the busy market and one through a quiet alley.
+?Which do you think I chose?
+[success] The quiet alley—it gives you space to think.
+[fail] The busy market—it’s lively and fun.
+[fail] Neither—you probably took a cab.
+
+s4m4:
+I was in an optimistic mood, expecting good things to happen.
+While shopping, I found a long line at the checkout but decided to wait anyway.
+?Why do you think I stayed?
+[fail] You wanted to practice patience.
+[success] You thought something good might come of it.
+[fail] You didn’t care—you had time to spare.
+
+s5m1:
+I was feeling imaginative, letting my mind wander wherever it wanted.
+While lying in the grass, I stared at the clouds and started to see shapes in them.
+?What do you think I imagined?
+[success] A dragon flying through the sky.
+[fail] A spaceship landing on Earth.
+[fail] Nothing—you probably fell asleep.
+
+s5m2:
+I felt peaceful, enjoying the stillness of the moment.
+The clouds drifted by, and I thought about how fleeting things can be.
+?What might I have said about them?
+[fail] Those clouds look like cotton candy—fun but fleeting.
+[success] Life’s like these clouds—beautiful and always moving on.
+[fail] Clouds are just clouds—no point in thinking too much.
+
+s4m3:
+I was in a playful mood, wanting to find humor in everything.
+One cloud in particular caught my eye, and it made me laugh.
+?What do you think it looked like?
+[fail] A dinosaur balancing on a ball.
+[fail] A clown juggling bananas.
+[success] A dog with a goofy expression.
+
+s5m4:
+I was feeling nostalgic, thinking about the past.
+Watching the clouds reminded me of when I was a child, lying in the grass and dreaming big dreams.
+?What would I have thought about?
+[fail] I wish I had more time to relax now.
+[success] I wonder if my younger self would be proud of me.
+[fail] I should go back to my childhood home.
+
+s6m1:
+I was feeling empathetic, putting myself in others’ shoes.
+Passing by a road worker under the hot sun, I couldn’t help but think about their day.
+?What did I think?
+[success] They’re working hard—what keeps them motivated?
+[fail] They must hate this job.
+[fail] That looks tough, but at least they’re getting paid well.
+
+s6m2:
+I was feeling grateful, appreciating the little things in life.
+I saw a road worker fixing a pothole, and it made me reflect on how much I take smooth roads for granted.
+?What might I have thought?
+[fail] They should work faster—I’m in a hurry.
+[success] I’m glad someone’s doing this job—where would we be without them?
+[fail] I bet they don’t even notice how much we appreciate their work.
+
+s6m3:
+I was feeling impatient, frustrated by delays.
+The road worker was holding up traffic, and I couldn’t get where I needed to be.
+?What do you think I thought in that moment?
+[fail] I should yell at them to hurry up.
+[fail] Maybe I’ll just turn around and find another way.
+[success] It’s frustrating, but they’re doing an important job.
+
+s6m4:
+I was feeling curious, wondering what it’s like to do something so different from my own work.
+The road worker seemed focused, carefully filling a pothole.
+?What might I have asked myself?
+[fail] How long until they’re done?
+[success] What would it feel like to work with your hands all day?
+[fail] Why do they always work during rush hour?
+
+fail: 
+I guess so...
+
+success: 
+Yes... I'm glad we get along so well.
+@adjustLike(5)

@@ -4,7 +4,7 @@ Oh, hi. I’m Taro. Is there something on your mind?
 [label1] What did you study?
 [label2] Any hobbies?
 [label3] Just stopping by.
-[job] Can I offer you a job?
+[talk] Let's talk.
 
 label1:
 !neutral
@@ -61,5 +61,5 @@ label9:
 !neutral
 Fair enough. I promise I’ll try not to break anything important here.
 
-job:
-~jobdialogue.txt
+talk:
+~talkdialogue.txt
