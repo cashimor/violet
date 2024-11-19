@@ -120,6 +120,7 @@ const characters = [
       "aikogamble",
       "aikodrugs",
       "aikopartner",
+      "aikohappy",
     ],
     "Bamboo Forest",
     "aikobackstory.txt",
@@ -128,7 +129,7 @@ const characters = [
   ),
   new Character(
     "Taro",
-    ["taro", "taroshock", "taroloan", "taromassage", "tarogamble", "tarodrugs", "taropartner"],
+    ["taro", "taroshock", "taroloan", "taromassage", "tarogamble", "tarodrugs", "taropartner", "tarohappy"],
     "City Block 1",
     "tarobackstory.txt",
     "drugs",
@@ -136,7 +137,7 @@ const characters = [
   ),
   new Character(
     "Riku",
-    ["riku", "rikushock", "rikuloan", "rikumassage", "rikugamble", "rikudrugs", "rikupartner"],
+    ["riku", "rikushock", "rikuloan", "rikumassage", "rikugamble", "rikudrugs", "rikupartner", "rikuhappy"],
     "Riverside",
     "rikubackstory.txt",
     "gamble",

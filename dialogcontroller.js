@@ -115,9 +115,13 @@ class DialogController {
     };
   }
 
-  friendCheck() {
+  isFriend() {
     const friendBoundary = this.simulationController.friendBoundary || 0;
-    if (this.character.like >= friendBoundary) {
+    return this.character.like >= friendBoundary;
+  }
+
+  friendCheck() {
+    if (this.isFriend()) {
       return ["Of course, you're my friend.", ">friendCheck"]; // Success case
     } else {
       return ["I'm sorry, but I need more time to trust you."]; // Failure case
@@ -573,7 +577,14 @@ class DialogController {
   }
 
   // Modified start method to handle dialog choices and emotions
-  start() {
+  start(first = false) {
+    if (first) {
+      if (this.isFriend()) {
+        this.handleEmotion("!happy");
+      } else {
+        this.handleEmotion("!neutral");
+      }
+    }
     let dialogContent = this.getNextLine();
     if (!dialogContent) {
       this.closeDialog();

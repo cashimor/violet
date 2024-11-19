@@ -49,7 +49,6 @@ While waiting at the traffic light, I noticed someone dancing in their car to th
 [success] That's hilarious! 
 [fail] People can be so silly.
 
-# Scenario 2: Choosing a Snack
 s2m1:
 I was in a thoughtful mood, considering every option carefully.
 I was staring at the vending machine, debating between chocolate or chips.
@@ -58,7 +57,6 @@ I was staring at the vending machine, debating between chocolate or chips.
 [fail] Chocolate is always the answer!
 [fail] Chips. Crunch is life.
 
-# Scenario 3: Picking a Route
 s2m2:
 I felt like exploring something new, even if it was a small detour.
 Walking home, I decided to try a new route through an unfamiliar alleyway.
@@ -67,7 +65,6 @@ Walking home, I decided to try a new route through an unfamiliar alleyway.
 [success] Sounds like a fun little adventure.
 [fail] I’d stick to the main roads.
 
-# Scenario 4: Observing People
 s2m3:
 I was in a pensive mood, pondering the lives of others.
 In the park, I noticed three people chatting intently under a tree.
@@ -156,7 +153,7 @@ The clouds drifted by, and I thought about how fleeting things can be.
 [success] Life’s like these clouds—beautiful and always moving on.
 [fail] Clouds are just clouds—no point in thinking too much.
 
-s4m3:
+s5m3:
 I was in a playful mood, wanting to find humor in everything.
 One cloud in particular caught my eye, and it made me laugh.
 ?What do you think it looked like?

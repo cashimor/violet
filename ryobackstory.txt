@@ -47,5 +47,5 @@ label7:
 Ha! Well, as long as I don’t have to smell it, I’ll be fine.
 Let’s just keep business and cooking separate, shall we?
 
-Talk:
+talk:
 ~talkdialogue.txt

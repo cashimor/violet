@@ -25,7 +25,8 @@ const mapController = new MapController(
 const optionsController = new OptionsController(
   simulationController,
   jobController,
-  locationController
+  locationController,
+  xivatoController
 )
 
 optionsController.applyMusicSetting();

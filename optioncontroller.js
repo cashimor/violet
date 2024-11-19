@@ -1,8 +1,9 @@
 class OptionsController {
-  constructor(simulationController, jobController, locationController, characterController) {
+  constructor(simulationController, jobController, locationController, xivatoController) {
     this.simulationController = simulationController;
     this.jobController = jobController;
     this.locationController = locationController;
+    this.xivatoController = xivatoController;
     this.showing = false;
     document.getElementById("save-button").addEventListener("click", () => {
       this.saveGameState();
@@ -56,6 +57,7 @@ class OptionsController {
       currentLocation: this.locationController.currentLocation,
       jobs: this.jobController.toData(),
       characters: this.locationController.characters,
+      daysSinceLastOccupation: this.xivatoController.daysSinceLastOccupation,
     };
 
     const roomTypesData = {};
@@ -84,6 +86,7 @@ class OptionsController {
     this.simulationController.locationCost = gameState.locationCost;
     this.simulationController.jobCost = gameState.jobCost;
     this.simulationController.friendBoundary = gameState.friendBoundary;
+    this.xivatoController.daysSinceLastOccupation = gameState.daysSinceLastOccupation;
     this.locationController.locations = gameState.locations.map(
       Location.fromData
     );

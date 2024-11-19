@@ -169,7 +169,7 @@ class LocationController {
           this.jobController,
           this.simulationController
         );
-        this.dialogue.start(); // Begin the dialog flow for the character
+        this.dialogue.start(true); // Begin the dialog flow for the character
       });
   }
 
