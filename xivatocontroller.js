@@ -5,19 +5,19 @@ class XivatoController {
     this.locations = locations;
   }
 
+  owned(who) {
+    return this.locations.filter(
+        (location) => location.owner === who
+      ).length;
+  }
+
   getAvailableLocations() {
     return this.locations.filter((location) => location.available);
   }
 
   checkLoseCondition() {
-    const violetOwned = this.locations.filter(
-      (location) => location.owner === "Violet"
-    ).length;
-
-    const xivatoOwned = this.locations.filter(
-      (location) => location.owner === "Xivato"
-    ).length;
-
+    const violetOwned = this.owned("Violet");
+    const xivatoOwned = this.owned("Xivato");
     const availableRooms = this.getAvailableLocations().length;
 
     // Lose condition: Violet owns no locations, and all others are occupied by Xivato

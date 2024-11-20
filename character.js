@@ -161,5 +161,15 @@ const characters = [
     "drugs"
   ),
 
+  new Character(
+    "Police Officer",
+    ["police officer"],
+    "Police Station",
+    "police.txt",
+    null,
+    null,
+    100,
+    "police"
+  ),
   // Add more characters as needed
 ];

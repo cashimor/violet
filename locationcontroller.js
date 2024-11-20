@@ -411,6 +411,22 @@ class LocationController {
     this.handleRoomNavigationClick(x, y);
   }
 
+  updateDecorateOptions() {
+    // Check for Evil Lair condition
+    const evilLairExists = this.locations.some((location) => 
+      location.rooms && location.rooms.some((room) => room.use === "Evil Lair")
+    );
+    const drugsLabExists = this.locations.some((location) => 
+      location.rooms && location.rooms.some((room) => room.use === "Drugs Laboratory")
+    );
+    // Show/Hide buttons dynamically
+    document.getElementById("btnEvilLair").style.display = evilLairExists ? "none" : "inline-block";
+    document.getElementById("btnTemple").style.display = evilLairExists ? "inline-block" : "none";
+  
+    document.getElementById("btnDrugLab").style.display = drugsLabExists ? "none" : "inline-block";
+    document.getElementById("btnDrugsDistribution").style.display = drugsLabExists ? "inline-block" : "none";
+  }
+
   decorateRoom(roomData) {
     // Deduct cost, set room image, and apply any upgrades as needed
     if (this.simulationController.deductMoney(roomData.cost)) {
@@ -424,6 +440,7 @@ class LocationController {
       this.simulationController.recalculateDailyCostJobs(jobController);
       // If there's an upgrade path, we can manage it here later
       console.log(`Room decorated as ${roomData.name}`);
+      this.updateDecorateOptions();
     }
   }
 }

@@ -11,6 +11,7 @@ class SimulationController {
     this.locationCost = 0;
     this.jobCost = 0;
     this.friendBoundary = 0;
+    this.bribes = 0;
 
     // DOM elements for updating the UI
     this.dayCounterElement = document.getElementById("day-counter");
@@ -76,9 +77,12 @@ class SimulationController {
 
     // Prepare summary of daily activities
     let summary = `<b>Day ${this.day}:</b><br>`;
+    let raidHappened = false;
 
     // Calculate profits from all jobs
     Object.entries(this.jobController.jobs).forEach(([roomId, job]) => {
+      let raidChance = this.calculateRaidLikelihood(roomId);
+      if (raidHappened) raidChance = 0;
       const roomType = this.jobController.getRoomTypeByName(job.purpose); // Get room type from purpose
       const assignedNpc = job.npcAssigned;
       if (job.purpose === "Evil Lair") {
@@ -88,7 +92,7 @@ class SimulationController {
         }
       }
       if (roomType && assignedNpc) {
-        const result = roomType.calculateProfit(assignedNpc);
+        const result = roomType.calculateProfit(assignedNpc, raidChance);
 
         if (typeof result === "number") {
           // Success: Add profit and report
@@ -97,11 +101,11 @@ class SimulationController {
             job.purpose
           }: ¥${result.toLocaleString()}<br>`;
         } else {
+          raidHappened = true;
           // Issue: Add issue to report
           summary += `Event: ${result}<br>`;
         }
       }
-
     });
     this.energy = this.energy + evilLairBonus;
     // Update money and handle end-of-day report
@@ -124,7 +128,7 @@ class SimulationController {
       // Implement any additional game-over logic here
     }
     if (this.xivatoController.onNewDay()) {
-      alert("Game Over! Violet is homeless.");      
+      alert("Game Over! Violet is homeless.");
     }
     this.updateDisplay();
   }
@@ -154,24 +158,75 @@ class SimulationController {
   }
 
   randomizeNPCLocations() {
-    const possibleLocations = ["Bamboo Forest", "Riverside", "Mountain Area", "City Block 1", "City Block 2", "At Home"];
-  
+    const possibleLocations = [
+      "Bamboo Forest",
+      "Riverside",
+      "Mountain Area",
+      "City Block 1",
+      "City Block 2",
+      "At Home",
+    ];
+
     // Shuffle the locations array (Fisher-Yates Shuffle)
     for (let i = possibleLocations.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [possibleLocations[i], possibleLocations[j]] = [possibleLocations[j], possibleLocations[i]];
+      [possibleLocations[i], possibleLocations[j]] = [
+        possibleLocations[j],
+        possibleLocations[i],
+      ];
     }
-  
+
     // Assign NPCs to random locations
-    this.characters.forEach(character => {
+    this.characters.forEach((character) => {
       // Skip characters with a job (i.e., those who have an icon)
       if (character.icon) return;
-  
+
       if (possibleLocations.length > 0) {
         character.location = possibleLocations.pop(); // Assign and remove location
       } else {
         character.location = "At Home"; // Fallback if no locations are left
       }
     });
+  }
+
+  /**
+   * Calculate the likelihood of a raid on a specific location.
+   * @param {Object} location - The location to calculate raid likelihood for.
+   * @returns {number} - The raid likelihood as a percentage (0-100).
+   */
+  calculateRaidLikelihood(roomId) {
+    const baseLikelihood = 10; // Base raid likelihood (e.g., 10%)
+    const maxLikelihood = 90; // Maximum likelihood cap
+    const bribeEffectiveness = 5000; // Amount of money to reduce likelihood by 1%
+
+    // Global faction influence
+    const totalInfluence =
+      this.xivatoController.owned("Violet") +
+      this.xivatoController.owned("Xivato");
+
+    // Adjust likelihood based on global and local influence
+    let likelihood = baseLikelihood + totalInfluence * 0.05;
+
+    // Increase likelihood if the location is in the city
+    if (roomId?.includes("City")) {
+      likelihood += 20; // Add a 20% bonus for city locations
+    }
+
+    // Reduce likelihood by bribes
+    const bribeReduction = this.bribes / bribeEffectiveness;
+    likelihood -= bribeReduction;
+
+    // Ensure the likelihood stays within bounds
+    likelihood = Math.min(maxLikelihood, Math.max(0, likelihood));
+
+    return likelihood;
+  }
+
+  /**
+   * Add bribe money to reduce raid likelihood.
+   * @param {number} amount - Amount of money given as a bribe.
+   */
+  addBribe(amount) {
+    this.bribes += amount;
   }
 }

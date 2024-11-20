@@ -53,6 +53,7 @@ class OptionsController {
       locationCost: this.simulationController.locationCost,
       jobCost: this.simulationController.jobCost,
       friendBoundary: this.simulationController.friendBoundary,
+      bribes: this.simulationController.bribes,
       locations: this.locationController.locations,
       currentLocation: this.locationController.currentLocation,
       jobs: this.jobController.toData(),
@@ -86,6 +87,7 @@ class OptionsController {
     this.simulationController.locationCost = gameState.locationCost;
     this.simulationController.jobCost = gameState.jobCost;
     this.simulationController.friendBoundary = gameState.friendBoundary;
+    this.simulationController.bribes = gameState.bribes;
     this.xivatoController.daysSinceLastOccupation = gameState.daysSinceLastOccupation;
     this.locationController.locations = gameState.locations.map(
       Location.fromData
@@ -111,6 +113,7 @@ class OptionsController {
     this.locationController.loadLocation(
       this.locationController.currentLocation
     );
+    this.locationController.updateDecorateOptions();
     updateSummaryText("Game loaded successfully!");
     this.close();
   }

@@ -1,0 +1,44 @@
+start:
+Welcome, citizen.
+?What brings you here today? Trouble brewing?
+[bribePolice] I want to discuss... reducing raid activity.
+[chatPolice] Nothing serious, just wanted to chat.
+
+bribePolice:
+We do our best to keep the city safe. 
+?But... resources are tight, you understand.
+[offer5000] ¥5000
+[offer10000] ¥10000
+[offer50000] ¥50000
+[no] Yes, I do.
+
+offer5000:
+@giveLike(5000)
+
+offer10000:
+@giveLike(10000)
+
+offer50000:
+@giveLike(50000)
+
+no:
+Well, if you change your mind, you know where to find us.
+
+chatPolice:
+You know, most people don’t just stop by the station for a chat.
+?But I’ll bite. What’s on your mind?
+[askAboutCity] How’s the city?
+[askAboutXivato] What’s the latest on gangs?
+[leave] Bye!
+
+askAboutCity:
+It’s getting tougher every day. 
+There are gangs making things complicated.
+But we’re doing what we can.
+
+askAboutXivato:
+They’re slippery, but we’ve got our eyes on them.
+If you see anything suspicious, let us know.
+
+leave:
+Stay safe out there.

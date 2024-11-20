@@ -37,6 +37,7 @@ class MapController {
   }
 
   openMap() {
+    this.drawMarkers();
     this.locationController.hidePopups();
     this.decorationContainer.style.display = "none";
     this.mapContainer.style.display = "block";
@@ -61,20 +62,120 @@ class MapController {
     }
   }
 
-  // Draws markers for each location on the map
-  drawMarkers() {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.mapLocations.forEach((location) => this.drawMarker(location));
+  // Calculate control proportions
+  calculateControlProportions() {
+    const control = {};
+
+    control["total"] = { Violet: 0, Xivato: 0, total: 0 };
+
+    // Initialize counters for each ref
+    this.locations.forEach((loc) => {
+      if (!control[loc.ref]) {
+        control[loc.ref] = { Violet: 0, Xivato: 0, total: 0 };
+      }
+
+      if (loc.owner === "Violet") {
+        control[loc.ref].Violet++;
+        control["total"].Violet++;
+      } else if (loc.owner === "Xivato") {
+        control[loc.ref].Xivato++;
+        control["total"].Xivato++;
+      }
+
+      control[loc.ref].total++;
+      control["total"].total++;
+    });
+
+    return control;
   }
 
-  // Draws a single location marker
-  drawMarker(location) {
+  // Draw markers for all locations
+  drawMarkers() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Calculate proportions
+    const controlProportions = this.calculateControlProportions();
+
+    // Draw each marker
+    this.mapLocations.forEach((location) =>
+      this.drawMarker(
+        location,
+        controlProportions[location.name],
+        controlProportions["total"]
+      )
+    );
+  }
+
+  // Draw a single marker
+  drawMarker(location, control, totalarea) {
+    const radius = 25; // Base size of control circle
+    const { Violet, Xivato, total } = control || {
+      Violet: 0,
+      Xivato: 0,
+      total: 1,
+    };
+
+    const violetRadius = radius * totalarea.Violet;
+    const xivatoRadius = radius * totalarea.Xivato;
+
+    // Violet's control
+    if (Violet > 0) {
+      const startAngle = 0;
+      const endAngle = Violet > 0 && Xivato > 0 ? Math.PI : 2 * Math.PI;
+      this.drawControlCircle(
+        location,
+        violetRadius,
+        startAngle,
+        endAngle,
+        "rgba(238, 130, 238, 0.4)"
+      );
+    }
+
+    // Xivato's control
+    if (Xivato > 0) {
+      const startAngle = Violet > 0 ? Math.PI : 0;
+      const endAngle = 2 * Math.PI;
+      this.drawControlCircle(
+        location,
+        xivatoRadius,
+        startAngle,
+        endAngle,
+        "rgba(220, 20, 60, 0.4)"
+      );
+    }
+
+    // Base marker
+    this.drawBaseMarker(location);
+  }
+
+  drawControlCircle(location, radius, startAngle, endAngle, color) {
     this.context.beginPath();
-    this.context.arc(location.x, location.y, 10, 0, 2 * Math.PI);
-    this.context.fillStyle = "red";
+    this.context.arc(
+      location.x,
+      location.y,
+      radius,
+      startAngle,
+      endAngle,
+      false
+    );
+    this.context.fillStyle = color;
     this.context.fill();
   }
 
+  drawBaseMarker(location) {
+    this.context.beginPath();
+    this.context.arc(location.x, location.y, 10, 0, 2 * Math.PI);
+  
+    // Use a specific color for the police station
+    if (location.name === "Police Station") {
+      this.context.fillStyle = "blue"; // Police station marker color
+    } else {
+      this.context.fillStyle = "red"; // Default marker color
+    }
+  
+    this.context.fill();
+  }
+  
   handleCanvasClick(event) {
     const rect = this.canvas.getBoundingClientRect();
 

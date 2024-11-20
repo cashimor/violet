@@ -150,7 +150,7 @@ const cityBlock1 = new Location(
 );
 
 const room1 = new Location(
-  "Room 1",
+  "City Room 1",
   "images/room1.jpg",
   "City Block 1",
   80,
@@ -162,7 +162,7 @@ const room1 = new Location(
 );
 
 const room2 = new Location(
-  "Room 2",
+  "City Room 2",
   "images/room2.jpg",
   "City Block 1",
   550,
@@ -231,7 +231,7 @@ const cityBlock2 = new Location(
 );
 
 const room3 = new Location(
-  "Room 3",
+  "City Room 3",
   "images/room1.jpg",
   "City Block 2",
   480, // Adjusted for relative position within City Block 2
@@ -243,7 +243,7 @@ const room3 = new Location(
 );
 
 const room4 = new Location(
-  "Room 4",
+  "City Room 4",
   "images/room2.jpg",
   "City Block 2",
   340, // Adjusted for relative position within City Block 2
@@ -253,6 +253,16 @@ const room4 = new Location(
   2500, // Price to purchase the room
   3 // Maintenance level or room difficulty
 );
+
+const police = new Location(
+  "Police Station",
+  "images/policestation.jpg",
+  "Map",
+  220, // Adjusted for relative position within City Block 2
+  280,
+  "music/policestation.mp3",
+);
+
 
 // Array of locations
 const locations = [
@@ -269,4 +279,5 @@ const locations = [
   cityBlock2,
   room3,
   room4,
+  police,
 ];

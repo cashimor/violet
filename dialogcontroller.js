@@ -142,8 +142,18 @@ class DialogController {
     if (!this.simulationController.deductMoney(bonus)) {
       return ["You don't have enough money to give this gift."];
     }
-    // Boost like value with diminishing returns
-    const likeBoost = Math.min(5, Math.floor(amount / 3000));
+
+    if (this.character.name === "Police Officer") {
+      // For the Police Officer, call addBribe instead of adjusting like
+      this.simulationController.addBribe(bonus);
+      return [
+        `Thank you for your generous contribution of ¥${amount.toLocaleString()}!`,
+        "We'll make sure things stay quieter for you.",
+      ];
+    }
+
+    // Default behavior for other characters
+    const likeBoost = Math.min(5, Math.floor(amount / 3000)); // Diminishing returns
     this.character.like = Math.min(100, this.character.like + likeBoost);
 
     return [

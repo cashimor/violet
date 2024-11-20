@@ -50,7 +50,7 @@ class RoomType {
   }
 
   // Calculate profit based on character skill and room-specific factors
-  calculateProfit(character) {
+  calculateProfit(character, raidChance) {
     if (!character) {
       console.warn(`No character assigned to the ${this.name}`);
       return 0; // No profit without a character
@@ -63,8 +63,13 @@ class RoomType {
     console.log("" + skillEffect + ":" + this.baseProfit + ":" + profit);
 
     // Apply room-specific adjustments
-    if (this.name === "Gambling Den" && this.isRaided()) {
-        return "The gambling den was raided."
+    if (this.name === "Gambling Den" && this.isRaided(raidChance)) {
+      return "The gambling den was raided.";
+    }
+
+    // Apply room-specific adjustments
+    if (this.name === "Drugs Laboratory" && this.isRaided(raidChance / 2)) {
+      return "The drugs laboratory was raided.";
     }
 
     // Ensure profit doesn't fall below zero
@@ -74,9 +79,10 @@ class RoomType {
   }
 
   // Example: Check if the room is raided
-  isRaided() {
+  isRaided(raidChance) {
+    console.log("Raid, with chance: " + raidChance);
     // Simple placeholder for whether a raid occurs (e.g., random chance or event)
-    return Math.random() < 0.1; // 10% chance of a raid
+    return Math.random() < raidChance / 100; // 10% chance of a raid
   }
 }
 
@@ -108,7 +114,7 @@ const roomTypes = {
     dialogue: "loandialogue.txt",
   }),
   druglab: new RoomType({
-    name: "Drug Laboratory",
+    name: "Drugs Laboratory",
     job: "Chemist",
     dailyWage: 12000,
     icon: "drugs",
@@ -145,5 +151,31 @@ const roomTypes = {
     baseProfit: 0,
     music: "music/evillair.mp3",
     dialogue: "lairdialogue.txt",
+  }),
+  temple: new RoomType({
+    name: "Temple",
+    job: "Priest",
+    dailyWage: 1000,
+    icon: "priest",
+    imageUrl: "images/temple.jpg",
+    cost: 20000,
+    upkeep: 0.01,
+    hint: "A sacred place to expand your influence and gather devoted followers.",
+    baseProfit: 1000, // Generates some income from offerings
+    music: "music/temple.mp3",
+    dialogue: "templedialogue.txt", // Dialogue file for interactions
+  }),
+  drugsdistribution: new RoomType({
+    name: "Drugs Distribution",
+    job: "Dealer",
+    dailyWage: 3000,
+    icon: "dealer",
+    imageUrl: "images/drugsdistribution.jpg",
+    cost: 15000,
+    upkeep: 0.025,
+    hint: "A network for distributing drugs produced in your lab, with high risk but high profit.",
+    baseProfit: 18000, // High profit due to distribution network
+    music: "music/drugsdistribution.mp3",
+    dialogue: "distributiondialogue.txt", // Dialogue file for interactions
   }),
 };
