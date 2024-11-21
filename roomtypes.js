@@ -86,7 +86,7 @@ class RoomType {
   }
 }
 
-const roomTypes = {
+let roomTypes = {
   gambling: new RoomType({
     name: "Gambling Den",
     job: "Pit Boss",

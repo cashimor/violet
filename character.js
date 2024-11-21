@@ -9,7 +9,7 @@ class Character {
     skillLevel = 10,
     icon = "",
     dayTalk = 0,
-    like = 0,
+    like = 0
   ) {
     this.name = name;
     this.location = location;
@@ -36,7 +36,7 @@ class Character {
       data.skilLevel,
       data.icon,
       data.dayTalk,
-      data.like,
+      data.like
     );
   }
 
@@ -109,7 +109,7 @@ class Character {
   }
 }
 
-const characters = [
+let characters = [
   new Character(
     "Aiko",
     [
@@ -121,6 +121,8 @@ const characters = [
       "aikodrugs",
       "aikopartner",
       "aikohappy",
+      "aikocourier",
+      "aikopriest",
     ],
     "Bamboo Forest",
     "aikobackstory.txt",
@@ -129,7 +131,18 @@ const characters = [
   ),
   new Character(
     "Taro",
-    ["taro", "taroshock", "taroloan", "taromassage", "tarogamble", "tarodrugs", "taropartner", "tarohappy"],
+    [
+      "taro",
+      "taroshock",
+      "taroloan",
+      "taromassage",
+      "tarogamble",
+      "tarodrugs",
+      "taropartner",
+      "tarohappy",
+      "tarocourier",
+      "taropriest",
+    ],
     "City Block 1",
     "tarobackstory.txt",
     "drugs",
@@ -137,7 +150,18 @@ const characters = [
   ),
   new Character(
     "Riku",
-    ["riku", "rikushock", "rikuloan", "rikumassage", "rikugamble", "rikudrugs", "rikupartner", "rikuhappy"],
+    [
+      "riku",
+      "rikushock",
+      "rikuloan",
+      "rikumassage",
+      "rikugamble",
+      "rikudrugs",
+      "rikupartner",
+      "rikuhappy",
+      "rikucourier",
+      "rikupriest",
+    ],
     "Riverside",
     "rikubackstory.txt",
     "gamble",
@@ -145,7 +169,18 @@ const characters = [
   ),
   new Character(
     "Sakura",
-    ["sakura", "sakurashock", "sakuraloan", "sakuramassage", "sakuragamble", "sakuradrugs", "sakurapartner", "sakurahappy"],
+    [
+      "sakura",
+      "sakurashock",
+      "sakuraloan",
+      "sakuramassage",
+      "sakuragamble",
+      "sakuradrugs",
+      "sakurapartner",
+      "sakurahappy",
+      "sakuracourier",
+      "sakurapriest",
+    ],
     "Mountain Area",
     "sakurabackstory.txt",
     "massage",
@@ -154,7 +189,18 @@ const characters = [
 
   new Character(
     "Ryo",
-    ["ryo", "ryoshock", "ryoloan", "ryomassage", "ryogamble", "ryodrugs", "ryopartner", "ryohappy"],
+    [
+      "ryo",
+      "ryoshock",
+      "ryoloan",
+      "ryomassage",
+      "ryogamble",
+      "ryodrugs",
+      "ryopartner",
+      "ryohappy",
+      "ryocourier",
+      "ryopriest",
+    ],
     "City Block 2",
     "ryobackstory.txt",
     "loan",

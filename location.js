@@ -10,6 +10,8 @@ class Location {
     dailyCost = 0,
     size = 0,
     owner = null,
+    rooms = [],
+    currentRoomIndex = 0,
   ) {
     this.name = name;
     this.imageUrl = imageUrl;
@@ -21,8 +23,8 @@ class Location {
     this.dailyCost = dailyCost;
     this.size = size;
     this.musicUrl = musicUrl;
-    this.rooms = []; // Array to hold room data after renting
-    this.currentRoomIndex = 0; // Track which room is being viewed
+    this.rooms = rooms;
+    this.currentRoomIndex = currentRoomIndex;
   }
 
   static fromData(data) {
@@ -37,9 +39,9 @@ class Location {
       data.dailyCost,
       data.size,
       data.owner,
+      data.rooms,
+      data.currentRoomIndex
     );
-    location.rooms = data.rooms;
-    location.currentRoomIndex = data.currentRoomIndex;
     return location;
   }
 
@@ -265,7 +267,7 @@ const police = new Location(
 
 
 // Array of locations
-const locations = [
+let locations = [
   bambooForest,
   riverSide,
   mountainArea,

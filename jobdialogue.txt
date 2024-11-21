@@ -26,7 +26,7 @@ I will be your trusted companion.
 
 Temple:
 I shall devote myself to Goddess Malvani.
-@selectJob(Priest)
+@selectJob(Temple)
 
 Drugs Distribution:
 If I must... this will not be good for me.

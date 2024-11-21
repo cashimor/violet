@@ -10,14 +10,11 @@ class MapController {
     this.decocanvas = decocanvas;
     this.context = canvas.getContext("2d");
     this.decocontext = decocanvas.getContext("2d");
-    this.locations = locations; // Array of Location objects
+    this.setLocations(locations);
     this.simulationController = simulationController;
     this.locationController = locationController;
     this.mapContainer = document.getElementById("map-container");
     this.decorationContainer = document.getElementById("decoration-container");
-    this.mapLocations = this.locations.filter(
-      (location) => location.ref === "Map"
-    );
 
     // Set up the canvas click event to detect location selection
     this.canvas.addEventListener("click", (event) =>
@@ -34,6 +31,13 @@ class MapController {
 
     // Draw location markers initially
     this.drawMarkers();
+  }
+
+  setLocations(locations) {
+    this.locations = locations;
+    this.mapLocations = this.locations.filter(
+      (location) => location.ref === "Map"
+    );
   }
 
   openMap() {
@@ -175,7 +179,7 @@ class MapController {
   
     this.context.fill();
   }
-  
+
   handleCanvasClick(event) {
     const rect = this.canvas.getBoundingClientRect();
 

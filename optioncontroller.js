@@ -1,9 +1,16 @@
 class OptionsController {
-  constructor(simulationController, jobController, locationController, xivatoController) {
+  constructor(
+    simulationController,
+    jobController,
+    locationController,
+    xivatoController,
+    mapController,
+  ) {
     this.simulationController = simulationController;
     this.jobController = jobController;
     this.locationController = locationController;
     this.xivatoController = xivatoController;
+    this.mapController = mapController;
     this.showing = false;
     document.getElementById("save-button").addEventListener("click", () => {
       this.saveGameState();
@@ -88,7 +95,8 @@ class OptionsController {
     this.simulationController.jobCost = gameState.jobCost;
     this.simulationController.friendBoundary = gameState.friendBoundary;
     this.simulationController.bribes = gameState.bribes;
-    this.xivatoController.daysSinceLastOccupation = gameState.daysSinceLastOccupation;
+    this.xivatoController.daysSinceLastOccupation =
+      gameState.daysSinceLastOccupation;
     this.locationController.locations = gameState.locations.map(
       Location.fromData
     );
@@ -104,16 +112,34 @@ class OptionsController {
         console.warn(`Room type '${key}' not found in current roomTypes.`);
       }
     });
-    this.locationController.currentLocation =
-      this.locationController.locations.find(
-        (loc) => loc.name === gameState.currentLocation.name
-      );
+    if (gameState.currentLocation) {
+      this.locationController.currentLocation =
+        this.locationController.locations.find(
+          (loc) => loc.name === gameState.currentLocation.name
+        );
+    } else {
+      this.locationController.currentLocation = null;
+    }
     this.jobController.fromData(gameState.jobs, locationController);
     this.simulationController.updateDisplay();
-    this.locationController.loadLocation(
-      this.locationController.currentLocation
-    );
+    if (this.locationController.currentLocation) {
+      this.locationController.loadLocation(
+        this.locationController.currentLocation
+      );
+    }
     this.locationController.updateDecorateOptions();
+
+    // Fix other places where arrays are used
+    locations = this.locationController.locations;
+    this.xivatoController.locations = locations;
+    this.mapController.setLocations(locations);
+    characters = this.locationController.characters;
+    this.simulationController.characters = characters;
+    
+
+
+
+
     updateSummaryText("Game loaded successfully!");
     this.close();
   }
@@ -121,7 +147,10 @@ class OptionsController {
   toggleMusic() {
     this.locationController.musicOn = !this.locationController.musicOn;
     if (!this.locationController.musicOn) this.locationController.audio.pause();
-    localStorage.setItem("musicSetting", JSON.stringify(this.locationController.musicOn));
+    localStorage.setItem(
+      "musicSetting",
+      JSON.stringify(this.locationController.musicOn)
+    );
     // Logic to enable/disable music playback can go here.
   }
 

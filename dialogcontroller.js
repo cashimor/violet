@@ -447,7 +447,7 @@ class DialogController {
       this.context.fillStyle = "black";
       this.context.textAlign = "center";
       // Split dialogue into lines with a max of 60 characters, keeping words intact
-      const maxLineLength = 60;
+      const maxLineLength = 55;
       const wrappedText = this.wrapText(dialogue, maxLineLength);
 
       // Calculate initial text Y position within the bubble
