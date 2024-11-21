@@ -12,9 +12,9 @@ Gambling Den:
 Different hours. Probably good.
 @selectJob(Gambling Den)
 
-Drug Laboratory:
+Drugs Laboratory:
 Hopefully I don't get high.
-@selectJob(Drug Laboratory)
+@selectJob(Drugs Laboratory)
 
 Massage Parlor:
 Oh... Interesting...
@@ -23,6 +23,14 @@ Oh... Interesting...
 Evil Lair:
 I will be your trusted companion.
 @selectJob(Evil Lair)
+
+Temple:
+I shall devote myself to Goddess Malvani.
+@selectJob(Priest)
+
+Drugs Distribution:
+If I must... this will not be good for me.
+@selectJob(Drugs Distribution)
 
 Cancel:
 Next time, then.

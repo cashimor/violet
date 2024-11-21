@@ -171,5 +171,16 @@ const characters = [
     100,
     "police"
   ),
+  new Character(
+    "Xivato",
+    ["xivato"],
+    "Job",
+    "xivato.txt",
+    null,
+    null,
+    100,
+    "xivato"
+  ),
+
   // Add more characters as needed
 ];

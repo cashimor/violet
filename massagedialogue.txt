@@ -15,7 +15,6 @@ showSkill:
 [label2] Yes, let’s train.
 [label3] Not right now, just curious.
 
-
 label2:
 !neutral
 I like learning new things.

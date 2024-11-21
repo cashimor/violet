@@ -9,6 +9,8 @@ class LocationController {
   ) {
     this.roomTypes = roomTypes;
     this.characters = characters;
+    // Assuming `characters` is an array of all character instances
+    this.xivato = this.characters.find((character) => character.name === "Xivato");
     this.decocanvas = decocanvas;
     this.locations = locations;
     this.simulationController = simulationController;
@@ -112,6 +114,7 @@ class LocationController {
     } else if (location.owner === "Xivato") {
       this.decocanvas.style.border = "5px solid crimson";
       // Add additional Xivato-specific actions here if needed
+      this.renderCharacter(this.xivato);
     } else {
       this.decocanvas.style.border = "none"; // Remove border if no one owns the location
     }

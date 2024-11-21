@@ -1,0 +1,20 @@
+start:
+Oh, chosen one, seeker of power. 
+?What brings you to the sacred Temple of Malvani?
+[meditate] I seek clarity and strength.
+[blessing] Can I receive a blessing?
+[chat] I want to talk.
+
+meditate:
+The Temple welcomes you into its embrace, Violet.
+Let the silence guide your thoughts and the darkness sharpen your will.
+Do you feel renewed?
+
+blessing:
+The divine power flows through you now, Violet.
+Malvani's shadow watches over your every move.
+May it shield you from your enemies and amplify your ambitions.
+
+chat:
+The Temple holds many secrets... 
+But I am here to listen. What weighs on your mind?

@@ -1,0 +1,29 @@
+start:
+Hello, welcome to the drugs distribution center.
+?What can I do for you today?
+[label1] How do you feel about your skills?
+[label2] Can we do some training?
+[bonus] Here is a bonus (¥5000)
+[label3] Just checking in.
+
+label1:
+!neutral
+@showSkill()
+
+showSkill:
+?Do you think I need to improve?
+[label2] Yes, let’s train.
+[label3] Not right now, just curious.
+
+
+label2:
+!neutral
+I like learning new things.
+@train(10)
+
+label3:
+!neutral
+Alright, let me know if you need anything else.
+
+bonus:
+@giveBonus(5000)
