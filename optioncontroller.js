@@ -42,6 +42,13 @@ class OptionsController {
       document.getElementById("music-toggle").checked =
         this.locationController.musicOn;
     });
+
+    document.getElementById("restart-button").addEventListener("click", () => {
+      if (confirm("Are you sure you want to restart the game? All progress will be lost.")) {
+        // Clear game state
+        location.reload();    // Reload the page to restart the game
+      }
+    });
   }
 
   close() {

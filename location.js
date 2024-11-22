@@ -294,3 +294,33 @@ let locations = [
   room4,
   police,
 ];
+
+const gameOverXivato = new Location(
+  "Game Over: Xivato Wins",
+  "images/goxivato.jpg",
+  "Game Over",
+  0,
+  0,
+  "music/gameover.mp3" // MP3
+);
+
+const gameOverPoverty = new Location(
+  "Game Over: Poverty",
+  "images/gopoor.jpg",
+  "Game Over",
+  0,
+  0,
+  "music/gameover.mp3" // MP3
+);
+
+const gameOverMalvani = new Location(
+  "Game Over: Malvani Darkness",
+  "images/goevil.jpg",
+  "Game Over",
+  0,
+  0,
+  "music/gameover.mp3" // MP3
+);
+
+// Add them to a separate gameOverLocations array
+const gameOverLocations = [gameOverXivato, gameOverPoverty, gameOverMalvani];

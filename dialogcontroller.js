@@ -402,7 +402,8 @@ class DialogController {
         if (line.startsWith("~")) {
           // Handle the command to load a new dialogue file
           const newFile = line.slice(1).trim();
-          fetch(newFile)
+          const url = `${newFile}?v=${Date.now()}`; // Append a unique timestamp
+          fetch(url)
             .then((response) => response.text())
             .then((data) => {
               this.loadDialogFile(data.split("\n")); // Replace dialog file content

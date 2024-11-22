@@ -5,7 +5,8 @@ class LocationController {
     roomTypes,
     characters,
     simulationController,
-    jobController
+    jobController,
+    gameController
   ) {
     this.roomTypes = roomTypes;
     this.characters = characters;
@@ -15,6 +16,7 @@ class LocationController {
     this.locations = locations;
     this.simulationController = simulationController;
     this.jobController = jobController;
+    this.gameController = gameController;
     this.decocontext = decocanvas.getContext("2d");
     this.currentLocation = null; // The location currently being managed (e.g., the rented apartment)
     this.rentPopup = document.getElementById("rent-popup");
@@ -164,7 +166,8 @@ class LocationController {
     );
 
     // Fetch dialog file and initialize DialogController
-    fetch(character.dialogue)
+    const url = `${character.dialogue}?v=${Date.now()}`; // Append a unique timestamp
+    fetch(url)
       .then((response) => response.text())
       .then((data) => {
         const dialogFileData = data.split("\n");
@@ -443,10 +446,22 @@ class LocationController {
       );
       this.jobController.addRoom(this.currentLocation);
       this.loadLocation(this.currentLocation);
-      this.simulationController.recalculateDailyCostJobs(jobController);
+      this.simulationController.recalculateDailyCostJobs(this.jobController);
       // If there's an upgrade path, we can manage it here later
       console.log(`Room decorated as ${roomData.name}`);
       this.updateDecorateOptions();
     }
+  }
+
+  displayGameOverImage(imageUrl) {
+    this.hidePopups();
+
+    const leftPanel = document.getElementById("left-panel");
+    
+    // Clear any existing popups, drawings, or interactive elements
+    leftPanel.innerHTML = ""; // This removes all child elements
+    leftPanel.style.backgroundImage = `url(${imageUrl})`;
+    leftPanel.style.backgroundSize = "cover"; // Ensure the image covers the panel
+    leftPanel.style.backgroundPosition = "center"; // Center the image
   }
 }

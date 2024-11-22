@@ -1,7 +1,8 @@
 class SimulationController {
-  constructor(jobController, xivatoController, characters) {
+  constructor(jobController, xivatoController, characters, gameController) {
     this.jobController = jobController;
     this.xivatoController = xivatoController;
+    this.gameController = gameController;
     this.characters = characters;
     this.day = 1;
     this.energy = 100;
@@ -68,7 +69,7 @@ class SimulationController {
   }
 
   advanceDay() {
-    if (this.gameOver()) {
+    if (this.gameOver) {
       updateSummaryText("The game is over. Please restart or reload to continue.");
       return;
     }
@@ -129,11 +130,11 @@ class SimulationController {
 
     // Check for Game Over
     if (this.money < 0) {
-      this.triggerGameOver("Out of money");
+      this.triggerGameOver("Out of money", gameOverLocations[1]);
       // Implement any additional game-over logic here
     }
     if (this.xivatoController.onNewDay()) {
-      this.triggerGameOver("Xivato took over the town");
+      this.triggerGameOver("Xivato took over the town", gameOverLocations[0]);
     }
     this.updateDisplay();
   }
@@ -235,22 +236,9 @@ class SimulationController {
     this.bribes += amount;
   }
 
-  triggerGameOver(message) {
+  triggerGameOver(message, location) {
     this.gameOver = true;
     updateSummaryText(message);
-    // Display the game-over screen
-    const gameOverScreen = document.getElementById("game-over-screen");
-    const messageElement = document.getElementById("game-over-message");
-    //gameOverScreen.classList.remove("hidden");
-    //messageElement.textContent = message;
-  
-    // Disable all game interactions
-    //document.querySelectorAll("button").forEach((button) => {
-    //  button.disabled = true;
-    //});
-  
-    // Enable restart and reload buttons
-    //document.getElementById("restart-button").disabled = false;
-    //document.getElementById("reload-button").disabled = false;
+    this.gameController.locationController.loadLocation(location);
   }
 }
