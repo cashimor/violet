@@ -1,3 +1,30 @@
 start:
-Hm... Violet. 
-How nice to meet you.
+Ah, Violet. 
+To what do we owe this visit? 
+We’ve been... enjoying our new territory.
+?What do you want to do?
+[negotiate] Let’s talk about the location.
+[chat] Just checking in.
+[leave] I’ll see myself out.
+
+negotiate:
+Hm, you want us out? 
+Everything has a price, Violet. 
+?How much are you willing to offer?
+[low] ¥200000
+[mid] ¥500000
+[high] ¥1000000
+[leave] Never mind.
+
+low:
+@buyoutLocation(200000)
+
+mid:
+@buyoutLocation(500000)
+
+high:
+@buyoutLocation(1000000)
+
+leave:
+Of course. 
+Take your time, Violet. We’re not going anywhere.

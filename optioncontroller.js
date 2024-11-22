@@ -52,6 +52,10 @@ class OptionsController {
     document.getElementById("config-screen").style.display = "none";
   }
   saveGameState() {
+    if (this.simulationController.gameOver) {
+      updateSummaryText("The game is over. Please restart or reload to continue.");
+      return;
+    }
     const gameState = {
       day: this.simulationController.day,
       energy: this.simulationController.energy,
@@ -87,6 +91,7 @@ class OptionsController {
       updateSummaryText("No saved game found.");
       return;
     }
+    this.simulationController.gameOver = false;
     this.simulationController.day = gameState.day;
     this.simulationController.energy = gameState.energy;
     this.simulationController.money = gameState.money;

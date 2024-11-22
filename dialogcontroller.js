@@ -111,8 +111,25 @@ class DialogController {
       adjustLike: (param) => this.adjustLike(param),
       friendCheck: (param) => this.friendCheck(param),
       giveLike: (param) => this.giveLike(param),
+      buyoutLocation: (param) => this.buyoutLocation(param),
       // Add more functions as needed
     };
+  }
+
+  buyoutLocation(param) {
+    const amount = parseInt(param, 10);
+    const location = this.simulationController.currentLocation;
+    if (!this.simulationController.deductMoney(amount)) {
+      return ["You don't even have that, silly Violet!"];
+    }
+    if (amount < 1000000 && this.simulationController.day * 15000 > amount) {
+      return ["Thank you for the money, but that is hardly enough."];
+    }
+    this.character.currentLocation.evict();
+    return [
+      "Oh, it is a pleasure doing business with you.",
+      "Have fun with this new property. We will be back!",
+    ];
   }
 
   isFriend() {

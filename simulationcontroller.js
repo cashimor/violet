@@ -12,6 +12,7 @@ class SimulationController {
     this.jobCost = 0;
     this.friendBoundary = 0;
     this.bribes = 0;
+    this.gameOver = false;
 
     // DOM elements for updating the UI
     this.dayCounterElement = document.getElementById("day-counter");
@@ -67,6 +68,10 @@ class SimulationController {
   }
 
   advanceDay() {
+    if (this.gameOver()) {
+      updateSummaryText("The game is over. Please restart or reload to continue.");
+      return;
+    }
     this.day++;
     this.energy = this.energyResetValue;
 
@@ -124,11 +129,11 @@ class SimulationController {
 
     // Check for Game Over
     if (this.money < 0) {
-      alert("Game Over! Violet ran out of money.");
+      this.triggerGameOver("Out of money");
       // Implement any additional game-over logic here
     }
     if (this.xivatoController.onNewDay()) {
-      alert("Game Over! Violet is homeless.");
+      this.triggerGameOver("Xivato took over the town");
     }
     this.updateDisplay();
   }
@@ -228,5 +233,24 @@ class SimulationController {
    */
   addBribe(amount) {
     this.bribes += amount;
+  }
+
+  triggerGameOver(message) {
+    this.gameOver = true;
+    updateSummaryText(message);
+    // Display the game-over screen
+    const gameOverScreen = document.getElementById("game-over-screen");
+    const messageElement = document.getElementById("game-over-message");
+    //gameOverScreen.classList.remove("hidden");
+    //messageElement.textContent = message;
+  
+    // Disable all game interactions
+    //document.querySelectorAll("button").forEach((button) => {
+    //  button.disabled = true;
+    //});
+  
+    // Enable restart and reload buttons
+    //document.getElementById("restart-button").disabled = false;
+    //document.getElementById("reload-button").disabled = false;
   }
 }

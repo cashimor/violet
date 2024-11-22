@@ -91,6 +91,8 @@ class LocationController {
       this.decocanvas.height
     );
 
+    this.xivato.location = "Job"
+
     // Draw characters in the current location with their names
     characters.forEach((character) => {
       if (character.location === location.name) {
@@ -114,6 +116,7 @@ class LocationController {
     } else if (location.owner === "Xivato") {
       this.decocanvas.style.border = "5px solid crimson";
       // Add additional Xivato-specific actions here if needed
+      this.xivato.currentLocation = this.currentLocation;
       this.renderCharacter(this.xivato);
     } else {
       this.decocanvas.style.border = "none"; // Remove border if no one owns the location

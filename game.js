@@ -35,6 +35,10 @@ simulationController.randomizeNPCLocations();
 
 // Event listeners
 document.getElementById("map-button").addEventListener("click", () => {
+  if (simulationController.gameOver) {
+    updateSummaryText("The game is over. Please restart or reload to continue.");
+    return;
+  }
   mapController.toggleMap();
 });
 

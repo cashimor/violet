@@ -33,7 +33,7 @@ class Character {
       data.dialogue,
       data.strength,
       data.weakness,
-      data.skilLevel,
+      data.skillLevel,
       data.icon,
       data.dayTalk,
       data.like

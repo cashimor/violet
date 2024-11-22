@@ -45,6 +45,17 @@ class Location {
     return location;
   }
 
+  evict() {
+    // Clear ownership and reset availability
+    this.owner = null;
+    this.available = true;
+  
+    // Clear rooms if previously owned by Violet
+    if (this.rooms && this.rooms.length > 0) {
+      this.rooms = []; // Reset the rooms array
+    }
+  }
+
   rentTo(characterName) {
     if (this.available) {
       this.owner = characterName;

@@ -181,6 +181,10 @@ class MapController {
   }
 
   handleCanvasClick(event) {
+    if (this.simulationController.gameOver) {
+      updateSummaryText("The game is over. Please restart or reload to continue.");
+      return;
+    }
     const rect = this.canvas.getBoundingClientRect();
 
     // Calculate scaling factor if displayed size differs from canvas size
@@ -208,6 +212,10 @@ class MapController {
   }
 
   handleDecoCanvasClick(event) {
+    if (this.simulationController.gameOver) {
+      updateSummaryText("The game is over. Please restart or reload to continue.");
+      return;
+    }
     if (this.locationController.handleDecoCanvasClick(event)) {
       this.closeMap();
     }
