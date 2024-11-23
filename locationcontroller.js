@@ -176,7 +176,8 @@ class LocationController {
           this.decocanvas,
           characterController,
           this.jobController,
-          this.simulationController
+          this.simulationController,
+          this.gameController, 
         );
         this.dialogue.start(true); // Begin the dialog flow for the character
       });

@@ -276,9 +276,19 @@ const police = new Location(
   "music/policestation.mp3",
 );
 
+const itsukiapt = new Location(
+  "Itsuki's Apartment",
+  "images/itsukiapartment.jpg",
+  "Game Start",
+  0, 
+  0,
+  "music/purgatory.mp3"
+);
+
 
 // Array of locations
 let locations = [
+  itsukiapt,
   bambooForest,
   riverSide,
   mountainArea,
@@ -319,8 +329,32 @@ const gameOverMalvani = new Location(
   "Game Over",
   0,
   0,
-  "music/gameover.mp3" // MP3
+  "music/goevil.mp3" // MP3
+);
+
+const gameStartBedroom = new Location(
+  "Game Start: Violet's Bedroom",
+  "images/violetbed.jpg",
+  "Game Start",
+  0, 
+  0,
+  "music/violetbedroom.mp3"
+);
+
+const gameStartPurgatory = new Location(
+  "Game Start: Purgatory",
+  "images/purgatory.jpg",
+  "Game Start",
+  0, 
+  0,
+  "music/purgatory.mp3"
 );
 
 // Add them to a separate gameOverLocations array
-const gameOverLocations = [gameOverXivato, gameOverPoverty, gameOverMalvani];
+const gameOverLocations = {
+  xivato: gameOverXivato,
+  poverty: gameOverPoverty,
+  evil: gameOverMalvani,
+  bedroom: gameStartBedroom,
+  purgatory: gameStartPurgatory,
+}

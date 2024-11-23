@@ -227,6 +227,45 @@ let characters = [
     100,
     "xivato"
   ),
-
+  new Character(
+    "Alaric",
+    ["alaric"],
+    "Game Start: Violet's Bedroom",
+    "alaric.txt",
+    null,
+    null,
+    100,
+    "alaric"
+  ),
+  new Character(
+    "Vaeren",
+    ["vaeren"],
+    "Job",
+    "vaeren.txt",
+    null,
+    null,
+    100,
+    "vaeren"
+  ),
+  new Character(
+    "Nirvani",
+    ["nirvani"],
+    "Game Start: Purgatory",
+    "nirvani.txt",
+    null,
+    null,
+    100,
+    "nirvani"
+  ),
+  new Character(
+    "Itsuki",
+    ["itsuki"],
+    "Itsuki's Apartment",
+    "itsuki.txt",
+    null,
+    null,
+    100,
+    "itsuki"
+  )
   // Add more characters as needed
 ];

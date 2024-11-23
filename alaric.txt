@@ -1,0 +1,79 @@
+start:
+Yes, Violet. I have come to take our child. Your evil manipulation forced my hands.
+My wife is barren, and we need an heir, and since you drugged me and tricked me,
+it is only fair that I now take my child back to live a better life.
+?Your castle is a snake pit in the desert, and will be eradicated next.
+[confront] How dare you take my child?
+[plead] Please, Alaric, don’t do this.
+[question] My body knows you loved it. You loved me.
+[skip] <skip>
+
+confront:
+Your child? Is that what you’re calling him now? After everything you’ve done?
+This is my child. And soon will be my wife's child.
+He will be named Seren.
+?And you will no longer stain this desert with your presence.
+[defend] I did what I had to. 
+[deny] This isn’t about me!
+[leave] ...
+
+defend:
+No. You did what you *chose* to do.
+You imprisoned me. Drugged me. Tricked me into believing you were my wife.
+All because of your snake-like ambition and need for revenge.
+?And now you’ll see how it feels to lose everything.
+[knew] You knew it was me!
+[leave] ...
+
+knew:
+I'm sure you remember the moment I knew it was you too.
+Vaeren! Kill her!
+
+deny:
+Isn’t it? Violet, it has *always* been about you.
+Your pride, your vengeance, your endless hunger for control.
+Vaeren! Kill her!
+
+plead:
+You don’t understand. This isn’t just about us anymore.
+?I have to protect Seren from you.
+[soften] You think I’d hurt my own child? 
+[accuse] You’re no better than me!
+
+soften:
+I think you’d do anything to win, Violet.
+Even if it means destroying the people you love.
+Vaeren! Kill her!
+
+accuse:
+I know I’m not. But someone has to break this cycle. Someone has to stop the madness.
+Vaeren! Kill her!
+
+question:
+You were a serpent from the first day we met.
+I would've been dead already had we married, my lands taken by your father.
+You are beautiful, but even more deadly.
+?And the drug made me think you were my wife. What you felt was my love for her.
+[justify] You don’t know what I went through! 
+[remorse] Maybe you’re right... 
+[defiant] You can’t stop me.
+
+justify:
+And yet I would have never done this to you.
+You don’t see it, do you?
+The endless path of destruction you leave behind.
+Vaeren! Kill her!
+
+remorse:
+If you really believe that, Violet, then let Seren go.
+Prove to me there’s something left in you worth saving.
+Vaeren...
+
+defiant:
+That’s where you’re wrong. I’ve already won, Violet.
+Vaeren! Kill her!
+
+skip:
+@scenarioStep("start")
+
+leave:

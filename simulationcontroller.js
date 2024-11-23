@@ -7,13 +7,14 @@ class SimulationController {
     this.day = 1;
     this.energy = 100;
     this.energyResetValue = 50; // Energy reset to this value each new day
-    this.money = 100000; // Adjust this initial value as needed
-    this.dailyCost = 0;
-    this.locationCost = 0;
+    this.money = 10000000; // Adjust this initial value as needed
+    this.dailyCost = 500000;
+    this.locationCost = 500000;
     this.jobCost = 0;
     this.friendBoundary = 0;
     this.bribes = 0;
     this.gameOver = false;
+    this.gameIntro = false;
 
     // DOM elements for updating the UI
     this.dayCounterElement = document.getElementById("day-counter");
@@ -61,16 +62,24 @@ class SimulationController {
   }
 
   updateDisplay() {
+    // Calculate daily costs
     this.dailyCost = this.locationCost + this.jobCost;
+
+    // Choose the currency symbol based on the game state
+    const currencySymbol = this.gameIntro ? "⚜" : "¥";
+
+    // Update UI elements with the appropriate symbol
     this.dayCounterElement.textContent = this.day;
     this.energyCounterElement.textContent = this.energy;
-    this.moneyCounterElement.textContent = `¥${this.money.toLocaleString()}`;
-    this.dailyCostElement.textContent = `¥${this.dailyCost.toLocaleString()}`;
+    this.moneyCounterElement.textContent = `${currencySymbol}${this.money.toLocaleString()}`;
+    this.dailyCostElement.textContent = `${currencySymbol}${this.dailyCost.toLocaleString()}`;
   }
 
   advanceDay() {
     if (this.gameOver) {
-      updateSummaryText("The game is over. Please restart or reload to continue.");
+      updateSummaryText(
+        "The game is over. Please restart or reload to continue."
+      );
       return;
     }
     this.day++;
@@ -130,11 +139,14 @@ class SimulationController {
 
     // Check for Game Over
     if (this.money < 0) {
-      this.triggerGameOver("Out of money", gameOverLocations[1]);
+      this.triggerGameOver("Out of money", gameOverLocations["poverty"]);
       // Implement any additional game-over logic here
     }
     if (this.xivatoController.onNewDay()) {
-      this.triggerGameOver("Xivato took over the town", gameOverLocations[0]);
+      this.triggerGameOver(
+        "Xivato took over the town",
+        gameOverLocations["xivato"]
+      );
     }
     this.updateDisplay();
   }
@@ -241,4 +253,48 @@ class SimulationController {
     updateSummaryText(message);
     this.gameController.locationController.loadLocation(location);
   }
+
+  triggerGameIntro3 = () => {
+    this.money = 0;
+    this.dailyCost = 0;
+    this.locationCost = 0;
+    this.gameController.closeDialogCallback = this.triggerGameStart;
+    this.gameController.locationController.loadLocation(
+      gameOverLocations["purgatory"]
+    );
+  };
+
+  triggerGameIntro2 = () => {
+    const alaric = this.characters.find((char) => char.name === "Alaric");
+    const vaeren = this.characters.find((char) => char.name === "Vaeren");
+    vaeren.location = alaric.location;
+    alaric.location = "Job";
+    this.gameController.closeDialogCallback = this.triggerGameIntro3;
+    this.gameController.locationController.loadLocation(
+      gameOverLocations["bedroom"]
+    );
+  };
+
+  triggerGameIntro() {
+    this.gameIntro = true;
+    this.gameController.mapButton.disabled = true;
+    this.gameController.mapButton.classList.add("hidden");
+    this.restButton.classList.add("hidden");
+    this.restButton.disabled = true;
+    this.gameController.closeDialogCallback = this.triggerGameIntro2;
+    this.gameController.locationController.loadLocation(
+      gameOverLocations["bedroom"]
+    );
+  }
+
+  triggerGameStart = () => {
+    this.gameIntro = false;
+    this.gameController.mapButton.disabled = false;
+    this.restButton.disabled = false;
+    this.gameController.mapButton.classList.remove("hidden");
+    this.restButton.classList.remove("hidden");
+    this.gameController.locationController.loadLocation(
+      this.gameController.locationController.locations[0]
+    );
+  };
 }

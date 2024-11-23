@@ -80,13 +80,15 @@ class DialogController {
     canvas,
     characterController,
     jobController,
-    simulationController
+    simulationController,
+    gameController
   ) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
     this.loadDialogFile(dialogFile);
     this.characterController = characterController;
     this.simulationController = simulationController;
+    this.gameController = gameController;
     this.jobController = jobController;
     this.currentLabel = "start"; // Begin at the default label or starting point
     this.character = characterController.character;
@@ -112,8 +114,18 @@ class DialogController {
       friendCheck: (param) => this.friendCheck(param),
       giveLike: (param) => this.giveLike(param),
       buyoutLocation: (param) => this.buyoutLocation(param),
+      scenarioStep: (param) => this.scenarioStep(param),
       // Add more functions as needed
     };
+  }
+
+  scenarioStep(param) {
+    // Handle specific steps in your scenario logic
+    if (param === "alaric") {
+      // Move the game state to the next scenario step
+      gameController.triggerGameIntro("alaricRoom"); // Example: Loads a new location or triggers events
+    }
+    // Add other steps as needed
   }
 
   buyoutLocation(param) {
@@ -319,7 +331,7 @@ class DialogController {
     for (const room of availableRooms) {
       assigned = this.jobController.assignNpcToJob(room, this.character);
       if (assigned) {
-        this.simulationController.recalculateDailyCostJobs(jobController);
+        this.simulationController.recalculateDailyCostJobs(this.jobController);
         this.simulationController.friendBoundary =
           this.simulationController.friendBoundary + 10;
         return [`Thank you for giving me a job in your ${roomTypeName}!`];
@@ -564,6 +576,13 @@ class DialogController {
     this.characterController.clearCharacter();
     this.clearBubble();
     // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    // Check if there's a scenario step tied to this dialogue
+    const callback = this.gameController.closeDialogCallback;
+    this.gameController.closeDialogCallback = null;
+    if (typeof callback === "function") {
+      console.log("Executing closeDialogCallback:", callback.name || "anonymous function");
+      callback();
+    }
   }
 
   startDialog(label) {

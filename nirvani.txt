@@ -1,0 +1,39 @@
+start:
+Welcome to my humble abode, Violet.  
+I don't know what *he* thought, but rescuing you... it took nearly everything I had.  
+?I am drained now, though.  
+[who] Who are you?  
+[where] Where am I?  
+[what] What happened?  
+[leave] Can I go now?  
+
+who:
+I am Nirvani, the last goddess you may ever meet.  
+Once, I was revered by many. Now, I am forgotten.  
+?Except by you... and the smallest flicker of belief left in the world.  
+[where] Where am I?  
+[what] What happened?  
+[leave] Can I go now?  
+
+where:
+This is my sanctuary, hidden in the threads of reality.  
+A place where the forgotten gods fade, waiting for a chance to act.  
+?I brought you here because no other realm would have you.  
+[who] Who are you?  
+[what] What happened?  
+[leave] Can I go now?  
+
+what:
+Vaeren sought to end your life, and he would have succeeded.  
+I intervened... but it cost me dearly.  
+?Alaric believes you still have a purpose, Violet. Let us hope he's right.  
+[who] Who are you?  
+[where] Where am I?  
+[leave] Can I go now?  
+
+leave:
+*Leave?* Violet, you misunderstand.  
+You are here because I saved you. You are alive because of me.  
+I would think you might show more... gratitude.  
+But fine. I shall now bring you to the town where my last follower lives.  
+Be kind to him, Violet. He may be your only ally.  

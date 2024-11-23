@@ -4,6 +4,8 @@ const decocanvas = document.getElementById("decoration-display");
 
 class GameController {
   constructor() {
+    this.closeDialogCallback = null;
+    
     this.jobController = new JobController();
     this.xivatoController = new XivatoController(locations);
     this.simulationController = new SimulationController(
@@ -36,8 +38,9 @@ class GameController {
     );
     this.optionsController.applyMusicSetting();
     this.simulationController.randomizeNPCLocations();
-    // Event listeners
-    document.getElementById("map-button").addEventListener("click", () => {
+    // Event 
+    this.mapButton = document.getElementById("map-button");
+    this.mapButton.addEventListener("click", () => {
       if (this.simulationController.gameOver) {
         this.mapController.closeMap();
         updateSummaryText(
@@ -57,3 +60,5 @@ function updateSummaryText(message) {
   const summaryElement = document.getElementById("summary-text");
   summaryElement.textContent = message;
 }
+
+gameController.simulationController.triggerGameIntro();
