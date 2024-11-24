@@ -282,7 +282,7 @@ const itsukiapt = new Location(
   "Game Start",
   0, 
   0,
-  "music/purgatory.mp3"
+  "music/itsukisapt.mp3"
 );
 
 

@@ -181,6 +181,9 @@ class DialogController {
       ];
     }
 
+    if (bonus < 0) {
+      return ["But... why?"];
+    }
     // Default behavior for other characters
     const likeBoost = Math.min(5, Math.floor(amount / 3000)); // Diminishing returns
     this.character.like = Math.min(100, this.character.like + likeBoost);

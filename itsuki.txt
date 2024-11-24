@@ -1,2 +1,84 @@
 start:
-Hi... this is a surprise.
+You're here! Oh, wow, you're really here!
+The Goddess said you'd come, but I didn't think —
+Well, not so soon! And you look exactly how I imagined you would.
+?Better, even!
+[lucky] ...Lucky me.
+[fetch] Can you go fetch food for me?
+
+lucky:
+Ah, forgive me! Where are my manners?
+I’m Itsuki. Just Itsuki! But you already knew that, right?
+The Goddess told you about me? She must have!
+?She always says such nice things about me.
+[mention] Yes, she mentioned you.
+[fetch] Can you go fetch food for me?
+
+mention:
+She did? Really? Oh, that’s amazing! She never actually talked to me.
+I always just imagined it. I—I have so many questions!
+How does it feel to be chosen by the Goddess?
+Do you have, like, divine powers now? Can you—uh, wait, let me guess!
+?You probably don’t even know the full extent of your abilities yet!
+[kill] Even before her I could kill you.
+[fetch] Can you go fetch food for me?
+
+kill:
+Of course not! It’s always like that in the stories.
+The chosen ones start small and then, bam! By the end, they’re unstoppable!
+?Don’t worry, Violet—I’ll be your loyal companion. We’ll figure it out together.
+[we] We?
+[fetch] Can you go fetch food for me?
+
+we:
+Yes! I’ve been preparing for this my whole life.
+I dreamed about you. I knew you’d come. We’re destined for greatness, Violet.
+?You and me, changing the world together!
+[change] Oh... the world will definitely change.
+[fetch] Can you go fetch food for me?
+
+change:
+Oh, I've prepared everything! I’ve saved up money—lots of money—to support our quest.
+?I even stocked up on supplies! I even have a bed for you to sleep in.
+[kind] The Goddess said you prayed for me.
+[money] Good, give me that money.
+[fetch] Can you go fetch food for me?
+
+kind:
+I did. Every single day. I begged her to save you. And she did.
+?You’re alive because of her. And because of me.
+[thank] ...Thank you, Itsuki.
+[delusional] You're delusional.
+
+thank:
+Aw...
+>delusional
+
+delusional:
+You’re funny, Violet! I knew you’d have a sharp wit. 
+But seriously, everything I have is yours. 
+Money, supplies—whatever you need. We’ll be unstoppable.
+You know... I was thinking, maybe after... we could...
+well, maybe we could settle down somewhere? Together? You and me?
+You’re amazing, Violet, and the Goddess brought us together for a reason.
+It’s fate!
+>fetch
+
+fetch:
+?Alright... I'll get some food for you. Don't go.
+[wallet] Take wallet money and leave
+[rent] Take rent money and leave
+[all] Take all money and leave
+
+wallet:
+@giveLike(-25000)
+
+rent:
+@giveLike(-75000)
+
+all:
+@giveLike(-100000)
+
+money:
+Here is everything... 
+@giveLike(-100000)

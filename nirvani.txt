@@ -1,39 +1,50 @@
 start:
 Welcome to my humble abode, Violet.  
-I don't know what *he* thought, but rescuing you... it took nearly everything I had.  
+I don't know what Itsuki thought, but rescuing you... it took nearly everything I had.  
 ?I am drained now, though.  
 [who] Who are you?  
 [where] Where am I?  
-[what] What happened?  
+[what] What happened?
 [leave] Can I go now?  
 
 who:
-I am Nirvani, the last goddess you may ever meet.  
+I am Nirvani, maybe a Goddess...
 Once, I was revered by many. Now, I am forgotten.  
-?Except by you... and the smallest flicker of belief left in the world.  
+Except by Itsuki, and hopefully you...
+?the smallest flickers of belief left in the world.  
 [where] Where am I?  
-[what] What happened?  
+[what] What happened?
+[itsuki] Itsuki?  
 [leave] Can I go now?  
 
 where:
 This is my sanctuary, hidden in the threads of reality.  
 A place where the forgotten gods fade, waiting for a chance to act.  
 ?I brought you here because no other realm would have you.  
-[who] Who are you?  
+[who] Who are you?
 [what] What happened?  
 [leave] Can I go now?  
 
 what:
-Vaeren sought to end your life, and he would have succeeded.  
-I intervened... but it cost me dearly.  
-?Alaric believes you still have a purpose, Violet. Let us hope he's right.  
+Vaeren sought to end your life, and he would have succeeded.
+Itsuki prayed to me to rescue you. I was silly. So I did.
+I intervened... but it cost me dearly.
+?Itsuki believes you still have a purpose, Violet.
 [who] Who are you?  
 [where] Where am I?  
+[itsuki] Itsuki?
 [leave] Can I go now?  
 
 leave:
-*Leave?* Violet, you misunderstand.  
-You are here because I saved you. You are alive because of me.  
-I would think you might show more... gratitude.  
-But fine. I shall now bring you to the town where my last follower lives.  
-Be kind to him, Violet. He may be your only ally.  
+Leave? Violet, you misunderstand.  
+You are here because I saved you. You are alive because of me.
+I would think you might show more... gratitude.
+But fine. I shall now bring you to the town where Itsuki lives.
+Be kind, Violet. Itsuki may be your only ally.
+
+itsuki:
+Itsuki is a magnificent person, who believes in me, despite not knowing me.
+Itsuki gave me all the strength I have. Most of which I used to rescue you.
+Itsuki prayed for you to live.
+I snatched you away before Vaeren could strangle you.
+And now I'll send you to Itsuki. Be nice.
