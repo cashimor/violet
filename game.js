@@ -5,7 +5,7 @@ const decocanvas = document.getElementById("decoration-display");
 class GameController {
   constructor() {
     this.closeDialogCallback = null;
-    
+
     this.jobController = new JobController();
     this.xivatoController = new XivatoController(locations);
     this.simulationController = new SimulationController(
@@ -61,4 +61,9 @@ function updateSummaryText(message) {
   summaryElement.textContent = message;
 }
 
-gameController.simulationController.triggerGameIntro();
+document.getElementById("proceedButton").addEventListener("click", () => {
+  document.getElementById("contentWarning").style.display = "none"; // Hide the warning
+  document.getElementById("game-container").style.display = "flex"; // Show the game
+  gameController.simulationController.triggerGameIntro();
+});
+
