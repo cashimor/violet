@@ -463,9 +463,25 @@ class DialogController {
     );
   }
 
-  drawSpeechBubble(characterX, characterY, dialogue) {
+  drawSpeechBubble(characterX, characterY, dialogue, emotion) {
     const bubbleImage = new Image();
-    bubbleImage.src = "images/bubble.png"; // Path to your speech bubble image
+    let bubbleSrc = "images/bubble.png"; // Default speech bubble
+
+    const emotionStyles = {
+      happy: { src: "images/bubble.png", textColor: "darkgoldenrod" },
+      angry: { src: "images/bubble_angry.png", textColor: "red" },
+      sad: { src: "images/bubble_sad.png", textColor: "darkblue" },
+      shock: { src: "images/bubble.png", textColor: "chocolate" },
+      confused: { src: "images/bubble_confused.png", textColor: "purple" },
+      neutral: { src: "images/bubble.png", textColor: "black" }, // Fallback style
+    };
+
+    // Check for emotion and update bubbleSrc and text color
+    if (emotion && emotionStyles[emotion]) {
+      bubbleSrc = emotionStyles[emotion].src;
+    }
+
+    bubbleImage.src = bubbleSrc;
 
     bubbleImage.onload = () => {
       // Position the speech bubble above the character’s image
@@ -475,11 +491,18 @@ class DialogController {
       // Draw the bubble background image
       this.context.drawImage(bubbleImage, bubbleX, bubbleY, 400, 100);
 
-      // Draw the text within the bubble
+      // Set font and text color based on emotion
+      const textColor = emotionStyles[emotion]?.textColor || "black";
       this.context.font = "14px Arial";
-      this.context.fillStyle = "black";
       this.context.textAlign = "center";
-      // Split dialogue into lines with a max of 60 characters, keeping words intact
+
+      // Add shadow for better text visibility
+      this.context.shadowColor = "rgba(0, 0, 0, 0.5)";
+      this.context.shadowBlur = 4;
+      this.context.shadowOffsetX = 1;
+      this.context.shadowOffsetY = 1;
+
+      // Split dialogue into lines with a max of 55 characters, keeping words intact
       const maxLineLength = 55;
       const wrappedText = this.wrapText(dialogue, maxLineLength);
 
@@ -488,11 +511,17 @@ class DialogController {
       const lineHeight = 20; // Line spacing for readability
 
       // Draw each line of wrapped text
+      this.context.fillStyle = textColor; // Apply text color
       wrappedText.forEach((line) => {
         this.context.fillText(line, bubbleX + 200, textY); // Center text in the bubble
         textY += lineHeight;
       });
-      // Draw the "X" button
+
+      // Reset shadow to avoid affecting other drawings
+      this.context.shadowColor = "transparent";
+      this.context.shadowBlur = 0;
+
+      // Draw the "X" button (if applicable)
       this.drawCloseButton();
     };
   }
@@ -583,7 +612,10 @@ class DialogController {
     const callback = this.gameController.closeDialogCallback;
     this.gameController.closeDialogCallback = null;
     if (typeof callback === "function") {
-      console.log("Executing closeDialogCallback:", callback.name || "anonymous function");
+      console.log(
+        "Executing closeDialogCallback:",
+        callback.name || "anonymous function"
+      );
       callback();
     }
   }
@@ -678,13 +710,19 @@ class DialogController {
       this.drawSpeechBubble(
         this.characterX,
         this.characterY,
-        dialogContent.slice(1)
+        dialogContent.slice(1),
+        this.character.bubbleEmotion
       );
       const choices = this.parseChoices();
       this.showChoices(choices);
     } else if (dialogContent) {
       // Regular dialog line
-      this.drawSpeechBubble(this.characterX, this.characterY, dialogContent);
+      this.drawSpeechBubble(
+        this.characterX,
+        this.characterY,
+        dialogContent,
+        this.character.bubbleEmotion
+      );
     }
   }
 

@@ -9,6 +9,7 @@ it is only fair that I now take my child back to live a better life.
 [skip] <skip>
 
 confront:
+!angry
 Your child? Is that what you’re calling him now? After everything you’ve done?
 This is my child. And soon will be my wife's child.
 He will be named Seren.

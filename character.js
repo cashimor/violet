@@ -22,7 +22,7 @@ class Character {
     this.weakness = weakness;
     this.skillLevel = skillLevel; // Basic skill level is 10%
     this.dayTalk = dayTalk;
-    this.like = 0;
+    this.like = like;
   }
 
   static fromData(data) {
@@ -60,6 +60,7 @@ class Character {
   // Helper to construct and verify the image URL
   setEmotion(emotion) {
     this.currentEmotion = emotion;
+    this.bubbleEmotion = emotion;
     if (emotion === "neutral") this.currentEmotion = "";
     const baseName = this.name.toLowerCase();
 
@@ -235,7 +236,9 @@ let characters = [
     null,
     null,
     100,
-    "alaric"
+    "alaric",
+    0,
+    -100
   ),
   new Character(
     "Vaeren",
@@ -245,7 +248,9 @@ let characters = [
     null,
     null,
     100,
-    "vaeren"
+    "vaeren",
+    0,
+    -100
   ),
   new Character(
     "Nirvani",
@@ -255,7 +260,9 @@ let characters = [
     null,
     null,
     100,
-    "nirvani"
+    "nirvani",
+    0,
+    100
   ),
   new Character(
     "Itsuki",
@@ -265,7 +272,9 @@ let characters = [
     null,
     null,
     100,
-    "itsuki"
+    "itsuki",
+    0,
+    1000
   )
   // Add more characters as needed
 ];
