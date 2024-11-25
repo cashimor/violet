@@ -121,9 +121,10 @@ class DialogController {
 
   scenarioStep(param) {
     // Handle specific steps in your scenario logic
-    if (param === "alaric") {
+    if (param === "start") {
+      console.log("Moving to game start due to skip.");
       // Move the game state to the next scenario step
-      gameController.triggerGameIntro("alaricRoom"); // Example: Loads a new location or triggers events
+      this.simulationController.triggerGameStart(); // Example: Loads a new location or triggers events
     }
     // Add other steps as needed
   }
@@ -474,6 +475,13 @@ class DialogController {
       shock: { src: "images/bubble.png", textColor: "chocolate" },
       confused: { src: "images/bubble_confused.png", textColor: "purple" },
       neutral: { src: "images/bubble.png", textColor: "black" }, // Fallback style
+      curious: { src: "images/bubble_confused.png", textColor: "#008b8b" },
+      cheerful: { src: "images/bubble.png", textColor: "#ffa500" },
+      frustrated: { src: "images/bubble_angry.png", textColor: "#ff4500" },
+      empathetic: { src: "images/bubble.png", textColor: "#e6a8d7" },
+      conflicted: { src: "images/bubble_confused.png", textColor: "#9370db" },
+      analytical: { src: "images/bubble.png", textColor: "#4682b4" },
+      scientific: { src: "images/bubble.png", textColor: "#4682b4" },
     };
 
     // Check for emotion and update bubbleSrc and text color

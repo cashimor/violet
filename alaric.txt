@@ -75,6 +75,6 @@ That’s where you’re wrong. I’ve already won, Violet.
 Vaeren! Kill her!
 
 skip:
-@scenarioStep("start")
+@scenarioStep(start)
 
 leave:

@@ -5,6 +5,7 @@ I don't know what Itsuki thought, but rescuing you... it took nearly everything 
 [who] Who are you?  
 [where] Where am I?  
 [what] What happened?
+[thank] Thank you for rescuing me.
 [leave] Can I go now?  
 
 who:
@@ -48,3 +49,9 @@ Itsuki gave me all the strength I have. Most of which I used to rescue you.
 Itsuki prayed for you to live.
 I snatched you away before Vaeren could strangle you.
 And now I'll send you to Itsuki. Be nice.
+
+thank:
+Oh. You should do more than be thankful, Violet.
+I am counting on you.
+I shall bring you to Itsuki, who prayed for you to be saved.
+You got here before Vaeren could stangle you.

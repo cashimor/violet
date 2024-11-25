@@ -9,7 +9,7 @@ Hello, I’m Sakura.
 label1:
 !neutral
 It’s a bit challenging. 
-I came here to heal people, but bureaucracy doesn’t make that easy.
+?I came here to heal people, but bureaucracy doesn’t make that easy.
 [label4] What is wrong?
 [label5] Heal how?
 

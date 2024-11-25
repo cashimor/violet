@@ -294,7 +294,7 @@ class SimulationController {
     this.gameController.mapButton.classList.remove("hidden");
     this.restButton.classList.remove("hidden");
     this.gameController.locationController.loadLocation(
-      this.gameController.locationController.locations[0]
+      this.gameController.locationController.locations[0] // Itsuki.
     );
   };
 }
