@@ -42,7 +42,7 @@ class MapController {
 
   openMap() {
     this.drawMarkers();
-    this.locationController.hidePopups();
+    // this.locationController.hidePopups();
     this.decorationContainer.style.display = "none";
     this.mapContainer.style.display = "block";
     document.getElementById("map-button").textContent = "Close Map";
