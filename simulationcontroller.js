@@ -251,6 +251,7 @@ class SimulationController {
   triggerGameOver(message, location) {
     this.gameOver = true;
     updateSummaryText(message);
+    this.gameController.mapController.closeMap();
     this.gameController.locationController.loadLocation(location);
   }
 
@@ -288,6 +289,9 @@ class SimulationController {
   }
 
   triggerGameStart = () => {
+    this.money = 0;
+    this.dailyCost = 0;
+    this.locationCost = 0;
     this.gameIntro = false;
     this.gameController.mapButton.disabled = false;
     this.restButton.disabled = false;
