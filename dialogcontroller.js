@@ -184,7 +184,7 @@ class DialogController {
     }
 
     if (bonus < 0) {
-      return ["But... why?"];
+      return [">money"];
     }
     // Default behavior for other characters
     const likeBoost = Math.min(5, Math.floor(amount / 3000)); // Diminishing returns
@@ -691,6 +691,7 @@ class DialogController {
       this.start();
       return;
     }
+    // Handle commands if line starts with "@"
     if (dialogContent.startsWith("@")) {
       const commandMatch = dialogContent.match(/^@(\w+)\((.*)\)$/);
       if (commandMatch) {
@@ -702,10 +703,17 @@ class DialogController {
         if (commandFunction) {
           const result = commandFunction(param);
 
-          // Handle the result if it returns dialogue text
           if (result) {
-            this.dialogMap.set("commandResult", result);
-            this.chooseOption("commandResult");
+            if (result.startsWith(">")) {
+              // Handle branching logic directly
+              this.chooseOption(result.slice(1));
+              this.start(); // Continue processing
+              return;
+            } else {
+              // Store the result as standard dialogue
+              this.dialogMap.set("commandResult", result);
+              this.chooseOption("commandResult");
+            }
           }
           dialogContent = this.getNextLine();
         } else {
@@ -713,7 +721,7 @@ class DialogController {
         }
       }
     }
-
+    
     // Handle dialog choices if line starts with "?"
     if (dialogContent && dialogContent.startsWith("?")) {
       this.drawSpeechBubble(

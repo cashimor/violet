@@ -41,7 +41,7 @@ change:
 Oh, I've prepared everything! I’ve saved up money—lots of money—to support our quest.
 ?I even stocked up on supplies! I even have a bed for you to sleep in.
 [kind] The Goddess said you prayed for me.
-[money] Good, give me that money.
+[getmoney] Good, give me that money.
 [fetch] Can you go fetch food for me?
 
 kind:
@@ -79,6 +79,8 @@ rent:
 all:
 @giveLike(-100000)
 
-money:
+getmoney:
 Here is everything... 
 @giveLike(-100000)
+
+money:
