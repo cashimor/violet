@@ -11,7 +11,9 @@ class LocationController {
     this.roomTypes = roomTypes;
     this.characters = characters;
     // Assuming `characters` is an array of all character instances
-    this.xivato = this.characters.find((character) => character.name === "Xivato");
+    this.xivato = this.characters.find(
+      (character) => character.name === "Xivato"
+    );
     this.decocanvas = decocanvas;
     this.locations = locations;
     this.simulationController = simulationController;
@@ -93,7 +95,7 @@ class LocationController {
       this.decocanvas.height
     );
 
-    this.xivato.location = "Job"
+    this.xivato.location = "Job";
 
     // Draw characters in the current location with their names
     characters.forEach((character) => {
@@ -102,11 +104,14 @@ class LocationController {
       }
     });
 
-    // Draw the back arrow if this location has a ref
-    if (location.ref && location.ref !== "Map") {
+    // Draw the back arrow if this location has a ref and is not a Game Start or Game Over location
+    if (
+      location.ref &&
+      location.ref !== "Map" &&
+      !location.ref.startsWith("Game")
+    ) {
       this.drawBackArrow();
     }
-
     // Check the owner of the location and apply the appropriate border
     if (location.owner === "Violet") {
       this.decocanvas.style.border = "5px solid violet";
@@ -177,7 +182,7 @@ class LocationController {
           characterController,
           this.jobController,
           this.simulationController,
-          this.gameController, 
+          this.gameController
         );
         this.dialogue.start(true); // Begin the dialog flow for the character
       });
@@ -423,18 +428,29 @@ class LocationController {
 
   updateDecorateOptions() {
     // Check for Evil Lair condition
-    const evilLairExists = this.locations.some((location) => 
-      location.rooms && location.rooms.some((room) => room.use === "Evil Lair")
+    const evilLairExists = this.locations.some(
+      (location) =>
+        location.rooms &&
+        location.rooms.some((room) => room.use === "Evil Lair")
     );
-    const drugsLabExists = this.locations.some((location) => 
-      location.rooms && location.rooms.some((room) => room.use === "Drugs Laboratory")
+    const drugsLabExists = this.locations.some(
+      (location) =>
+        location.rooms &&
+        location.rooms.some((room) => room.use === "Drugs Laboratory")
     );
     // Show/Hide buttons dynamically
-    document.getElementById("btnEvilLair").style.display = evilLairExists ? "none" : "inline-block";
-    document.getElementById("btnTemple").style.display = evilLairExists ? "inline-block" : "none";
-  
-    document.getElementById("btnDrugLab").style.display = drugsLabExists ? "none" : "inline-block";
-    document.getElementById("btnDrugsDistribution").style.display = drugsLabExists ? "inline-block" : "none";
+    document.getElementById("btnEvilLair").style.display = evilLairExists
+      ? "none"
+      : "inline-block";
+    document.getElementById("btnTemple").style.display = evilLairExists
+      ? "inline-block"
+      : "none";
+
+    document.getElementById("btnDrugLab").style.display = drugsLabExists
+      ? "none"
+      : "inline-block";
+    document.getElementById("btnDrugsDistribution").style.display =
+      drugsLabExists ? "inline-block" : "none";
   }
 
   decorateRoom(roomData) {
@@ -458,7 +474,7 @@ class LocationController {
     this.hidePopups();
 
     const leftPanel = document.getElementById("left-panel");
-    
+
     // Clear any existing popups, drawings, or interactive elements
     leftPanel.innerHTML = ""; // This removes all child elements
     leftPanel.style.backgroundImage = `url(${imageUrl})`;

@@ -124,6 +124,7 @@ class DialogController {
     if (param === "start") {
       console.log("Moving to game start due to skip.");
       // Move the game state to the next scenario step
+      this.gameController.closeDialogCallback = null;
       this.simulationController.triggerGameStart(); // Example: Loads a new location or triggers events
     }
     // Add other steps as needed
