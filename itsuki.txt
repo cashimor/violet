@@ -71,10 +71,10 @@ fetch:
 [all] Take all money and leave
 
 wallet:
-@giveLike(-25000)
+@giveLike(-35000)
 
 rent:
-@giveLike(-75000)
+@giveLike(-65000)
 
 all:
 @giveLike(-100000)

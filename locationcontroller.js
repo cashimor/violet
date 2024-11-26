@@ -86,6 +86,9 @@ class LocationController {
     const leftPanel = document.getElementById("left-panel");
     leftPanel.style.backgroundImage = `url(${location.getImageUrl()})`;
     this.currentLocation = location;
+    if (this.currentLocation.name == "Itsuki's Apartment") {
+      this.gameController.helpController.update("itsuki");
+    }
 
     // Clear the canvas to remove any previously drawn characters
     this.decocontext.clearRect(

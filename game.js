@@ -5,7 +5,7 @@ const decocanvas = document.getElementById("decoration-display");
 class GameController {
   constructor() {
     this.closeDialogCallback = null;
-
+    this.helpController = new HelpController(this);
     this.jobController = new JobController();
     this.xivatoController = new XivatoController(locations);
     this.simulationController = new SimulationController(
@@ -66,4 +66,3 @@ document.getElementById("proceedButton").addEventListener("click", () => {
   document.getElementById("game-container").style.display = "flex"; // Show the game
   gameController.simulationController.triggerGameIntro();
 });
-

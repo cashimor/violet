@@ -9,10 +9,18 @@
   <body>
     <div id="contentWarning">
       <h1>Content Warning</h1>
-      <p style="max-width: 600px; text-align: center;">
-        This game contains themes of manipulation, betrayal, moral ambiguity, and psychological tension. While there is no depiction of death, certain narratives may be unsettling. Please proceed only if you feel comfortable with such content.
+      <p style="max-width: 600px; text-align: center">
+        This game contains themes of manipulation, betrayal, moral ambiguity,
+        and psychological tension. While there is no depiction of death, certain
+        narratives may be unsettling. Please proceed only if you feel
+        comfortable with such content.
       </p>
-      <button id="proceedButton" style="margin-top: 20px; padding: 10px 20px; font-size: 16px;">I Understand</button>
+      <button
+        id="proceedButton"
+        style="margin-top: 20px; padding: 10px 20px; font-size: 16px"
+      >
+        I Understand
+      </button>
     </div>
     <div id="game-container" style="display: none">
       <div id="config-screen" style="display: none">
@@ -23,7 +31,9 @@
         </label>
         <button id="save-button" class="button-parchment">Save Game</button>
         <button id="load-button" class="button-parchment">Load Game</button>
-        <button id="restart-button" class="button-parchment">Restart Game</button>
+        <button id="restart-button" class="button-parchment">
+          Restart Game
+        </button>
         <button id="close-config" class="button-parchment">Close</button>
       </div>
       <div id="left-panel">
@@ -105,6 +115,24 @@
         </div>
       </div>
       <div id="right-panel">
+        <div id="help-screen" style="display: block">
+          <div id="help-content">
+            <h2>Help</h2>
+            <p>Welcome to the game! Here's how to play:</p>
+            <ul>
+              <li>
+                Navigate through the city by clicking on locations on the map.
+              </li>
+              <li>Interact with characters to advance the story.</li>
+              <li>Manage your energy and money wisely.</li>
+              <li>Hover over Violet to see her details.</li>
+            </ul>
+          </div>
+          <button id="close-help" class="button-parchment">Close</button>
+        </div>
+        <div id="violet-outline">
+          <img src="images/violetoutline.png" alt="Violet Outline" />
+        </div>
         <div id="simulation-details">
           <h2>Simulation Details</h2>
           <div>
@@ -133,6 +161,7 @@
     <script src="location.js"></script>
     <script src="character.js"></script>
     <script src="roomtypes.js"></script>
+    <script src="helpcontroller.js"></script>
     <script src="jobcontroller.js"></script>
     <script src="xivatocontroller.js"></script>
     <script src="optioncontroller.js"></script>

@@ -1,8 +1,9 @@
 start:
 ?What is it that you'd like to discuss?
 [job] You want a job?
-[like] Can you tell me more about you?
-[bribe] Here is ¥5000, hopefully it helps.
+[like] I'd like to know you more.
+[bribe] Does ¥5000 help?
+[beg] Give me money, please.
 
 job:
 ~jobdialogue.txt
@@ -12,3 +13,16 @@ like:
 
 bribe:
 @giveLike(5000)
+
+beg:
+@hasMoney(10000)
+
+poor:
+@friendCheck()
+
+friendCheck:
+Here is some change...
+@giveLike(-32000)
+
+money:
+Hope that helps.

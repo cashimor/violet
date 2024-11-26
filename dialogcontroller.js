@@ -115,8 +115,17 @@ class DialogController {
       giveLike: (param) => this.giveLike(param),
       buyoutLocation: (param) => this.buyoutLocation(param),
       scenarioStep: (param) => this.scenarioStep(param),
+      hasMoney: (param) => this.hasMoney(param),
       // Add more functions as needed
     };
+  }
+
+  hasMoney(param) {
+    const money = parseInt(param, 10);
+    if (this.simulationController.money >= money) {
+      return ["You seem rich enough."];
+    }
+    return ["Oh, you poor thing...", ">poor"];
   }
 
   scenarioStep(param) {
@@ -128,6 +137,7 @@ class DialogController {
       this.simulationController.triggerGameStart(); // Example: Loads a new location or triggers events
     }
     // Add other steps as needed
+    return [""];
   }
 
   buyoutLocation(param) {
@@ -702,26 +712,21 @@ class DialogController {
         const commandFunction = this.commandTable[commandName];
         if (commandFunction) {
           const result = commandFunction(param);
-
-          if (result) {
-            if (result.startsWith(">")) {
-              // Handle branching logic directly
-              this.chooseOption(result.slice(1));
-              this.start(); // Continue processing
-              return;
-            } else {
-              // Store the result as standard dialogue
-              this.dialogMap.set("commandResult", result);
-              this.chooseOption("commandResult");
-            }
-          }
+          this.dialogMap.set("commandResult", result);
+          this.chooseOption("commandResult");
           dialogContent = this.getNextLine();
+          if (dialogContent.startsWith(">")) {
+            // Handle branching logic directly
+            this.chooseOption(result.slice(1));
+            this.start(); // Continue processing
+            return;
+          }
         } else {
           console.log("Couldn't find command " + commandName);
         }
       }
     }
-    
+
     // Handle dialog choices if line starts with "?"
     if (dialogContent && dialogContent.startsWith("?")) {
       this.drawSpeechBubble(

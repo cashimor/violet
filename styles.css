@@ -26,6 +26,44 @@
   color: #000; /* Optional: Adjust text color for contrast */
 }
 
+#violet-outline2 {
+  position: absolute;
+  width: 230px;
+  height: 302px;
+  border: 2px solid violet; /* Optional: just for visibility */
+  filter: hue-rotate(270deg); /* To apply the violet color filter */
+  visibility: hidden; /* Hidden by default */
+  pointer-events: auto; /* Ensure it detects mouse events */
+}
+
+
+#violet-outline {
+  position: absolute; /* Allows precise positioning */
+  top: 423px; /* Adjust based on Violet's location */
+  left: 417px;
+  width: 125px; /* Match the image size */
+  height: 175px;
+  background-size: contain; /* Scale the image to fit */
+  background-repeat: no-repeat; /* Avoid tiling */
+  background-position: center; /* Center the image */
+  pointer-events: auto; /* Ensure it detects mouse events */
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: visible;
+}
+
+#violet-outline img {
+  width: 100%;   /* This makes the image fill the container */
+  height: 100%;  /* This keeps the image aspect ratio intact */
+  object-fit: cover;  /* Ensures the image fills the area without distortion */
+  filter: hue-rotate(270deg);  /* Violet color filter */
+}
+
+#violet-outline:hover {
+  opacity: 1;
+}
+
+
 #simulation-details {
   padding-left: 50px;
 }
@@ -147,10 +185,50 @@
   display: block;
 }
 
+#help-screen {
+  position: fixed;
+  top: 50px;
+  left: 650px;
+  width: 350px; /* Adjust as needed */
+  height: 400px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #333;
+  border-radius: 10px;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  font-family: Arial, sans-serif;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-20px);
+  visibility: hidden;
+}
+
+#help-screen.active {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+#help-screen h2 {
+  margin-top: 0;
+}
+
+#help-screen button {
+  margin-top: 10px;
+}
+
+#help-content {
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 85%; /* Restrict height to fit within the right panel */
+  padding: 10px;
+  box-sizing: border-box; /* Ensure padding doesn't overflow */
+}
+
 #config-screen {
   position: fixed; /* Overlay the viewport */
   top: 100px; /* Center vertically */
-  left: 100px; /* Center horizontally */
+  left: 550px; /* Center horizontally */
   transform: translate(100, 100); /* Adjust to perfect center */
   background-color: #fff; /* White background */
   border: 2px solid #ccc; /* Light border for clarity */
