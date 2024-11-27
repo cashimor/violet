@@ -34,7 +34,8 @@ start:
 s1m1: 
 !curious
 I was in a curious mood, trying to make sense of the world around me.
-At the traffic light, I saw a bird repeatedly pecking at its reflection in a car's side mirror.
+At the traffic light, I saw a bird repeatedly pecking at its reflection
+in a car's side mirror.
 ?It got me thinking about why it was doing that.
 [fail] Maybe it wanted a snack? 
 [success] It must think it's another bird. 
@@ -43,7 +44,8 @@ At the traffic light, I saw a bird repeatedly pecking at its reflection in a car
 s1m2: 
 !frustrated
 I was feeling frustrated, like everything was taking too long.
-The traffic light stayed red for what felt like forever, and the cars ahead didn’t move when it turned green.
+The traffic light stayed red for what felt like forever,
+and the cars ahead didn’t move when it turned green.
 ?It was so annoying.
 [fail] Why not honk at them? 
 [success] Ugh, people need to pay attention. 
@@ -52,7 +54,8 @@ The traffic light stayed red for what felt like forever, and the cars ahead didn
 s1m3: 
 !playful
 I was in a playful mood, ready to find humor in the little things.
-While waiting at the traffic light, I noticed someone dancing in their car to the music.
+While waiting at the traffic light,
+I noticed someone dancing in their car to the music.
 ?It made me smile.
 [fail] Did you join them? 
 [success] That's hilarious! 
@@ -84,7 +87,8 @@ In the park, I noticed three people chatting intently under a tree.
 
 s3m1:
 I was feeling adventurous today, ready to try something new.
-At the coffee shop, I couldn’t decide whether to stick to my usual drink or try something bold.
+At the coffee shop,
+I couldn’t decide whether to stick to my usual drink or try something bold.
 ?What do you think I chose?
 [success] You probably went for the bold choice—why not? 
 [fail] The usual—comfort is key.
@@ -92,7 +96,8 @@ At the coffee shop, I couldn’t decide whether to stick to my usual drink or tr
 
 s3m2:
 I was in a reflective mood, thinking about how people adapt to challenges.
-While waiting at the bus stop, I noticed someone miss their bus and start laughing instead of getting upset.
+While waiting at the bus stop,
+I noticed someone miss their bus and start laughing instead of getting upset.
 ?How would you react in their place?
 [fail] I’d probably get mad—missing the bus is annoying.
 [success] I’d laugh too—sometimes that’s all you can do.
@@ -124,7 +129,8 @@ While walking downtown, I saw a poster advertising a marathon.
 
 s4m2:
 I was in a curious mood, eager to learn new things.
-At the library, I overheard someone discussing an unusual hobby—building miniature ships in bottles.
+At the library,
+I overheard someone discussing an unusual hobby—building miniature ships in bottles.
 ?What would you say about that?
 [fail] Sounds boring, honestly.
 [fail] It’s impressive, but I’d never try it.
@@ -132,7 +138,8 @@ At the library, I overheard someone discussing an unusual hobby—building minia
 
 s4m3:
 I felt a bit philosophical today, pondering how little choices shape big outcomes.
-I had to choose between two routes home—one through the busy market and one through a quiet alley.
+I had to choose between two routes home—
+one through the busy market and one through a quiet alley.
 ?Which do you think I chose?
 [success] The quiet alley—it gives you space to think.
 [fail] The busy market—it’s lively and fun.
@@ -172,7 +179,8 @@ One cloud in particular caught my eye, and it made me laugh.
 
 s5m4:
 I was feeling nostalgic, thinking about the past.
-Watching the clouds reminded me of when I was a child, lying in the grass and dreaming big dreams.
+Watching the clouds reminded me of when I was a child,
+lying in the grass and dreaming big dreams.
 ?What would I have thought about?
 [fail] I wish I had more time to relax now.
 [success] I wonder if my younger self would be proud of me.
@@ -180,7 +188,8 @@ Watching the clouds reminded me of when I was a child, lying in the grass and dr
 
 s6m1:
 I was feeling empathetic, putting myself in others’ shoes.
-Passing by a road worker under the hot sun, I couldn’t help but think about their day.
+Passing by a road worker under the hot sun,
+I couldn’t help but think about their day.
 ?What did I think?
 [success] They’re working hard—what keeps them motivated?
 [fail] They must hate this job.
@@ -188,7 +197,8 @@ Passing by a road worker under the hot sun, I couldn’t help but think about th
 
 s6m2:
 I was feeling grateful, appreciating the little things in life.
-I saw a road worker fixing a pothole, and it made me reflect on how much I take smooth roads for granted.
+I saw a road worker fixing a pothole,
+and it made me reflect on how much I take smooth roads for granted.
 ?What might I have thought?
 [fail] They should work faster—I’m in a hurry.
 [success] I’m glad someone’s doing this job—where would we be without them?
@@ -203,7 +213,8 @@ The road worker was holding up traffic, and I couldn’t get where I needed to b
 [success] It’s frustrating, but they’re doing an important job.
 
 s6m4:
-I was feeling curious, wondering what it’s like to do something so different from my own work.
+I was feeling curious,
+wondering what it’s like to do something so different from my own work.
 The road worker seemed focused, carefully filling a pothole.
 ?What might I have asked myself?
 [fail] How long until they’re done?
@@ -231,7 +242,8 @@ While walking down the street, some people started whistling at me out of nowher
 s6m7:
 !thoughtful
 I was in a thoughtful mood, reflecting on the little things in life.
-At home, I spent a good five minutes fiddling with a ring of keys, trying to find the right one to open my door.
+At home, I spent a good five minutes fiddling with a ring of keys,
+trying to find the right one to open my door.
 ?It made me think about how such small moments shape our day.
 [fail] Why not get one of those color-coded caps for your keys?
 [fail] Maybe you just need fewer locks on your door.
@@ -249,7 +261,8 @@ While out, I found a perfectly round stone that seemed almost too smooth to be r
 s6m9:
 !annoyed
 I was annoyed, as though people had no concept of boundaries.
-While walking down the street, someone whistled at me again, but this time it felt intentionally mocking.
+While walking down the street, someone whistled at me again,
+but this time it felt intentionally mocking.
 ?It left me wondering why people do such things.
 [fail] Maybe they thought it was funny—it’s just a joke, right?
 [success] People often mock others to feel better about themselves.
@@ -267,7 +280,8 @@ A close friend approached me, asking for a loan they swore they’d pay back soo
 s6m11:
 !empathetic
 I felt empathetic, imagining myself in someone else’s shoes.
-While walking through town, a stranger approached me, begging for money with a desperate look in their eyes.
+While walking through town, a stranger approached me,
+begging for money with a desperate look in their eyes.
 ?It made me wonder what I’d do if I were in their place.
 [success] Offering even a little could mean a lot to them.
 [fail] You could’ve told them to find work—tough love is helpful.
@@ -276,7 +290,8 @@ While walking through town, a stranger approached me, begging for money with a d
 s6m12:
 !scientific
 I was in a scientific mood, curious about how the world works in intricate detail.
-I noticed a puddle of water rippling in a strange, rhythmic pattern, as if it was alive.
+I noticed a puddle of water rippling in a strange,
+rhythmic pattern, as if it was alive.
 ?It got me thinking about what could cause such an unusual sight.
 [success] Probably vibrations from something nearby, like a machine.
 [fail] Maybe the wind just made it behave oddly.

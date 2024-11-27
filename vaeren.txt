@@ -1,5 +1,6 @@
 start:
-Alaric couldn’t do it himself, you know. He couldn’t bear the weight of your death on his soul.
+Alaric couldn’t do it himself, you know.
+He couldn’t bear the weight of your death on his soul.
 ?So, here I am. Cleaning up his mess, as always.
 [end] Alaric would regret this. You know he would.
 [end] Then you’re no better than he is.

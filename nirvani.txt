@@ -1,6 +1,7 @@
 start:
 Welcome to my humble abode, Violet.  
-I don't know what Itsuki thought, but rescuing you... it took nearly everything I had.  
+I don't know what Itsuki thought, but rescuing you... 
+it took nearly everything I had.  
 ?I am drained now, though.  
 [who] Who are you?  
 [where] Where am I?  

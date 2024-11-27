@@ -28,7 +28,8 @@ Alright, well, I’ll be here if you want to talk money or strategy.
 label4:
 !neutral
 Oh, absolutely.
-I’ve kept books for businesses, counted coins for merchants, and even turned debt into profit.
+I’ve kept books for businesses, counted coins for merchants,
+and even turned debt into profit.
 It’s not about greed—it’s about making order from chaos.
 
 label5:

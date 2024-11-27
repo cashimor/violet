@@ -480,19 +480,19 @@ class DialogController {
     let bubbleSrc = "images/bubble.png"; // Default speech bubble
 
     const emotionStyles = {
-      happy: { src: "images/bubble.png", textColor: "darkgoldenrod" },
-      angry: { src: "images/bubble_angry.png", textColor: "red" },
-      sad: { src: "images/bubble_sad.png", textColor: "darkblue" },
-      shock: { src: "images/bubble.png", textColor: "chocolate" },
-      confused: { src: "images/bubble_confused.png", textColor: "purple" },
-      neutral: { src: "images/bubble.png", textColor: "black" }, // Fallback style
-      curious: { src: "images/bubble_confused.png", textColor: "#008b8b" },
-      cheerful: { src: "images/bubble.png", textColor: "#ffa500" },
-      frustrated: { src: "images/bubble_angry.png", textColor: "#ff4500" },
-      empathetic: { src: "images/bubble.png", textColor: "#e6a8d7" },
-      conflicted: { src: "images/bubble_confused.png", textColor: "#9370db" },
-      analytical: { src: "images/bubble.png", textColor: "#4682b4" },
-      scientific: { src: "images/bubble.png", textColor: "#4682b4" },
+      happy: { src: "images/bubble.png", textColor: "#A8760B" }, // Darker goldenrod
+      angry: { src: "images/bubble_angry.png", textColor: "#B22222" }, // Firebrick
+      sad: { src: "images/bubble_sad.png", textColor: "#000080" }, // Navy
+      shock: { src: "images/bubble.png", textColor: "#8B4513" }, // SaddleBrown
+      confused: { src: "images/bubble_confused.png", textColor: "#4B0082" }, // Indigo
+      neutral: { src: "images/bubble.png", textColor: "black" },
+      curious: { src: "images/bubble_confused.png", textColor: "#006400" }, // DarkGreen
+      cheerful: { src: "images/bubble.png", textColor: "#FF8C00" }, // Darker orange
+      frustrated: { src: "images/bubble_angry.png", textColor: "#A52A2A" }, // Brown
+      empathetic: { src: "images/bubble.png", textColor: "#C71585" }, // MediumVioletRed
+      conflicted: { src: "images/bubble_confused.png", textColor: "#4B0082" }, // Indigo
+      analytical: { src: "images/bubble.png", textColor: "#1E4E79" }, // Darker SteelBlue
+      scientific: { src: "images/bubble.png", textColor: "#1E4E79" }, // Match analytical
     };
 
     // Check for emotion and update bubbleSrc and text color
@@ -512,22 +512,24 @@ class DialogController {
 
       // Set font and text color based on emotion
       const textColor = emotionStyles[emotion]?.textColor || "black";
-      this.context.font = "14px Arial";
+      this.context.font =
+        emotion === "happy" || emotion === "curious" || emotion === "cheerful"
+          ? "italic 16px Arial"
+          : "16px Arial";
       this.context.textAlign = "center";
 
-      // Add shadow for better text visibility
-      this.context.shadowColor = "rgba(0, 0, 0, 0.5)";
-      this.context.shadowBlur = 4;
-      this.context.shadowOffsetX = 1;
-      this.context.shadowOffsetY = 1;
+      this.context.shadowColor = "rgba(0, 0, 0, 0.2)"; // Lighter shadow
+      this.context.shadowBlur = 2; // Less blur
+      this.context.shadowOffsetX = 0; // Optional: remove offsets
+      this.context.shadowOffsetY = 1; // Subtle shadow effect
 
       // Split dialogue into lines with a max of 55 characters, keeping words intact
-      const maxLineLength = 55;
+      const maxLineLength = 45;
       const wrappedText = this.wrapText(dialogue, maxLineLength);
 
       // Calculate initial text Y position within the bubble
       let textY = bubbleY + 40; // Start text a bit lower inside the bubble
-      const lineHeight = 20; // Line spacing for readability
+      const lineHeight = 22; // Adjust line spacing
 
       // Draw each line of wrapped text
       this.context.fillStyle = textColor; // Apply text color

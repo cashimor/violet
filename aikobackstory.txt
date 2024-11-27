@@ -8,13 +8,15 @@ Oh, hello there. My name is Aiko.
 
 label1:
 !neutral
-?Ah, it’s not much of a story. I grew up on the streets, learned how to fend for myself.
+Ah, it’s not much of a story.
+?I grew up on the streets, learned how to fend for myself.
 [label4] You must have learned a lot from that.
 [label5] Did you have anyone to rely on?
 
 label2:
 !neutral
-?A secret? Ha, I wouldn’t call it that. When you’ve lived like I have, you pick up some skills. 
+A secret? Ha, I wouldn’t call it that. 
+?When you’ve lived like I have, you pick up some skills. 
 [label6] What kind of skills? Are you tough?
 [label3] Never mind, I was just curious.
 
