@@ -15,6 +15,7 @@ class SimulationController {
     this.bribes = 0;
     this.gameOver = false;
     this.gameIntro = false;
+    this.evilLairBonus = 0;
 
     // DOM elements for updating the UI
     this.dayCounterElement = document.getElementById("day-counter");
@@ -86,7 +87,7 @@ class SimulationController {
     this.energy = this.energyResetValue;
 
     let totalProfit = 0;
-    let evilLairBonus = 0;
+    this.evilLairBonus = 0;
 
     this.randomizeNPCLocations();
 
@@ -101,9 +102,9 @@ class SimulationController {
       const roomType = this.jobController.getRoomTypeByName(job.purpose); // Get room type from purpose
       const assignedNpc = job.npcAssigned;
       if (job.purpose === "Evil Lair") {
-        evilLairBonus = 25;
+        this.evilLairBonus = 25;
         if (assignedNpc) {
-          evilLairBonus = 50;
+          this.evilLairBonus = 50;
         }
       }
       if (roomType && assignedNpc) {
@@ -122,7 +123,7 @@ class SimulationController {
         }
       }
     });
-    this.energy = this.energy + evilLairBonus;
+    this.energy = this.energy + this.evilLairBonus;
     // Update money and handle end-of-day report
     this.money += totalProfit; // Add total profit to money
     this.money -= this.dailyCost; // Subtract daily costs

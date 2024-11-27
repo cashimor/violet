@@ -34,7 +34,9 @@ class GameController {
       this.simulationController,
       this.jobController,
       this.locationController,
-      this.xivatoController
+      this.xivatoController,
+      this.mapController,
+      this
     );
     this.optionsController.applyMusicSetting();
     this.simulationController.randomizeNPCLocations();

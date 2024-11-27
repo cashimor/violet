@@ -15,6 +15,7 @@ class LocationController {
       (character) => character.name === "Xivato"
     );
     this.decocanvas = decocanvas;
+    this.decorationContainer = document.getElementById("decoration-container");
     this.locations = locations;
     this.simulationController = simulationController;
     this.jobController = jobController;
@@ -86,9 +87,6 @@ class LocationController {
     const leftPanel = document.getElementById("left-panel");
     leftPanel.style.backgroundImage = `url(${location.getImageUrl()})`;
     this.currentLocation = location;
-    if (this.currentLocation.name == "Itsuki's Apartment") {
-      this.gameController.helpController.update("itsuki");
-    }
 
     // Clear the canvas to remove any previously drawn characters
     this.decocontext.clearRect(
@@ -117,19 +115,19 @@ class LocationController {
     }
     // Check the owner of the location and apply the appropriate border
     if (location.owner === "Violet") {
-      this.decocanvas.style.border = "5px solid violet";
+      this.decorationContainer.style.outline = "5px solid violet";
       this.drawRoomNavigationIcons();
       if (this.currentLocation.getUse() === "default") {
         this.decoratePopup.classList.remove("hidden");
       }
       this.renderCharacter(this.jobController.getCharacter(location));
     } else if (location.owner === "Xivato") {
-      this.decocanvas.style.border = "5px solid crimson";
+      this.decorationContainer.style.outline = "5px solid crimson";
       // Add additional Xivato-specific actions here if needed
       this.xivato.currentLocation = this.currentLocation;
       this.renderCharacter(this.xivato);
     } else {
-      this.decocanvas.style.border = "none"; // Remove border if no one owns the location
+      this.decorationContainer.style.outline = "none"; // Remove border if no one owns the location
     }
     // Check if location is available
     if (
@@ -147,7 +145,6 @@ class LocationController {
         // Deduct money and mark location as rented by Violet
         location.rentTo("Violet");
         this.simulationController.recalculateDailyCostLocations(locations);
-        this.decocanvas.style.border = "5px solid violet";
         // Hide popup
         this.rentPopup.classList.add("hidden");
         this.loadLocation(location);

@@ -5,12 +5,14 @@ class OptionsController {
     locationController,
     xivatoController,
     mapController,
+    gameController
   ) {
     this.simulationController = simulationController;
     this.jobController = jobController;
     this.locationController = locationController;
     this.xivatoController = xivatoController;
     this.mapController = mapController;
+    this.gameController = gameController;
     this.showing = false;
     document.getElementById("save-button").addEventListener("click", () => {
       this.saveGameState();
@@ -63,6 +65,11 @@ class OptionsController {
       updateSummaryText("The game is over. Please restart or reload to continue.");
       return;
     }
+    if (this.simulationController.gameIntro) {
+      updateSummaryText("The game hasn't started yet.");
+      return;
+    }
+
     const gameState = {
       day: this.simulationController.day,
       energy: this.simulationController.energy,
@@ -98,7 +105,9 @@ class OptionsController {
       updateSummaryText("No saved game found.");
       return;
     }
+    this.gameController.closeDialogCallback = null;
     this.simulationController.gameOver = false;
+    this.simulationController.gameIntro = false;
     this.simulationController.day = gameState.day;
     this.simulationController.energy = gameState.energy;
     this.simulationController.money = gameState.money;
@@ -132,7 +141,7 @@ class OptionsController {
     } else {
       this.locationController.currentLocation = null;
     }
-    this.jobController.fromData(gameState.jobs, locationController);
+    this.jobController.fromData(gameState.jobs, this.locationController);
     this.simulationController.updateDisplay();
     if (this.locationController.currentLocation) {
       this.locationController.loadLocation(

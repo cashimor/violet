@@ -26,26 +26,12 @@
   color: #000; /* Optional: Adjust text color for contrast */
 }
 
-#violet-outline2 {
-  position: absolute;
-  width: 230px;
-  height: 302px;
-  border: 2px solid violet; /* Optional: just for visibility */
-  filter: hue-rotate(270deg); /* To apply the violet color filter */
-  visibility: hidden; /* Hidden by default */
-  pointer-events: auto; /* Ensure it detects mouse events */
-}
-
-
 #violet-outline {
   position: absolute; /* Allows precise positioning */
   top: 423px; /* Adjust based on Violet's location */
   left: 417px;
   width: 125px; /* Match the image size */
   height: 175px;
-  background-size: contain; /* Scale the image to fit */
-  background-repeat: no-repeat; /* Avoid tiling */
-  background-position: center; /* Center the image */
   pointer-events: auto; /* Ensure it detects mouse events */
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
