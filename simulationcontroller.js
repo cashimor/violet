@@ -76,6 +76,23 @@ class SimulationController {
     this.dailyCostElement.textContent = `${currencySymbol}${this.dailyCost.toLocaleString()}`;
   }
 
+  checkEvilWin() {
+    const requiredMoney = 1000000; // Adjust if needed
+    const xivatoLocations = this.xivatoController.owned("Xivato"); // Assuming a method for total locations
+    const availableLocations = this.xivatoController.getAvailableLocations();
+    const bribeCount = this.bribes;
+
+    // Check all conditions
+    if (
+      this.money >= requiredMoney &&
+      xivatoLocations === 0 &&
+      availableLocations.length === 0 &&
+      bribeCount > 0
+    ) {
+      this.triggerGameOver("You conquered the city!", gameOverLocations["evil"]); // Call a method to handle the win state
+    }
+  }
+
   advanceDay() {
     if (this.gameOver) {
       updateSummaryText(
@@ -149,6 +166,7 @@ class SimulationController {
         gameOverLocations["xivato"]
       );
     }
+    this.checkEvilWin();
     this.updateDisplay();
   }
 
