@@ -105,6 +105,7 @@ class OptionsController {
       updateSummaryText("No saved game found.");
       return;
     }
+    this.simulationController.showButtons();
     this.gameController.closeDialogCallback = null;
     this.simulationController.gameOver = false;
     this.simulationController.gameIntro = false;

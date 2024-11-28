@@ -111,6 +111,27 @@ class HelpController {
     </ul>
     <p>Don't forget to regularly train your NPCs to keep up with increasing demands!</p>
   `,
+      xivato: `
+  <p><strong>The Xivato:</strong> A new faction has emerged—an evil organization called the Xivato.</p>
+  <ul>
+    <li>Xivato-controlled locations are marked on the map with a <strong>red influence circle</strong>.</li>
+    <li>These locations are no longer available for purchase.</li>
+    <li>However, you can visit these areas and attempt to negotiate or interact with the Xivato.</li>
+  </ul>
+  <p>Be cautious—the Xivato have their own motives and can be dangerous!</p>
+`,
+      evil_win: `
+      <p><strong>Evil Win Condition:</strong></p>
+      <p>You can achieve ultimate victory in the evil path by meeting these conditions:</p>
+      <ul>
+        <li><strong>Accumulate 1,000,000 Yen.</strong> Use your resources wisely to amass this fortune.</li>
+        <li><strong>Occupy all locations:</strong> Make sure all available locations are under your influence.</li>
+        <li><strong>Remove Xivato influence:</strong> Ensure no locations are under the control of the Xivato faction.</li>
+        <li><strong>Bribe the police:</strong> Successfully secure their cooperation to shield your operations.</li>
+      </ul>
+      <p>Once all these conditions are met, you will achieve the evil victory!</p>
+      <p>Remember: the path to power is filled with challenges, but careful planning and determination will lead you to success.</p>
+    `,
       default: `
         <h2>General Help</h2>
         <p>Explore and interact with the game world to uncover its secrets!</p>
@@ -166,6 +187,14 @@ class HelpController {
     }
     if (this.gameController.xivatoController.owned("Violet") < 1) {
       this.updateStage("noLocations");
+      return;
+    }
+    if (this.gameController.xivatoController.owned("Xivato") > 0) {
+      this.updateStage("xivato");
+      return;
+    }
+    if (this.gameController.xivatoController.owned("Violet") > 2) {
+      this.updateStage("evil_win");
       return;
     }
     if (

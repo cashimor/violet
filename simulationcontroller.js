@@ -327,15 +327,19 @@ class SimulationController {
     );
   }
 
+  showButtons() {
+    this.gameController.mapButton.disabled = false;
+    this.restButton.disabled = false;
+    this.gameController.mapButton.classList.remove("hidden");
+    this.restButton.classList.remove("hidden");
+  }
+
   triggerGameStart = () => {
     this.money = 0;
     this.dailyCost = 0;
     this.locationCost = 0;
     this.gameIntro = false;
-    this.gameController.mapButton.disabled = false;
-    this.restButton.disabled = false;
-    this.gameController.mapButton.classList.remove("hidden");
-    this.restButton.classList.remove("hidden");
+    this.showButtons();
     this.gameController.locationController.loadLocation(
       this.gameController.locationController.locations[0] // Itsuki.
     );
