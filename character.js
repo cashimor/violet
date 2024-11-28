@@ -12,15 +12,15 @@ class Character {
     like = 0
   ) {
     this.name = name;
-    this.location = location;
-    this.icon = icon;
     this.imageUrlBases = imageUrls;
-    this.currentEmotion = "";
-    this.setEmotion("");
+    this.location = location;
     this.dialogue = dialogue;
     this.strength = strength;
     this.weakness = weakness;
+    this.currentEmotion = "";
+    this.setEmotion("");
     this.skillLevel = skillLevel; // Basic skill level is 10%
+    this.icon = icon;
     this.dayTalk = dayTalk;
     this.like = like;
   }
@@ -280,6 +280,7 @@ let characters = [
     "Takeshi",
     [
       "takeshi",
+      "takeshihappy"
     ],
     "Shrine",
     "takeshibackstory.txt",
