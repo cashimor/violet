@@ -275,6 +275,17 @@ let characters = [
     "itsuki",
     0,
     1000
-  )
+  ),
+  new Character(
+    "Takeshi",
+    [
+      "takeshi",
+    ],
+    "Shrine",
+    "takeshibackstory.txt",
+    "lair",
+    "drugs",
+    -10,
+  ),
   // Add more characters as needed
 ];

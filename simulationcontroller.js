@@ -221,6 +221,7 @@ class SimulationController {
       "City Block 1",
       "City Block 2",
       "At Home",
+      "At Home",
     ];
 
     // Shuffle the locations array (Fisher-Yates Shuffle)

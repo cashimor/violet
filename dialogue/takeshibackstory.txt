@@ -1,0 +1,66 @@
+start:
+!neutral
+You seem lost. Tell me, what brings you to me?
+?What would you like to ask?
+[path_to_redemption] How do I find peace here?
+[past_experiences] Who are you?
+[talk] Let's talk.
+
+path_to_redemption:
+!thoughtful
+Peace? It is not something you find—it is something you nurture.
+I can guide you to stillness, but your choices will determine your path.
+!neutral
+Many who seek peace have first walked through fire. I see the same in you.
+#But every path has its pitfalls.
+#Strength is not always the answer, though it often seems the easiest one.
+If you ever need counsel, return to me.
+I may not have answers, but I can offer perspective.
+
+past_experiences:
+!serious
+I am Takeshi. My life has been one of learning—and, I fear, of failure.
+!distant
+I once trained as a soldier. But I turned away from that path.
+?Why do you ask?
+[advice] I’m curious—what do you think of power?
+[personal] Tell me more about your past.
+
+advice:
+!guiding
+Power is a blade with two edges.
+If wielded without care, it will harm the one who holds it.
+I could not see that in my youth, and I paid dearly for it.
+!thoughtful
+Yet... perhaps power can heal, if used wisely.
+I hope your path brings you to that understanding.
+
+personal:
+!distant
+I am not sure why you want to know, but I will tell you this much.
+!serious
+I failed those who depended on me. I sought strength but found only pride.
+When I realized my error, it was too late.
+!neutral
+These days, I find peace in small things. Guiding others, meditating.
+There is little else I am suited for.
+#A commander? No, my hesitation would doom an army.
+#A businessman? I would crumble under the weight of ambition.
+#But perhaps as a priest... if the temple values sincerity over power.
+?What about you?
+[shared_purpose] Do you believe people can change?
+[return_to_start] I should go.
+
+shared_purpose:
+!curious
+Change is not easy. It takes more than will—it takes guidance, time, and grace.
+!guiding
+Perhaps that is why our paths have crossed.
+If you seek to change, I will walk with you for as long as you need.
+
+return_to_start:
+!neutral
+Very well. You are welcome here anytime.
+
+talk:
+~talkdialogue.txt
