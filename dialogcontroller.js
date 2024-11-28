@@ -429,7 +429,7 @@ class DialogController {
         if (line.startsWith("~")) {
           // Handle the command to load a new dialogue file
           const newFile = line.slice(1).trim();
-          const url = `${newFile}?v=${Date.now()}`; // Append a unique timestamp
+          const url = `dialogue/${newFile}?v=${Date.now()}`; // Append directory path
           fetch(url)
             .then((response) => response.text())
             .then((data) => {

@@ -171,7 +171,7 @@ class LocationController {
     );
 
     // Fetch dialog file and initialize DialogController
-    const url = `${character.dialogue}?v=${Date.now()}`; // Append a unique timestamp
+    const url = `dialogue/${character.dialogue}?v=${Date.now()}`; // Append directory path
     fetch(url)
       .then((response) => response.text())
       .then((data) => {
