@@ -69,6 +69,7 @@ remorse:
 If you really believe that, Violet, then let Seren go.
 Prove to me there’s something left in you worth saving.
 Vaeren...
+@adjustEvilness(-1)
 
 defiant:
 That’s where you’re wrong. I’ve already won, Violet.

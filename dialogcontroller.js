@@ -116,8 +116,16 @@ class DialogController {
       buyoutLocation: (param) => this.buyoutLocation(param),
       scenarioStep: (param) => this.scenarioStep(param),
       hasMoney: (param) => this.hasMoney(param),
+      adjustEvilness: (param) => this.adjustEvilness(param), // Added function to adjust evilness
       // Add more functions as needed
     };
+  }
+
+  adjustEvilness(param) {
+    const change = parseInt(param, 10); // Get the evilness change (positive or negative)
+    this.simulationController.updateEvilness(change); // Update the evilness in the simulation
+    const nextLabel = change < 0 ? ">goodviolet" : ">evilviolet"; // Determine the next label based on change
+    return [nextLabel]; // Return a dialogue response and a label jump
   }
 
   hasMoney(param) {
@@ -719,7 +727,7 @@ class DialogController {
           dialogContent = this.getNextLine();
           if (dialogContent.startsWith(">")) {
             // Handle branching logic directly
-            this.chooseOption(result.slice(1));
+            this.chooseOption(dialogContent.slice(1));
             this.start(); // Continue processing
             return;
           }

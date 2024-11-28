@@ -56,3 +56,4 @@ Oh. You should do more than be thankful, Violet.
 I am counting on you.
 I shall bring you to Itsuki, who prayed for you to be saved.
 You got here before Vaeren could stangle you.
+@adjustEvilness(-1)

@@ -71,6 +71,9 @@ fetch:
 [all] Take all money and leave
 
 wallet:
+@adjustEvilness(-1)
+
+goodviolet:
 @giveLike(-35000)
 
 rent:

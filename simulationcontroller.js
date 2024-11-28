@@ -16,6 +16,8 @@ class SimulationController {
     this.gameOver = false;
     this.gameIntro = false;
     this.evilLairBonus = 0;
+    this.evilness = 100; // Starting evil score
+    this.updateEvilness(0);
 
     // DOM elements for updating the UI
     this.dayCounterElement = document.getElementById("day-counter");
@@ -29,6 +31,23 @@ class SimulationController {
 
     // Attach rest button event
     this.restButton.addEventListener("click", () => this.advanceDay());
+  }
+
+  getEvilFilter(evilness) {
+    const hue = 135 + (100 - evilness) * 1.65; // Violet base hue
+    const brightness = 50 + (100 - evilness) * 0.5;
+    const contrast = 100;
+  
+    return `hue-rotate(${hue}deg) brightness(${brightness}%) contrast(${contrast}%)`;
+  }
+
+  updateEvilness(change) {
+    const newEvilness = this.evilness + change;
+    this.evilness = Math.max(0, Math.min(100, newEvilness)); // Clamp between 0 and 100
+  
+    // Get the new outline color
+    const newColor = this.getEvilFilter(this.evilness);  
+    document.getElementById("violet-outline-image").style.filter = newColor;
   }
 
   recalculateDailyCostLocations(locations) {
