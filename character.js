@@ -17,12 +17,12 @@ class Character {
     this.dialogue = dialogue;
     this.strength = strength;
     this.weakness = weakness;
-    this.currentEmotion = "";
-    this.setEmotion("");
     this.skillLevel = skillLevel; // Basic skill level is 10%
     this.icon = icon;
     this.dayTalk = dayTalk;
     this.like = like;
+    this.currentEmotion = "";
+    this.setEmotion("");
   }
 
   static fromData(data) {
@@ -280,7 +280,8 @@ let characters = [
     "Takeshi",
     [
       "takeshi",
-      "takeshihappy"
+      "takeshihappy",
+      "takeshipartner"
     ],
     "Shrine",
     "takeshibackstory.txt",

@@ -225,7 +225,7 @@ class DialogController {
       100,
       this.character.skillLevel + skillBoost
     );
-
+    this.giveLike(amount / 2);
     return [
       `Thank you for your ¥${amount.toLocaleString()}.`,
       skillBoost > 0 ? `I will work better!` : `Aw...`,
@@ -355,8 +355,10 @@ class DialogController {
       assigned = this.jobController.assignNpcToJob(room, this.character);
       if (assigned) {
         this.simulationController.recalculateDailyCostJobs(this.jobController);
-        this.simulationController.friendBoundary =
-          this.simulationController.friendBoundary + 10;
+        if (this.simulationController.friendBoundary < 90) {
+          this.simulationController.friendBoundary =
+            this.simulationController.friendBoundary + 10;
+        }
         return [`Thank you for giving me a job in your ${roomTypeName}!`];
       }
     }

@@ -133,9 +133,16 @@ class HelpController {
       <p>Remember: the path to power is filled with challenges, but careful planning and determination will lead you to success.</p>
     `,
       default: `
-        <h2>General Help</h2>
-        <p>Explore and interact with the game world to uncover its secrets!</p>
-      `,
+    <p>Welcome! This game is about strategy, exploration, and decision-making. Here's how to make the most of it:</p>
+    <ul>
+      <li><strong>Explore Locations:</strong> Visit different places on the map to meet characters, uncover opportunities, and gain resources.</li>
+      <li><strong>Build Relationships:</strong> Talking to characters can provide useful hints, unlock new interactions, or even alter the storyline.</li>
+      <li><strong>Manage Your Resources:</strong> Keep track of your Yen and locations. Strategic investments will help you progress.</li>
+      <li><strong>Pay Attention to the Map:</strong> Red influence circles indicate Xivato-controlled areas—handle these carefully.</li>
+      <li><strong>Make Bold Choices:</strong> Your decisions influence the outcome. Don't be afraid to experiment and replay to discover new paths!</li>
+    </ul>
+    <p>Remember: Every action counts, and the path you choose shapes your story. Good luck!</p>
+  `,
       // Other stages...
     };
   }

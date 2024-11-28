@@ -144,12 +144,6 @@ class OptionsController {
     }
     this.jobController.fromData(gameState.jobs, this.locationController);
     this.simulationController.updateDisplay();
-    if (this.locationController.currentLocation) {
-      this.locationController.loadLocation(
-        this.locationController.currentLocation
-      );
-    }
-    this.locationController.updateDecorateOptions();
 
     // Fix other places where arrays are used
     locations = this.locationController.locations;
@@ -157,11 +151,12 @@ class OptionsController {
     this.mapController.setLocations(locations);
     characters = this.locationController.characters;
     this.simulationController.characters = characters;
-    
-
-
-
-
+    if (this.locationController.currentLocation) {
+      this.locationController.loadLocation(
+        this.locationController.currentLocation
+      );
+    }
+    this.locationController.updateDecorateOptions();
     updateSummaryText("Game loaded successfully!");
     this.close();
   }

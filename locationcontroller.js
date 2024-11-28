@@ -99,7 +99,7 @@ class LocationController {
     this.xivato.location = "Job";
 
     // Draw characters in the current location with their names
-    characters.forEach((character) => {
+    this.characters.forEach((character) => {
       if (character.location === location.name) {
         this.renderCharacter(character);
       }

@@ -1,0 +1,41 @@
+start:
+!thinking
+Let me think...
+#>rock
+#>paper
+#>scissors
+
+rock:
+!neutral
+?I've made my choice. What's yours?
+[draw] Rock
+[win] Paper
+[lose] Scissors
+
+paper:
+!neutral
+?I've made my choice. What's yours?
+[lose] Rock
+[draw] Paper
+[win] Scissors
+
+scissors:
+!neutral
+?I've made my choice. What's yours?
+[win] Rock
+[lose] Paper
+[draw] Scissors
+
+win:
+!happy
+Impressive! You win this round. I underestimated you.
+@adjustLike(22)
+
+draw:
+!neutral
+It’s a tie! Seems like we think alike.
+>start
+
+lose:
+!smug
+Ha! I win this time. Better luck next round.

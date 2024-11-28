@@ -1,9 +1,10 @@
 start:
 Hello, welcome to the gambling den.
 ?What can I do for you today?
-[label1] How do you feel about your skills?
+[label1] You got this?
 [label2] Can we do some training?
 [bonus] Here is a bonus (¥5000)
+[game] Time for a game?
 [label3] Just checking in.
 
 label1:
@@ -27,3 +28,7 @@ Alright, let me know if you need anything else.
 
 bonus:
 @giveBonus(5000)
+
+game:
+A game? Of course, let's play.
+~rockpaperscissors.txt

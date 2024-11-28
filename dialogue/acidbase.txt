@@ -1,0 +1,133 @@
+start:
+I'll pick a molecule, and you tell me how acidic it is...
+#>h2so4
+#>ch3cooh
+#>h2o
+#>nh4oh
+#>naoh
+#>hcl
+#>h2co3
+#>ch3oh
+#>c6h12o6
+#>nahco3
+#>koh
+#>hno3
+#>na2co3
+#>cuso4
+#>ch3ch2oh
+#>c6h5cooh
+#>k2co3
+
+h2so4:
+Sulfuric acid, H2SO4
+>strongacid
+
+ch3cooh:
+Vinegar, CH₃COOH
+>weakacid
+
+h2o:
+Pure water, H2O
+>neutral
+
+nh4oh:
+Ammonia, NH4OH
+>weakbase
+
+naoh:
+Lye, NaOH
+>strongbase
+
+hcl:
+Hydrochloric acid, HCl
+>strongacid
+
+h2co3:
+Carbonic acid, H2CO3
+>weakacid
+
+ch3oh:
+Methanol, CH₃OH
+>neutral
+
+c6h12o6:
+Glucose, C6H12O6
+>neutral
+
+nahco3:
+Sodium bicarbonate, NaHCO3
+>weakbase
+
+koh:
+Potassium hydroxide, KOH
+>strongbase
+
+hno3:
+Nitric acid, HNO3
+>strongacid
+
+na2co3:
+Sodium carbonate, Na2CO3
+>weakbase
+
+cuso4:
+Copper(II) sulfate, CuSO4
+>neutral
+
+ch3ch2oh:
+Ethanol, C2H5OH
+>neutral
+
+c6h5cooh:
+Benzoic acid, C6H5COOH
+>weakacid
+
+k2co3:
+Potassium carbonate, K2CO3
+>weakbase
+
+strongacid:
+?What is it?
+[win] Strong acid
+[lose] Weak acid
+[lose] neutral
+[lose] Weak base
+[lose] Strong base
+
+weakacid:
+?What is it?
+[lose] Strong acid
+[win] Weak acid
+[lose] neutral
+[lose] Weak base
+[lose] Strong base
+
+?What is it?
+[lose] Strong acid
+[lose] Weak acid
+[win] neutral
+[lose] Weak base
+[lose] Strong base
+
+weakbase:
+?What is it?
+[lose] Strong acid
+[lose] Weak acid
+[lose] neutral
+[win] Weak base
+[lose] Strong base
+
+strongbase:
+?What is it?
+[lose] Strong acid
+[lose] Weak acid
+[lose] neutral
+[lose] Weak base
+[win] Strong base
+
+lose:
+Sorry... I don't think that is right.
+
+win:
+You know your stuff, Violet.
+@adjustLike(22)

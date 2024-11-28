@@ -1,0 +1,115 @@
+start:
+!smug
+The rules are simple.
+Take 1, 2, or 3 stones on your turn. Whoever picks the last stone loses. Let’s begin!
+?There are 10 stones. How many will you take?
+[take_1_10] Take 1.
+[take_2_10] Take 2.
+[take_3_10] Take 3.
+
+take_1_10:
+!neutral
+You took 1 stone. There are 9 stones remaining.
+!smug
+I’ll take 1 stone. There are 8 stones remaining.
+>stones_8
+
+take_2_10:
+!neutral
+You took 2 stones. There are 8 stones remaining.
+!smug
+I’ll take 3 stones. There are 5 stones remaining.
+>stones_5
+
+take_3_10:
+!neutral
+You took 3 stones. There are 7 stones remaining.
+!smug
+I’ll take 3 stones. There are 4 stones remaining.
+>stones_4
+
+stones_8:
+?There are 8 stones. How many will you take?
+[take_1_8] Take 1.
+[take_2_8] Take 2.
+[take_3_8] Take 3.
+
+take_1_8:
+!neutral
+You took 1 stone. There are 7 stones remaining.
+!smug
+I’ll take 3 stones. There are 4 stones remaining.
+>stones_4
+
+take_2_8:
+!neutral
+You took 2 stones. There are 6 stones remaining.
+!smug
+I’ll take 2 stones. There are 4 stones remaining.
+>stones_4
+
+take_3_8:
+!neutral
+You took 3 stones. There are 5 stones remaining.
+!smug
+I’ll take 1 stone. There are 4 stones remaining.
+>stones_4
+
+stones_4:
+?There are 4 stones. How many will you take?
+[take_1_4] Take 1.
+[take_2_4] Take 2.
+[take_3_4] Take 3.
+
+take_1_4:
+!neutral
+You took 1 stone. There are 3 stones remaining.
+!smug
+I’ll take 2 stones, leaving you with the last stone.
+!smug
+You lose! Better luck next time.
+
+take_2_4:
+!neutral
+You took 2 stones. There are 2 stones remaining.
+!smug
+I’ll take 1 stone, leaving you with the last stone.
+!smug
+You lose! Better luck next time.
+
+take_3_4:
+!neutral
+You took 3 stones. There is 1 stone remaining.
+!smug
+I’ll take the last stone.
+!smug
+You win! Impressive!
+@adjustLike(22)
+
+stones_5:
+?There are 5 stones. How many will you take?
+[take_1_5] Take 1.
+[take_2_5] Take 2.
+[take_3_5] Take 3.
+
+take_1_5:
+!neutral
+You took 1 stone. There are 4 stones remaining.
+I take 3 stones. There is 1 stone remaining.
+You lose! Better luck next time.
+
+take_2_5:
+!neutral
+You took 2 stones. There are 3 stones remaining.
+!smug
+I’ll take 2 stones, leaving you with the last stone.
+!smug
+You lose! Better luck next time.
+
+take_3_5:
+!neutral
+You took 3 stones. There are 2 stones remaining.
+!smug
+I’ll take 1 stone, leaving you with the last stone.
+!smug
+You lose! Better luck next time.
