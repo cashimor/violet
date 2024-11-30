@@ -281,13 +281,13 @@ class LocationController {
     const arrowX = 20; // X position
     const arrowY = 20; // Y position
     const arrowSize = 30; // Reduced size for subtlety
-  
+
     const context = this.decocontext;
-  
+
     // Outline color
     context.strokeStyle = "violet"; // Violet
     context.lineWidth = 2; // Thin outline
-  
+
     // Draw outlined arrow
     context.beginPath();
     context.moveTo(arrowX + arrowSize, arrowY); // Right point
@@ -295,7 +295,7 @@ class LocationController {
     context.lineTo(arrowX + arrowSize, arrowY + arrowSize); // Bottom point
     context.closePath();
     context.stroke();
-  
+
     // Optional: light fill for visibility
     context.fillStyle = "rgba(255, 255, 0, 0.7)"; // Light gray with transparency
     context.fill();
@@ -473,11 +473,17 @@ class LocationController {
   decorateRoom(roomData) {
     // Deduct cost, set room image, and apply any upgrades as needed
     if (this.simulationController.deductMoney(roomData.cost)) {
-      this.currentLocation.decorateLocation(
-        roomData.imageUrl,
-        roomData.name,
-        roomData.music
-      );
+      if (
+        !this.currentLocation.decorateLocation(
+          roomData.imageUrl,
+          roomData.name,
+          roomData.music
+        )
+      ) {
+        this.simulationController.money =
+          this.simulationController.money + roomData.cost;
+        return;
+      }
       this.jobController.addRoom(this.currentLocation);
       this.loadLocation(this.currentLocation);
       this.simulationController.recalculateDailyCostJobs(this.jobController);

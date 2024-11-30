@@ -38,9 +38,11 @@ class GameController {
       this.mapController,
       this
     );
+    this.goddessController = new GoddessController(characters);
+
     this.optionsController.applyMusicSetting();
     this.simulationController.randomizeNPCLocations();
-    // Event 
+    // Event
     this.mapButton = document.getElementById("map-button");
     this.mapButton.addEventListener("click", () => {
       if (this.simulationController.gameOver) {

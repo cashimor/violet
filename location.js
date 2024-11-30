@@ -112,9 +112,42 @@ class Location {
   }
 
   decorateLocation(url, type, music) {
+    const allowedTempleLocations = ["Room Tower", "Room Mountain"];
+  
+    // Check if the type is "Temple"
+    if (type === "Temple") {
+      // Verify that the current location is one of the allowed locations
+      if (!allowedTempleLocations.includes(this.name)) {
+        updateSummaryText(this.name + " is not a suitable location for a temple.");
+        return false;
+      }
+  
+      // Check if any other room already has a specific use
+      for (const room of this.rooms) {
+        if (room.use && room.use !== "default") {
+          updateSummaryText("Can't build a temple near a " + room.use + ".");
+          return false;
+        }
+      }
+  
+      // Remove other rooms from the array, leaving only the current room
+      this.rooms = [
+        {
+          url: url,
+          use: type,
+          music: music,
+        },
+      ];
+      this.currentRoomIndex = 0;
+      updateSummaryText("The temple has been successfully built.");
+      return true;
+    }
+  
+    // For other types, just assign the type and details to the current room
     this.rooms[this.currentRoomIndex].url = url;
     this.rooms[this.currentRoomIndex].use = type;
     this.rooms[this.currentRoomIndex].music = music;
+    return true;
   }
 
   // Method to navigate rooms: accepts 'next' or 'prev' as direction

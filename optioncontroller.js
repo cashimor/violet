@@ -151,6 +151,7 @@ class OptionsController {
     this.mapController.setLocations(locations);
     characters = this.locationController.characters;
     this.simulationController.characters = characters;
+    this.gameController.goddessController.characters = characters;
     if (this.locationController.currentLocation) {
       this.locationController.loadLocation(
         this.locationController.currentLocation
