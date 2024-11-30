@@ -38,7 +38,7 @@ class GameController {
       this.mapController,
       this
     );
-    this.goddessController = new GoddessController(characters);
+    this.goddessController = new GoddessController(characters, this);
 
     this.optionsController.applyMusicSetting();
     this.simulationController.randomizeNPCLocations();

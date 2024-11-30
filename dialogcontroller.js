@@ -119,34 +119,61 @@ class DialogController {
       adjustEvilness: (param) => this.adjustEvilness(param), // Added function to adjust evilness
       setTidbit: (param) => this.setTidbit(param), // Add setTidBit command
       getFollowerCount: (param) => this.getFollowerCount(param),
+      pray: (param) => this.pray(param),
       // Add more functions as needed
     };
   }
 
-  calculateFollowers(dedicatedIndividuals) {
-    let followers = dedicatedIndividuals * dedicatedIndividuals * 17;
-    return Math.round(followers); // Scale to max followers
+  pray(target) {
+    if (target === "xivato") {
+      const result = this.gameController.goddessController.prayForEviction();
+
+      if (result === true) {
+        return [
+          "Malvani has answered your prayer!",
+          "The Xivato have been driven from one of their strongholds.",
+        ];
+      } else {
+        return [result]; // Return the failure message
+      }
+    }
+    return ["The Goddess cannot fulfill that request."];
   }
 
   getFollowerCount() {
     // Count followers by checking tidbits
-    const dedicatedIndividuals =
-      this.gameController.goddessController.getFollowerCount();
-    const followers = this.calculateFollowers(dedicatedIndividuals);
+    const followers =
+      this.gameController.goddessController.calculateFollowers();
 
-    // Return dialogue with the follower count
+    // Check if prayers can be answered
+    const canAnswerPrayer =
+      this.gameController.goddessController.canHearPrayer();
+
+    // Construct the response based on follower count and prayer status
+    let response = [];
     if (followers > 0) {
-      return [
-        `We currently have ${followers} devoted followers in Malvani's name.`,
-        ">getFollowerCount",
-      ];
+      response.push(
+        `We currently have ${followers} devoted followers in Malvani's name.`
+      );
+      if (canAnswerPrayer) {
+        response.push("The Goddess is listening; your prayers may be heard.");
+        response.push(">prayerPossible");
+        return response;
+      } else {
+        response.push(
+          "The faith is strong, but the Goddess requires more mana to act."
+        );
+      }
     } else {
-      return [
+      response.push(
         "There's only the two truly dedicated members.",
-        "The faith is yet to grow.",
-        ">getFollowerCount",
-      ];
+        "The faith is yet to grow."
+      );
     }
+
+    // Add dialogue metadata
+    response.push(">getFollowerCount");
+    return response;
   }
 
   setTidbit(param) {

@@ -105,6 +105,7 @@ class OptionsController {
       jobs: this.jobController.toData(),
       characters: this.locationController.characters,
       daysSinceLastOccupation: this.xivatoController.daysSinceLastOccupation,
+      mana: this.gameController.goddessController.mana,
     };
 
     const roomTypesData = {};
@@ -140,6 +141,7 @@ class OptionsController {
     this.simulationController.bribes = gameState.bribes;
     this.xivatoController.daysSinceLastOccupation =
       gameState.daysSinceLastOccupation;
+    this.gameController.goddessController.mana = gameState.mana || 0;
     this.locationController.locations = gameState.locations.map(
       Location.fromData
     );

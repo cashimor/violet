@@ -237,6 +237,7 @@ class SimulationController {
         gameOverLocations["xivato"]
       );
     }
+    this.gameController.goddessController.gatherMana();
     this.checkEvilWin();
     this.updateDisplay();
   }

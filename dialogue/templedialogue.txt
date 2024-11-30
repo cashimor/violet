@@ -22,3 +22,20 @@ followers:
 chat:
 The Temple holds many secrets... 
 But I am here to listen. What weighs on your mind?
+
+prayerPossible:
+Malvani hears your request, Violet.
+?What do you wish to invoke her power for?
+[bless] A blessing for my journey.
+[evict] Evict the Xivato from this land.
+[back] I’ll return later.
+
+bless:
+You are already blessed, Violet. No prayer is needed.
+
+back:
+You're always welcome in Malvani's temple.
+
+evict:
+We shall force the Xivato out, wherever they might be.
+@pray(xivato)
