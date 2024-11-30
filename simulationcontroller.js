@@ -81,13 +81,52 @@ class SimulationController {
     this.updateDisplay();
   }
 
+  // Function to update the day display with weekday, month, and day
+  updateDayCounter(currentDay) {
+    if (this.gameIntro) {
+      document.getElementById(
+        "date-counter"
+      ).innerText = `Dune Day, 8th of the Moons of Dust`;
+      return;
+    }
+    // Store the starting date
+    const startDate = new Date(2024, 2, 21); // March 21, 2024 (Month is 0-indexed in JS)
+
+    // Array of weekday names starting from Sunday
+    const weekdays = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    // Calculate the date for the current day
+    const currentDate = new Date(startDate);
+    currentDate.setDate(currentDate.getDate() + currentDay - 1); // Offset by current day
+
+    // Get the day of the week (0-6, Sunday-Saturday)
+    const dayOfWeek = weekdays[currentDate.getDay()];
+
+    // Format the date (excluding the year)
+    const options = { month: "long", day: "numeric" }; // Format as "March 21"
+    const formattedDate = currentDate.toLocaleDateString("en-US", options);
+
+    // Update the date display to include day of the week
+    document.getElementById(
+      "date-counter"
+    ).innerText = `${dayOfWeek}, ${formattedDate}`;
+  }
+
   // Function to update the energy bar
   updateEnergyBar(currentEnergy, maxEnergy) {
     const energyBar = document.getElementById("energy-fill");
     const energyPercentage = (currentEnergy / maxEnergy) * 100;
     energyBar.style.width = `${energyPercentage}%`;
   }
-  
+
   updateDisplay() {
     // Calculate daily costs
     this.dailyCost = this.locationCost + this.jobCost;
@@ -96,7 +135,7 @@ class SimulationController {
     const currencySymbol = this.gameIntro ? "⚜" : "¥";
 
     // Update UI elements with the appropriate symbol
-    this.dayCounterElement.textContent = this.day;
+    this.updateDayCounter(this.day);
     this.updateEnergyBar(this.energy, 100);
     this.moneyCounterElement.textContent = `${currencySymbol}${this.money.toLocaleString()}`;
     this.dailyCostElement.textContent = `${currencySymbol}${this.dailyCost.toLocaleString()}`;
