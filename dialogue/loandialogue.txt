@@ -1,25 +1,17 @@
 start:
 Hello, welcome to the Loan Shark Office.
-?What can I do for you today?
-[label1] You doing ok?
-[label2] Need some coaching?
-[label3] How are the funds looking?
-[bonus] Here is a bonus (¥5000)
+?What's up?
 [game] Time for a game?
+[work] How's work?
+[label3] How are the funds looking?
 
-label1:
-!neutral
-@showSkill()
+game:
+A game? Of course, let's play.
+#~nim.txt
+#~nimoptimal.txt
 
-showSkill:
-?Do you think I need to improve?
-[label2] Yes, let’s train.
-[label4] Not right now, just curious.
-
-label2:
-!neutral
-I’m always ready to learn more about collections.
-@train(10)
+work:
+~workdialogue.txt
 
 label3:
 !neutral
@@ -73,8 +65,3 @@ label13:
 
 bonus:
 @giveBonus(5000)
-
-game:
-A game? Of course, let's play.
-#~nim.txt
-#~nimoptimal.txt

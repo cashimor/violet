@@ -3,6 +3,7 @@ Oh, chosen one, seeker of power.
 ?What brings you to the sacred Temple of Malvani?
 [meditate] I seek clarity and strength.
 [blessing] Can I receive a blessing?
+[followers] How many followers does Malvani have?
 [chat] I want to talk.
 
 meditate:
@@ -14,6 +15,9 @@ blessing:
 The divine power flows through you now, Violet.
 Malvani's shadow watches over your every move.
 May it shield you from your enemies and amplify your ambitions.
+
+followers:
+@getFollowerCount()
 
 chat:
 The Temple holds many secrets... 

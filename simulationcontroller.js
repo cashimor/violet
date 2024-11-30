@@ -29,8 +29,11 @@ class SimulationController {
     // Update initial display
     this.updateDisplay();
 
-    // Attach rest button event
-    this.restButton.addEventListener("click", () => this.advanceDay());
+    // Attach rest button event with debounce
+    this.restButton.addEventListener(
+      "click",
+      debounceClick(() => this.advanceDay())
+    );
   }
 
   getEvilFilter(evilness) {

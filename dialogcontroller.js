@@ -118,8 +118,35 @@ class DialogController {
       hasMoney: (param) => this.hasMoney(param),
       adjustEvilness: (param) => this.adjustEvilness(param), // Added function to adjust evilness
       setTidbit: (param) => this.setTidbit(param), // Add setTidBit command
+      getFollowerCount: (param) => this.getFollowerCount(param),
       // Add more functions as needed
     };
+  }
+
+  calculateFollowers(dedicatedIndividuals) {
+    let followers = dedicatedIndividuals * dedicatedIndividuals * 17;
+    return Math.round(followers); // Scale to max followers
+  }
+
+  getFollowerCount() {
+    // Count followers by checking tidbits
+    const dedicatedIndividuals =
+      this.gameController.goddessController.getFollowerCount();
+    const followers = this.calculateFollowers(dedicatedIndividuals);
+
+    // Return dialogue with the follower count
+    if (followers > 0) {
+      return [
+        `We currently have ${followers} devoted followers in Malvani's name.`,
+        ">getFollowerCount",
+      ];
+    } else {
+      return [
+        "There's only the two truly dedicated members.",
+        "The faith is yet to grow.",
+        ">getFollowerCount",
+      ];
+    }
   }
 
   setTidbit(param) {
@@ -702,12 +729,12 @@ class DialogController {
       choiceButton.innerText = text;
       choiceButton.className = "button-parchment";
       choiceButton.style.margin = "5px";
-      choiceButton.onclick = () => {
+      choiceButton.onclick = debounceClick(() => {
         this.closePopup();
         this.state = "ACTIVE";
         this.chooseOption(label); // Update dialog based on choice
         this.start(); // Restart dialog with chosen label
-      };
+      });
       this.choiceContainer.appendChild(choiceButton);
       this.state = "POPUP";
     });

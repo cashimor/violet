@@ -14,13 +14,19 @@ class OptionsController {
     this.mapController = mapController;
     this.gameController = gameController;
     this.showing = false;
-    document.getElementById("save-button").addEventListener("click", () => {
-      this.saveGameState();
-    });
+    document.getElementById("save-button").addEventListener(
+      "click",
+      debounceClick(() => {
+        this.saveGameState();
+      })
+    );
 
-    document.getElementById("load-button").addEventListener("click", () => {
-      this.loadGameState();
-    });
+    document.getElementById("load-button").addEventListener(
+      "click",
+      debounceClick(() => {
+        this.loadGameState();
+      })
+    );
 
     document
       .getElementById("music-toggle")
@@ -28,29 +34,42 @@ class OptionsController {
         this.toggleMusic();
       });
 
-    document.getElementById("close-config").addEventListener("click", () => {
-      this.close();
-    });
-
-    document.getElementById("config-button").addEventListener("click", () => {
-      const configScreen = document.getElementById("config-screen");
-      if (this.showing) {
+    document.getElementById("close-config").addEventListener(
+      "click",
+      debounceClick(() => {
         this.close();
-        return;
-      }
-      this.showing = true;
-      configScreen.style.display = "flex"; // Change from "none" to "flex" for the overlay
-      document.getElementById("config-screen").style.display = "block";
-      document.getElementById("music-toggle").checked =
-        this.locationController.musicOn;
-    });
+      })
+    );
 
-    document.getElementById("restart-button").addEventListener("click", () => {
-      if (confirm("Are you sure you want to restart the game? All progress will be lost.")) {
-        // Clear game state
-        location.reload();    // Reload the page to restart the game
-      }
-    });
+    document.getElementById("config-button").addEventListener(
+      "click",
+      debounceClick(() => {
+        const configScreen = document.getElementById("config-screen");
+        if (this.showing) {
+          this.close();
+          return;
+        }
+        this.showing = true;
+        configScreen.style.display = "flex"; // Change from "none" to "flex" for the overlay
+        document.getElementById("config-screen").style.display = "block";
+        document.getElementById("music-toggle").checked =
+          this.locationController.musicOn;
+      })
+    );
+
+    document.getElementById("restart-button").addEventListener(
+      "click",
+      debounceClick(() => {
+        if (
+          confirm(
+            "Are you sure you want to restart the game? All progress will be lost."
+          )
+        ) {
+          // Clear game state
+          location.reload(); // Reload the page to restart the game
+        }
+      })
+    );
   }
 
   close() {
@@ -62,7 +81,9 @@ class OptionsController {
   }
   saveGameState() {
     if (this.simulationController.gameOver) {
-      updateSummaryText("The game is over. Please restart or reload to continue.");
+      updateSummaryText(
+        "The game is over. Please restart or reload to continue."
+      );
       return;
     }
     if (this.simulationController.gameIntro) {

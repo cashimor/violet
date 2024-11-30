@@ -1,0 +1,36 @@
+start:
+?What can I do for you today?
+[label1] You got this?
+[label2] Can we do some training?
+[bonus] Here is a bonus (¥5000)
+${malvani:[label3] Just checking in.:[goddess] You know Malvani?}
+
+label1:
+!neutral
+@showSkill()
+
+showSkill:
+?Do you think I need to improve?
+[label2] Yes, let’s train.
+[label3] Not right now, just curious.
+
+
+label2:
+!neutral
+I like learning new things.
+@train(10)
+
+label3:
+!neutral
+Alright, let me know if you need anything else.
+
+bonus:
+@giveBonus(5000)
+
+goddess:
+Interesting.
+@friendCheck()
+
+friendCheck:
+If it helps you I'll obviously go visit the temple, Violet.
+@setTidbit(malvani)

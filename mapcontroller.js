@@ -16,14 +16,17 @@ class MapController {
     this.mapContainer = document.getElementById("map-container");
     this.decorationContainer = document.getElementById("decoration-container");
 
-    // Set up the canvas click event to detect location selection
-    this.canvas.addEventListener("click", (event) =>
-      this.handleCanvasClick(event)
-    );
-    this.decocanvas.addEventListener("click", (event) =>
-      this.handleDecoCanvasClick(event)
+    // Updated event listeners
+    this.canvas.addEventListener(
+      "click",
+      debounceClick((event) => this.handleCanvasClick(event))
     );
 
+    this.decocanvas.addEventListener(
+      "click",
+      debounceClick((event) => this.handleDecoCanvasClick(event))
+    );
+    
     // Add event listeners for hovering and clicking
     this.decocanvas.addEventListener("mousemove", (event) =>
       this.handleHover(event)
@@ -169,20 +172,22 @@ class MapController {
   drawBaseMarker(location) {
     this.context.beginPath();
     this.context.arc(location.x, location.y, 10, 0, 2 * Math.PI);
-  
+
     // Use a specific color for the police station
     if (location.name === "Police Station") {
       this.context.fillStyle = "blue"; // Police station marker color
     } else {
       this.context.fillStyle = "red"; // Default marker color
     }
-  
+
     this.context.fill();
   }
 
   handleCanvasClick(event) {
     if (this.simulationController.gameOver) {
-      updateSummaryText("The game is over. Please restart or reload to continue.");
+      updateSummaryText(
+        "The game is over. Please restart or reload to continue."
+      );
       return;
     }
     const rect = this.canvas.getBoundingClientRect();
@@ -213,7 +218,9 @@ class MapController {
 
   handleDecoCanvasClick(event) {
     if (this.simulationController.gameOver) {
-      updateSummaryText("The game is over. Please restart or reload to continue.");
+      updateSummaryText(
+        "The game is over. Please restart or reload to continue."
+      );
       return;
     }
     if (this.locationController.handleDecoCanvasClick(event)) {

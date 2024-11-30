@@ -44,16 +44,19 @@ class GameController {
     this.simulationController.randomizeNPCLocations();
     // Event
     this.mapButton = document.getElementById("map-button");
-    this.mapButton.addEventListener("click", () => {
-      if (this.simulationController.gameOver) {
-        this.mapController.closeMap();
-        updateSummaryText(
-          "The game is over. Please restart or reload to continue."
-        );
-        return;
-      }
-      this.mapController.toggleMap();
-    });
+    this.mapButton.addEventListener(
+      "click",
+      debounceClick(() => {
+        if (this.simulationController.gameOver) {
+          this.mapController.closeMap();
+          updateSummaryText(
+            "The game is over. Please restart or reload to continue."
+          );
+          return;
+        }
+        this.mapController.toggleMap();
+      })
+    );
   }
 }
 
@@ -65,8 +68,24 @@ function updateSummaryText(message) {
   summaryElement.textContent = message;
 }
 
-document.getElementById("proceedButton").addEventListener("click", () => {
-  document.getElementById("contentWarning").style.display = "none"; // Hide the warning
-  document.getElementById("game-container").style.display = "flex"; // Show the game
-  gameController.simulationController.triggerGameIntro();
-});
+function debounceClick(callback, delay = 300) {
+  let isClicked = false;
+
+  return function (...args) {
+    if (isClicked) return; // Ignore additional clicks
+    isClicked = true;
+    callback.apply(this, args);
+    setTimeout(() => {
+      isClicked = false; // Reset after the delay
+    }, delay);
+  };
+}
+
+document.getElementById("proceedButton").addEventListener(
+  "click",
+  debounceClick(() => {
+    document.getElementById("contentWarning").style.display = "none"; // Hide the warning
+    document.getElementById("game-container").style.display = "flex"; // Show the game
+    gameController.simulationController.triggerGameIntro();
+  })
+);

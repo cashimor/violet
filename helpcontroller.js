@@ -7,19 +7,25 @@ class HelpController {
     this.closeHelpButton = document.getElementById("close-help");
     this.shown = false;
 
-    this.violetOutline.addEventListener("click", () => {
-      if (this.shown) {
-        this.hide();
-        return;
-      }
-      this.update();
-      this.helpScreen.classList.toggle("active");
-      this.shown = true;
-    });
+    this.violetOutline.addEventListener(
+      "click",
+      debounceClick(() => {
+        if (this.shown) {
+          this.hide();
+          return;
+        }
+        this.update();
+        this.helpScreen.classList.toggle("active");
+        this.shown = true;
+      })
+    );
 
-    this.closeHelpButton.addEventListener("click", () => {
-      this.hide();
-    });
+    this.closeHelpButton.addEventListener(
+      "click",
+      debounceClick(() => {
+        this.hide();
+      })
+    );
 
     this.stages = {
       intro: `
@@ -210,7 +216,10 @@ class HelpController {
       this.updateStage("evil_win");
       return;
     }
-    if (this.gameController.jobController.checkLoanOfficesWithoutFunds().length > 0) {
+    if (
+      this.gameController.jobController.checkLoanOfficesWithoutFunds().length >
+      0
+    ) {
       this.updateStage("loanOfficeNoFunds");
       return;
     }
