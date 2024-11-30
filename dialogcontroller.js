@@ -85,13 +85,13 @@ class DialogController {
   ) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
-    this.loadDialogFile(dialogFile);
     this.characterController = characterController;
+    this.character = characterController.character;
+    this.loadDialogFile(dialogFile);
     this.simulationController = simulationController;
     this.gameController = gameController;
     this.jobController = jobController;
     this.currentLabel = "start"; // Begin at the default label or starting point
-    this.character = characterController.character;
     this.characterX = characterController.characterX;
     this.characterY = characterController.characterY;
     this.currentIndex = 0; // Tracks the current line in the dialog
@@ -117,8 +117,20 @@ class DialogController {
       scenarioStep: (param) => this.scenarioStep(param),
       hasMoney: (param) => this.hasMoney(param),
       adjustEvilness: (param) => this.adjustEvilness(param), // Added function to adjust evilness
+      setTidbit: (param) => this.setTidbit(param), // Add setTidBit command
       // Add more functions as needed
     };
+  }
+
+  setTidbit(param) {
+    // Extract tidbit name from the parameter (assuming format: @setTidBit(tidbitName))
+    const tidbitName = param.trim();
+
+    // Set the tidbit for the character (assuming `this.character` is the current character)
+    const result = this.character.setTidbit(tidbitName);
+
+    // Return the reference for branching in the dialogue
+    return [">" + result]; // Return an array with the result to match other commands' return formats
   }
 
   adjustEvilness(param) {
@@ -211,6 +223,7 @@ class DialogController {
     return [
       `Thank you for your generous gift of ¥${amount.toLocaleString()}!`,
       likeBoost > 0 ? `I feel closer to you.` : `Oh, that's thoughtful...`,
+      ">giveLike",
     ];
   }
 
@@ -410,14 +423,14 @@ class DialogController {
         // If exiting a random block, pick one randomly and add it
         const randomLine =
           randomBlock[Math.floor(Math.random() * randomBlock.length)];
-        dialogLines.push(randomLine);
+        dialogLines.push(this.processTidbitSyntax(randomLine));
         randomBlock = [];
 
         // Process the current line normally if it's not empty
-        if (line !== "") dialogLines.push(line);
+        if (line !== "") dialogLines.push(this.processTidbitSyntax(line));
       } else if (label) {
         // Normal line processing
-        if (line !== "") dialogLines.push(line);
+        if (line !== "") dialogLines.push(this.processTidbitSyntax(line));
       }
     }
 
@@ -427,6 +440,22 @@ class DialogController {
     }
 
     return dialogMap;
+  }
+
+  // Process a single line for tidbit syntax
+  processTidbitSyntax(line) {
+    // Match the syntax ${key:if_true:if_false}
+    const tidbitRegex = /\$\{([^:]+):([^:]*):([^}]+)\}/g;
+
+    // Replace all matches with their corresponding tidbit values
+    return line.replace(tidbitRegex, (match, key, ifTrue, ifFalse) => {
+      // If ifTrue is empty, return nothing, otherwise use the ifTrue value
+      if (this.character.hasTidbit(key)) {
+        return ifTrue !== "" ? ifTrue : "";
+      } else {
+        return ifFalse;
+      }
+    });
   }
 
   // Fetches the next line and checks for special commands like ~<file>

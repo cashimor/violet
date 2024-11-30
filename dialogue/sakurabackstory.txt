@@ -1,5 +1,8 @@
 start:
-Hello, I’m Sakura.
+${knowsname:Namaste Violet!:Hello, I’m Sakura.}
+@setTidbit(knowsname)
+
+knowsname:
 ?How can I help you today?
 [label1] How are you settling in?
 [label2] What do you enjoy?

@@ -1,5 +1,8 @@
 start:
-Ah, you’ve found me. Name’s Ryo. 
+Ah, you’ve found me. ${knowsname::Name’s Ryo.}
+@setTidbit(knowsname)
+
+knowsname:
 ?What’s on your mind?
 [label1] Tell me about your love.
 [label2] You seem… particular.

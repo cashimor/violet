@@ -1,5 +1,8 @@
 start:
-Oh, hi. I’m Taro. Is there something on your mind?
+Oh, hi. ${knowsname::I’m Taro.} Is there something on your mind?
+@setTidbit(knowsname)
+
+knowsname:
 ?Anything specific you’d like to talk about?
 [label1] What did you study?
 [label2] Any hobbies?

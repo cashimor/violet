@@ -143,6 +143,12 @@ class HelpController {
     </ul>
     <p>Remember: Every action counts, and the path you choose shapes your story. Good luck!</p>
   `,
+      loanOfficeNoFunds: `
+  <p>Your loan office currently has no money to loan out. Without funds, it cannot fulfill its purpose, and clients will turn away empty-handed.</p>
+  <p>Investing money into your loan office allows it to provide loans, which can generate very high profits over time, especially if there is significant demand.</p>
+  <p>Remember, the more money you invest, the more profitable the loan office can become. However, managing funds wisely is key—balance your investments across various assets and ventures for optimal returns.</p>
+  <p>Consider visiting the loan officer to allocate funds and make the most of this opportunity.</p>
+`,
       // Other stages...
     };
   }
@@ -202,6 +208,10 @@ class HelpController {
     }
     if (this.gameController.xivatoController.owned("Violet") > 2) {
       this.updateStage("evil_win");
+      return;
+    }
+    if (this.gameController.jobController.checkLoanOfficesWithoutFunds().length > 0) {
+      this.updateStage("loanOfficeNoFunds");
       return;
     }
     if (

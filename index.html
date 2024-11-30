@@ -11,9 +11,10 @@
       <h1>Content Warning</h1>
       <p style="max-width: 600px; text-align: center">
         This game contains themes of manipulation, betrayal, moral ambiguity,
-        and psychological tension. While there is no depiction of death, certain
-        narratives may be unsettling. Please proceed only if you feel
-        comfortable with such content.
+        psychological tension, and suggestive content. It also features
+        depictions of violence and morally complex scenarios that may be
+        unsettling. Please proceed only if you feel comfortable with such
+        content.
       </p>
       <button
         id="proceedButton"
@@ -131,13 +132,22 @@
           <button id="close-help" class="button-parchment">Close</button>
         </div>
         <div id="violet-outline">
-          <img id="violet-outline-image" src="images/violetoutline.png" alt="Violet Outline" />
+          <img
+            id="violet-outline-image"
+            src="images/violetoutline.png"
+            alt="Violet Outline"
+          />
         </div>
         <div id="simulation-details">
           <h2>Simulation Details</h2>
           <div>
             <p>Day: <span id="day-counter">1</span></p>
-            <p>Energy: <span id="energy-counter">100</span></p>
+            <div id="energy-container">
+              <p id="energy-label">Energy:</p>
+              <div id="energy-bar" class="energy-bar-container">
+                <div id="energy-fill" class="energy-fill"></div>
+              </div>
+            </div>
             <p>Money: <span id="money-counter">¥75,000</span></p>
             <p>Daily Cost: <span id="daily-cost">¥75,000</span></p>
             <button class="button-parchment" id="rest-button">

@@ -19,7 +19,11 @@ I may not have answers, but I can offer perspective.
 
 past_experiences:
 !serious
-I am Takeshi. My life has been one of learning—and, I fear, of failure.
+${knowsname:You want to hear it again, it seems... well...:I am Takeshi.}
+@setTidbit(knowsname)
+
+knowsname:
+My life has been one of learning—and, I fear, of failure.
 !distant
 I once trained as a soldier. But I turned away from that path.
 ?Why do you ask?

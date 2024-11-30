@@ -33,7 +33,7 @@ Impressive! You win this round. I underestimated you.
 
 draw:
 !neutral
-It’s a tie! Seems like we think alike.
+Me too! It’s a tie! Seems like we think alike.
 >start
 
 lose:

@@ -37,16 +37,16 @@ class SimulationController {
     const hue = 135 + (100 - evilness) * 1.65; // Violet base hue
     const brightness = 50 + (100 - evilness) * 0.5;
     const contrast = 100;
-  
+
     return `hue-rotate(${hue}deg) brightness(${brightness}%) contrast(${contrast}%)`;
   }
 
   updateEvilness(change) {
     const newEvilness = this.evilness + change;
     this.evilness = Math.max(0, Math.min(100, newEvilness)); // Clamp between 0 and 100
-  
+
     // Get the new outline color
-    const newColor = this.getEvilFilter(this.evilness);  
+    const newColor = this.getEvilFilter(this.evilness);
     document.getElementById("violet-outline-image").style.filter = newColor;
   }
 
@@ -81,6 +81,13 @@ class SimulationController {
     this.updateDisplay();
   }
 
+  // Function to update the energy bar
+  updateEnergyBar(currentEnergy, maxEnergy) {
+    const energyBar = document.getElementById("energy-fill");
+    const energyPercentage = (currentEnergy / maxEnergy) * 100;
+    energyBar.style.width = `${energyPercentage}%`;
+  }
+  
   updateDisplay() {
     // Calculate daily costs
     this.dailyCost = this.locationCost + this.jobCost;
@@ -90,7 +97,7 @@ class SimulationController {
 
     // Update UI elements with the appropriate symbol
     this.dayCounterElement.textContent = this.day;
-    this.energyCounterElement.textContent = this.energy;
+    this.updateEnergyBar(this.energy, 100);
     this.moneyCounterElement.textContent = `${currencySymbol}${this.money.toLocaleString()}`;
     this.dailyCostElement.textContent = `${currencySymbol}${this.dailyCost.toLocaleString()}`;
   }
@@ -108,7 +115,10 @@ class SimulationController {
       availableLocations.length === 0 &&
       bribeCount > 0
     ) {
-      this.triggerGameOver("You conquered the city!", gameOverLocations["evil"]); // Call a method to handle the win state
+      this.triggerGameOver(
+        "You conquered the city!",
+        gameOverLocations["evil"]
+      ); // Call a method to handle the win state
     }
   }
 

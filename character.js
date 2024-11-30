@@ -22,11 +22,12 @@ class Character {
     this.dayTalk = dayTalk;
     this.like = like;
     this.currentEmotion = "";
+    this.tidbits = {}; // Store yes/no information
     this.setEmotion("");
   }
 
   static fromData(data) {
-    return new Character(
+    const character = new Character(
       data.name,
       data.imageUrlBases,
       data.location,
@@ -38,6 +39,37 @@ class Character {
       data.dayTalk,
       data.like
     );
+
+    // Ensure tidbits are restored
+    character.tidbits = data.tidbits || {};
+    return character;
+  }
+
+  toData() {
+    return {
+      name: this.name,
+      imageUrlBases: this.imageUrlBases,
+      location: this.location,
+      dialogue: this.dialogue,
+      strength: this.strength,
+      weakness: this.weakness,
+      skillLevel: this.skillLevel,
+      icon: this.icon,
+      dayTalk: this.dayTalk,
+      like: this.like,
+      tidbits: this.tidbits, // Include tidbits in save data
+    };
+  }
+
+  // Set a tidbit
+  setTidbit(key) {
+    this.tidbits[key] = true;
+    return key;
+  }
+
+  // Get a tidbit (returns false if not set)
+  hasTidbit(key) {
+    return !!this.tidbits[key];
   }
 
   getSkillLevel() {
@@ -118,6 +150,7 @@ let characters = [
       "aikoshock",
       "aikoloan",
       "aikomassage",
+      "aikomassageloss",
       "aikogamble",
       "aikodrugs",
       "aikopartner",
@@ -137,6 +170,7 @@ let characters = [
       "taroshock",
       "taroloan",
       "taromassage",
+      "taromassageloss",
       "tarogamble",
       "tarodrugs",
       "taropartner",
@@ -156,6 +190,7 @@ let characters = [
       "rikushock",
       "rikuloan",
       "rikumassage",
+      "rikumassageloss",
       "rikugamble",
       "rikudrugs",
       "rikupartner",
@@ -175,6 +210,7 @@ let characters = [
       "sakurashock",
       "sakuraloan",
       "sakuramassage",
+      "sakuramassageloss",
       "sakuragamble",
       "sakuradrugs",
       "sakurapartner",
@@ -195,6 +231,7 @@ let characters = [
       "ryoshock",
       "ryoloan",
       "ryomassage",
+      "ryomassageloss",
       "ryogamble",
       "ryodrugs",
       "ryopartner",
@@ -278,16 +315,12 @@ let characters = [
   ),
   new Character(
     "Takeshi",
-    [
-      "takeshi",
-      "takeshihappy",
-      "takeshipartner"
-    ],
+    ["takeshi", "takeshihappy", "takeshipartner"],
     "Shrine",
     "takeshibackstory.txt",
     "lair",
     "drugs",
-    -10,
+    -10
   ),
   // Add more characters as needed
 ];

@@ -1,0 +1,180 @@
+start:
+I’ll roll two dice. Do you think the total will be low (2-6) or high (8-12)?
+?Choose wisely! We're playing for money.
+[low] Low!
+[high] High!
+
+low:
+Alright, betting on low. Let’s roll!
+#>2low
+#>3low
+#>3low
+#>4low
+#>4low
+#>4low
+#>5low
+#>5low
+#>5low
+#>5low
+#>6low
+#>6low
+#>6low
+#>6low
+#>6low
+#>7lose
+#>7lose
+#>7lose
+#>7lose
+#>7lose
+#>7lose
+#>8low
+#>8low
+#>8low
+#>8low
+#>8low
+#>9low
+#>9low
+#>9low
+#>9low
+#>10low
+#>10low
+#>10low
+#>11low
+#>11low
+#>12low
+
+high:
+Going for high? Let’s see!
+#>7lose
+#>7lose
+#>7lose
+#>7lose
+#>7lose
+#>7lose
+#>2high
+#>3high
+#>3high
+#>4high
+#>4high
+#>4high
+#>5high
+#>5high
+#>5high
+#>5high
+#>6high
+#>6high
+#>6high
+#>6high
+#>6high
+#>8high
+#>8high
+#>8high
+#>8high
+#>8high
+#>9high
+#>9high
+#>9high
+#>9high
+#>10high
+#>10high
+#>10high
+#>11high
+#>11high
+#>12high
+
+# Results for LOW:
+2low:
+I rolled a 2. That’s low! You won!
+>win
+
+3low:
+I rolled a 3. That’s low! You won!
+>win
+
+4low:
+I rolled a 4. That’s low! You won!
+>win
+
+5low:
+I rolled a 5. That’s low! You won!
+>win
+
+6low:
+I rolled a 6. That’s low! You won!
+>win
+
+8low:
+I rolled an 8. Sadly, that means you lose.
+>lose
+
+9low:
+I rolled a 9. Sadly, that means you lose.
+>lose
+
+10low:
+I rolled a 10. Sadly, that means you lose.
+>lose
+
+11low:
+I rolled an 11. Sadly, that means you lose.
+>lose
+
+12low:
+I rolled a 12. Sadly, that means you lose.
+>lose
+
+# Results for HIGH:
+8high:
+I rolled an 8. That’s high! You won!
+>win
+
+9high:
+I rolled a 9. That’s high! You won!
+>win
+
+10high:
+I rolled a 10. That’s high! You won!
+>win
+
+11high:
+I rolled an 11. That’s high! You won!
+>win
+
+12high:
+I rolled a 12. That’s high! You won!
+>win
+
+2high:
+I rolled a 2. Sadly, that means you lose.
+>lose
+
+3high:
+I rolled a 3. Sadly, that means you lose.
+>lose
+
+4high:
+I rolled a 4. Sadly, that means you lose.
+>lose
+
+5high:
+I rolled a 5. Sadly, that means you lose.
+>lose
+
+6high:
+I rolled a 6. Sadly, that means you lose.
+>lose
+
+# Tie/loss for both:
+7lose:
+I rolled a 7. Tough luck—it’s a tie. No one wins!
+
+# End results:
+win:
+Congratulations! Luck is on your side today. Let’s play again sometime.
+@giveLike(100)
+
+giveLike:
+@adjustLike(22)
+
+lose:
+Better luck next time.

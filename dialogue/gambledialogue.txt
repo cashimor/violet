@@ -31,4 +31,5 @@ bonus:
 
 game:
 A game? Of course, let's play.
-~rockpaperscissors.txt
+#~rockpaperscissors.txt
+#~hilo.txt

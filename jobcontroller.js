@@ -40,7 +40,7 @@ class JobController {
   getRoomTypeByName(name) {
     for (const key in roomTypes) {
       if (roomTypes[key].name === name) {
-        return roomTypes[key]
+        return roomTypes[key];
       }
     }
     return null; // Or handle error if name not found
@@ -57,11 +57,11 @@ class JobController {
   assignNpcToJob(roomId, character) {
     if (this.jobs[roomId] && !this.jobs[roomId].npcAssigned) {
       this.jobs[roomId].npcAssigned = character;
-      const roomType = this.getRoomTypeByName(this.jobs[roomId].purpose)
+      const roomType = this.getRoomTypeByName(this.jobs[roomId].purpose);
       character.location = roomId;
       character.setIcon(roomType.icon);
       character.dialogue = roomType.dialogue;
-      return true;  
+      return true;
     }
     return false;
   }
@@ -92,5 +92,25 @@ class JobController {
     });
 
     return Array.from(availablePurposes);
+  }
+
+  checkLoanOfficesWithoutFunds() {
+    const jobs = this.jobs; // Assuming 'this.jobs' is accessible in the relevant context.
+    let loanOfficesWithoutFunds = [];
+
+    for (const roomId in jobs) {
+      const jobInfo = jobs[roomId]; // Entry from this.jobs
+      if (jobInfo.npcAssigned && jobInfo.purpose === "Loan Office") {
+        // Fetch the room type object
+        const roomType = this.getRoomTypeByName(jobInfo.purpose);
+
+        // Check if funds are defined and positive in the room type
+        if (!roomType || roomType.funds === undefined || roomType.funds <= 0) {
+          loanOfficesWithoutFunds.push(roomId);
+        }
+      }
+    }
+
+    return loanOfficesWithoutFunds;
   }
 }

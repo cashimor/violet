@@ -193,8 +193,12 @@ class LocationController {
     const iconSize = 40; // Size of the navigation icons
     const margin = 10; // Margin from the canvas edge
 
+    // Shared properties for arrows
+    context.lineWidth = 3;
+
     // Draw left arrow (<)
-    context.fillStyle = "rgba(0, 0, 0, 0.5)"; // Semi-transparent black
+    context.fillStyle = "rgba(0, 0, 0, 0.5)"; // Slightly darker semi-transparent black
+    context.strokeStyle = "violet"; // White outline
     context.beginPath();
     context.moveTo(margin, this.decocanvas.height / 2);
     context.lineTo(
@@ -207,9 +211,11 @@ class LocationController {
     );
     context.closePath();
     context.fill();
+    context.stroke();
 
     // Draw right arrow (>)
     context.fillStyle = "rgba(0, 0, 0, 0.5)";
+    context.strokeStyle = "violet";
     context.beginPath();
     context.moveTo(this.decocanvas.width - margin, this.decocanvas.height / 2);
     context.lineTo(
@@ -222,6 +228,7 @@ class LocationController {
     );
     context.closePath();
     context.fill();
+    context.stroke();
   }
 
   // Event listener for arrow click detection
@@ -273,15 +280,25 @@ class LocationController {
   drawBackArrow() {
     const arrowX = 20; // X position
     const arrowY = 20; // Y position
-    const arrowSize = 30; // Size of the arrow
-
-    this.decocontext.beginPath();
-    this.decocontext.moveTo(arrowX + arrowSize, arrowY); // Right point
-    this.decocontext.lineTo(arrowX, arrowY + arrowSize / 2); // Left middle point
-    this.decocontext.lineTo(arrowX + arrowSize, arrowY + arrowSize); // Bottom point
-    this.decocontext.closePath();
-    this.decocontext.fillStyle = "yellow";
-    this.decocontext.fill();
+    const arrowSize = 30; // Reduced size for subtlety
+  
+    const context = this.decocontext;
+  
+    // Outline color
+    context.strokeStyle = "violet"; // Violet
+    context.lineWidth = 2; // Thin outline
+  
+    // Draw outlined arrow
+    context.beginPath();
+    context.moveTo(arrowX + arrowSize, arrowY); // Right point
+    context.lineTo(arrowX, arrowY + arrowSize / 2); // Left middle point
+    context.lineTo(arrowX + arrowSize, arrowY + arrowSize); // Bottom point
+    context.closePath();
+    context.stroke();
+  
+    // Optional: light fill for visibility
+    context.fillStyle = "rgba(255, 255, 0, 0.7)"; // Light gray with transparency
+    context.fill();
   }
 
   handleHover(event) {

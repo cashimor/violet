@@ -1,9 +1,10 @@
 start:
 Hello, welcome to the massage parlor.
 ?What can I do for you today?
-[label1] How do you feel about your skills?
-[label2] Can we do some training?
+[label1] How're your skills?
+[label2] Can you practice on me?
 [bonus] Here is a bonus (¥5000)
+[game] Maybe a game?
 [label3] Just checking in.
 
 label1:
@@ -26,3 +27,6 @@ Alright, let me know if you need anything else.
 
 bonus:
 @giveBonus(5000)
+
+game:
+~hiloclothes.txt

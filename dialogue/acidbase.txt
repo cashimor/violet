@@ -19,7 +19,7 @@ I'll pick a molecule, and you tell me how acidic it is...
 #>k2co3
 
 h2so4:
-Sulfuric acid, H2SO4
+Sulfuric, H2SO4
 >strongacid
 
 ch3cooh:
@@ -39,11 +39,11 @@ Lye, NaOH
 >strongbase
 
 hcl:
-Hydrochloric acid, HCl
+Hydrochloric, HCl
 >strongacid
 
 h2co3:
-Carbonic acid, H2CO3
+Carbonic, H2CO3
 >weakacid
 
 ch3oh:
@@ -63,7 +63,7 @@ Potassium hydroxide, KOH
 >strongbase
 
 hno3:
-Nitric acid, HNO3
+Nitric, HNO3
 >strongacid
 
 na2co3:
@@ -79,7 +79,7 @@ Ethanol, C2H5OH
 >neutral
 
 c6h5cooh:
-Benzoic acid, C6H5COOH
+Benzoic, C6H5COOH
 >weakacid
 
 k2co3:

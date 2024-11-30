@@ -1,5 +1,8 @@
 start:
-Oh, hello there. My name is Aiko.
+Oh, hello there. ${knowsname:Good to see you again.:My name is Aiko.}
+@setTidbit(knowsname)
+
+knowsname:
 ?Is there something you'd like to talk about?
 [label1] Tell me about your past.
 [label2] What’s your secret?
