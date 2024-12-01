@@ -1,0 +1,77 @@
+start:
+${knowsname:Violet! Good to see you again!:I'm Ume.}
+@setTidbit(knowsname)
+
+knowsname:
+?Welcome! Oh, um, do you need help with something?
+[ask] Tell me about yourself.
+[compliment] You seem really skilled.
+[talk] Let's talk.
+
+ask:
+Well, there’s not much to tell. I’m just Ume... I work as a lab assistant, and,
+?um, sometimes people say I’m good at chemistry and stuff.
+[tease] That’s modest. You seem amazing!
+[chemistry] How did you get so good at chemistry?
+[physical] You look strong too. Do you train?
+
+chemistry:
+!happy
+Oh, chemistry? I’ve always liked figuring out how things work,
+but I guess I started really studying hard because...
+well, people used to make fun of me.
+I didn’t want to give them a reason, so I thought,
+?‘I’ll be so good at something they’ll have to respect me!’
+[continue] That’s impressive!
+[makefun] Make fun of you?
+[joke] Did it work?
+
+makefun:
+Yes... I do look a bit different. They used to call me names.
+But I accept them now. You can call me the plump plum too, if you want.
+But it made me stronger in all areas. Except loaning money.
+I still worry people will pick on me.
+
+physical:
+!neutral
+Ah, you noticed? Yeah, I practice judo. Same reason, really.
+If you’re strong, people don’t bother you as much.
+?But I like it too—it’s nice to feel capable, you know?
+[judo] So you can throw someone twice your size?
+[continue] You’ve worked hard to get here, huh?
+
+judo:
+!happy
+Definitely! It’s all about leverage and timing.
+?Not that many twice my size anyway. Careful, or I might have to show you!
+[laugh] I’ll keep that in mind!
+[serious] You’ve really earned your strength.
+
+tease:
+!neutral
+Oh, you’re just saying that... but, um, thank you. I’ve tried hard, I guess.
+?Would you like to ask more?
+[chemistry] How did you get so good at chemistry?
+[physical] You look strong too. Do you train?
+[end] I’ll let you get back to your work.
+
+end:
+
+laugh:
+!shock
+Good, because I don’t think you’d be easy to pin down anyway.
+
+serious:
+!neutral
+Thank you. That means a lot. I don’t always feel like I’m strong enough, but I try.
+
+talk:
+~talkdialogue.txt
+
+compliment:
+!shock
+Thank you... It wasn’t easy, but I didn’t want to let their words define me.
+!neutral
+I guess I just wanted to prove that I could be more.
+Although I am still bad at asking for people to return things that I lend them.
+I just worry it will become like it was in the past.

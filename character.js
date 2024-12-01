@@ -223,7 +223,6 @@ let characters = [
     "massage",
     "drugs"
   ),
-
   new Character(
     "Ryo",
     [
@@ -244,7 +243,6 @@ let characters = [
     "loan",
     "drugs"
   ),
-
   new Character(
     "Police Officer",
     ["police officer"],
@@ -323,4 +321,26 @@ let characters = [
     -10
   ),
   // Add more characters as needed
+  new Character(
+    "Ume",
+    [
+      "ume",
+      "umeshock",
+      "umeloan",
+      "umemassage",
+      "umemassageloss",
+      "umegamble",
+      "umedrugs",
+      "umepartner",
+      "umehappy",
+      "umecourier",
+      "umepriest",
+    ],
+    "City Block 2",
+    "umebackstory.txt",
+    "drugs",
+    "loan",
+    20
+  ),
+
 ];
