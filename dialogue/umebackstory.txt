@@ -75,3 +75,6 @@ Thank you... It wasn’t easy, but I didn’t want to let their words define me.
 I guess I just wanted to prove that I could be more.
 Although I am still bad at asking for people to return things that I lend them.
 I just worry it will become like it was in the past.
+
+continue:
+>compliment

@@ -29,14 +29,17 @@ class LocationController {
     this.musicOn = true;
     this.decoratePopup = document.getElementById("decoratePopup");
     document.querySelectorAll(".decorate-btn").forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const roomKey = event.target.id.replace("btn", "").toLowerCase();
-        const roomData = roomTypes[roomKey];
+      button.addEventListener(
+        "click",
+        debounceClick((event) => {
+          const roomKey = event.target.id.replace("btn", "").toLowerCase();
+          const roomData = roomTypes[roomKey];
 
-        if (roomData) {
-          this.decorateRoom(roomData);
-        }
-      });
+          if (roomData) {
+            this.decorateRoom(roomData);
+          }
+        })
+      );
 
       // Dynamically update the data-hint with cost and upkeep
       const roomKey = button.id.replace("btn", "").toLowerCase();
@@ -52,9 +55,12 @@ class LocationController {
       }
     });
     const closeButton = document.getElementById("closeDecoratePopup");
-    closeButton.addEventListener("click", () => {
-      this.hidePopups();
-    });
+    closeButton.addEventListener(
+      "click",
+      debounceClick(() => {
+        this.hidePopups();
+      })
+    );
   }
 
   getCharacterByName(name) {
@@ -141,19 +147,19 @@ class LocationController {
       this.rentPopup.classList.remove("hidden");
 
       // Handle Rent button click
-      document.getElementById("rent-button").onclick = () => {
+      document.getElementById("rent-button").onclick = debounceClick(() => {
         // Deduct money and mark location as rented by Violet
         location.rentTo("Violet");
         this.simulationController.recalculateDailyCostLocations(locations);
         // Hide popup
         this.rentPopup.classList.add("hidden");
         this.loadLocation(location);
-      };
+      });
 
       // Handle Close button click
-      document.getElementById("close-popup").onclick = () => {
+      document.getElementById("close-popup").onclick = debounceClick(() => {
         this.rentPopup.classList.add("hidden");
-      };
+      });
     }
   }
 
