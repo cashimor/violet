@@ -38,7 +38,8 @@ But I guess it didn’t always pay off.
 label5:
 !neutral
 Oh, you mean disasters?
-Well, there was this one time in school when I thought I’d cracked the formula for random outcomes...
+Well, there was this one time in school
+when I thought I’d cracked the formula for random outcomes...
 But the results were, um, not great.
 My calculations didn’t match reality. I guess I’m not great at probabilities.
 

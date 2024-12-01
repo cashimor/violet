@@ -7,6 +7,7 @@ class Character {
     strength,
     weakness,
     skillLevel = 10,
+    specialDialogues = {}, // New parameter for special dialogues
     icon = "",
     dayTalk = 0,
     like = 0
@@ -18,6 +19,7 @@ class Character {
     this.strength = strength;
     this.weakness = weakness;
     this.skillLevel = skillLevel; // Basic skill level is 10%
+    this.specialDialogues = specialDialogues; // Assign the special dialogues
     this.icon = icon;
     this.dayTalk = dayTalk;
     this.like = like;
@@ -35,6 +37,7 @@ class Character {
       data.strength,
       data.weakness,
       data.skillLevel,
+      data.specialDialogues || {}, // Restore special dialogues or default to an empty object
       data.icon,
       data.dayTalk,
       data.like
@@ -54,6 +57,7 @@ class Character {
       strength: this.strength,
       weakness: this.weakness,
       skillLevel: this.skillLevel,
+      specialDialogues: this.specialDialogues, // Include special dialogues in save data
       icon: this.icon,
       dayTalk: this.dayTalk,
       like: this.like,
@@ -251,7 +255,8 @@ let characters = [
     null,
     null,
     100,
-    "police"
+    {},
+    "police",
   ),
   new Character(
     "Xivato",
@@ -261,7 +266,8 @@ let characters = [
     null,
     null,
     100,
-    "xivato"
+    {},
+    "xivato",
   ),
   new Character(
     "Alaric",
@@ -271,6 +277,7 @@ let characters = [
     null,
     null,
     100,
+    {},
     "alaric",
     0,
     -100
@@ -283,6 +290,7 @@ let characters = [
     null,
     null,
     100,
+    {},
     "vaeren",
     0,
     -100
@@ -295,6 +303,7 @@ let characters = [
     null,
     null,
     100,
+    {},
     "nirvani",
     0,
     100
@@ -307,6 +316,7 @@ let characters = [
     null,
     null,
     100,
+    {},
     "itsuki",
     0,
     1000
@@ -318,7 +328,8 @@ let characters = [
     "takeshibackstory.txt",
     "lair",
     "drugs",
-    -10
+    -10,
+    { "Evil Lair": "takeshilairdialogue.txt" } // Special dialogue for Evil Lair
   ),
   // Add more characters as needed
   new Character(
@@ -342,5 +353,4 @@ let characters = [
     "loan",
     20
   ),
-
 ];

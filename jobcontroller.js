@@ -53,19 +53,28 @@ class JobController {
     return room ? room.npcAssigned : null; // Return assigned NPC if exists, else null
   }
 
-  // Assign an NPC to a room if it has a specific purpose and is vacant
   assignNpcToJob(roomId, character) {
     if (this.jobs[roomId] && !this.jobs[roomId].npcAssigned) {
       this.jobs[roomId].npcAssigned = character;
       const roomType = this.getRoomTypeByName(this.jobs[roomId].purpose);
+
       character.location = roomId;
       character.setIcon(roomType.icon);
-      character.dialogue = roomType.dialogue;
+
+      // Check for special dialogue overrides
+      if (
+        character.specialDialogues &&
+        character.specialDialogues[roomType.name]
+      ) {
+        character.dialogue = character.specialDialogues[roomType.name];
+      } else {
+        character.dialogue = roomType.dialogue; // Default dialogue
+      }
+
       return true;
     }
     return false;
   }
-
   // Remove an NPC from a room (e.g., if job completed). Untested.
   removeNpcFromJob(roomId) {
     if (this.jobs[roomId]) {

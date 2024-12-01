@@ -1,0 +1,153 @@
+start:
+It's always a pleasure to see you here Violet. Hopefully we can talk.
+#>lair1
+#>lair2
+
+lair1:
+This lair of ours—it’s a curious place to plan one’s future. But...
+?I wonder, is there something in your past you’d rather leave behind?
+[father] My father.
+[betrayal] Betrayal.
+[nothing] Nothing.
+
+nothing:
+I see. I don't want to cause you distress. We can talk about it another time.
+Let’s just rest together, for now. But if you ever want to talk, I’ll be here.
+
+betrayal:
+So this... Alaric... promised to marry you, even bought jewelry for you,
+but then gave it all to a girl that his aunt arranged for him?
+?Did you love him?
+[love] I wanted him.
+[ticket] He was my ticket out.
+[kill] I would've killed him.
+[nothing] None of your business.
+
+love:
+I see...
+
+ticket:
+So he used you, but you planned to use him too.
+?It seems you might be even.
+[child] He has my child.
+[never] I am better than him.
+${alaricEven:[never]:[even]} Perhaps...
+[nothing] None of your business.
+
+never:
+I know you are.
+
+even:
+I'm glad to hear it.
+@setTidbit(alaricEven)
+
+alaricEven:
+@adjustEvilness(-10)
+
+child:
+@setTidbit(hasChild)
+
+hasChild:
+Please... don't let this get you upset. We can talk more later.
+
+kill:
+You would have... yes... the moment you had a child. If not you, then your father.
+
+father:
+Your father only had daughters? And he wanted a son...
+and you did all you could to be that son for him, but it didn't help.
+Then he played you out against your sisters. So you all hated each other.
+?Maybe you could tell me what you would tell your father now?
+[father_why] Why talk now?
+[father_laugh] You laughed at me with a sword.
+[father_plead] I just wanted your love.
+[father_hate] Why did you hate me?
+
+father_why:
+You were always my daughter.
+?But you were never enough.
+[father_fault] That is your fault.
+[father_now] And now? Am I enough now?
+[father_laugh] You laughed at me with a sword.
+[nothing] I want to stop.
+
+father_fault:
+Maybe. But I did the best I could.
+
+father_now:
+You always were the strongest of my daughters. 
+Even if I didn’t show it, I admired that strength.
+
+father_laugh:
+Perhaps I was wrong. Perhaps I should have seen you as you were—
+stronger than I ever gave you credit for.
+?My cruelty made you successful.
+[father_no] I made me successful.
+[father_plead] I just wanted your love.
+[father_hate] Why did you hate me?
+[nothing] I want to stop.
+
+father_no:
+!happy
+Yes, you did.
+
+father_plead:
+Yes, you wanted me to be proud. I wanted a legacy.
+?Was that so bad?
+[father_proud] Yes! I was not that legacy.
+[father_hate] Why did you hate me?
+[nothing] I want to stop.
+
+father_proud:
+No. You were a mistake. I loved your mother the most.
+But even she only gave me daughters.
+Oh... he was such a mean father. I can see why you do the things you do.
+It's best if we stop now.
+
+father_hate:
+Perhaps I didn't know how to notice. Perhaps I was afraid to.
+I had a kingdom to rule.
+?Maybe you should forgive yourself, even if you can't forgive me.
+[father_unsure] I don't know if I can.
+[father_forgive] I think so...
+[father_no] Never!
+
+father_no:
+It's alright. You'll be alright, Violet.
+
+father_unsure:
+Yes... these things are difficult.
+I am glad that you recognize the conflict inside you.
+@setTidbit(fatherEven)
+
+fatherEven:
+@adjustEvilness(-10)
+
+father_forgive:
+That is good... if you mean it.
+
+father_no:
+I see... you still feel quite strongly about it.
+Perhaps we can revisit it another time.
+
+lair2:
+In your old world, who did you want to be? And who are you now?
+?If you could choose... which of those lives feels truer to you?
+[queen] I wanted to be queen of the desert.
+[ruler] I will be ruler of Kiyosawa.
+[oldlife] I'd like to go back.
+[newlife] I will stay here.
+
+queen:
+You would be a magnificent queen in any world.
+
+ruler:
+Certainly. The only question is what kind of ruler you will be.
+
+oldlife:
+You came here... you might be able to go back?
+I believe it was the Goddess that brought you here. Perhaps you can ask her somehow?
+@setTidbit(oldLife)
+
+newlife:
+I'm glad to hear that. I like you being here.

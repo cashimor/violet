@@ -2,9 +2,22 @@ start:
 !neutral
 You seem lost. Tell me, what brings you to me?
 ?What would you like to ask?
-[path_to_redemption] How do I find peace here?
+[reason] What brings you here?
 [past_experiences] Who are you?
 [talk] Let's talk.
+
+reason:
+Oh... mostly to help people find their way.
+?You seem particularly in need of guidance. Perhaps I can help you.
+[path_to_redemption] You mean finding peace?
+[past_experiences] Who are you?
+[usefulness] I could use help.
+
+usefulness:
+If it is help with your current businesses, I'm the least suited for any of those.
+You don't see me being successful with nefarious enterprises.
+Perhaps I could be a priest in a temple. But even there I suspect I would be wasted.
+No. My help would be by your side. Guiding you. If you let me.
 
 path_to_redemption:
 !thoughtful
