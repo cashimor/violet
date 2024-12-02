@@ -184,7 +184,7 @@ class MapController {
   }
 
   handleCanvasClick(event) {
-    if (this.simulationController.gameOver) {
+    if (this.simulationController.scenarioManager.gameOver) {
       updateSummaryText(
         "The game is over. Please restart or reload to continue."
       );
@@ -217,7 +217,7 @@ class MapController {
   }
 
   handleDecoCanvasClick(event) {
-    if (this.simulationController.gameOver) {
+    if (this.simulationController.scenarioManager.gameOver) {
       updateSummaryText(
         "The game is over. Please restart or reload to continue."
       );

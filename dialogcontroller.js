@@ -87,9 +87,9 @@ class DialogController {
     this.context = canvas.getContext("2d");
     this.characterController = characterController;
     this.character = characterController.character;
+    this.gameController = gameController;
     this.loadDialogFile(dialogFile);
     this.simulationController = simulationController;
-    this.gameController = gameController;
     this.jobController = jobController;
     this.currentLabel = "start"; // Begin at the default label or starting point
     this.characterX = characterController.characterX;
@@ -120,8 +120,43 @@ class DialogController {
       setTidbit: (param) => this.setTidbit(param), // Add setTidBit command
       getFollowerCount: (param) => this.getFollowerCount(param),
       pray: (param) => this.pray(param),
+      checkTheft: (param) => this.checkTheft(param),
       // Add more functions as needed
     };
+  }
+
+  checkTheft() {
+    const loanSharkRoom = roomTypes["loansharking"];
+
+    // Check if theft logs exist
+    if (
+      !loanSharkRoom.theftHistory ||
+      loanSharkRoom.theftHistory.length === 0
+    ) {
+      return [">notheft"]; // No theft to report
+    }
+
+    // Add an introductory message
+    const theftDescriptions = [
+      "We've detected some irregularities in the funds. Here are the details:",
+    ];
+
+    // Describe the theft(s)
+    theftDescriptions.push(
+      ...loanSharkRoom.theftHistory.map((theft, index) => {
+        return `Incident ${index + 1}: ${theft.amount} currency was stolen on ${
+          theft.date
+        }.`;
+      })
+    );
+
+    // Clear the theft record after processing
+    loanSharkRoom.theftHistory = [];
+
+    // Add a marker to indicate theft occurred
+    theftDescriptions.push(">theft");
+
+    return theftDescriptions;
   }
 
   pray(target) {
@@ -208,7 +243,13 @@ class DialogController {
       console.log("Moving to game start due to skip.");
       // Move the game state to the next scenario step
       this.gameController.closeDialogCallback = null;
-      this.simulationController.triggerGameStart(); // Example: Loads a new location or triggers events
+      this.simulationController.scenaraioManager.triggerGameStart(); // Example: Loads a new location or triggers events
+      return [""];
+    }
+    if (param === "oldlife") {
+      console.log("Moving to old life...");
+      this.gameController.closeDialogCallback = null;
+      this.simulationController.scenarioManager.triggerOldLife();
     }
     // Add other steps as needed
     return [""];
@@ -496,15 +537,26 @@ class DialogController {
     return dialogMap;
   }
 
-  // Process a single line for tidbit syntax
   processTidbitSyntax(line) {
-    // Match the syntax ${key:if_true:if_false}
+    // Match the syntax ${CharacterName/tidbitKey:if_true:if_false}
     const tidbitRegex = /\$\{([^:]+):([^:]*):([^}]+)\}/g;
 
-    // Replace all matches with their corresponding tidbit values
     return line.replace(tidbitRegex, (match, key, ifTrue, ifFalse) => {
-      // If ifTrue is empty, return nothing, otherwise use the ifTrue value
-      if (this.character.hasTidbit(key)) {
+      let characterName = null;
+      let tidbitKey = key;
+
+      // Check if there's a character prefix
+      if (key.includes("/")) {
+        [characterName, tidbitKey] = key.split("/");
+      }
+
+      // Resolve the character
+      const character = characterName
+        ? this.gameController.getCharacterByName(characterName)
+        : this.character; // Default to current character
+
+      // Return the appropriate value
+      if (character?.hasTidbit(tidbitKey)) {
         return ifTrue !== "" ? ifTrue : "";
       } else {
         return ifFalse;

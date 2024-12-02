@@ -12,6 +12,7 @@ class RoomType {
     music,
     dialogue,
     funds = 0,
+    theftHistory = []
   }) {
     this.name = name;
     this.job = job;
@@ -25,6 +26,7 @@ class RoomType {
     this.music = music;
     this.dialogue = dialogue;
     this.funds = funds;
+    this.theftHistory = theftHistory;
   }
 
   // Convert to plain data
@@ -42,6 +44,7 @@ class RoomType {
       music: this.music,
       dialogue: this.dialogue,
       funds: this.funds,
+      theftHistory: this.theftHistory,
     };
   }
 
@@ -59,8 +62,6 @@ class RoomType {
     // Calculate base profit reduced by lack of skill
     const skillEffect = character.getSkillLevel() / 100; // Skill level as a percentage
     let profit = Math.max(this.baseProfit, this.funds) * skillEffect;
-
-    console.log("" + skillEffect + ":" + this.baseProfit + ":" + profit);
 
     // Apply room-specific adjustments
     if (this.name === "Gambling Den" && this.isRaided(raidChance)) {
@@ -83,6 +84,11 @@ class RoomType {
     console.log("Raid, with chance: " + raidChance);
     // Simple placeholder for whether a raid occurs (e.g., random chance or event)
     return Math.random() < raidChance / 100; // 10% chance of a raid
+  }
+
+  // Optional: Method to get total thefts or specific theft data
+  getTotalThefts() {
+    return this.theftHistory.reduce((sum, theft) => sum + theft.amount, 0);
   }
 }
 

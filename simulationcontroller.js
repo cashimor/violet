@@ -3,6 +3,7 @@ class SimulationController {
     this.jobController = jobController;
     this.xivatoController = xivatoController;
     this.gameController = gameController;
+    this.scenarioManager = new ScenarioManager(gameController, this); // Initialize the helper
     this.characters = characters;
     this.day = 1;
     this.energy = 100;
@@ -13,8 +14,6 @@ class SimulationController {
     this.jobCost = 0;
     this.friendBoundary = 0;
     this.bribes = 0;
-    this.gameOver = false;
-    this.gameIntro = false;
     this.evilLairBonus = 0;
     this.evilness = 100; // Starting evil score
     this.updateEvilness(0);
@@ -84,18 +83,9 @@ class SimulationController {
     this.updateDisplay();
   }
 
-  // Function to update the day display with weekday, month, and day
-  updateDayCounter(currentDay) {
-    if (this.gameIntro) {
-      document.getElementById(
-        "date-counter"
-      ).innerText = `Dune Day, 8th of the Moons of Dust`;
-      return;
-    }
-    // Store the starting date
-    const startDate = new Date(2024, 2, 21); // March 21, 2024 (Month is 0-indexed in JS)
-
-    // Array of weekday names starting from Sunday
+  // Function to format the game's date
+  formatGameDate(currentDay) {
+    const startDate = new Date(2024, 2, 21); // March 21, 2024
     const weekdays = [
       "Sunday",
       "Monday",
@@ -106,21 +96,32 @@ class SimulationController {
       "Saturday",
     ];
 
-    // Calculate the date for the current day
+    // Calculate the current date based on the day count
     const currentDate = new Date(startDate);
-    currentDate.setDate(currentDate.getDate() + currentDay - 1); // Offset by current day
+    currentDate.setDate(currentDate.getDate() + currentDay - 1);
 
-    // Get the day of the week (0-6, Sunday-Saturday)
+    // Get the formatted date components
     const dayOfWeek = weekdays[currentDate.getDay()];
-
-    // Format the date (excluding the year)
-    const options = { month: "long", day: "numeric" }; // Format as "March 21"
+    const options = { month: "long", day: "numeric" };
     const formattedDate = currentDate.toLocaleDateString("en-US", options);
 
-    // Update the date display to include day of the week
-    document.getElementById(
-      "date-counter"
-    ).innerText = `${dayOfWeek}, ${formattedDate}`;
+    return `${dayOfWeek}, ${formattedDate}`;
+  }
+
+  // Function to update the day display with the formatted game date
+  updateDayCounter(currentDay) {
+    if (this.scenarioManager.gameIntro) {
+      document.getElementById(
+        "date-counter"
+      ).innerText = `Dune Day, 8th of the Moons of Dust`;
+      return;
+    }
+
+    // Use the formatGameDate function to get the formatted date
+    const formattedDate = this.formatGameDate(currentDay);
+
+    // Update the date display
+    document.getElementById("date-counter").innerText = formattedDate;
   }
 
   // Function to update the energy bar
@@ -135,7 +136,7 @@ class SimulationController {
     this.dailyCost = this.locationCost + this.jobCost;
 
     // Choose the currency symbol based on the game state
-    const currencySymbol = this.gameIntro ? "⚜" : "¥";
+    const currencySymbol = this.scenarioManager.gameIntro ? "⚜" : "¥";
 
     // Update UI elements with the appropriate symbol
     this.updateDayCounter(this.day);
@@ -157,15 +158,42 @@ class SimulationController {
       availableLocations.length === 0 &&
       bribeCount > 0
     ) {
-      this.triggerGameOver(
+      this.scenarioManager.triggerGameOver(
         "You conquered the city!",
         gameOverLocations["evil"]
       ); // Call a method to handle the win state
     }
   }
 
+  // Assuming roomTypes is globally accessible or passed as context
+  applyItsukiTheft() {
+    const chance = 0.1;
+    const maxTheftPercentage = 0.2;
+
+    const loanOffice = roomTypes["loansharking"];
+    if (!loanOffice || !loanOffice.funds || loanOffice.funds <= 0) return; // No funds to steal
+
+    // Check if Itsuki successfully steals today
+    if (Math.random() < chance) {
+      const theftAmount = Math.round(
+        loanOffice.funds * maxTheftPercentage * Math.random()
+      );
+      loanOffice.funds -= theftAmount;
+
+      // Record the theft for dialogue purposes
+      if (!loanOffice.theftHistory) {
+        loanOffice.theftHistory = [];
+      }
+      loanOffice.theftHistory.push({
+        date: this.formatGameDate(this.day),
+        amount: theftAmount,
+      });
+      console.log(`Itsuki stole ${theftAmount} from the loan office!`);
+    }
+  }
+
   advanceDay() {
-    if (this.gameOver) {
+    if (this.scenarioManager.gameOver) {
       updateSummaryText(
         "The game is over. Please restart or reload to continue."
       );
@@ -178,7 +206,7 @@ class SimulationController {
     this.evilLairBonus = 0;
 
     this.randomizeNPCLocations();
-
+    this.applyItsukiTheft();
     // Prepare summary of daily activities
     let summary = `<b>Day ${this.day}:</b><br>`;
     let raidHappened = false;
@@ -228,11 +256,11 @@ class SimulationController {
 
     // Check for Game Over
     if (this.money < 0) {
-      this.triggerGameOver("Out of money", gameOverLocations["poverty"]);
+      this.scenarioManager.triggerGameOver("Out of money", gameOverLocations["poverty"]);
       // Implement any additional game-over logic here
     }
     if (this.xivatoController.onNewDay()) {
-      this.triggerGameOver(
+      this.scenarioManager.triggerGameOver(
         "Xivato took over the town",
         gameOverLocations["xivato"]
       );
@@ -340,61 +368,10 @@ class SimulationController {
     this.bribes += amount;
   }
 
-  triggerGameOver(message, location) {
-    this.gameOver = true;
-    updateSummaryText(message);
-    this.gameController.mapController.closeMap();
-    this.gameController.locationController.loadLocation(location);
-  }
-
-  triggerGameIntro3 = () => {
-    this.money = 0;
-    this.dailyCost = 0;
-    this.locationCost = 0;
-    this.gameController.closeDialogCallback = this.triggerGameStart;
-    this.gameController.locationController.loadLocation(
-      gameOverLocations["purgatory"]
-    );
-  };
-
-  triggerGameIntro2 = () => {
-    const alaric = this.characters.find((char) => char.name === "Alaric");
-    const vaeren = this.characters.find((char) => char.name === "Vaeren");
-    vaeren.location = alaric.location;
-    alaric.location = "Job";
-    this.gameController.closeDialogCallback = this.triggerGameIntro3;
-    this.gameController.locationController.loadLocation(
-      gameOverLocations["bedroom"]
-    );
-  };
-
-  triggerGameIntro() {
-    this.gameIntro = true;
-    this.gameController.mapButton.disabled = true;
-    this.gameController.mapButton.classList.add("hidden");
-    this.restButton.classList.add("hidden");
-    this.restButton.disabled = true;
-    this.gameController.closeDialogCallback = this.triggerGameIntro2;
-    this.gameController.locationController.loadLocation(
-      gameOverLocations["bedroom"]
-    );
-  }
-
   showButtons() {
     this.gameController.mapButton.disabled = false;
     this.restButton.disabled = false;
     this.gameController.mapButton.classList.remove("hidden");
     this.restButton.classList.remove("hidden");
   }
-
-  triggerGameStart = () => {
-    this.money = 0;
-    this.dailyCost = 0;
-    this.locationCost = 0;
-    this.gameIntro = false;
-    this.showButtons();
-    this.gameController.locationController.loadLocation(
-      this.gameController.locationController.locations[0] // Itsuki.
-    );
-  };
 }

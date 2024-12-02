@@ -58,6 +58,10 @@ class GameController {
       })
     );
   }
+
+  getCharacterByName(name) {
+    return this.locationController.characters.find((char) => char.name === name) || null;
+  }
 }
 
 // Instantiate the game controller
@@ -86,6 +90,6 @@ document.getElementById("proceedButton").addEventListener(
   debounceClick(() => {
     document.getElementById("contentWarning").style.display = "none"; // Hide the warning
     document.getElementById("game-container").style.display = "flex"; // Show the game
-    gameController.simulationController.triggerGameIntro();
+    gameController.simulationController.scenarioManager.triggerGameIntro();
   })
 );

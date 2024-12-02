@@ -21,7 +21,22 @@ followers:
 
 chat:
 The Temple holds many secrets... 
-But I am here to listen. What weighs on your mind?
+#>itsukiVisit
+#Some of your members are complaining about strange thefts lately.
+#There's a rumor about a vigilante stealing from the rich.
+#Someone mentioned a new gang in town. Might be unrelated, but worth looking into.
+#People say the Goddess has been unusually quiet. Have you noticed anything?
+#I foresee that the Xivato will come and capture more territory.
+#Nothing unusual to report.
+#I saw a shadow moving where no one stood—must be my imagination.
+#The Xivato seem restless; they might be planning something soon.
+#There are whispers of a rival faction trying to undermine us.
+
+itsukiVisit:
+We have a very devoted follower named Itsuki visiting the temple often.
+Quite an argumentative fellow. Claims we got the name of the Goddess wrong.
+Still is quite devout, though. Prays deep and often. Lots of strength.
+@setTidbit(itsuki)
 
 prayerPossible:
 Malvani hears your request, Violet.
@@ -29,6 +44,7 @@ Malvani hears your request, Violet.
 [bless] A blessing for my journey.
 [evict] Evict the Xivato from this land.
 [back] I’ll return later.
+${Takeshi/oldLife:[oldlife] Return to my old life.: }
 
 bless:
 You are already blessed, Violet. No prayer is needed.
@@ -39,3 +55,13 @@ You're always welcome in Malvani's temple.
 evict:
 We shall force the Xivato out, wherever they might be.
 @pray(xivato)
+
+oldlife:
+I am not sure what your old life was like, but isn't this place much better?
+?Are you sure you wish to return?
+[return] Yes!
+[back] I'll think about it.
+
+return:
+Ok... let us pray.
+@scenarioStep(oldlife)

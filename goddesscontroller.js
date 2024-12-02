@@ -2,7 +2,6 @@ class GoddessController {
   constructor(characters, gameController) {
     this.characters = characters;
     this.gameController = gameController;
-    this.followers = []; // List to hold all followers' characters
     this.mana = 0; // Current amount of mana available
     this.manaThreshold = 1000; // Default mana threshold for answering prayers
   }

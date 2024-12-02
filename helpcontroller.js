@@ -182,7 +182,7 @@ class HelpController {
   }
 
   update() {
-    if (this.gameController.simulationController.gameIntro) {
+    if (this.gameController.simulationController.scenarioManager.gameIntro) {
       this.updateStage("intro");
       return;
     }

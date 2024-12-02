@@ -365,6 +365,15 @@ const gameOverMalvani = new Location(
   "music/goevil.mp3" // MP3
 );
 
+const gameOverDead = new Location(
+  "Game Over: Dead",
+  "images/godead.jpg",
+  "Game Over",
+  0,
+  0,
+  "music/godead.mp3" // MP3
+);
+
 const gameStartBedroom = new Location(
   "Game Start: Violet's Bedroom",
   "images/violetbed.jpg",
@@ -388,6 +397,7 @@ const gameOverLocations = {
   xivato: gameOverXivato,
   poverty: gameOverPoverty,
   evil: gameOverMalvani,
+  dead: gameOverDead,
   bedroom: gameStartBedroom,
   purgatory: gameStartPurgatory,
 }

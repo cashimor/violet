@@ -1,9 +1,41 @@
 start:
 Hello, welcome to the Loan Shark Office.
+@checkTheft()
+
+notheft:
 ?What's up?
 [game] Time for a game?
 [work] How's work?
 [label3] How are the funds looking?
+
+theft:
+${itsuki:It was Itsuki again.:>investigation}
+>notheft
+
+investigation:
+?We are investigating.
+[notheft] It's ok.
+[xivato] Was it the Xivato?
+[know] What do you know?
+
+xivato:
+No, we keep tabs on them. They were not involved.
+>know
+
+know:
+People say they saw a younger individual with green eyes and brown hair.
+@setTidbit(itsuki)
+
+itsuki:
+?What should we do about this?
+[ignore] Let's ignore it for now.
+[pursue] Try to track them down.
+
+ignore:
+Alright.
+
+persue:
+We will, but you may have better luck.
 
 game:
 A game? Of course, let's play.

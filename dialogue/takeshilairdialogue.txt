@@ -57,6 +57,7 @@ father:
 Your father only had daughters? And he wanted a son...
 and you did all you could to be that son for him, but it didn't help.
 Then he played you out against your sisters. So you all hated each other.
+!father
 ?Maybe you could tell me what you would tell your father now?
 [father_why] Why talk now?
 [father_laugh] You laughed at me with a sword.
@@ -101,7 +102,8 @@ Yes, you wanted me to be proud. I wanted a legacy.
 father_proud:
 No. You were a mistake. I loved your mother the most.
 But even she only gave me daughters.
-Oh... he was such a mean father. I can see why you do the things you do.
+!neutral
+I'm sorry. I went too far. I can see why you do the things you do.
 It's best if we stop now.
 
 father_hate:
@@ -116,6 +118,7 @@ father_no:
 It's alright. You'll be alright, Violet.
 
 father_unsure:
+!neutral
 Yes... these things are difficult.
 I am glad that you recognize the conflict inside you.
 @setTidbit(fatherEven)
@@ -124,9 +127,11 @@ fatherEven:
 @adjustEvilness(-10)
 
 father_forgive:
+!neutral
 That is good... if you mean it.
 
 father_no:
+!neutral
 I see... you still feel quite strongly about it.
 Perhaps we can revisit it another time.
 

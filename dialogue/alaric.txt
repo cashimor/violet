@@ -6,7 +6,7 @@ it is only fair that I now take my child back to live a better life.
 [confront] How dare you take my child?
 [plead] Please, Alaric, don’t do this.
 [question] My body knows you loved it. You loved me.
-[skip] <skip>
+${Takeshi/oldLife::[skip] <skip>}
 
 confront:
 !angry
