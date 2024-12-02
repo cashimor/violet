@@ -204,15 +204,15 @@ class HelpController {
       this.updateStage("lowEnergy");
       return;
     }
-    if (this.gameController.xivatoController.owned("Violet") < 1) {
+    if (this.gameController.enemyController.owned("Violet") < 1) {
       this.updateStage("noLocations");
       return;
     }
-    if (this.gameController.xivatoController.owned("Xivato") > 0) {
+    if (this.gameController.enemyController.owned("Xivato") > 0) {
       this.updateStage("xivato");
       return;
     }
-    if (this.gameController.xivatoController.owned("Violet") > 2) {
+    if (this.gameController.enemyController.owned("Violet") > 2) {
       this.updateStage("evil_win");
       return;
     }
@@ -224,7 +224,7 @@ class HelpController {
       return;
     }
     if (
-      this.gameController.xivatoController.owned("Violet") == 1 &&
+      this.gameController.enemyController.owned("Violet") == 1 &&
       this.gameController.jobController.getAvailableJobTypes().length === 0
     ) {
       if (Object.keys(this.gameController.jobController.jobs).length == 1) {

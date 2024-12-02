@@ -7,10 +7,10 @@ class GameController {
     this.closeDialogCallback = null;
     this.helpController = new HelpController(this);
     this.jobController = new JobController();
-    this.xivatoController = new XivatoController(locations);
+    this.enemyController = new EnemyController(locations);
     this.simulationController = new SimulationController(
       this.jobController,
-      this.xivatoController,
+      this.enemyController,
       characters,
       this // Pass GameController itself
     );
@@ -34,7 +34,7 @@ class GameController {
       this.simulationController,
       this.jobController,
       this.locationController,
-      this.xivatoController,
+      this.enemyController,
       this.mapController,
       this
     );

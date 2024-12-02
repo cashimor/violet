@@ -3,14 +3,14 @@ class OptionsController {
     simulationController,
     jobController,
     locationController,
-    xivatoController,
+    enemyController,
     mapController,
     gameController
   ) {
     this.simulationController = simulationController;
     this.jobController = jobController;
     this.locationController = locationController;
-    this.xivatoController = xivatoController;
+    this.enemyController = enemyController;
     this.mapController = mapController;
     this.gameController = gameController;
     this.showing = false;
@@ -108,7 +108,7 @@ class OptionsController {
       currentLocation: this.locationController.currentLocation,
       jobs: this.jobController.toData(),
       characters: this.locationController.characters,
-      daysSinceLastOccupation: this.xivatoController.daysSinceLastOccupation,
+      daysSinceLastOccupation: this.enemyController.daysSinceLastOccupation,
       mana: this.gameController.goddessController.mana,
     };
 
@@ -143,7 +143,7 @@ class OptionsController {
     this.simulationController.jobCost = gameState.jobCost;
     this.simulationController.friendBoundary = gameState.friendBoundary;
     this.simulationController.bribes = gameState.bribes;
-    this.xivatoController.daysSinceLastOccupation =
+    this.enemyController.daysSinceLastOccupation =
       gameState.daysSinceLastOccupation;
     this.gameController.goddessController.mana = gameState.mana || 0;
     this.locationController.locations = gameState.locations.map(
@@ -174,7 +174,7 @@ class OptionsController {
 
     // Fix other places where arrays are used
     locations = this.locationController.locations;
-    this.xivatoController.locations = locations;
+    this.enemyController.locations = locations;
     this.mapController.setLocations(locations);
     characters = this.locationController.characters;
     this.simulationController.characters = characters;

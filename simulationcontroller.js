@@ -1,7 +1,7 @@
 class SimulationController {
-  constructor(jobController, xivatoController, characters, gameController) {
+  constructor(jobController, enemyController, characters, gameController) {
     this.jobController = jobController;
-    this.xivatoController = xivatoController;
+    this.enemyController = enemyController;
     this.gameController = gameController;
     this.scenarioManager = new ScenarioManager(gameController, this); // Initialize the helper
     this.characters = characters;
@@ -147,8 +147,8 @@ class SimulationController {
 
   checkEvilWin() {
     const requiredMoney = 1000000; // Adjust if needed
-    const xivatoLocations = this.xivatoController.owned("Xivato"); // Assuming a method for total locations
-    const availableLocations = this.xivatoController.getAvailableLocations();
+    const xivatoLocations = this.enemyController.owned("Xivato"); // Assuming a method for total locations
+    const availableLocations = this.enemyController.getAvailableLocations();
     const bribeCount = this.bribes;
 
     // Check all conditions
@@ -259,7 +259,7 @@ class SimulationController {
       this.scenarioManager.triggerGameOver("Out of money", gameOverLocations["poverty"]);
       // Implement any additional game-over logic here
     }
-    if (this.xivatoController.onNewDay()) {
+    if (this.enemyController.onNewDay()) {
       this.scenarioManager.triggerGameOver(
         "Xivato took over the town",
         gameOverLocations["xivato"]
@@ -339,8 +339,8 @@ class SimulationController {
 
     // Global faction influence
     const totalInfluence =
-      this.xivatoController.owned("Violet") +
-      this.xivatoController.owned("Xivato");
+      this.enemyController.owned("Violet") +
+      this.enemyController.owned("Xivato");
 
     // Adjust likelihood based on global and local influence
     let likelihood = baseLikelihood + totalInfluence * 0.05;

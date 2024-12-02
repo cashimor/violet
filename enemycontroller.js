@@ -1,4 +1,4 @@
-class XivatoController {
+class EnemyController {
   constructor(locations) {
     this.occupationInterval = 10; // Days between occupying new locations
     this.daysSinceLastOccupation = 0; // Tracks the days since last occupation
