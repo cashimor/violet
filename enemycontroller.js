@@ -5,10 +5,60 @@ class EnemyController {
     this.locations = locations;
   }
 
+  // Function to format the game's date
+  formatGameDate(currentDay) {
+    const startDate = new Date(2024, 2, 21); // March 21, 2024
+    const weekdays = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    // Calculate the current date based on the day count
+    const currentDate = new Date(startDate);
+    currentDate.setDate(currentDate.getDate() + currentDay - 1);
+
+    // Get the formatted date components
+    const dayOfWeek = weekdays[currentDate.getDay()];
+    const options = { month: "long", day: "numeric" };
+    const formattedDate = currentDate.toLocaleDateString("en-US", options);
+
+    return `${dayOfWeek}, ${formattedDate}`;
+  }
+
+  // Assuming roomTypes is globally accessible or passed as context
+  applyItsukiTheft() {
+    const chance = 0.1;
+    const maxTheftPercentage = 0.2;
+
+    const loanOffice = roomTypes["loansharking"];
+    if (!loanOffice || !loanOffice.funds || loanOffice.funds <= 0) return; // No funds to steal
+
+    // Check if Itsuki successfully steals today
+    if (Math.random() < chance) {
+      const theftAmount = Math.round(
+        loanOffice.funds * maxTheftPercentage * Math.random()
+      );
+      loanOffice.funds -= theftAmount;
+
+      // Record the theft for dialogue purposes
+      if (!loanOffice.theftHistory) {
+        loanOffice.theftHistory = [];
+      }
+      loanOffice.theftHistory.push({
+        date: this.formatGameDate(this.day),
+        amount: theftAmount,
+      });
+      console.log(`Itsuki stole ${theftAmount} from the loan office!`);
+    }
+  }
+
   owned(who) {
-    return this.locations.filter(
-        (location) => location.owner === who
-      ).length;
+    return this.locations.filter((location) => location.owner === who).length;
   }
 
   getAvailableLocations() {
@@ -21,12 +71,17 @@ class EnemyController {
     const availableRooms = this.getAvailableLocations().length;
 
     // Lose condition: Violet owns no locations, and all others are occupied by Xivato
-    if (violetOwned === 0 && xivatoOwned > 0 && availableRooms === 0) return true;
+    if (violetOwned === 0 && xivatoOwned > 0 && availableRooms === 0)
+      return true;
     return false;
   }
 
   // Method invoked each new day
   onNewDay() {
+    // Itsuki
+    this.applyItsukiTheft();
+
+    // Xivato
     this.daysSinceLastOccupation++;
 
     if (this.daysSinceLastOccupation >= this.occupationInterval) {

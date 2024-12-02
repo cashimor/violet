@@ -83,31 +83,6 @@ class SimulationController {
     this.updateDisplay();
   }
 
-  // Function to format the game's date
-  formatGameDate(currentDay) {
-    const startDate = new Date(2024, 2, 21); // March 21, 2024
-    const weekdays = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-
-    // Calculate the current date based on the day count
-    const currentDate = new Date(startDate);
-    currentDate.setDate(currentDate.getDate() + currentDay - 1);
-
-    // Get the formatted date components
-    const dayOfWeek = weekdays[currentDate.getDay()];
-    const options = { month: "long", day: "numeric" };
-    const formattedDate = currentDate.toLocaleDateString("en-US", options);
-
-    return `${dayOfWeek}, ${formattedDate}`;
-  }
-
   // Function to update the day display with the formatted game date
   updateDayCounter(currentDay) {
     if (this.scenarioManager.gameIntro) {
@@ -118,7 +93,7 @@ class SimulationController {
     }
 
     // Use the formatGameDate function to get the formatted date
-    const formattedDate = this.formatGameDate(currentDay);
+    const formattedDate = this.enemyController.formatGameDate(currentDay);
 
     // Update the date display
     document.getElementById("date-counter").innerText = formattedDate;
@@ -165,33 +140,6 @@ class SimulationController {
     }
   }
 
-  // Assuming roomTypes is globally accessible or passed as context
-  applyItsukiTheft() {
-    const chance = 0.1;
-    const maxTheftPercentage = 0.2;
-
-    const loanOffice = roomTypes["loansharking"];
-    if (!loanOffice || !loanOffice.funds || loanOffice.funds <= 0) return; // No funds to steal
-
-    // Check if Itsuki successfully steals today
-    if (Math.random() < chance) {
-      const theftAmount = Math.round(
-        loanOffice.funds * maxTheftPercentage * Math.random()
-      );
-      loanOffice.funds -= theftAmount;
-
-      // Record the theft for dialogue purposes
-      if (!loanOffice.theftHistory) {
-        loanOffice.theftHistory = [];
-      }
-      loanOffice.theftHistory.push({
-        date: this.formatGameDate(this.day),
-        amount: theftAmount,
-      });
-      console.log(`Itsuki stole ${theftAmount} from the loan office!`);
-    }
-  }
-
   advanceDay() {
     if (this.scenarioManager.gameOver) {
       updateSummaryText(
@@ -206,7 +154,6 @@ class SimulationController {
     this.evilLairBonus = 0;
 
     this.randomizeNPCLocations();
-    this.applyItsukiTheft();
     // Prepare summary of daily activities
     let summary = `<b>Day ${this.day}:</b><br>`;
     let raidHappened = false;

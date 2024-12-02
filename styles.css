@@ -1,3 +1,4 @@
+/* Ensuring the footer stays within the bounds of the game container */
 #game-container {
   display: flex;
 }
@@ -307,4 +308,18 @@
   background-color: violet; /* Violet color for the energy bar fill */
   border-radius: 10px; /* Match the rounded corners */
   transition: width 0.3s ease; /* Smooth transition for energy level changes */
+}
+
+#footer {
+  width: 1150px;
+  text-align: center;
+}
+
+.footer-link {
+  color: #000;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
 }

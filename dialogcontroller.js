@@ -747,7 +747,9 @@ class DialogController {
       this.closeDialog(); // Close the dialog if "X" is clicked
       return true;
     }
-    if (y > 200) {
+
+    // Then check character click
+    if (y > 200 && x > 50 && x < this.canvas.width - 50) {
       this.character.dayTalk = this.simulationController.day;
       this.start();
       return true;
