@@ -1,8 +1,9 @@
 class EnemyController {
-  constructor(locations) {
+  constructor(locations, gameController) {
     this.occupationInterval = 10; // Days between occupying new locations
     this.daysSinceLastOccupation = 0; // Tracks the days since last occupation
     this.locations = locations;
+    this.gameController = gameController;
   }
 
   // Function to format the game's date
@@ -30,6 +31,45 @@ class EnemyController {
     return `${dayOfWeek}, ${formattedDate}`;
   }
 
+  updateItsukiApartment() {
+    // Find Itsuki in the list of characters
+    const itsuki = this.gameController.getCharacterByName("Itsuki");
+    if (!itsuki) {
+      console.error("Itsuki character not found!");
+      return;
+    }
+
+    // Find the location for Itsuki's apartment
+    const itsukiApartment = locations.find(
+      (location) => location.name === "Itsuki's Apartment"
+    );
+    if (!itsukiApartment) {
+      console.error("Itsuki's Apartment location not found!");
+      return;
+    }
+
+    // Loop through all characters to check for "itsuki" tidbits
+    for (let character of characters) {
+      if (character.hasTidbit("itsuki")) {
+        // Add a specific tidbit to Itsuki (e.g., "loanOfficeritsuki", "priestitsuki")
+        itsuki.setTidbit(character.icon + "itsuki");
+
+        // Update Itsuki's apartment to become active on the map
+        if (itsukiApartment.ref != "Map") {
+          itsuki.dialogue = "itsukiFoundDialogue.txt"
+          console.log("Updated Itsuki's dialogue to post-discovery content.");
+          itsukiApartment.ref = "Map";
+          itsukiApartment.x = 240; // Move west (lower x value)
+          itsukiApartment.y = 160; // Move north (lower y value)
+          console.log(
+            `Itsuki's apartment updated at (${itsukiApartment.x}, ${itsukiApartment.y}).`
+          );
+          this.gameController.mapController.setLocations(locations);
+        }
+      }
+    }
+  }
+
   // Assuming roomTypes is globally accessible or passed as context
   applyItsukiTheft() {
     const chance = 0.1;
@@ -50,7 +90,7 @@ class EnemyController {
         loanOffice.theftHistory = [];
       }
       loanOffice.theftHistory.push({
-        date: this.formatGameDate(this.day),
+        date: this.formatGameDate(this.gameController.simulationController.day),
         amount: theftAmount,
       });
       console.log(`Itsuki stole ${theftAmount} from the loan office!`);
@@ -80,6 +120,7 @@ class EnemyController {
   onNewDay() {
     // Itsuki
     this.applyItsukiTheft();
+    this.updateItsukiApartment();
 
     // Xivato
     this.daysSinceLastOccupation++;

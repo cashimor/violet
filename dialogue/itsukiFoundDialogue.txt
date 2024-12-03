@@ -1,0 +1,55 @@
+start:
+!neutral
+I didn’t think I’d see you again. Not after what happened.
+!angry
+Did you forget? Or maybe you thought I did.
+All the money I saved, gone. And you just... disappeared.
+!neutral
+?But here you are. So, Violet... why are you here?
+[apology] ...I made mistakes. I’m here to make amends.
+[deflect] I’m here because I need something.
+
+apology:
+!thoughtful
+Mistakes? You think that’s enough to undo the damage you caused?
+!sad
+I... prayed for you, Violet. Believed in you.
+I thought we’d make the world better together.
+!neutral
+?But now? I’m not sure I believe anything anymore.
+[reason] I never asked for your faith.
+[help] I still want to make things right.
+
+reason:
+!angry
+No, you didn’t. But that doesn’t make what you did any less cruel.
+You used me. And now? You want... what, forgiveness?
+!neutral
+You’re going to have to do more than just show up, Violet.
+>decision
+
+help:
+!surprised
+You do? After everything?
+!neutral
+I don’t know if I can trust you again. But maybe... maybe you can prove me wrong.
+>decision
+
+decision:
+?What can I do to prove it?
+[offer_help] You need help?
+[walk_away] I don’t need your trust.
+
+offer_help:
+!neutral
+There’s a loan office nearby.
+They’re taking everything from people who are already struggling to survive.
+!determined
+Help me stop them, Violet.
+If you’re serious about making things right, this is how you’ll start.
+
+walk_away:
+!angry
+So that’s it? You haven’t changed at all.
+You’ll keep running, Violet.
+But one day, you won’t be able to escape what you’ve done.

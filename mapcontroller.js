@@ -26,7 +26,7 @@ class MapController {
       "click",
       debounceClick((event) => this.handleDecoCanvasClick(event))
     );
-    
+
     // Add event listeners for hovering and clicking
     this.decocanvas.addEventListener("mousemove", (event) =>
       this.handleHover(event)
@@ -173,14 +173,22 @@ class MapController {
     this.context.beginPath();
     this.context.arc(location.x, location.y, 10, 0, 2 * Math.PI);
 
-    // Use a specific color for the police station
+    // Use specific colors for special locations
     if (location.name === "Police Station") {
       this.context.fillStyle = "blue"; // Police station marker color
+    } else if (location.name === "Itsuki's Apartment") {
+      this.context.fillStyle = "orange"; // Itsuki's Apartment marker color
     } else {
       this.context.fillStyle = "red"; // Default marker color
     }
 
     this.context.fill();
+    // Draw the location name
+    this.context.font = "18px Arial"; // Font size and type
+    this.context.fillStyle = "black"; // Text color
+    this.context.textAlign = "center"; // Center-align text
+    this.context.fillText(location.name, location.x, location.y + 30); // Position text slightly above the marker
+    this.context.fillText(location.name, location.x, location.y + 30); // Position text slightly above the marker
   }
 
   handleCanvasClick(event) {

@@ -323,3 +323,15 @@
 .footer-link:hover {
   text-decoration: underline;
 }
+
+#daily-results {
+  max-height: 250px; /* Adjust height as needed */
+  max-width: 330px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 5px;
+}
+
+#summary-text {
+  white-space: pre-wrap; /* Preserve formatting while wrapping text */
+  line-height: 1.5; /* Optional for better readability */
+}

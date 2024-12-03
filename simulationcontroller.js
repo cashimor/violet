@@ -155,7 +155,7 @@ class SimulationController {
 
     this.randomizeNPCLocations();
     // Prepare summary of daily activities
-    let summary = `<b>Day ${this.day}:</b><br>`;
+    let summary = "";
     let raidHappened = false;
 
     // Calculate profits from all jobs
@@ -192,11 +192,9 @@ class SimulationController {
     this.money -= this.dailyCost; // Subtract daily costs
 
     // Add daily cost and final balance to the summary
-    summary += `<br>Daily Costs: ¥${this.dailyCost.toLocaleString()}<br>`;
     summary += `Net Income: ¥${(
       totalProfit - this.dailyCost
     ).toLocaleString()}<br>`;
-    summary += `<b>Total Money:</b> ¥${this.money.toLocaleString()}<br>`;
 
     // Show the summary in the Simulation Details section
     document.getElementById("summary-text").innerHTML = summary;

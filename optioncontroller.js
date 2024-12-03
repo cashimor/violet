@@ -80,17 +80,17 @@ class OptionsController {
     document.getElementById("config-screen").style.display = "none";
   }
   saveGameState() {
-    if (this.simulationController.scenarioManager.scenarioManager.gameOver) {
+    if (this.simulationController.scenarioManager.gameOver) {
       updateSummaryText(
         "The game is over. Please restart or reload to continue."
       );
       return;
     }
-    if (this.simulationController.scenarioManager.scenarioManager.gameIntro) {
+    if (this.simulationController.scenarioManager.gameIntro) {
       updateSummaryText("The game hasn't started yet.");
       return;
     }
-    if (this.simulationController.scenarioManager.scenarioManager.oldLife) {
+    if (this.simulationController.scenarioManager.oldLife) {
       updateSummaryText("The game can't be saved.");
       return;
     }

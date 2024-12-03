@@ -32,10 +32,10 @@ itsuki:
 [pursue] Try to track them down.
 
 ignore:
-Alright.
+I don't think I can do that. We have to get our money back.
 
-persue:
-We will, but you may have better luck.
+pursue:
+Definitely. We will find him tonight.
 
 game:
 A game? Of course, let's play.

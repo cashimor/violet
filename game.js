@@ -7,7 +7,7 @@ class GameController {
     this.closeDialogCallback = null;
     this.helpController = new HelpController(this);
     this.jobController = new JobController();
-    this.enemyController = new EnemyController(locations);
+    this.enemyController = new EnemyController(locations, this);
     this.simulationController = new SimulationController(
       this.jobController,
       this.enemyController,
@@ -47,7 +47,7 @@ class GameController {
     this.mapButton.addEventListener(
       "click",
       debounceClick(() => {
-        if (this.simulationController.gameOver) {
+        if (this.simulationController.scenarioManager.gameOver) {
           this.mapController.closeMap();
           updateSummaryText(
             "The game is over. Please restart or reload to continue."
