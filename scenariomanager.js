@@ -8,7 +8,9 @@ class ScenarioManager {
     this.gameOver = false;
   }
 
-  triggerGameOver(message, location) {
+  triggerGameOver(message, key) {
+    const location = gameOverLocations[key];
+    this.gameController.optionsController.unlockEnding(key);
     this.gameOver = true;
     updateSummaryText(message);
     this.gameController.mapController.closeMap();
@@ -19,10 +21,7 @@ class ScenarioManager {
     if (this.oldLife) {
       this.simulationController.energy = 0;
       this.simulationController.updateEnergyBar(0, 100);
-      this.triggerGameOver(
-        "This time, Vaeren strangles you.",
-        gameOverLocations["dead"]
-      );
+      this.triggerGameOver("This time, Vaeren strangles you.", "dead");
       return;
     }
     this.simulationController.money = 0;
@@ -62,8 +61,12 @@ class ScenarioManager {
   }
 
   triggerOldLife() {
-    const alaric = this.simulationController.characters.find((char) => char.name === "Alaric");
-    const vaeren = this.simulationController.characters.find((char) => char.name === "Vaeren");
+    const alaric = this.simulationController.characters.find(
+      (char) => char.name === "Alaric"
+    );
+    const vaeren = this.simulationController.characters.find(
+      (char) => char.name === "Vaeren"
+    );
     alaric.location = "Game Start: Violet's Bedroom";
     vaeren.location = "Job";
     this.simulationController.money = 10000000; // Adjust this initial value as needed
@@ -92,5 +95,4 @@ class ScenarioManager {
       this.gameController.locationController.locations[0] // Itsuki.
     );
   };
-
 }

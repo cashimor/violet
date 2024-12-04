@@ -133,10 +133,7 @@ class SimulationController {
       availableLocations.length === 0 &&
       bribeCount > 0
     ) {
-      this.scenarioManager.triggerGameOver(
-        "You conquered the city!",
-        gameOverLocations["evil"]
-      ); // Call a method to handle the win state
+      this.scenarioManager.triggerGameOver("You conquered the city!", "evil"); // Call a method to handle the win state
     }
   }
 
@@ -201,13 +198,13 @@ class SimulationController {
 
     // Check for Game Over
     if (this.money < 0) {
-      this.scenarioManager.triggerGameOver("Out of money", gameOverLocations["poverty"]);
+      this.scenarioManager.triggerGameOver("Out of money", "poverty");
       // Implement any additional game-over logic here
     }
     if (this.enemyController.onNewDay()) {
       this.scenarioManager.triggerGameOver(
         "Xivato took over the town",
-        gameOverLocations["xivato"]
+        "xivato"
       );
     }
     this.gameController.goddessController.gatherMana();

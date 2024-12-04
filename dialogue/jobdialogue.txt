@@ -34,3 +34,6 @@ If I must... this will not be good for me.
 
 Cancel:
 Next time, then.
+
+selectJobFail:
+I don't think that job is currently available.

@@ -7,7 +7,19 @@ All the money I saved, gone. And you just... disappeared.
 !neutral
 ?But here you are. So, Violet... why are you here?
 [apology] ...I made mistakes. I’m here to make amends.
-[deflect] I’m here because I need something.
+${priestitsuki:[back] I want to.:[deflect] I’m here because I need something.}
+${loanitsuki:[stop] I want you to stop stealing my money.: }
+
+back:
+You want to...
+!shock
+Oh... you want me to join you. Is that even possible?
+Is there still a place in your life for me?
+@selectJob(Evil Lair)
+
+selectJobFail:
+You have no place for me in your life anymore Violet.
+Someone else lives in your lair.
 
 apology:
 !thoughtful

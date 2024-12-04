@@ -454,7 +454,7 @@ class DialogController {
     // Step 2: Check if there are no available rooms
     if (availableRooms.length === 0) {
       console.log(`No available rooms for job type: ${roomTypeName}`);
-      return ["There are no available rooms for this job type at the moment."];
+      return [">selectJobFail"];
     }
 
     // Step 3: Try assigning the NPC to the first available empty room
@@ -467,13 +467,13 @@ class DialogController {
           this.simulationController.friendBoundary =
             this.simulationController.friendBoundary + 10;
         }
-        return [`Thank you for giving me a job in your ${roomTypeName}!`];
+        return [`Thank you for giving me a place in your ${roomTypeName}!`];
       }
     }
 
     // Step 4: If no room assignment was successful, return a fallback message
     console.log(`All rooms are occupied for job type: ${roomTypeName}`);
-    return ["All rooms for this job type are currently occupied."];
+    return [">selectJobFail"];
   }
 
   showJobChoices(param) {

@@ -3,6 +3,17 @@
   display: flex;
 }
 
+#left-ending-panel {
+  position: relative;
+  width: 600px;
+  min-height: 600px;
+  background-image: url("images/default.jpg"); /* Default background image */
+  background-size: cover;
+  background-position: center;
+  align-items: center;
+  justify-content: center;
+}
+
 #left-panel {
   position: relative;
   width: 600px;
@@ -13,6 +24,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#right-ending-panel {
+  position: relative;
+  width: 550px;
+  padding: 20px;
+  background-image: url('images/details.jpg'); /* Path to your image */
+  background-size: cover; /* Ensure the image covers the entire area */
+  background-repeat: no-repeat; /* Avoid repeating the image */
+  background-position: center; /* Center the image */
+  border-radius: 10px; /* Optional: Soften edges for a polished look */
+  color: #000; /* Optional: Adjust text color for contrast */
 }
 
 #right-panel {
@@ -334,4 +357,37 @@
 #summary-text {
   white-space: pre-wrap; /* Preserve formatting while wrapping text */
   line-height: 1.5; /* Optional for better readability */
+}
+
+.locked-ending {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.button-container button {
+  margin: 10px auto; /* Space between buttons */
+  padding: 10px 20px; /* Adjust button size */
+  max-width: 80%; /* Limit button width relative to panel */
+}
+
+#back-container {
+  margin-top: 340px;
+  text-align: center; /* Center the Back button horizontally */
+  padding: 10px; /* Add spacing above and below the Back button */
+  display: block;
+}
+
+.back-button {
+  margin: 20px auto; /* Space the back button */
+  padding: 10px 30px; /* Adjust button size */
+  max-width: 200px; /* Limit back button width */
+  display: fleqx; /* Center the button */
+  
+}
+
+#ending-options {
+  display: block;
+  overflow-y: auto; /* Enable scrolling if needed */
+  flex-grow: 1; /* Take up all available space except for the back button */
+  padding: 40px;
 }

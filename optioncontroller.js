@@ -14,6 +14,9 @@ class OptionsController {
     this.mapController = mapController;
     this.gameController = gameController;
     this.showing = false;
+    this.unlockedEndings = new Set(); // Use a Set for efficient lookups
+    this.loadUnlockedEndings();
+
     document.getElementById("save-button").addEventListener(
       "click",
       debounceClick(() => {
@@ -38,6 +41,13 @@ class OptionsController {
       "click",
       debounceClick(() => {
         this.close();
+      })
+    );
+
+    document.getElementById("unlocked-endings-button").addEventListener(
+      "click",
+      debounceClick(() => {
+        this.endings();
       })
     );
 
@@ -70,6 +80,38 @@ class OptionsController {
         }
       })
     );
+
+    document.getElementById("back-button").addEventListener(
+      "click",
+      debounceClick(() => {
+        this.closeEndingsView();
+      })
+    );
+  }
+
+  loadUnlockedEndings() {
+    const data = localStorage.getItem("unlockedEndings");
+    if (data) {
+      JSON.parse(data).forEach((name) => this.unlockedEndings.add(name));
+    }
+  }
+
+  saveUnlockedEndings() {
+    localStorage.setItem(
+      "unlockedEndings",
+      JSON.stringify([...this.unlockedEndings])
+    );
+  }
+
+  unlockEnding(key) {
+    if (!this.unlockedEndings.has(key)) {
+      this.unlockedEndings.add(key);
+      this.saveUnlockedEndings();
+    }
+  }
+
+  isEndingUnlocked(key) {
+    return this.unlockedEndings.has(key);
   }
 
   close() {
@@ -205,5 +247,73 @@ class OptionsController {
       const isMusicOn = JSON.parse(musicSetting);
       this.locationController.musicOn = isMusicOn;
     }
+  }
+
+  showEndingDetails(location) {
+    // Set the background image for the left-ending-panel
+    const leftEndingPanel = document.getElementById("left-ending-panel");
+    leftEndingPanel.style.backgroundImage = `url(${location.getImageUrl()})`;
+    leftEndingPanel.style.backgroundSize = "cover";
+    leftEndingPanel.style.backgroundPosition = "center";
+
+    // Play music if enabled and not already playing the same track
+    if (this.locationController.musicOn) {
+      const newMusicUrl = location.getMusicUrl();
+
+      if (this.locationController.currentMusic !== newMusicUrl) {
+        this.locationController.audio.src = newMusicUrl;
+        this.locationController.audio.loop = false;
+        this.locationController.audio.play();
+        this.locationController.currentMusic = newMusicUrl;
+      }
+    }
+  }
+
+  populateEndingOptions() {
+    const endingOptions = document.getElementById("ending-options");
+    endingOptions.innerHTML = ""; // Clear existing options
+
+    Object.entries(gameOverLocations).forEach(([key, location]) => {
+      if (!location.name.startsWith("Game Over:")) return; // Skip non-ending locations
+
+      const button = document.createElement("button");
+      button.className = "button-parchment";
+      button.classList.add("button-space");
+      button.textContent = location.name.replace("Game Over: ", ""); // Display name without prefix
+
+      if (!this.isEndingUnlocked(key)) {
+        button.disabled = true; // Disable if locked
+        button.classList.add("locked-ending");
+      } else {
+        button.addEventListener(
+          "click",
+          debounceClick(() => this.showEndingDetails(location))
+        );
+      }
+
+      endingOptions.appendChild(button);
+    });
+  }
+
+  endings() {
+    this.close();
+    // Hide regular panels
+    document.getElementById("left-panel").style.display = "none";
+    document.getElementById("right-panel").style.display = "none";
+
+    // Show ending panels
+    document.getElementById("left-ending-panel").style.display = "flex";
+    document.getElementById("right-ending-panel").style.display = "flex";
+
+    this.populateEndingOptions();
+  }
+
+  // Restore the original game panels
+  closeEndingsView() {
+    document.getElementById("left-ending-panel").style.display = "none";
+    document.getElementById("right-ending-panel").style.display = "none";
+
+    document.getElementById("left-panel").style.display = "flex";
+    document.getElementById("right-panel").style.display = "flex";
   }
 }

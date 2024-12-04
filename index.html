@@ -35,8 +35,12 @@
         <button id="restart-button" class="button-parchment">
           Restart Game
         </button>
+        <button id="unlocked-endings-button" class="button-parchment">
+          Endings
+        </button>
         <button id="close-config" class="button-parchment">Close</button>
       </div>
+      <div id="left-ending-panel" style="display: none"></div>
       <div id="left-panel">
         <div id="choice-popup-holder"></div>
         <div id="decoratePopup" class="popup hidden">
@@ -115,6 +119,12 @@
           <canvas id="location-display" width="550" height="550"></canvas>
         </div>
       </div>
+      <div id="right-ending-panel" style="display: none">
+        <div id="ending-options" class="button-container"></div>
+        <div id="back-container">
+          <button id="back-button" class="button-parchment">Back</button>
+        </div>
+      </div>
       <div id="right-panel">
         <div id="help-screen" style="display: block">
           <div id="help-content">
@@ -165,11 +175,22 @@
             </button>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
-    <div id="footer" style="text-align: center; padding: 20px;">
-      <a href="https://github.com/cashimor/violet" target="_blank" class="footer-link">GitHub</a> | 
-      <a href="https://discord.gg/39T9ka4WGB" target="_blank" class="footer-link">Discord</a>
+    <div id="footer" style="text-align: center; padding: 20px">
+      <a
+        href="https://github.com/cashimor/violet"
+        target="_blank"
+        class="footer-link"
+        >GitHub</a
+      >
+      |
+      <a
+        href="https://discord.gg/39T9ka4WGB"
+        target="_blank"
+        class="footer-link"
+        >Discord</a
+      >
     </div>
 
     <script src="location.js"></script>
