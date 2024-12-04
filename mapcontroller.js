@@ -96,14 +96,13 @@ class MapController {
     return control;
   }
 
-  // Draw markers for all locations
   drawMarkers() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     // Calculate proportions
     const controlProportions = this.calculateControlProportions();
 
-    // Draw each marker
+    // First pass: Draw circles and markers
     this.mapLocations.forEach((location) =>
       this.drawMarker(
         location,
@@ -111,6 +110,9 @@ class MapController {
         controlProportions["total"]
       )
     );
+
+    // Second pass: Draw location labels
+    this.mapLocations.forEach((location) => this.drawBaseMarker(location));
   }
 
   // Draw a single marker
@@ -184,11 +186,23 @@ class MapController {
 
     this.context.fill();
     // Draw the location name
-    this.context.font = "18px Arial"; // Font size and type
+    this.context.font = "16px Arial"; // Font size and type
     this.context.fillStyle = "black"; // Text color
     this.context.textAlign = "center"; // Center-align text
-    this.context.fillText(location.name, location.x, location.y + 30); // Position text slightly above the marker
-    this.context.fillText(location.name, location.x, location.y + 30); // Position text slightly above the marker
+
+    // Draw a semi-transparent background
+    this.context.fillStyle = "rgba(0, 0, 0, 0.4)"; // Black with 50% transparency
+    const textWidth = this.context.measureText(location.name).width;
+    this.context.fillRect(
+      location.x - textWidth / 2 - 5,
+      location.y + 15,
+      textWidth + 10,
+      20
+    );
+
+    // Then, draw the fill (foreground text)
+    this.context.fillStyle = "white";
+    this.context.fillText(location.name, location.x, location.y + 30);
   }
 
   handleCanvasClick(event) {
