@@ -310,13 +310,13 @@ let characters = [
   ),
   new Character(
     "Itsuki",
-    ["itsuki"],
+    ["itsuki", "itsukishock", "itsukipartner"],
     "Itsuki's Apartment",
     "itsuki.txt",
     null,
     null,
     100,
-    {},
+    { "Evil Lair": "itsukilairdialogue.txt" }, // Special dialogue for Evil Lair
     "itsuki",
     0,
     1000

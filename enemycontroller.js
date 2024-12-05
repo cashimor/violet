@@ -31,14 +31,7 @@ class EnemyController {
     return `${dayOfWeek}, ${formattedDate}`;
   }
 
-  updateItsukiApartment() {
-    // Find Itsuki in the list of characters
-    const itsuki = this.gameController.getCharacterByName("Itsuki");
-    if (!itsuki) {
-      console.error("Itsuki character not found!");
-      return;
-    }
-
+  updateItsukiApartment(itsuki) {
     // Find the location for Itsuki's apartment
     const itsukiApartment = locations.find(
       (location) => location.name === "Itsuki's Apartment"
@@ -71,7 +64,9 @@ class EnemyController {
   }
 
   // Assuming roomTypes is globally accessible or passed as context
-  applyItsukiTheft() {
+  applyItsukiTheft(itsuki) {
+    // Partners don't steal.
+    if (itsuki.icon == "partner") return;
     const chance = 0.1;
     const maxTheftPercentage = 0.2;
 
@@ -116,11 +111,15 @@ class EnemyController {
     return false;
   }
 
+  
   // Method invoked each new day
   onNewDay() {
     // Itsuki
-    this.applyItsukiTheft();
-    this.updateItsukiApartment();
+        // Find Itsuki in the list of characters
+        const itsuki = this.gameController.getCharacterByName("Itsuki");
+
+    this.applyItsukiTheft(itsuki);
+    this.updateItsukiApartment(itsuki);
 
     // Xivato
     this.daysSinceLastOccupation++;

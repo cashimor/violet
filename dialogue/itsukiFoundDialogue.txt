@@ -6,9 +6,13 @@ Did you forget? Or maybe you thought I did.
 All the money I saved, gone. And you just... disappeared.
 !neutral
 ?But here you are. So, Violet... why are you here?
-[apology] ...I made mistakes. I’m here to make amends.
-${priestitsuki:[back] I want to.:[deflect] I’m here because I need something.}
-${loanitsuki:[stop] I want you to stop stealing my money.: }
+[apology] Make amends.
+[know] How do you know me?
+${priestitsuki:[back] I want to.:[deflect] I need something.}
+${loanitsuki:[stop] Stop stealing my money.: }
+
+know:
+~itsukimanga.txt
 
 back:
 You want to...

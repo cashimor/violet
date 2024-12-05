@@ -1,0 +1,48 @@
+start:
+!neutral
+You know, Violet, I’ve known about you for a long time.
+!curious
+?I mean, not *you* exactly, but your story. It’s strange... almost unbelievable.
+[curious] What do you mean, my story?
+[uninterested] I don’t care about your delusions.
+
+curious:
+!thoughtful
+There’s this manga I’ve had since I was a kid.
+It tells the story of boy who becomes emperor through scheming.
+?You are one of the villains in the story.
+[disbelief] That’s ridiculous. It’s just a coincidence.
+[interest] Show me this manga.
+
+uninterested:
+!neutral
+Oh... right. You wouldn’t care. Forget I said anything.
+
+disbelief:
+!defensive
+?I know it would sounds crazy to you! But it is why I prayed for you.
+[interest] Show me this manga.
+[walkaway] You’re wasting my time.
+[villain] You prayed for the villain?
+
+interest:
+!excited
+Hold on! I’ll get it!
+!thoughtful
+?Here. Look at this.
+[read] Read it to me.
+[skeptical] You’re reaching. It’s just a story.
+
+skeptical:
+!neutral
+Maybe. But if you ever want to see it again, let me know. I’ll keep it safe.
+
+walkaway:
+!sad
+Alright. Sorry for bothering you.
+
+villain:
+You seemed beautiful to me. And wronged. I was hoping...
+you'd realize your potential, and become better. Or at least, be with me.
+
+read:

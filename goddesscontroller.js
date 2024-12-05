@@ -50,7 +50,7 @@ class GoddessController {
   // Method to handle prayers
   prayForEviction() {
     // Check if there's enough mana
-    if (this.mana < this.prayerCost) {
+    if (this.mana < this.manaThreshold) {
       return "Malvani cannot act—her power is insufficient.";
     }
 
@@ -69,7 +69,7 @@ class GoddessController {
     targetLocation.vacate();
 
     // Deduct the mana cost
-    this.mana -= this.prayerCost;
+    this.mana -= this.manaThreshold;
     return true; // Indicate success
   }
 }

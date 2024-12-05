@@ -125,15 +125,21 @@ class SimulationController {
     const xivatoLocations = this.enemyController.owned("Xivato"); // Assuming a method for total locations
     const availableLocations = this.enemyController.getAvailableLocations();
     const bribeCount = this.bribes;
-
-    // Check all conditions
+  
+    // Check all conditions for the Evil Win
     if (
       this.money >= requiredMoney &&
       xivatoLocations === 0 &&
       availableLocations.length === 0 &&
       bribeCount > 0
     ) {
-      this.scenarioManager.triggerGameOver("You conquered the city!", "evil"); // Call a method to handle the win state
+      // Check if Itsuki is in the Evil Lair
+      const itsuki = this.gameController.getCharacterByName("Itsuki");
+      if (itsuki.icon == "partner") {
+        this.scenarioManager.triggerGameOver("Even Itsuki could not resist your rise to power.", "evilItsuki");
+      } else {
+        this.scenarioManager.triggerGameOver("You conquered the city!", "evil");
+      }
     }
   }
 
