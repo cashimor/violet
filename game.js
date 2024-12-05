@@ -41,6 +41,7 @@ class GameController {
     this.goddessController = new GoddessController(characters, this);
 
     this.optionsController.applyMusicSetting();
+    this.optionsController.updateSlotSummaries();
     this.simulationController.randomizeNPCLocations();
     // Event
     this.mapButton = document.getElementById("map-button");

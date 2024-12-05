@@ -25,22 +25,38 @@
     </div>
     <div id="game-container" style="display: none">
       <div id="config-screen" style="display: none">
-        <h2>Game Configuration</h2>
+        <h2>Settings</h2>
         <label>
           Music:
           <input type="checkbox" id="music-toggle" />
         </label>
+        <div id="save-slot-container">
+          <h3>Save Slots</h3>
+          <form id="save-slot-form">
+            <label>
+              <input type="radio" name="save-slot" value="slot1" checked />
+              <span id="slot1-summary">(Empty)</span>
+            </label>
+            <br />
+            <label>
+              <input type="radio" name="save-slot" value="slot2" />
+              <span id="slot2-summary">(Empty)</span>
+            </label>
+            <br />
+            <label>
+              <input type="radio" name="save-slot" value="slot3" />
+              <span id="slot3-summary">(Empty)</span>
+            </label>
+          </form>
+        </div>
+        <div id="save-load-error" style="display: none; color: red;"></div>
         <button id="save-button" class="button-parchment">Save Game</button>
         <button id="load-button" class="button-parchment">Load Game</button>
-        <button id="restart-button" class="button-parchment">
-          Restart Game
-        </button>
-        <button id="unlocked-endings-button" class="button-parchment">
-          Endings
-        </button>
+        <button id="restart-button" class="button-parchment">Restart Game</button>
+        <button id="unlocked-endings-button" class="button-parchment">Endings</button>
         <button id="close-config" class="button-parchment">Close</button>
       </div>
-      <div id="left-ending-panel" style="display: none"></div>
+            <div id="left-ending-panel" style="display: none"></div>
       <div id="left-panel">
         <div id="choice-popup-holder"></div>
         <div id="decoratePopup" class="popup hidden">

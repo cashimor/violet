@@ -16,18 +16,32 @@ class OptionsController {
     this.showing = false;
     this.unlockedEndings = new Set(); // Use a Set for efficient lookups
     this.loadUnlockedEndings();
+    this.errorContainer = document.getElementById("save-load-error");
+    this.saveSlots = {
+      slot1: { summary: "(Empty)" },
+      slot2: { summary: "(Empty)" },
+      slot3: { summary: "(Empty)" },
+    };
+    this.loadFromStorage();
+    this.cleanupOldSave();
 
     document.getElementById("save-button").addEventListener(
       "click",
       debounceClick(() => {
-        this.saveGameState();
+        const selectedSlot = document.querySelector(
+          'input[name="save-slot"]:checked'
+        ).value;
+        this.saveGameState(selectedSlot);
       })
     );
 
     document.getElementById("load-button").addEventListener(
       "click",
       debounceClick(() => {
-        this.loadGameState();
+        const selectedSlot = document.querySelector(
+          'input[name="save-slot"]:checked'
+        ).value;
+        this.loadGameState(selectedSlot);
       })
     );
 
@@ -115,13 +129,14 @@ class OptionsController {
   }
 
   close() {
+    this.errorContainer.style.display = "none";
     this.showing = false;
     const configScreen = document.getElementById("config-screen");
     configScreen.style.display = "none";
     document.body.style.overflow = ""; // Restore scrolling
     document.getElementById("config-screen").style.display = "none";
   }
-  saveGameState() {
+  saveGameState(slot) {
     if (this.simulationController.scenarioManager.gameOver) {
       updateSummaryText(
         "The game is over. Please restart or reload to continue."
@@ -162,15 +177,20 @@ class OptionsController {
     }
     gameState.roomTypes = roomTypesData;
 
-    localStorage.setItem("gameState", JSON.stringify(gameState));
+    this.saveSlots[slot].summary = `Saved at ${new Date().toLocaleString()}`; // Example summary
+    this.saveToStorage();
+    this.updateSlotSummaries();
+    localStorage.setItem("gameState" + slot, JSON.stringify(gameState));
     updateSummaryText("Game saved successfully!");
     this.close();
   }
 
-  loadGameState() {
-    const gameState = JSON.parse(localStorage.getItem("gameState"));
+  loadGameState(slot) {
+    console.log("gameState" + slot);
+    const gameState = JSON.parse(localStorage.getItem("gameState" + slot));
     if (!gameState) {
-      updateSummaryText("No saved game found.");
+      this.errorContainer.textContent = `Error: No saved game found.`;
+      this.errorContainer.style.display = "block";
       return;
     }
     this.simulationController.showButtons();
@@ -314,6 +334,42 @@ class OptionsController {
     document.getElementById("right-ending-panel").style.display = "none";
 
     document.getElementById("left-panel").style.display = "flex";
-    document.getElementById("right-panel").style.display = "flex";
+    document.getElementById("right-panel").style.display = "block";
+  }
+
+  saveToStorage() {
+    // Persist save slots to localStorage
+    localStorage.setItem("gameSaveSlots", JSON.stringify(this.saveSlots));
+  }
+
+  loadFromStorage() {
+    // Load save slots from localStorage
+    const savedData = JSON.parse(localStorage.getItem("gameSaveSlots"));
+    if (savedData) {
+      this.saveSlots = savedData;
+    }
+  }
+
+  updateSlotSummaries() {
+    // Update the UI to reflect save slot summaries
+    for (const slot in this.saveSlots) {
+      document.getElementById(`${slot}-summary`).innerText =
+        this.saveSlots[slot].summary || "(Empty)";
+    }
+  }
+
+  cleanupOldSave() {
+    // Check if the old gameState exists
+    const oldGameState = localStorage.getItem("gameState");
+    if (oldGameState) {
+      // Migrate the old gameState to slot1
+      localStorage.setItem("gameStateslot1", oldGameState);
+      this.saveSlots.slot1.summary = `Migrated save at ${new Date().toLocaleString()}`;
+      console.log("Old save data migrated to Slot 1.");
+
+      // Clean up the old key
+      localStorage.removeItem("gameState");
+    }
+    this.saveToStorage(); // Ensure the updated metadata is saved
   }
 }
