@@ -1,15 +1,49 @@
 start:
+${rant:>norant:>rant}
+
+norant:
+Back again?
+>question
+
+rant:
 !neutral
 I didn’t think I’d see you again. Not after what happened.
 !angry
 Did you forget? Or maybe you thought I did.
 All the money I saved, gone. And you just... disappeared.
 !neutral
-?But here you are. So, Violet... why are you here?
+But here you are.
+@setTidbit(rant)
+
+rant:
+>question
+
+question:
+?Violet... why are you here?
 [apology] Make amends.
 [know] How do you know me?
 ${priestitsuki:[back] I want to.:[deflect] I need something.}
 ${loanitsuki:[stop] Stop stealing my money.: }
+
+stop:
+You know I am not going to stop Violet.
+Loan sharking is an evil that prays on the weak.
+I know how you are with money, but it isn't acceptable.
+?The only thing that you can do is make it into a legitimate credit union.
+[never] Never!
+[how] How do I do that?
+[talk] We'll talk later.
+
+never:
+Of course you won't.
+
+how:
+Oh... it's fairly easy. Just talk to the people in your loan "office".
+They will gladly do it.
+@setTidbit(GLOBAL/communitypossible)
+
+talk:
+Alright. But consider my offer.
 
 know:
 ~itsukimanga.txt

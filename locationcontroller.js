@@ -130,7 +130,7 @@ class LocationController {
       this.decorationContainer.style.outline = "5px solid crimson";
       // Xivato-specific actions (no navigation arrows for Xivato)
       this.xivato.currentLocation = this.currentLocation;
-      if (location.rooms[0].use == "Temple") {
+      if (location.rooms[0]?.use == "Temple") {
         this.renderCharacter(this.jobController.getCharacter(location));
       } else {
         this.renderCharacter(this.xivato);

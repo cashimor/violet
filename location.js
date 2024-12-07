@@ -396,6 +396,24 @@ const gameStartPurgatory = new Location(
   "music/purgatory.mp3"
 );
 
+const gameOverCommunity = new Location(
+  "Game Over: Community",
+  "images/gocommunity.jpg",
+  "Game Over",
+  0,
+  0,
+  "music/gocommunity.mp3" // Placeholder for community-specific music
+);
+
+const gameOverCommunityItsuki = new Location(
+  "Game Over: Community Itsuki",
+  "images/gocommunityitsuki.jpg",
+  "Game Over",
+  0,
+  0,
+  "music/gocommunityitsuki.mp3" // Placeholder for Itsuki-specific music
+);
+
 // Add them to a separate gameOverLocations array
 const gameOverLocations = {
   xivato: gameOverXivato,
@@ -405,4 +423,6 @@ const gameOverLocations = {
   dead: gameOverDead,
   bedroom: gameStartBedroom,
   purgatory: gameStartPurgatory,
+  community: gameOverCommunity,
+  communityitsuki: gameOverCommunityItsuki,
 };

@@ -132,6 +132,38 @@ class SimulationController {
     this.dailyCostElement.textContent = `${currencySymbol}${this.dailyCost.toLocaleString()}`;
   }
 
+  checkCommunityWin() {
+    const communityLocations = this.enemyController.owned("Community"); // Community-controlled locations
+    const violetLocations = this.enemyController.owned("Violet"); // Violet-controlled locations
+    const xivatoLocations = this.enemyController.owned("Xivato"); // Xivato-controlled locations
+    const availableLocations = this.enemyController.getAvailableLocations(); // Unoccupied locations
+
+    // Check if all locations are either Community or Violet-controlled
+    if (
+      xivatoLocations === 0 && // No Xivato-controlled locations
+      availableLocations.length === 0 && // No unoccupied locations
+      violetLocations < 3 // All locations are controlled
+    ) {
+      // Determine if Itsuki is present in the Community scenario
+      const itsuki = this.gameController.getCharacterByName("Itsuki");
+      const isItsukiPartner = itsuki && itsuki.icon === "partner";
+
+      if (isItsukiPartner) {
+        // Itsuki helps lead the Community transformation
+        this.scenarioManager.triggerGameOver(
+          "With Itsuki by your side, the city blossoms into a true community.",
+          "communityitsuki"
+        );
+      } else {
+        // Violet achieves the Community transformation alone
+        this.scenarioManager.triggerGameOver(
+          "The city thrives under your leadership, but you are left to lead alone.",
+          "community"
+        );
+      }
+    }
+  }
+
   checkEvilWin() {
     const requiredMoney = 1000000; // Adjust if needed
     const xivatoLocations = this.enemyController.owned("Xivato"); // Assuming a method for total locations
@@ -230,6 +262,7 @@ class SimulationController {
     }
     this.gameController.goddessController.gatherMana();
     this.checkEvilWin();
+    this.checkCommunityWin();
     this.updateDisplay();
   }
 
