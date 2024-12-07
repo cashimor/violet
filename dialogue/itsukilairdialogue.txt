@@ -1,3 +1,27 @@
 start:
 #It's good to be together at last, Violet.
 #~itsukimanga.txt
+#>community
+
+community:
+I stopped stealing from your loan shark offices. But I still don't like them.
+?Don't you think we should give back to the community?
+[give] Donate to charity?
+[how] What's your idea?
+[no] It's all ours.
+
+no:
+Of course Violet...
+
+give:
+That would be an option, certainly.
+
+how:
+?Well... you could sell your businesses and make them legitimate.
+[alright] Let's start on that.
+[no] It's all ours.
+
+alright:
+Fantastic. I'm so glad you listen to me. 
+@setTidbit(GLOBAL/communitypossible)
+

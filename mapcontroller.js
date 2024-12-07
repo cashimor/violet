@@ -73,12 +73,12 @@ class MapController {
   calculateControlProportions() {
     const control = {};
 
-    control["total"] = { Violet: 0, Xivato: 0, total: 0 };
+    control["total"] = { Violet: 0, Xivato: 0, Community: 0, total: 0 };
 
     // Initialize counters for each ref
     this.locations.forEach((loc) => {
       if (!control[loc.ref]) {
-        control[loc.ref] = { Violet: 0, Xivato: 0, total: 0 };
+        control[loc.ref] = { Violet: 0, Xivato: 0, Community: 0, total: 0 };
       }
 
       if (loc.owner === "Violet") {
@@ -87,6 +87,9 @@ class MapController {
       } else if (loc.owner === "Xivato") {
         control[loc.ref].Xivato++;
         control["total"].Xivato++;
+      } else if (loc.owner === "Community") {
+        control[loc.ref].Community++;
+        control["total"].Community++;
       }
 
       control[loc.ref].total++;
@@ -118,38 +121,92 @@ class MapController {
   // Draw a single marker
   drawMarker(location, control, totalarea) {
     const radius = 25; // Base size of control circle
-    const { Violet, Xivato, total } = control || {
+    const { Violet, Xivato, Community, total } = control || {
       Violet: 0,
       Xivato: 0,
+      Community: 0,
       total: 1,
     };
 
     const violetRadius = radius * totalarea.Violet;
     const xivatoRadius = radius * totalarea.Xivato;
+    const communityRadius = radius * totalarea.Community;
 
-    // Violet's control
-    if (Violet > 0) {
-      const startAngle = 0;
-      const endAngle = Violet > 0 && Xivato > 0 ? Math.PI : 2 * Math.PI;
+    // Violet and Xivato
+    if (Violet > 0 && Xivato > 0) {
       this.drawControlCircle(
         location,
         violetRadius,
-        startAngle,
-        endAngle,
-        "rgba(238, 130, 238, 0.4)"
+        Math.PI,
+        2 * Math.PI,
+        "rgba(238, 130, 238, 0.4)" // Violet bottom
       );
-    }
-
-    // Xivato's control
-    if (Xivato > 0) {
-      const startAngle = Violet > 0 ? Math.PI : 0;
-      const endAngle = 2 * Math.PI;
       this.drawControlCircle(
         location,
         xivatoRadius,
-        startAngle,
-        endAngle,
-        "rgba(220, 20, 60, 0.4)"
+        0,
+        Math.PI,
+        "rgba(220, 20, 60, 0.4)" // Xivato top
+      );
+    }
+    // Violet and Community
+    else if (Violet > 0 && Community > 0) {
+      this.drawControlCircle(
+        location,
+        violetRadius,
+        Math.PI,
+        2 * Math.PI,
+        "rgba(238, 130, 238, 0.4)" // Violet bottom
+      );
+      this.drawControlCircle(
+        location,
+        communityRadius,
+        0,
+        Math.PI,
+        "rgba(50, 205, 50, 0.4)" // Community top
+      );
+    }
+    // Xivato and Community
+    else if (Xivato > 0 && Community > 0) {
+      this.drawControlCircle(
+        location,
+        xivatoRadius,
+        Math.PI,
+        2 * Math.PI,
+        "rgba(220, 20, 60, 0.4)" // Xivato bottom
+      );
+      this.drawControlCircle(
+        location,
+        communityRadius,
+        0,
+        Math.PI,
+        "rgba(50, 205, 50, 0.4)" // Community top
+      );
+    }
+    // Single control
+    else if (Violet > 0) {
+      this.drawControlCircle(
+        location,
+        violetRadius,
+        0,
+        2 * Math.PI,
+        "rgba(238, 130, 238, 0.4)" // Full Violet
+      );
+    } else if (Xivato > 0) {
+      this.drawControlCircle(
+        location,
+        xivatoRadius,
+        0,
+        2 * Math.PI,
+        "rgba(220, 20, 60, 0.4)" // Full Xivato
+      );
+    } else if (Community > 0) {
+      this.drawControlCircle(
+        location,
+        communityRadius,
+        0,
+        2 * Math.PI,
+        "rgba(50, 205, 50, 0.4)" // Full Community
       );
     }
 

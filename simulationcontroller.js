@@ -17,6 +17,7 @@ class SimulationController {
     this.evilLairBonus = 0;
     this.evilness = 100; // Starting evil score
     this.updateEvilness(0);
+    this.tidbits = {};
 
     // DOM elements for updating the UI
     this.dayCounterElement = document.getElementById("day-counter");
@@ -33,6 +34,17 @@ class SimulationController {
       "click",
       debounceClick(() => this.advanceDay())
     );
+  }
+
+  // Set a tidbit
+  setTidbit(key) {
+    this.tidbits[key] = true;
+    return key;
+  }
+
+  // Get a tidbit (returns false if not set)
+  hasTidbit(key) {
+    return !!this.tidbits[key];
   }
 
   getEvilFilter(evilness) {
@@ -125,7 +137,7 @@ class SimulationController {
     const xivatoLocations = this.enemyController.owned("Xivato"); // Assuming a method for total locations
     const availableLocations = this.enemyController.getAvailableLocations();
     const bribeCount = this.bribes;
-  
+
     // Check all conditions for the Evil Win
     if (
       this.money >= requiredMoney &&
@@ -136,7 +148,10 @@ class SimulationController {
       // Check if Itsuki is in the Evil Lair
       const itsuki = this.gameController.getCharacterByName("Itsuki");
       if (itsuki.icon == "partner") {
-        this.scenarioManager.triggerGameOver("Even Itsuki could not resist your rise to power.", "evilItsuki");
+        this.scenarioManager.triggerGameOver(
+          "Even Itsuki could not resist your rise to power.",
+          "evilItsuki"
+        );
       } else {
         this.scenarioManager.triggerGameOver("You conquered the city!", "evil");
       }

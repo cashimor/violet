@@ -9,6 +9,7 @@ class JobController {
       jobData[key] = {
         purpose: job.purpose,
         npcAssigned: job.npcAssigned ? job.npcAssigned.name : null, // Use character's name
+        community: false, // Indicates whether the job is part of the community
       };
     }
     return jobData;
@@ -24,6 +25,55 @@ class JobController {
           : null, // Find character by name or leave as null
       };
     }
+  }
+
+  getCommunityPurpose(currentPurpose) {
+    const purposeMap = {
+      "Gambling Den": "Arcade",
+      "Drugs Distribution": "Pharmacy",
+      "Drugs Laboratory": "Research Laboratory",
+      "Massage Parlor": "Wellness Spa",
+      "Loan Office": "Credit Union",
+    };
+    return purposeMap[currentPurpose] || "Community Hub"; // Default if no mapping exists
+  }
+
+  markAsCommunity(location) {
+    const roomId = location.name + "/" + location.currentRoomIndex;
+    const job = this.jobs[roomId]; // Fetch the job for the given location
+
+    if (!job) {
+      console.error("Location not found in job controller.");
+      return;
+    }
+
+    // Mark as community in the job
+    job.community = true;
+    job.purpose = this.getCommunityPurpose(job.purpose);
+
+    // Revert NPC to original form
+    job.npcAssigned.icon = ""; // Reset NPC icon
+
+    // Fetch the community room type by purpose
+    const newRoomType = this.getRoomTypeByName(job.purpose); 
+    if (!newRoomType) {
+      console.error("Room type not found for purpose:", job.purpose);
+      return;
+    }
+    this.updateNpcDialogue(job.npcAssigned, newRoomType);
+    // Update the location to reflect community status
+    location.decorateLocation(
+      newRoomType.imageUrl,
+      newRoomType.name,
+      newRoomType.music,
+      true
+    );
+
+    // Optional: Notify the player of the change
+    console.log(
+      `The ${location.name} has been converted into a community space: ${newRoomType.name}.`
+    );
+    return newRoomType.cost;
   }
 
   // Register a room with a specific purpose once decorated
@@ -53,6 +103,21 @@ class JobController {
     return room ? room.npcAssigned : null; // Return assigned NPC if exists, else null
   }
 
+  updateNpcDialogue(character, roomType) {
+    if (!character || !roomType) return;
+
+    // Check for special dialogue overrides based on room type
+    if (
+      character.specialDialogues &&
+      character.specialDialogues[roomType.name]
+    ) {
+      character.dialogue = character.specialDialogues[roomType.name];
+    } // Default to the room type's dialogue
+    else {
+      character.dialogue = roomType.dialogue;
+    }
+  }
+
   assignNpcToJob(roomId, character) {
     if (this.jobs[roomId] && !this.jobs[roomId].npcAssigned) {
       this.jobs[roomId].npcAssigned = character;
@@ -61,25 +126,10 @@ class JobController {
       character.location = roomId;
       character.setIcon(roomType.icon);
 
-      // Check for special dialogue overrides
-      if (
-        character.specialDialogues &&
-        character.specialDialogues[roomType.name]
-      ) {
-        character.dialogue = character.specialDialogues[roomType.name];
-      } else {
-        character.dialogue = roomType.dialogue; // Default dialogue
-      }
-
+      this.updateNpcDialogue(character, roomType);
       return true;
     }
     return false;
-  }
-  // Remove an NPC from a room (e.g., if job completed). Untested.
-  removeNpcFromJob(roomId) {
-    if (this.jobs[roomId]) {
-      this.jobs[roomId].npcAssigned = null;
-    }
   }
 
   // Check available jobs by filtering rooms by purpose and vacancy

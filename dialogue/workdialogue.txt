@@ -4,6 +4,12 @@ start:
 [label2] Can we do some training?
 [bonus] Here is a bonus (¥5000)
 ${malvani:[label3] Just checking in.:[goddess] You know Malvani?}
+${GLOBAL/communitypossible:[community] Go legit: }
+
+community:
+You want to make this a legitimate location? No longer worrying about the police?
+Of course! That sounds great. This should make a great addition to the community.
+@communify()
 
 label1:
 !neutral

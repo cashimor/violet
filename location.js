@@ -11,7 +11,7 @@ class Location {
     size = 0,
     owner = null,
     rooms = [],
-    currentRoomIndex = 0,
+    currentRoomIndex = 0
   ) {
     this.name = name;
     this.imageUrl = imageUrl;
@@ -19,8 +19,7 @@ class Location {
     this.x = x;
     this.y = y;
     this.available = available;
-    this.owner = owner,
-    this.dailyCost = dailyCost;
+    (this.owner = owner), (this.dailyCost = dailyCost);
     this.size = size;
     this.musicUrl = musicUrl;
     this.rooms = rooms;
@@ -49,7 +48,7 @@ class Location {
     // Clear ownership and reset availability
     this.owner = null;
     this.available = true;
-  
+
     // Clear rooms if previously owned by Violet
     if (this.rooms && this.rooms.length > 0) {
       this.rooms = []; // Reset the rooms array
@@ -67,6 +66,7 @@ class Location {
           use: "default",
           url: this.imageUrl, // Default to main apartment image
           music: this.musicUrl,
+          community: false, // Default
         }));
       }
     }
@@ -111,17 +111,19 @@ class Location {
       : "basic";
   }
 
-  decorateLocation(url, type, music) {
+  decorateLocation(url, type, music, isCommunity = false) {
     const allowedTempleLocations = ["Room Tower", "Room Mountain"];
-  
+
     // Check if the type is "Temple"
     if (type === "Temple") {
       // Verify that the current location is one of the allowed locations
       if (!allowedTempleLocations.includes(this.name)) {
-        updateSummaryText(this.name + " is not a suitable location for a temple.");
+        updateSummaryText(
+          this.name + " is not a suitable location for a temple."
+        );
         return false;
       }
-  
+
       // Check if any other room already has a specific use
       for (const room of this.rooms) {
         if (room.use && room.use !== "default") {
@@ -129,7 +131,7 @@ class Location {
           return false;
         }
       }
-  
+
       // Remove other rooms from the array, leaving only the current room
       this.rooms = [
         {
@@ -142,11 +144,17 @@ class Location {
       updateSummaryText("The temple has been successfully built.");
       return true;
     }
-  
+
     // For other types, just assign the type and details to the current room
     this.rooms[this.currentRoomIndex].url = url;
     this.rooms[this.currentRoomIndex].use = type;
     this.rooms[this.currentRoomIndex].music = music;
+    this.rooms[this.currentRoomIndex].community = isCommunity; // Set community flag
+
+    // Check if all rooms in this location are now community
+    if (this.rooms.every((room) => room.community)) {
+      this.owner = "Community"; // Change the location's owner
+    }
     return true;
   }
 
@@ -241,7 +249,7 @@ const roomtower = new Location(
   true,
   4000,
   3
-)
+);
 
 const roomriver = new Location(
   "Room River",
@@ -253,7 +261,7 @@ const roomriver = new Location(
   true,
   2900,
   3
-)
+);
 
 const roommountain = new Location(
   "Room Mountain",
@@ -265,7 +273,7 @@ const roommountain = new Location(
   true,
   5000,
   2
-)
+);
 
 const cityBlock2 = new Location(
   "City Block 2",
@@ -306,18 +314,17 @@ const police = new Location(
   "Map",
   220, // Adjusted for relative position within City Block 2
   280,
-  "music/policestation.mp3",
+  "music/policestation.mp3"
 );
 
 const itsukiapt = new Location(
   "Itsuki's Apartment",
   "images/itsukiapartment.jpg",
   "Game Start",
-  0, 
+  0,
   0,
   "music/itsukisapt.mp3"
 );
-
 
 // Array of locations
 let locations = [
@@ -387,7 +394,7 @@ const gameStartBedroom = new Location(
   "Game Start: Violet's Bedroom",
   "images/violetbed.jpg",
   "Game Start",
-  0, 
+  0,
   0,
   "music/violetbedroom.mp3"
 );
@@ -396,7 +403,7 @@ const gameStartPurgatory = new Location(
   "Game Start: Purgatory",
   "images/purgatory.jpg",
   "Game Start",
-  0, 
+  0,
   0,
   "music/purgatory.mp3"
 );
@@ -410,4 +417,4 @@ const gameOverLocations = {
   dead: gameOverDead,
   bedroom: gameStartBedroom,
   purgatory: gameStartPurgatory,
-}
+};

@@ -160,6 +160,7 @@ class OptionsController {
       locationCost: this.simulationController.locationCost,
       jobCost: this.simulationController.jobCost,
       friendBoundary: this.simulationController.friendBoundary,
+      tidbits: this.simulationController.tidbits || {},
       bribes: this.simulationController.bribes,
       locations: this.locationController.locations,
       currentLocation: this.locationController.currentLocation,
@@ -204,6 +205,7 @@ class OptionsController {
     this.simulationController.locationCost = gameState.locationCost;
     this.simulationController.jobCost = gameState.jobCost;
     this.simulationController.friendBoundary = gameState.friendBoundary;
+    this.simulationController.tidbits = gameState.tidbits || {};
     this.simulationController.bribes = gameState.bribes;
     this.enemyController.daysSinceLastOccupation =
       gameState.daysSinceLastOccupation;

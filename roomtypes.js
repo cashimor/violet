@@ -11,8 +11,9 @@ class RoomType {
     baseProfit,
     music,
     dialogue,
+    community = false,
     funds = 0,
-    theftHistory = []
+    theftHistory = [],
   }) {
     this.name = name;
     this.job = job;
@@ -25,6 +26,7 @@ class RoomType {
     this.baseProfit = baseProfit;
     this.music = music;
     this.dialogue = dialogue;
+    this.community = community;
     this.funds = funds;
     this.theftHistory = theftHistory;
   }
@@ -43,6 +45,7 @@ class RoomType {
       baseProfit: this.baseProfit,
       music: this.music,
       dialogue: this.dialogue,
+      community: this.community,
       funds: this.funds,
       theftHistory: this.theftHistory,
     };
@@ -184,4 +187,94 @@ let roomTypes = {
     music: "music/drugsdistribution.mp3",
     dialogue: "distributiondialogue.txt", // Dialogue file for interactions
   }),
+  arcade: new RoomType({
+    name: "Arcade",
+    job: null, // No job required
+    dailyWage: 0, // No wages
+    icon: "arcade", // Unique icon for an arcade
+    imageUrl: "images/arcade.jpg", // Unique image for the arcade
+    cost: 15000, // Refund when selling (matches original gambling den cost)
+    upkeep: 0, // No upkeep cost
+    hint: "A family-friendly entertainment venue with games and fun.",
+    baseProfit: 0, // No profit (community space)
+    music: "music/community.mp3", // Shared music for all community spaces
+    dialogue: "communitydialogue.txt", // Unified dialogue file
+    community: true,
+  }),
+
+  pharmacy: new RoomType({
+    name: "Pharmacy",
+    job: null,
+    dailyWage: 0,
+    icon: "pharmacy",
+    imageUrl: "images/pharmacy.jpg",
+    cost: 15000, // Matches drugs distribution cost
+    upkeep: 0,
+    hint: "A legal establishment for selling medicine and health supplies.",
+    baseProfit: 0,
+    music: "music/community.mp3",
+    dialogue: "communitydialogue.txt",
+    community: true,
+  }),
+
+  researchlaboratory: new RoomType({
+    name: "Research Laboratory",
+    job: null,
+    dailyWage: 0,
+    icon: "laboratory",
+    imageUrl: "images/researchlaboratory.jpg",
+    cost: 15000, // Matches drugs laboratory cost
+    upkeep: 0,
+    hint: "A place for scientific research and innovation.",
+    baseProfit: 0,
+    music: "music/community.mp3",
+    dialogue: "communitydialogue.txt",
+    community: true,
+  }),
+
+  wellnessspa: new RoomType({
+    name: "Wellness Spa",
+    job: null,
+    dailyWage: 0,
+    icon: "spa",
+    imageUrl: "images/wellnessspa.jpg",
+    cost: 15000, // Matches massage parlor cost
+    upkeep: 0,
+    hint: "A relaxing retreat offering health and wellness services.",
+    baseProfit: 0,
+    music: "music/community.mp3",
+    dialogue: "communitydialogue.txt",
+    community: true,
+  }),
+
+  creditunion: new RoomType({
+    name: "Credit Union",
+    job: null,
+    dailyWage: 0,
+    icon: "creditunion",
+    imageUrl: "images/creditunion.jpg",
+    cost: 15000, // Matches loan office cost
+    upkeep: 0,
+    hint: "A financial cooperative offering fair loans and savings.",
+    baseProfit: 0,
+    music: "music/community.mp3",
+    dialogue: "communitydialogue.txt",
+    community: true,
+  }),
+
+  community: new RoomType({
+    name: "Community Hub",
+    job: null,
+    dailyWage: 0,
+    icon: "communityhub",
+    imageUrl: "images/communityhub.jpg",
+    cost: -15000, // Matches loan office cost
+    upkeep: 0,
+    hint: "A hub that can be used for community efforts.",
+    baseProfit: 0,
+    music: "music/community.mp3",
+    dialogue: "communitydialogue.txt",
+    community: true,
+  }),
+
 };

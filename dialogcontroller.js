@@ -121,8 +121,18 @@ class DialogController {
       getFollowerCount: (param) => this.getFollowerCount(param),
       pray: (param) => this.pray(param),
       checkTheft: (param) => this.checkTheft(param),
+      communify: (param) => this.communify(param),
       // Add more functions as needed
     };
+  }
+
+  communify() {
+    const location = this.gameController.locationController.currentLocation;
+    const price = this.gameController.jobController.markAsCommunity(location);
+    this.simulationController.money += price;
+    this.simulationController.updateDisplay();
+    this.gameController.locationController.loadLocation(location);
+    return [">communify"];
   }
 
   checkTheft() {
@@ -212,12 +222,24 @@ class DialogController {
   }
 
   setTidbit(param) {
-    // Extract tidbit name from the parameter (assuming format: @setTidBit(tidbitName))
+    // Extract tidbit name and optional prefix from the parameter
     const tidbitName = param.trim();
+    let tidbitKey = tidbitName;
+    let target = this.character; // Default to the current character
 
-    // Set the tidbit for the character (assuming `this.character` is the current character)
-    const result = this.character.setTidbit(tidbitName);
+    // Check for GLOBAL prefix
+    if (tidbitName.startsWith("GLOBAL/")) {
+      tidbitKey = tidbitName.replace("GLOBAL/", ""); // Strip the GLOBAL prefix
+      target = this.simulationController; // Switch target to global tidbits
+    }
 
+    // Set the tidbit for the target
+    const result = target.setTidbit(tidbitKey);
+
+    if (target == this.simulationController) {
+      this.gameController.locationController.updateDecorateOptions();
+    }
+    
     // Return the reference for branching in the dialogue
     return [">" + result]; // Return an array with the result to match other commands' return formats
   }
@@ -550,17 +572,19 @@ class DialogController {
         [characterName, tidbitKey] = key.split("/");
       }
 
-      // Resolve the character
-      const character = characterName
-        ? this.gameController.getCharacterByName(characterName)
-        : this.character; // Default to current character
+      // Resolve the character or check the simulation controller for GLOBAL
+      let hasTidbit = false;
+      if (characterName === "GLOBAL") {
+        hasTidbit = this.simulationController.hasTidbit(tidbitKey);
+      } else {
+        const character = characterName
+          ? this.gameController.getCharacterByName(characterName)
+          : this.character; // Default to current character
+        hasTidbit = character?.hasTidbit(tidbitKey);
+      }
 
       // Return the appropriate value
-      if (character?.hasTidbit(tidbitKey)) {
-        return ifTrue !== "" ? ifTrue : "";
-      } else {
-        return ifFalse;
-      }
+      return hasTidbit ? (ifTrue !== "" ? ifTrue : "") : ifFalse;
     });
   }
 

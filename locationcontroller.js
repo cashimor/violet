@@ -44,7 +44,6 @@ class LocationController {
       // Dynamically update the data-hint with cost and upkeep
       const roomKey = button.id.replace("btn", "").toLowerCase();
       const roomData = roomTypes[roomKey];
-
       if (roomData) {
         const formattedCost = roomData.cost
           .toLocaleString("en")
@@ -122,20 +121,23 @@ class LocationController {
     // Check the owner of the location and apply the appropriate border
     if (location.owner === "Violet") {
       this.decorationContainer.style.outline = "5px solid violet";
-      this.drawRoomNavigationIcons();
+      this.drawRoomNavigationIcons(); // Allow navigation for Violet-owned locations
       if (this.currentLocation.getUse() === "default") {
         this.decoratePopup.classList.remove("hidden");
       }
       this.renderCharacter(this.jobController.getCharacter(location));
     } else if (location.owner === "Xivato") {
       this.decorationContainer.style.outline = "5px solid crimson";
-      // Add additional Xivato-specific actions here if needed
+      // Xivato-specific actions (no navigation arrows for Xivato)
       this.xivato.currentLocation = this.currentLocation;
       this.renderCharacter(this.xivato);
+    } else if (location.owner === "Community") {
+      this.decorationContainer.style.outline = "5px solid green"; // Green border for Community
+      this.drawRoomNavigationIcons(); // Allow navigation for Community locations
+      this.renderCharacter(this.jobController.getCharacter(location)); // Render the "community" NPC or character
     } else {
-      this.decorationContainer.style.outline = "none"; // Remove border if no one owns the location
-    }
-    // Check if location is available
+      this.decorationContainer.style.outline = "none"; // No border if unowned
+    } // Check if location is available
     if (
       location.available &&
       location.dailyCost <= this.simulationController.money
@@ -474,6 +476,14 @@ class LocationController {
       : "inline-block";
     document.getElementById("btnDrugsDistribution").style.display =
       drugsLabExists ? "inline-block" : "none";
+
+    // Check if the GLOBAL/community tidbit is set
+    const communityAvailable =
+      this.simulationController.hasTidbit("communitypossible");
+    // Show/Hide the community button
+    document.getElementById("btnCommunity").style.display = communityAvailable
+      ? "inline-block"
+      : "none";
   }
 
   decorateRoom(roomData) {
@@ -483,7 +493,8 @@ class LocationController {
         !this.currentLocation.decorateLocation(
           roomData.imageUrl,
           roomData.name,
-          roomData.music
+          roomData.music,
+          roomData.community
         )
       ) {
         this.simulationController.money =
