@@ -44,15 +44,11 @@ class Location {
     return location;
   }
 
-  evict() {
-    // Clear ownership and reset availability
+  vacate() {
     this.owner = null;
     this.available = true;
-
-    // Clear rooms if previously owned by Violet
-    if (this.rooms && this.rooms.length > 0) {
-      this.rooms = []; // Reset the rooms array
-    }
+    this.rooms = []; // Clear rooms when vacated
+    this.currentRoomIndex = 0;
   }
 
   rentTo(characterName) {
@@ -70,14 +66,6 @@ class Location {
         }));
       }
     }
-  }
-
-  // Untested.
-  vacate() {
-    this.owner = null;
-    this.available = true;
-    this.rooms = []; // Clear rooms when vacated
-    this.currentRoomIndex = 0;
   }
 
   getImageUrl() {

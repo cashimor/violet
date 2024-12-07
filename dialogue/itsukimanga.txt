@@ -46,3 +46,64 @@ You seemed beautiful to me. And wronged. I was hoping...
 you'd realize your potential, and become better. Or at least, be with me.
 
 read:
+%pyre.jpg
+It starts out with the prince, whose father has died.
+He mourns his father, but he needs to rule his new kingdom.
+%
+He knows that the first thing needed for stability is an heir.
+%futurewife.jpg
+?Fortunately he finds a woman who is both beautiful and smart, and proposes to her.
+[already] He knew that bitch already?
+[ugly] She's ugly.
+[c1] ...
+
+already:
+Yes... he met her way before you even came to his castle. He just kept her hidden.
+>c1
+
+ugly:
+It's a matter of opinion. I find you far more beautiful, Violet.
+>c1
+
+c1:
+%
+He met with his advisors and set up procedures.
+There was hardly any money left.
+%princesses.jpg
+Three princesses came from a neighboring kingdom.
+%princess2.jpg
+The first of the princesses was average looking, but she was sociable and friendly.
+%princess3.jpg
+The second was magnificently beautiful, but not very smart.
+%violetprincess.jpg
+And the third was beautiful, with bronze skin and long violet hair.
+?She was also cunning, vicious, and highly intelligent.
+[ears] What's up with my ears?
+[made] He made me vicious
+[c2] ...
+
+ears:
+The artist just likes elf ears. You'll see it more often.
+>c2
+
+made:
+I know. The story portrays you far more evil thank I thought you were.
+Until I met you, that is.
+>c2
+
+c2:
+%princess2seduce.jpg
+The first princess 'accidentally' encountered him in the desert.
+She pretended to be weak, so he would catch her, and tried to seduce him.
+%
+The prince, however, ensured her safety, and then continued to the market.
+%jewelryshopping.jpg
+There the third princess spied on him, and watched him purchase jewelry.
+%jewelry.jpg
+When she discovered the jewelry matched her eyes, she was delighted.
+As they matched her looks, she thought he would pick her.
+%princess3seduce.jpg
+The prince found the second princess in his bed, whispering sweet nothingness.
+%
+Unfortunately for her, the princess rejected her advance.
+He kicked her out of the room.

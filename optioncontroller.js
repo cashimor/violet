@@ -166,7 +166,7 @@ class OptionsController {
       currentLocation: this.locationController.currentLocation,
       jobs: this.jobController.toData(),
       characters: this.locationController.characters,
-      daysSinceLastOccupation: this.enemyController.daysSinceLastOccupation,
+      enemyControllerState: this.enemyController.toData(),
       mana: this.gameController.goddessController.mana,
     };
 
@@ -207,8 +207,7 @@ class OptionsController {
     this.simulationController.friendBoundary = gameState.friendBoundary;
     this.simulationController.tidbits = gameState.tidbits || {};
     this.simulationController.bribes = gameState.bribes;
-    this.enemyController.daysSinceLastOccupation =
-      gameState.daysSinceLastOccupation;
+    this.enemyController.fromData(gameState.enemyControllerState);
     this.gameController.goddessController.mana = gameState.mana || 0;
     this.locationController.locations = gameState.locations.map(
       Location.fromData

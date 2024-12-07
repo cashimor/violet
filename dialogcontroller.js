@@ -239,7 +239,7 @@ class DialogController {
     if (target == this.simulationController) {
       this.gameController.locationController.updateDecorateOptions();
     }
-    
+
     // Return the reference for branching in the dialogue
     return [">" + result]; // Return an array with the result to match other commands' return formats
   }
@@ -286,7 +286,7 @@ class DialogController {
     if (amount < 1000000 && this.simulationController.day * 15000 > amount) {
       return ["Thank you for the money, but that is hardly enough."];
     }
-    this.character.currentLocation.evict();
+    this.character.currentLocation.vacate();
     return [
       "Oh, it is a pleasure doing business with you.",
       "Have fun with this new property. We will be back!",
@@ -631,6 +631,51 @@ class DialogController {
     this.currentIndex = 0; // Tracks the current line in the dialog
   }
 
+  // Method to clear the manga-style panel area
+  clearPanel() {
+    const panelX = this.characterX + 255; // Match panel position
+    const panelY = this.characterY + 20; // Match panel position
+    const panelWidth = 410; // Match panel width
+    const panelHeight = 210; // Match panel height
+
+    this.context.clearRect(panelX, panelY, panelWidth, panelHeight);
+  }
+
+  // Method to draw a manga-style panel above the speech bubble
+  drawPanel(url) {
+    const panelX = this.characterX + 260; // Adjust based on panel position
+    const panelY = this.characterY + 25; // Place it higher than the bubble
+    const panelWidth = 200; // Adjust the width of the panel
+    const panelHeight = 200; // Adjust the height of the panel
+    const borderWidth = 5;
+
+    const img = new Image();
+    img.onload = () => {
+      this.context.drawImage(img, panelX, panelY, panelWidth, panelHeight);
+
+      this.context.shadowColor = "rgba(0, 0, 0, 0.5)";
+      this.context.shadowBlur = 10;
+      this.context.shadowOffsetX = 5;
+      this.context.shadowOffsetY = 5;
+
+      // Outer border
+      this.context.strokeStyle = "black";
+      this.context.lineWidth = borderWidth;
+      this.context.strokeRect(
+        panelX - borderWidth / 2,
+        panelY - borderWidth / 2,
+        panelWidth + borderWidth,
+        panelHeight + borderWidth
+      );
+
+      // Inner border
+      this.context.strokeStyle = "white";
+      this.context.lineWidth = 2;
+      this.context.strokeRect(panelX, panelY, panelWidth, panelHeight);
+    };
+    img.src = `images/manga/${url}`; // Prepend the images/ directory to the URL
+  }
+
   // Method to clear only the dialog bubble area
   clearBubble() {
     const bubbleX = this.characterX + 50; // Adjust based on bubble position
@@ -799,6 +844,7 @@ class DialogController {
     // Clear the canvas to remove any previously drawn characters
     this.characterController.clearCharacter();
     this.clearBubble();
+    this.clearPanel();
     // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     // Check if there's a scenario step tied to this dialogue
     const callback = this.gameController.closeDialogCallback;
@@ -868,6 +914,16 @@ class DialogController {
     if (dialogContent.startsWith("!")) {
       this.handleEmotion(dialogContent);
       dialogContent = this.getNextLine();
+    }
+    // Handle manga panel change if line starts with "%"
+    if (dialogContent.startsWith("%")) {
+      const panelCommand = dialogContent.substring(1).trim(); // Get text after "%"
+      if (panelCommand) {
+        this.drawPanel(panelCommand); // Draw specified panel
+      } else {
+        this.clearPanel(); // Clear the panel if no text
+      }
+      dialogContent = this.getNextLine(); // Move to the next line
     }
     if (dialogContent.startsWith(">")) {
       this.chooseOption(dialogContent.slice(1));

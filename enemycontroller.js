@@ -1,9 +1,26 @@
 class EnemyController {
   constructor(locations, gameController) {
     this.occupationInterval = 10; // Days between occupying new locations
+    this.failedExpansionInterval = 5; // Times occupation should fail before evict.
     this.daysSinceLastOccupation = 0; // Tracks the days since last occupation
     this.locations = locations;
     this.gameController = gameController;
+    this.failedExpansionCounter = 0;
+  }
+
+  toData() {
+    const state = {
+      daysSinceLastOccupation: this.daysSinceLastOccupation,
+      failedExpansionCounter: this.failedExpansionCounter,
+    };
+    return state;
+  }
+
+  fromData(state) {
+    if (state) {
+      this.daysSinceLastOccupation = state.daysSinceLastOccupation;
+      this.failedExpansionCounter = state.failedExpansionCounter;
+    }
   }
 
   // Function to format the game's date
@@ -49,7 +66,7 @@ class EnemyController {
 
         // Update Itsuki's apartment to become active on the map
         if (itsukiApartment.ref != "Map") {
-          itsuki.dialogue = "itsukiFoundDialogue.txt"
+          itsuki.dialogue = "itsukiFoundDialogue.txt";
           console.log("Updated Itsuki's dialogue to post-discovery content.");
           itsukiApartment.ref = "Map";
           itsukiApartment.x = 240; // Move west (lower x value)
@@ -111,12 +128,11 @@ class EnemyController {
     return false;
   }
 
-  
   // Method invoked each new day
   onNewDay() {
     // Itsuki
-        // Find Itsuki in the list of characters
-        const itsuki = this.gameController.getCharacterByName("Itsuki");
+    // Find Itsuki in the list of characters
+    const itsuki = this.gameController.getCharacterByName("Itsuki");
 
     this.applyItsukiTheft(itsuki);
     this.updateItsukiApartment(itsuki);
@@ -132,8 +148,52 @@ class EnemyController {
     return this.checkLoseCondition();
   }
 
+  findLocationToEvict() {
+    let templeLocation = null;
+    let evilLairLocation = null;
+    const evictableLocations = [];
+
+    // Loop through all locations
+    for (const location of this.locations) {
+      // Check if location is owned by Violet
+      if (location.owner === "Violet") {
+        console.log(location.rooms);
+        // Check for temple in the first room
+        if (location.rooms[0]?.use === "Temple") {
+          templeLocation = location; // Store the temple location
+        }
+        // Check for the evil lair in any room
+        else if (location.rooms.some((room) => room.use === "Evil Lair")) {
+          evilLairLocation = location; // Store the evil lair location
+        }
+        // Otherwise, this is a valid evictable location
+        else {
+          evictableLocations.push(location);
+        }
+      }
+    }
+
+    let locationToEvict = null;
+    // If there are no evictable locations, return null
+    if (evictableLocations.length > 0) {
+      const randomIndex = Math.floor(Math.random() * evictableLocations.length);
+      locationToEvict = evictableLocations[randomIndex];
+    }
+    // Return all three locations
+    return {
+      locationToEvict, // Randomly selected location to evict
+      templeLocation, // Temple location
+      evilLairLocation, // Evil Lair location
+    };
+  }
+
   occupyNewLocation() {
     const availableLocations = this.getAvailableLocations();
+
+    if (availableLocations.length === 0) {
+      // All locations are occupied
+      this.failedExpansionCounter += this.owned("Xivato");
+    }
 
     if (availableLocations.length > 0) {
       const locationToOccupy =
@@ -142,6 +202,29 @@ class EnemyController {
         ];
       locationToOccupy.rentTo("Xivato"); // Assuming `rentTo` sets the location's owner
       console.log(`Xivato have occupied ${locationToOccupy.name}`);
+      return;
     }
+    if (this.failedExpansionInterval > this.failedExpansionCounter) {
+      return;
+    }
+    this.failedExpansionCounter -= this.failedExpansionInterval;
+    // Check if there is something to evict.
+    const { locationToEvict, templeLocation, evilLairLocation } =
+      this.findLocationToEvict();
+    if (locationToEvict) {
+      locationToEvict.vacate();
+      console.log(`Xivato have evicted Violet from ${locationToEvict.name}`);
+      return;
+    }
+    if (templeLocation) {
+      templeLocation.owner = "Xivato";
+      console.log("Xivato have converted the temple to their own use.");
+      return;
+    }
+    this.gameController.simulationController.scenarioManager.triggerGameOver(
+      "Xivato infiltrated your Evil Lair.",
+      "xivato"
+    );
+
   }
 }

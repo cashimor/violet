@@ -130,7 +130,11 @@ class LocationController {
       this.decorationContainer.style.outline = "5px solid crimson";
       // Xivato-specific actions (no navigation arrows for Xivato)
       this.xivato.currentLocation = this.currentLocation;
-      this.renderCharacter(this.xivato);
+      if (location.rooms[0].use == "Temple") {
+        this.renderCharacter(this.jobController.getCharacter(location));
+      } else {
+        this.renderCharacter(this.xivato);
+      }
     } else if (location.owner === "Community") {
       this.decorationContainer.style.outline = "5px solid green"; // Green border for Community
       this.drawRoomNavigationIcons(); // Allow navigation for Community locations
