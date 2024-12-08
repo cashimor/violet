@@ -101,8 +101,10 @@ class DialogController {
     this.closeButtonX = this.characterX + 500; // Adjust based on bubble position
     this.closeButtonY = this.characterY - 90;
     this.closeButtonSize = 20;
-
+    this.shopManager = new ShopManager(this.simulationController);
     this.commandTable = {
+      getItemsForSale: (param) => this.shopManager.getItemsForSale(param),
+      buyItem: (param) => this.shopManager.buyItem(param),
       showJobChoices: (param) => this.showJobChoices(param),
       selectJob: (param) => this.selectJob(param),
       train: (param) => this.train(param),
@@ -876,14 +878,26 @@ class DialogController {
 
     // Add each choice as a button
     choices.forEach(([label, text]) => {
+      const isConfused = label.startsWith("^"); // Check for the ^ marker
+      const cleanLabel = isConfused ? label.slice(1) : label; // Remove the ^ marker
+
       const choiceButton = document.createElement("button");
       choiceButton.innerText = text;
       choiceButton.className = "button-parchment";
       choiceButton.style.margin = "5px";
+
+      // Apply special styling for confused choices
+      if (isConfused) {
+        choiceButton.style.color = "#003366"; // Special color for learning options
+        choiceButton.style.fontStyle = "italic"; // Optional: make it italic for emphasis
+        choiceButton.style.border = "2px dotted #003366";
+        choiceButton.style.backgroundColor = "rgba(173, 216, 230, 0.5)";
+      }
+
       choiceButton.onclick = debounceClick(() => {
         this.closePopup();
         this.state = "ACTIVE";
-        this.chooseOption(label); // Update dialog based on choice
+        this.chooseOption(cleanLabel); // Use the cleaned label
         this.start(); // Restart dialog with chosen label
       });
       this.choiceContainer.appendChild(choiceButton);

@@ -1,0 +1,64 @@
+start:
+?Here is the food. It was 800 Yen, but it has green onions, tempura and egg.
+[tasty2] This... is amazing!
+[refuse2] Yuck.
+${GLOBAL/KNOWmoney:[^UDON] Udon?:[^MONEY] Yen?}
+
+MONEY:
+@setTidbit(GLOBAL/KNOWmoney)
+
+KNOWmoney:
+%yen.jpg
+Oh... of course. You don't know what money is.
+In your world it was all about carrying precious metals around.
+?It's basically paper, like this. But it has a lot of value.
+[getmoney] Give me all your money.
+[^UDON] Udon?
+[tasty] This... is amazing!
+[refuse] Yuck.
+
+UDON:
+@setTidbit(GLOBAL/KNOWfood)
+
+KNOWfood:
+%udon.jpg
+Udon is one of many tasty Japanese dishes.
+It's made with noodles and broth and can have many different condiments.
+?You should try it.
+[getmoney] Give me all your money.
+[tasty] This... is amazing!
+[refuse] Yuck.
+
+tasty:
+It is, isn't it? Food has become quite refined.
+>end
+
+refuse:
+I'm sorry you don't like it.
+>end
+
+end:
+I know... I doubt there's anything I can do to make you stay.
+I hope you'll come back some day, though.
+Here is all my money. You'll need it.
+@giveLike(-100000)
+
+getmoney:
+Here is all of it.
+@giveLike(-100000)
+
+tasty2:
+It is, isn't it? Food has become quite refined.
+>end2
+
+refuse2:
+I'm sorry you don't like it.
+>end2
+
+end2:
+I know... I doubt there's anything I can do to make you stay.
+I hope you'll come back some day, though.
+
+
+
+

@@ -122,8 +122,12 @@ class SimulationController {
     // Calculate daily costs
     this.dailyCost = this.locationCost + this.jobCost;
 
-    // Choose the currency symbol based on the game state
-    const currencySymbol = this.scenarioManager.gameIntro ? "⚜" : "¥";
+    // Choose the currency symbol based on the game state and tidbit
+    const currencySymbol = this.hasTidbit("KNOWmoney")
+      ? "¥" // Use Yen if Violet knows about money
+      : this.scenarioManager.gameIntro
+      ? "⚜"
+      : "?"; // Use medieval or unknown symbol otherwise
 
     // Update UI elements with the appropriate symbol
     this.updateDayCounter(this.day);

@@ -259,6 +259,18 @@ let characters = [
     "police",
   ),
   new Character(
+    "Shop owner",
+    ["shop owner"],
+    "Shop",
+    "shop.txt",
+    null,
+    null,
+    100,
+    {},
+    "shop",
+  ),
+
+  new Character(
     "Xivato",
     ["xivato"],
     "Job",

@@ -2,8 +2,28 @@ start:
 ?What is it that you'd like to discuss?
 [job] You want a job?
 [like] I'd like to know you more.
-[bribe] Does ¥5000 help?
+${GLOBAL/KNOWmoney:[bribe] Does ¥5000 help?:[^GOLD] Gold?}
+${GLOBAL/KNOWmoney:[beg] Give me money, please.: }
+
+GOLD:
+@setTidbit(GLOBAL/KNOWmoney)
+
+KNOWmoney:
+What? You are used to gold for paying for things? Which place do you come from?
+%yen.jpg
+Here we use a currency called Yen. It comes in bank notes like these.
+?You generally get it from working, but there are other ways.
 [beg] Give me money, please.
+[talk] I'm from Khardan.
+[thank] Thank you!
+
+talk:
+Oh... a desert kingdom in another world? That is a wonderful story.
+Hopefully we can talk more about it some other time. I am glad I got to know you.
+@adjustLike(17)
+
+thank:
+You're quite welcome!
 
 job:
 ~jobdialogue.txt

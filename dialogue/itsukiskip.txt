@@ -1,0 +1,8 @@
+start:
+@setTidbit(GLOBAL/KNOWmoney)
+
+KNOWmoney:
+@setTidbit(GLOBAL/KNOWfood)
+
+KNOWfood:
+@giveLike(-100000)

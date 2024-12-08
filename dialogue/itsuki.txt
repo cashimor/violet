@@ -5,6 +5,7 @@ Well, not so soon! And you look exactly how I imagined you would.
 ?Better, even!
 [lucky] ...Lucky me.
 [fetch] Can you go fetch food for me?
+[skip] <skip>
 
 lucky:
 Ah, forgive me! Where are my manners?
@@ -40,9 +41,22 @@ I dreamed about you. I knew you’d come. We’re destined for greatness, Violet
 change:
 Oh, I've prepared everything! I’ve saved up money—lots of money—to support our quest.
 ?I even stocked up on supplies! I even have a bed for you to sleep in.
+[^MONEY] Money?
 [kind] The Goddess said you prayed for me.
 [getmoney] Good, give me that money.
 [fetch] Can you go fetch food for me?
+
+MONEY:
+@setTidbit(GLOBAL/KNOWmoney)
+
+KNOWmoney:
+%yen.jpg
+Oh... of course. You don't know what money is.
+In your world it was all about carrying precious metals around.
+?It's basically paper, like this. But it has a lot of value.
+[kind] The Goddess said you prayed for me.
+[getmoney] Good, give me that money.
+[fetch2] Can you go fetch food for me?
 
 kind:
 I did. Every single day. I begged her to save you. And she did.
@@ -65,15 +79,25 @@ It’s fate!
 >fetch
 
 fetch:
-?Alright... I'll get some food for you. Don't go.
-[wallet] Take wallet money and leave
-[rent] Take rent money and leave
-[all] Take all money and leave
+?Alright... I'll get some food for you.
+[leave] Sneak out.
+[wait] Wait.
 
-wallet:
+fetch2:
+?Alright... I'll get some food for you.
+[leave] Sneak out.
+[wait] Wait.
+[wallet] Take wallet money and leave.
+[rent] Take rent money and leave.
+[all] Take all money and leave.
+
+wait:
+~itsukifood.txt
+
+leave:
 @adjustEvilness(-1)
 
-goodviolet:
+wallet:
 @giveLike(-35000)
 
 rent:
@@ -87,3 +111,6 @@ Here is everything...
 @giveLike(-100000)
 
 money:
+
+skip:
+~itsukiskip.txt

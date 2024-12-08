@@ -1,0 +1,24 @@
+start:
+Welcome to my shop!
+@getItemsForSale(generalStore)
+
+bicycle:
+This is a sturdy bicycle.
+?It only has one gear, but it should get you to places faster.
+[buybicycle] I'll buy it.
+[later] Later.
+
+later:
+Thank you! I hope to see you back soon.
+
+buybicycle:
+@buyItem(bicycle)
+
+selfHelpBook:
+The book is titled: "How to Be Ruthless Without Losing Friends".
+?It has pictures too.
+[buyselfHelpBook] I'll buy it.
+[later] Later.
+
+buyselfHelpBook:
+@buyItem(selfHelpBook)

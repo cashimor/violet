@@ -296,6 +296,16 @@ const room4 = new Location(
   3 // Maintenance level or room difficulty
 );
 
+const shop = new Location(
+  "Shop",
+  "images/shop.jpg",
+  "City Block 2",
+  190,
+  340,
+  "music/shop.mp3",
+  false
+);
+
 const police = new Location(
   "Police Station",
   "images/policestation.jpg",
@@ -331,6 +341,7 @@ let locations = [
   room3,
   room4,
   police,
+  shop,
 ];
 
 const gameOverXivato = new Location(

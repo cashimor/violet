@@ -144,7 +144,8 @@ class LocationController {
     } // Check if location is available
     if (
       location.available &&
-      location.dailyCost <= this.simulationController.money
+      location.dailyCost <= this.simulationController.money &&
+      this.simulationController.hasTidbit("KNOWmoney")
     ) {
       document.getElementById("location-name").textContent = location.name;
       document.getElementById(

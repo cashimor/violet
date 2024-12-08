@@ -284,7 +284,15 @@ class MapController {
       const distance = Math.sqrt((x - location.x) ** 2 + (y - location.y) ** 2);
       if (distance < 10) {
         if (this.locationController.currentLocation !== location) {
-          const energyCost = 10; // Example cost, adjust as needed
+          // Base energy cost
+          let energyCost = 15;
+
+          // Check if the bicycle has been purchased
+          if (this.simulationController.hasTidbit("SHOP_bicycle")) {
+            // Reduce the energy cost by a percentage or fixed amount
+            const discount = Math.floor(energyCost * 0.5); // Reduce cost by 50%
+            energyCost = Math.max(10, energyCost - discount); // Ensure minimum cost of 10
+          }
 
           // Deduct energy and proceed only if successful
           if (this.simulationController.deductEnergy(energyCost)) {
