@@ -1,0 +1,7 @@
+start:
+@setTidbit(khardan)
+
+khardan:
+It's called Khardan? A desert kingdom in another world? That is a wonderful story.
+Hopefully we can talk more about it some other time. I am glad I got to know you.
+@adjustLike(17)

@@ -1,7 +1,13 @@
 start:
-Welcome to my humble abode, Violet.  
-I don't know what Itsuki thought, but rescuing you... 
-it took nearly everything I had.  
+Welcome to my humble abode, Violet. 
+I don't know what Itsuki thought, but rescuing you...
+it took nearly everything I had. But there is one more thing to do.
+%language.jpg
+And to make your transition smoother, I've given you a gift!
+Universal language comprehension! You can read and understand everything here.
+It's not perfect. It mostly translates meaning, not nuance.
+So, if you see something weird, just roll with it!
+%
 ?I am drained now, though.  
 [who] Who are you?  
 [where] Where am I?  

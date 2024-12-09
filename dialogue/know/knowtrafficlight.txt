@@ -1,0 +1,25 @@
+start:
+@setTidbit(GLOBAL/KNOWtrafficlight)
+
+KNOWtrafficlight:
+%trafficlight.jpg
+You don't know what a traffic light is? How did you survive?
+They are lights that indicate it is safe to go in a particular direction.
+Usually red means stop, yellow means be wary, and green means go.
+Sometimes there is white, in case you can go, but it may still not be safe.
+?How did you cross streets if you didn't know this?
+[normal] I prayed.
+[thank] Thank you.
+[normal] I raised my hand.
+[magic] I pretended to cast a spell.
+
+thank:
+You're welcome... be safe...
+
+normal:
+I guess you can do that. But really, just don't go when it is red.
+
+magic:
+Magic? You know that doesn't exist here, right? 
+${khardan:Khardan must be a wonderful place.:Tell me more about the place you're from.}
+${khardan::~know/khardan.txt}

@@ -1,0 +1,22 @@
+start:
+@setTidbit(GLOBAL/KNOWvending)
+
+KNOWvending:
+%vending.jpg
+They are this large square boxes you see everywhere along the side of the street.
+They can contain all sorts of items that you may want to purchase.
+You just put money in them, and they will release the item.
+You can then pick it up below.
+?Where are you from that you haven't seen them before?
+[khardan] Khardan.
+[thank] Thank you.
+${GLOBAL/KNOWmoney::[^MONEY] money?}
+
+khardan:
+~know/khardan.txt
+
+MONEY:
+~know/knowmoney.txt
+
+thank:
+You're welcome... be safe...

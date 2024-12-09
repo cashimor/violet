@@ -1,0 +1,31 @@
+start:
+@setTidbit(GLOBAL/KNOWmoney)
+
+KNOWmoney:
+What? You are used to gold for paying for things?
+${khardan:Your country keeps amazing me.:Which place do you come from?}
+%yen.jpg
+Here we use a currency called Yen. It comes in bank notes like these.
+?You generally get it from working, but there are other ways.
+[beg] Give me money, please.
+[thank] Thank you!
+${khardan::[talk] I'm from Khardan.}
+
+talk:
+~know/khardan.txt
+
+thank:
+You're quite welcome!
+
+beg:
+@hasMoney(10000)
+
+poor:
+@friendCheck()
+
+friendCheck:
+Here is some change...
+@giveLike(-32000)
+
+money:
+Hope that helps.

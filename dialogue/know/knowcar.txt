@@ -1,0 +1,20 @@
+start:
+@setTidbit(GLOBAL/KNOWcar)
+
+KNOWcar:
+%car.jpg
+You must've seen many. Cars and buses, they are all over the city.
+They are large metal machines that someone can use to drive.
+%bus.jpg
+There are different sizes of cars. There's even buses, that can hold many people.
+?All cars and buses can go very fast.
+[drake] I thought they were iron drakes.
+[thank] Thank you.
+
+thank:
+You're welcome... be safe...
+
+drake:
+A... drake? Like the monster?
+${khardan:Khardan must be a wonderful place.:Tell me more about the place you're from.}
+${khardan::~know/khardan.txt}

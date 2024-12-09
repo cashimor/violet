@@ -1,12 +1,12 @@
 start:
-#>s1m1
-#>s1m2
-#>s1m3
+#>s3m2
 #>s2m1
+#>s1m2
+#>s1m1
+#>s1m3
 #>s2m2
 #>s2m3
 #>s3m1
-#>s3m2
 #>s3m3
 #>s3m4
 #>s4m1
@@ -38,8 +38,11 @@ At the traffic light, I saw a bird repeatedly pecking at its reflection
 in a car's side mirror.
 ?It got me thinking about why it was doing that.
 [fail] Maybe it wanted a snack? 
-[success] It must think it's another bird. 
+${GLOBAL/KNOWcar:[success] It must think it's another bird.:[^CAR] car?}
 [fail] Birds are so weird sometimes.
+
+CAR:
+~know/knowcar.txt
 
 s1m2: 
 !frustrated
@@ -47,9 +50,12 @@ I was feeling frustrated, like everything was taking too long.
 The traffic light stayed red for what felt like forever,
 and the cars ahead didn’t move when it turned green.
 ?It was so annoying.
-[fail] Why not honk at them? 
-[success] Ugh, people need to pay attention. 
+${GLOBAL/KNOWcar:[fail] Why not honk at them? :[^CAR] honk? car?}
+${GLOBAL/KNOWlight:[success] Ugh, people need to pay attention. :[^LIGHT] traffic light?}
 [fail] Maybe they were distracted?
+
+LIGHT:
+~know/knowtrafficlight.txt
 
 s1m3: 
 !playful
@@ -58,16 +64,20 @@ While waiting at the traffic light,
 I noticed someone dancing in their car to the music.
 ?It made me smile.
 [fail] Did you join them? 
-[success] That's hilarious! 
+${GLOBAL/KNOWcar:[success] That's hilarious!:[^CAR] car?}
 [fail] People can be so silly.
 
-s2m1:
+s2m1: 
+!thoughtful
 I was in a thoughtful mood, considering every option carefully.
 I was staring at the vending machine, debating between chocolate or chips.
 ?What would you pick?
-[success] Depends on your craving, right?
+${GLOBAL/KNOWvending:[success] Depends on your craving, right? :[^VENDING] Vending machine?}
 [fail] Chocolate is always the answer!
 [fail] Chips. Crunch is life.
+
+VENDING:
+~know/knowvending.txt
 
 s2m2:
 I felt like exploring something new, even if it was a small detour.
@@ -94,22 +104,22 @@ I couldn’t decide whether to stick to my usual drink or try something bold.
 [fail] The usual—comfort is key.
 [fail] Maybe you skipped the coffee altogether?
 
-s3m2:
+s3m2: 
+!reflective
 I was in a reflective mood, thinking about how people adapt to challenges.
 While waiting at the bus stop,
 I noticed someone miss their bus and start laughing instead of getting upset.
 ?How would you react in their place?
+${GLOBAL/KNOWcar:[success] I’d laugh too—sometimes that’s all you can do. :[^CAR] Bus?}
 [fail] I’d probably get mad—missing the bus is annoying.
-[success] I’d laugh too—sometimes that’s all you can do.
 [fail] I wouldn’t care—it’s just a bus.
 
-s3m3:
-I felt a little nostalgic today, thinking about simpler times.
+s3m3: 
 I noticed a child blowing bubbles in the park—such a carefree moment.
-?Does that bring back memories for you too?
-[fail] Not really, I never cared for stuff like that.
-[success] Absolutely—it’s such a pure joy!
-[fail] It’s cute, but I prefer bigger events.
+?What do you think of it?
+[fail] Seems like a pointless waste of time.
+[success] It's simple, fleeting joy, isn't it?
+[fail] I don’t get why anyone would find that fun.
 
 s3m4:
 I was in a playful mood, looking for little quirks to enjoy.
