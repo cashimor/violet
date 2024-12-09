@@ -508,6 +508,7 @@ class LocationController {
       }
       this.jobController.addRoom(this.currentLocation);
       this.loadLocation(this.currentLocation);
+      this.simulationController.recalculateDailyCostLocations(locations);
       this.simulationController.recalculateDailyCostJobs(this.jobController);
       // If there's an upgrade path, we can manage it here later
       console.log(`Room decorated as ${roomData.name}`);

@@ -91,12 +91,14 @@ decision:
 [walk_away] I don’t need your trust.
 
 offer_help:
-!neutral
-There’s a loan office nearby.
-They’re taking everything from people who are already struggling to survive.
-!determined
-Help me stop them, Violet.
-If you’re serious about making things right, this is how you’ll start.
+${partneritsuki:>genuineoffer:!neutral}
+I'm sorry. You don't seem sincere.
+I'm not sure there is anything you can do at this time.
+
+genuineoffer:
+Something has changed inside you Violet. I believe in you again.
+Hopefully you can stay this way.
+@adjustEvilness(-10)
 
 walk_away:
 !angry

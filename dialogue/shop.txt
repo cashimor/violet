@@ -5,8 +5,11 @@ Welcome to my shop!
 bicycle:
 This is a sturdy bicycle.
 ?It only has one gear, but it should get you to places faster.
-[buybicycle] I'll buy it.
+${GLOBAL/KNOWcycle:[buybicycle] I'll buy it.:[^CYCLE] Bicycle?}
 [later] Later.
+
+CYCLE:
+~know/cycle.txt
 
 later:
 Thank you! I hope to see you back soon.

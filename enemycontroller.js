@@ -201,6 +201,9 @@ class EnemyController {
           Math.floor(Math.random() * availableLocations.length)
         ];
       locationToOccupy.rentTo("Xivato"); // Assuming `rentTo` sets the location's owner
+      this.gameController.simulationController.recalculateDailyCostLocations(
+        locations
+      );
       console.log(`Xivato have occupied ${locationToOccupy.name}`);
       return;
     }
@@ -213,11 +216,17 @@ class EnemyController {
       this.findLocationToEvict();
     if (locationToEvict) {
       locationToEvict.vacate();
+      this.gameController.simulationController.recalculateDailyCostLocations(
+        locations
+      );
       console.log(`Xivato have evicted Violet from ${locationToEvict.name}`);
       return;
     }
     if (templeLocation) {
       templeLocation.owner = "Xivato";
+      this.gameController.simulationController.recalculateDailyCostLocations(
+        locations
+      );
       console.log("Xivato have converted the temple to their own use.");
       return;
     }
@@ -225,6 +234,5 @@ class EnemyController {
       "Xivato infiltrated your Evil Lair.",
       "xivato"
     );
-
   }
 }

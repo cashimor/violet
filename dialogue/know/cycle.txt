@@ -1,0 +1,18 @@
+start:
+@setTidbit(GLOBAL/KNOWcycle)
+
+KNOWcycle:
+%cycle.jpg
+You must've seen many. Bicycles. They are all over the city.
+They have two weels and pedals and if you move the pedals they move forward.
+?They are convenient to get around. Except uphill, perhaps.
+[horse] I thought they were iron horses.
+[thank] Thank you.
+
+thank:
+You're welcome... be safe...
+
+horse:
+I guess they could be seen as an iron horse.
+${khardan:I take it you rode horses back in Khardan.:You're not from here, are you?}
+${khardan::~know/khardan.txt}

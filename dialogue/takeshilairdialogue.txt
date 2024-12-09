@@ -2,6 +2,7 @@ start:
 It's always a pleasure to see you here Violet. Hopefully we can talk.
 #>lair1
 #>lair2
+#>lair3
 
 lair1:
 This lair of ours—it’s a curious place to plan one’s future. But...
@@ -156,3 +157,132 @@ I believe it was the Goddess that brought you here. Perhaps you can ask her some
 
 newlife:
 I'm glad to hear that. I like you being here.
+
+lair3:
+Violet, there’s something I’ve been wondering.
+?How did you come to this world? Who brought you here?
+[deflect3] Does it matter?
+[story3] Someone prayed for me.
+[provoke3] Are you doubting my power?
+
+deflect3:
+!thoughtful
+I suppose not. But the past always finds its way to the present.
+
+provoke3:
+!calm
+Not at all. But power always has a source. I’m curious about yours.
+?Should we leave it at that? Or will you tell me more?
+[story] Someone prayed for me.
+[nothing3] That’s all you need to know.
+
+nothing3:
+Very well. But secrets have a way of revealing themselves, Violet.
+
+story3:
+Interesting.
+They must've had very strong convictions for a Goddess to hear their prayer.
+Especially one that I didn't know about until I met you.
+?Do you ever think about them? I'm sure they believed you'd change your life.
+[guilt3] I took everything from him
+[indifference3] People come and go
+[defensive3] Why should I care?
+
+guilt3:
+!sad
+And yet they prayed for you. They must have seen something in you.
+?Do you remember their name?
+[itsuki3] Itsuki
+[wrong3] Katsuki
+[wrong3] Itsuro
+[wrong3] I don't remember
+
+itsuki3:
+@setTidbit(itsuki)
+
+itsuki:
+I think it is time you find this Itsuki, and see if you can make amends.
+I'm sure your minions will locate his apartment soon.
+@adjustEvilness(-10)
+
+wrong3:
+It will come to you eventually, I'm sure.
+
+indifference3:
+Perhaps. But not everyone forgets so easily.
+
+defensive3:
+!serious
+And what did you deserve, Violet? A new world? A second chance?
+
+lair4:
+You mentioned... you have a child. That must have been difficult for you.
+?Would you like to tell me more?
+[child_yes] Yes, I’ll talk.
+[child_no] No. It’s none of your business.
+
+child_no:
+I understand. It’s personal.
+I won’t press you—just know I’m here if you need to talk.
+
+child_yes:
+So this child... did you leave them behind when you came to this world?
+?What was it like for you?
+[child_mother] I would've been a good mother.
+[child_legacy] They were my legacy.
+[child_burden] They were a burden I didn’t need.
+[nothing4] I don’t want to talk about this anymore.
+
+nothing4:
+I understand. We can stop here.
+
+child_mother:
+A good mother...
+even when the world treated you so cruelly, you still gave them love?
+That’s something remarkable, Violet.
+>child_continue
+
+child_legacy:
+Your legacy... Did you see yourself in them? Did you want them to be like you?
+?What would you want for them now?
+[child_success] I want them to succeed.
+[child_power] I want them to be powerful.
+[child_survive] I just want them to survive.
+
+child_success:
+Success... not defined by this cruel world, I hope. But by something better.
+Something they can choose.
+>child_continue
+
+child_power:
+Power... Is that what they need to survive in the world you left?
+Or is it what you need to survive here?
+>child_continue
+
+child_survive:
+Survival... I suppose that’s where everything begins. And perhaps... ends.
+>child_continue
+
+child_burden:
+A burden? I see. Even so, their existence ties you to something bigger than yourself.
+Doesn’t it?
+>child_continue
+
+child_continue:
+?Do you regret leaving them?
+[child_regret] I do
+[child_no_regret] No
+[alaric4] Alaric took my child
+
+child_regret:
+Regret... That’s a heavy thing to carry.
+Maybe one day, you’ll have the chance to make peace with it.
+@adjustEvilness(-10)
+
+child_no_regret:
+I see. Perhaps that is your way of surviving, Violet. To keep going forward.
+
+alaric4:
+${alaricEven:I thought you felt you were even with him.:I know. He will always be there.}
+But there's no need to think about him anymore. Your child is more important.
+You are more important.

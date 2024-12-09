@@ -55,7 +55,7 @@ class JobController {
     job.npcAssigned.icon = ""; // Reset NPC icon
 
     // Fetch the community room type by purpose
-    const newRoomType = this.getRoomTypeByName(job.purpose); 
+    const newRoomType = this.getRoomTypeByName(job.purpose);
     if (!newRoomType) {
       console.error("Room type not found for purpose:", job.purpose);
       return;
@@ -82,6 +82,7 @@ class JobController {
     if (!this.jobs[roomId]) {
       this.jobs[roomId] = {
         purpose: location.getUse(),
+        community: location.community,
         npcAssigned: null,
       };
     }
@@ -136,16 +137,17 @@ class JobController {
   getAvailableJobsForPurpose(purpose) {
     return Object.keys(this.jobs).filter((roomId) => {
       const job = this.jobs[roomId];
-      return job.purpose === purpose && !job.npcAssigned;
+      return job.purpose === purpose && !job.npcAssigned && !job.community;
     });
   }
 
   // Get a list of unique purposes that have vacant rooms (no NPC assigned)
+  // Excludes jobs in community locations
   getAvailableJobTypes() {
     const availablePurposes = new Set();
 
     Object.values(this.jobs).forEach((job) => {
-      if (!job.npcAssigned) {
+      if (!job.npcAssigned && !job.community) {
         availablePurposes.add(job.purpose);
       }
     });

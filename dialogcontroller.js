@@ -88,8 +88,8 @@ class DialogController {
     this.characterController = characterController;
     this.character = characterController.character;
     this.gameController = gameController;
-    this.loadDialogFile(dialogFile);
     this.simulationController = simulationController;
+    this.loadDialogFile(dialogFile);
     this.jobController = jobController;
     this.currentLabel = "start"; // Begin at the default label or starting point
     this.characterX = characterController.characterX;
@@ -131,6 +131,10 @@ class DialogController {
   communify() {
     const location = this.gameController.locationController.currentLocation;
     const price = this.gameController.jobController.markAsCommunity(location);
+    this.simulationController.recalculateDailyCostLocations(
+      this.gameController.locationController.locations
+    );
+    this.simulationController.recalculateDailyCostJobs();
     this.simulationController.money += price;
     this.simulationController.updateDisplay();
     this.gameController.locationController.loadLocation(location);

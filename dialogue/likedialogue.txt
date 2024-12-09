@@ -168,7 +168,7 @@ I was feeling imaginative, letting my mind wander wherever it wanted.
 While lying in the grass, I stared at the clouds and started to see shapes in them.
 ?What do you think I imagined?
 [success] A dragon flying through the sky.
-[fail] A spaceship landing on Earth.
+[fail] A bird landing in a tree.
 [fail] Nothing—you probably fell asleep.
 
 s5m2:
@@ -183,8 +183,8 @@ s5m3:
 I was in a playful mood, wanting to find humor in everything.
 One cloud in particular caught my eye, and it made me laugh.
 ?What do you think it looked like?
-[fail] A dinosaur balancing on a ball.
-[fail] A clown juggling bananas.
+[fail] A wyvern balancing on a ball.
+[fail] A jester juggling bananas.
 [success] A dog with a goofy expression.
 
 s5m4:
@@ -203,7 +203,7 @@ I couldn’t help but think about their day.
 ?What did I think?
 [success] They’re working hard—what keeps them motivated?
 [fail] They must hate this job.
-[fail] That looks tough, but at least they’re getting paid well.
+[fail] That looks tough, but at least they’re getting gold.
 
 s6m2:
 I was feeling grateful, appreciating the little things in life.
@@ -211,8 +211,8 @@ I saw a road worker fixing a pothole,
 and it made me reflect on how much I take smooth roads for granted.
 ?What might I have thought?
 [fail] They should work faster—I’m in a hurry.
-[success] I’m glad someone’s doing this job—where would we be without them?
-[fail] I bet they don’t even notice how much we appreciate their work.
+[success] I’m glad someone’s doing this job.
+[fail] I bet they don’t even notice.
 
 s6m3:
 I was feeling impatient, frustrated by delays.
@@ -220,7 +220,7 @@ The road worker was holding up traffic, and I couldn’t get where I needed to b
 ?What do you think I thought in that moment?
 [fail] I should yell at them to hurry up.
 [fail] Maybe I’ll just turn around and find another way.
-[success] It’s frustrating, but they’re doing an important job.
+[success] They’re doing an important job.
 
 s6m4:
 I was feeling curious,
@@ -229,7 +229,7 @@ The road worker seemed focused, carefully filling a pothole.
 ?What might I have asked myself?
 [fail] How long until they’re done?
 [success] What would it feel like to work with your hands all day?
-[fail] Why do they always work during rush hour?
+[fail] Why do they always work when it is busy?
 
 s6m5:
 !frustrated
@@ -237,15 +237,18 @@ I was frustrated, as though everything was against me today.
 While cycling home, I had to push through a strong headwind that refused to let up.
 ?It made me wonder if there’s any point to fighting the wind sometimes.
 [fail] Maybe you just need a better bike?
-[success] It's not about the wind; it's about persistence.
+${GLOBAL/KNOWbike:[success] It's not about the wind; it's about persistence.:[^BIKE] Cycle?}
 [fail] It’s probably just nature telling you to slow down.
+
+BIKE:
+~know/cycle.txt
 
 s6m6:
 !awkward
 I was feeling awkward, like I didn’t quite fit in.
 While walking down the street, some people started whistling at me out of nowhere.
 ?It left me wondering how I should have responded.
-[success] You’re not obligated to respond to something that makes you uncomfortable.
+[success] You’re not obligated to respond.
 [fail] You could have smiled and waved—it’s harmless.
 [fail] Maybe next time you can whistle back to confuse them?
 
@@ -255,9 +258,9 @@ I was in a thoughtful mood, reflecting on the little things in life.
 At home, I spent a good five minutes fiddling with a ring of keys,
 trying to find the right one to open my door.
 ?It made me think about how such small moments shape our day.
-[fail] Why not get one of those color-coded caps for your keys?
+[fail] Why not mark your keys?
 [fail] Maybe you just need fewer locks on your door.
-[success] Sometimes the smallest challenges make the eventual success feel better.
+[success] Challenges make the eventual success feel better.
 
 s6m8:
 !cheerful
@@ -284,7 +287,7 @@ I felt conflicted, torn between my own needs and someone else’s.
 A close friend approached me, asking for a loan they swore they’d pay back soon.
 ?It made me question if helping them was the right choice.
 [fail] You should never lend money; it ruins friendships.
-[success] If they’re truly a friend, trust them but set clear expectations.
+[success] Trust them but set clear expectations.
 [fail] You could’ve just said no—it’s safer that way.
 
 s6m11:
@@ -294,8 +297,8 @@ While walking through town, a stranger approached me,
 begging for money with a desperate look in their eyes.
 ?It made me wonder what I’d do if I were in their place.
 [success] Offering even a little could mean a lot to them.
-[fail] You could’ve told them to find work—tough love is helpful.
-[fail] It’s probably a scam; you did the right thing ignoring it.
+[fail] Tough love is helpful.
+[fail] It’s a scam; ignore it.
 
 s6m12:
 !scientific
@@ -303,7 +306,7 @@ I was in a scientific mood, curious about how the world works in intricate detai
 I noticed a puddle of water rippling in a strange,
 rhythmic pattern, as if it was alive.
 ?It got me thinking about what could cause such an unusual sight.
-[success] Probably vibrations from something nearby, like a machine.
+[success] Probably vibrations from something nearby.
 [fail] Maybe the wind just made it behave oddly.
 [fail] Could it be some sort of tiny creature disturbing the surface?
 
@@ -312,7 +315,7 @@ s6m13:
 I was analytical, looking for patterns in the chaos of the day.
 At the café, I watched steam rise from my coffee, swirling into fascinating shapes.
 ?It made me ponder why the patterns always seemed random but beautiful.
-[success] It’s likely a result of temperature gradients and airflow mixing.
+[success] It’s likely a result of the heat.
 [fail] Maybe it’s just luck—random things are sometimes pretty.
 [fail] Could it be the shape of the cup influencing the steam?
 
