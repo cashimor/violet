@@ -362,8 +362,8 @@ const gameOverPoverty = new Location(
   "music/gameover.mp3" // MP3
 );
 
-const gameOverMalvani = new Location(
-  "Game Over: Malvani Darkness",
+const gameOverEvil = new Location(
+  "Game Over: Evil",
   "images/goevil.jpg",
   "Game Over",
   0,
@@ -425,15 +425,37 @@ const gameOverCommunityItsuki = new Location(
   "music/gocommunityitsuki.mp3" // Placeholder for Itsuki-specific music
 );
 
+
+const gameOverMalvani = new Location(
+  "Game Over: Malvani",
+  "images/gomalvani.jpg",
+  "Game Over",
+  0,
+  0,
+  "music/gocommunityitsuki.mp3" // Placeholder for Malvani-specific music
+);
+
+const gameOverNirvani = new Location(
+  "Game Over: Nirvani",
+  "images/gonirvani.jpg",
+  "Game Over",
+  0,
+  0,
+  "music/gocommunityitsuki.mp3" // Placeholder for Malvani-specific music
+);
+
+
 // Add them to a separate gameOverLocations array
 const gameOverLocations = {
   xivato: gameOverXivato,
   poverty: gameOverPoverty,
-  evil: gameOverMalvani,
+  evil: gameOverEvil,
   evilItsuki: gameOverEvilItsuki,
   dead: gameOverDead,
   bedroom: gameStartBedroom,
   purgatory: gameStartPurgatory,
   community: gameOverCommunity,
   communityitsuki: gameOverCommunityItsuki,
+  malvani: gameOverMalvani,
+  nirvani: gameOverNirvani,
 };

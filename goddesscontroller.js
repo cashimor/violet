@@ -6,8 +6,8 @@ class GoddessController {
     this.manaThreshold = 1000; // Default mana threshold for answering prayers
   }
 
-  calculateFollowers() {
-    const dedicatedIndividuals = this.getFollowerCount();
+  calculateFollowers(followerCount) {
+    const dedicatedIndividuals = followerCount;
     let followers = dedicatedIndividuals * dedicatedIndividuals * 17;
     return Math.round(followers); // Scale to max followers
   }
@@ -27,7 +27,17 @@ class GoddessController {
 
   // Triggered at the start of a new day to gather mana based on followers
   gatherMana() {
-    const newFollowers = this.calculateFollowers();
+    const followerCount = this.getFollowerCount();
+    if (followerCount > 4) {
+      // Possible win scenario.
+      if (this.canHearPrayer()) {
+        this.gameController.simulationController.scenarioManager.triggerGameOver(
+          "Malvani rises to rule the world.",
+          "malvani"
+        );
+      }
+    }
+    const newFollowers = this.calculateFollowers(followerCount);
     const manaGained = newFollowers * 10; // Mana generated per follower
     this.mana += manaGained;
     return manaGained;
@@ -55,9 +65,10 @@ class GoddessController {
     }
 
     // Find Xivato-controlled locations
-    const xivatoLocations = this.gameController.locationController.locations.filter(
-      (location) => location.owner === "Xivato"
-    );
+    const xivatoLocations =
+      this.gameController.locationController.locations.filter(
+        (location) => location.owner === "Xivato"
+      );
 
     if (xivatoLocations.length === 0) {
       return "The Xivato have no strongholds left to be evicted from.";
