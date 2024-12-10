@@ -124,12 +124,23 @@ class DialogController {
       pray: (param) => this.pray(param),
       checkTheft: (param) => this.checkTheft(param),
       communify: (param) => this.communify(param),
+      checkEvil: (param) => this.checkEvil(param),
       // Add more functions as needed
     };
   }
 
-  communify() {
+  checkEvil(value) {
+      const evilness = this.simulationController.evilness;
+      console.log(`Evilness check: ${evilness} against ${value}`);
+      return evilness >= parseInt(value) ? [">checkEvilTrue"] : [">checkEvilFalse"];
+  }
+
+  communify(param) {
     const location = this.gameController.locationController.currentLocation;
+    if (param == "nirvani") {
+      location.rooms[0].music = "music/temple2.mp3";
+      return [">nirvaniLocation"]
+    }
     const price = this.gameController.jobController.markAsCommunity(location);
     this.simulationController.recalculateDailyCostLocations(
       this.gameController.locationController.locations
@@ -181,7 +192,7 @@ class DialogController {
 
       if (result === true) {
         return [
-          "Malvani has answered your prayer!",
+          "The Goddess has answered your prayer!",
           "The Xivato have been driven from one of their strongholds.",
         ];
       } else {

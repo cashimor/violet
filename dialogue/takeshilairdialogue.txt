@@ -1,8 +1,9 @@
 start:
-It's always a pleasure to see you here Violet. Hopefully we can talk.
-#>lair1
-#>lair2
-#>lair3
+?It's always a pleasure to see you here Violet. Hopefully we can talk.
+[lair1] Of course
+[lair2] It's hard
+[lair3] Please be gentle
+${hasChild:[lair4] Alright?: }
 
 lair1:
 This lair of ours—it’s a curious place to plan one’s future. But...
@@ -56,6 +57,9 @@ You would have... yes... the moment you had a child. If not you, then your fathe
 
 father:
 Your father only had daughters? And he wanted a son...
+${fatherEven::>father_continue}
+
+father_continue:
 and you did all you could to be that son for him, but it didn't help.
 Then he played you out against your sisters. So you all hated each other.
 !father
@@ -159,7 +163,7 @@ newlife:
 I'm glad to hear that. I like you being here.
 
 lair3:
-Violet, there’s something I’ve been wondering.
+${itsuki:>alternate:Violet, there’s something I’ve been wondering.}
 ?How did you come to this world? Who brought you here?
 [deflect3] Does it matter?
 [story3] Someone prayed for me.
@@ -216,7 +220,8 @@ defensive3:
 And what did you deserve, Violet? A new world? A second chance?
 
 lair4:
-You mentioned... you have a child. That must have been difficult for you.
+${childpeace:>alternate:You mentioned... you have a child.}
+That must have been difficult for you.
 ?Would you like to tell me more?
 [child_yes] Yes, I’ll talk.
 [child_no] No. It’s none of your business.
@@ -277,6 +282,9 @@ child_continue:
 child_regret:
 Regret... That’s a heavy thing to carry.
 Maybe one day, you’ll have the chance to make peace with it.
+@setTidbit(childpeace)
+
+childpeace:
 @adjustEvilness(-10)
 
 child_no_regret:
@@ -286,3 +294,6 @@ alaric4:
 ${alaricEven:I thought you felt you were even with him.:I know. He will always be there.}
 But there's no need to think about him anymore. Your child is more important.
 You are more important.
+
+alternate:
+It is always good to see you here and hear your voice. But we can also just rest.

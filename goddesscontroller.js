@@ -31,6 +31,12 @@ class GoddessController {
     if (followerCount > 4) {
       // Possible win scenario.
       if (this.canHearPrayer()) {
+        if (this.gameController.simulationController.hasTidbit("goddessNirvani")) {
+          this.gameController.simulationController.scenarioManager.triggerGameOver(
+            "Nirvani rises to reign the world.",
+            "nirvani"
+          );  
+        }
         this.gameController.simulationController.scenarioManager.triggerGameOver(
           "Malvani rises to rule the world.",
           "malvani"

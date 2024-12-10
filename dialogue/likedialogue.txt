@@ -37,8 +37,8 @@ I was in a curious mood, trying to make sense of the world around me.
 At the traffic light, I saw a bird repeatedly pecking at its reflection
 in a car's side mirror.
 ?It got me thinking about why it was doing that.
-[fail] Maybe it wanted a snack? 
-${GLOBAL/KNOWcar:[success] It must think it's another bird.:[^CAR] car?}
+${GLOBAL/KNOWtrafficlight:[fail] Maybe it wanted a snack?:[^LIGHT] Traffic light?} 
+${GLOBAL/KNOWcar:[success] It must think it's another bird.:[^CAR] Car?}
 [fail] Birds are so weird sometimes.
 
 CAR:
@@ -50,8 +50,8 @@ I was feeling frustrated, like everything was taking too long.
 The traffic light stayed red for what felt like forever,
 and the cars ahead didn’t move when it turned green.
 ?It was so annoying.
-${GLOBAL/KNOWcar:[fail] Why not honk at them? :[^CAR] honk? car?}
-${GLOBAL/KNOWlight:[success] Ugh, people need to pay attention. :[^LIGHT] traffic light?}
+${GLOBAL/KNOWcar:[fail] Why not honk at them? :[^CAR] Honk? Car?}
+${GLOBAL/KNOWtrafficlight:[success] Ugh, people need to pay attention. :[^LIGHT] Traffic light?}
 [fail] Maybe they were distracted?
 
 LIGHT:
@@ -237,7 +237,7 @@ I was frustrated, as though everything was against me today.
 While cycling home, I had to push through a strong headwind that refused to let up.
 ?It made me wonder if there’s any point to fighting the wind sometimes.
 [fail] Maybe you just need a better bike?
-${GLOBAL/KNOWbike:[success] It's not about the wind; it's about persistence.:[^BIKE] Cycle?}
+${GLOBAL/KNOWcycle:[success] It's not about the wind; it's about persistence.:[^BIKE] Cycle?}
 [fail] It’s probably just nature telling you to slow down.
 
 BIKE:

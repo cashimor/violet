@@ -153,15 +153,7 @@ class OptionsController {
     }
 
     const gameState = {
-      day: this.simulationController.day,
-      energy: this.simulationController.energy,
-      money: this.simulationController.money,
-      dailyCost: this.simulationController.dailyCost,
-      locationCost: this.simulationController.locationCost,
-      jobCost: this.simulationController.jobCost,
-      friendBoundary: this.simulationController.friendBoundary,
-      tidbits: this.simulationController.tidbits || {},
-      bribes: this.simulationController.bribes,
+      simulationControllerState: this.simulationController.toData(),
       locations: this.locationController.locations,
       currentLocation: this.locationController.currentLocation,
       jobs: this.jobController.toData(),
@@ -198,15 +190,7 @@ class OptionsController {
     this.gameController.closeDialogCallback = null;
     this.simulationController.scenarioManager.gameOver = false;
     this.simulationController.scenarioManager.gameIntro = false;
-    this.simulationController.day = gameState.day;
-    this.simulationController.energy = gameState.energy;
-    this.simulationController.money = gameState.money;
-    this.simulationController.dailyCost = gameState.dailyCost;
-    this.simulationController.locationCost = gameState.locationCost;
-    this.simulationController.jobCost = gameState.jobCost;
-    this.simulationController.friendBoundary = gameState.friendBoundary;
-    this.simulationController.tidbits = gameState.tidbits || {};
-    this.simulationController.bribes = gameState.bribes;
+    this.simulationController.fromData(gameState.simulationControllerState);
     this.enemyController.fromData(gameState.enemyControllerState);
     this.gameController.goddessController.mana = gameState.mana || 0;
     this.locationController.locations = gameState.locations.map(

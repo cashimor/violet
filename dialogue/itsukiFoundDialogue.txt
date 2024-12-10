@@ -22,8 +22,8 @@ question:
 ?Violet... why are you here?
 [apology] Make amends.
 [know] How do you know me?
-${priestitsuki:[back] I want to.:[deflect] I need something.}
-${loanitsuki:[stop] Stop stealing my money.: }
+${priestitsuki:[temple] You were at the temple:[deflect] I need something.}
+${loanitsuki:[stop] Stop stealing my money: }
 
 stop:
 You know I am not going to stop Violet.
@@ -47,6 +47,40 @@ Alright. But consider my offer.
 
 know:
 ~itsukimanga.txt
+
+temple:
+Yes... that was one of the few nice things that you did.
+?Build a temple for the Goddess. Although...
+[back] I would like you in my life
+[talk] We'll talk later.
+${goddessrealname:[although2]:[although]} Although what?
+
+although2:
+You should go to the temple more. Pray.
+
+although:
+?You know Malvani isn't her name, right?
+[now] It is now
+[realname] What is her name?
+[talk] We'll talk later
+[yes] I know
+
+now:
+I see... I guess it is.
+
+yes:
+!sad
+You knew her name was Nirvani, but you decided Malvani was better.
+!neutral
+You are cruel, in a way.
+Although the Goddess seems pleased with the attention nonetheless.
+
+realname:
+@setTidbit(goddessrealname)
+
+goddessrealname:
+She's called Nirvani. Maybe not the best name. But the name in which she saved you.
+That should count for something.
 
 back:
 You want to...
@@ -105,3 +139,7 @@ walk_away:
 So that’s it? You haven’t changed at all.
 You’ll keep running, Violet.
 But one day, you won’t be able to escape what you’ve done.
+
+deflect:
+You always need things Violet.
+You should think what others need from you for a change.

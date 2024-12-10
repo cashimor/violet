@@ -36,6 +36,38 @@ class SimulationController {
     );
   }
 
+  toData() {
+    const state = {
+      day: this.day,
+      energy: this.energy,
+      money: this.money,
+      dailyCost: this.dailyCost,
+      locationCost: this.locationCost,
+      jobCost: this.jobCost,
+      friendBoundary: this.friendBoundary,
+      tidbits: this.tidbits || {},
+      bribes: this.bribes,
+      evilness: this.evilness,
+    };
+    return state;
+  }
+
+  fromData(state) {
+    if (state) {
+      this.day = state.day;
+      this.energy = state.energy;
+      this.money = state.money;
+      this.dailyCost = state.dailyCost;
+      this.locationCost = state.locationCost;
+      this.jobCost = state.jobCost;
+      this.friendBoundary = state.friendBoundary;
+      this.tidbits = state.tidbits || {};
+      this.bribes = state.bribes;
+      this.evilness =  state.evilness;
+      this.updateEvilness(0);
+    }
+  }
+
   // Set a tidbit
   setTidbit(key) {
     this.tidbits[key] = true;

@@ -1,10 +1,47 @@
 start:
 Oh, chosen one, seeker of power. 
-?What brings you to the sacred Temple of Malvani?
-[meditate] I seek clarity and strength.
-[blessing] Can I receive a blessing?
-[followers] How many followers does Malvani have?
-[chat] I want to talk.
+?What brings you to the sacred Temple of ${goddessrealname:Nirvani:Malvani}?
+[meditate] Meditate
+[blessing] Blessing
+[followers] Followers?
+[chat] Talk
+${Itsuki/goddessrealname:[name] Goddess' name: }
+
+name:
+As a priest I always welcome a theological discussion.
+${goddessrealname:>name_nirvani:>name_malvani}
+
+name_nirvani:
+The Goddess' true name is Nirvani. Blessed is she.
+
+name_malvani:
+To my knowledge the name of the Goddess is Malvani.
+It is a beautiful and powerful name.
+?However, you are the prophet, so you can provide new scriptures.
+[confirm_malvani] Malvani!
+[confirm_nirvani] Nirvani!
+[chat] Later
+
+confirm_malvani:
+Praise Malvani!
+
+confirm_nirvani:
+@checkEvil(50)
+
+checkEvilTrue:
+It seems the Goddess resists, Violet. Part of you desires to keep Malvani.
+
+checkEvilFalse:
+@setTidbit(goddessrealname)
+
+goddessrealname:
+The Goddess will henceforth be known as Nirvani!
+Truth to the prophet.
+Hail Nirvani. Hail Violet!
+@setTidbit(GLOBAL/goddessNirvani)
+
+goddessNirvani:
+@communify(nirvani)
 
 meditate:
 The Temple welcomes you into its embrace, Violet.
@@ -13,7 +50,7 @@ Do you feel renewed?
 
 blessing:
 The divine power flows through you now, Violet.
-Malvani's shadow watches over your every move.
+${goddessrealname:Nirvani:Malvani}'s shadow watches over your every move.
 May it shield you from your enemies and amplify your ambitions.
 
 followers:
@@ -39,7 +76,7 @@ Still is quite devout, though. Prays deep and often. Lots of strength.
 @setTidbit(itsuki)
 
 prayerPossible:
-Malvani hears your request, Violet.
+${goddessrealname:Nirvani:Malvani} hears your request, Violet.
 ?What do you wish to invoke her power for?
 [bless] A blessing for my journey.
 [evict] Evict the Xivato from this land.
@@ -50,7 +87,7 @@ bless:
 You are already blessed, Violet. No prayer is needed.
 
 back:
-You're always welcome in Malvani's temple.
+You're always welcome in ${goddessrealname:Nirvani:Malvani}'s temple.
 
 evict:
 We shall force the Xivato out, wherever they might be.
