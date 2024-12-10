@@ -432,7 +432,7 @@ const gameOverMalvani = new Location(
   "Game Over",
   0,
   0,
-  "music/gocommunityitsuki.mp3" // Placeholder for Malvani-specific music
+  "music/gomalvani.mp3" // Placeholder for Malvani-specific music
 );
 
 const gameOverNirvani = new Location(
