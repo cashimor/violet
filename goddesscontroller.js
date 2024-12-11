@@ -36,6 +36,7 @@ class GoddessController {
             "Nirvani rises to reign the world.",
             "nirvani"
           );  
+          return;
         }
         this.gameController.simulationController.scenarioManager.triggerGameOver(
           "Malvani rises to rule the world.",
@@ -67,7 +68,7 @@ class GoddessController {
   prayForEviction() {
     // Check if there's enough mana
     if (this.mana < this.manaThreshold) {
-      return "Malvani cannot act—her power is insufficient.";
+      return "The Goddess cannot act—her power is insufficient.";
     }
 
     // Find Xivato-controlled locations

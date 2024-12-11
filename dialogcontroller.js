@@ -130,16 +130,18 @@ class DialogController {
   }
 
   checkEvil(value) {
-      const evilness = this.simulationController.evilness;
-      console.log(`Evilness check: ${evilness} against ${value}`);
-      return evilness >= parseInt(value) ? [">checkEvilTrue"] : [">checkEvilFalse"];
+    const evilness = this.simulationController.evilness;
+    console.log(`Evilness check: ${evilness} against ${value}`);
+    return evilness >= parseInt(value)
+      ? [">checkEvilTrue"]
+      : [">checkEvilFalse"];
   }
 
   communify(param) {
     const location = this.gameController.locationController.currentLocation;
     if (param == "nirvani") {
       location.rooms[0].music = "music/temple2.mp3";
-      return [">nirvaniLocation"]
+      return [">nirvaniLocation"];
     }
     const price = this.gameController.jobController.markAsCommunity(location);
     this.simulationController.recalculateDailyCostLocations(
@@ -204,8 +206,9 @@ class DialogController {
 
   getFollowerCount() {
     // Count followers by checking tidbits
-    const followers =
-      this.gameController.goddessController.calculateFollowers();
+    const followers = this.gameController.goddessController.calculateFollowers(
+      this.gameController.goddessController.getFollowerCount()
+    );
 
     // Check if prayers can be answered
     const canAnswerPrayer =

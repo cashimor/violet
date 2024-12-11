@@ -3,7 +3,7 @@ start:
 [label1] You got this?
 [label2] Can we do some training?
 [bonus] Here is a bonus (¥5000)
-${malvani:[label3] Just checking in.:[goddess] You know Malvani?}
+[goddess] You know ${GLOBAL/goddessNirvani:Nirvani:Malvani}?
 ${GLOBAL/communitypossible:[community] Go legit: }
 
 community:
@@ -34,7 +34,11 @@ bonus:
 @giveBonus(5000)
 
 goddess:
-Interesting.
+${nirvani:Yes... I go to the temple regularly.:>learngoddess}
+
+learngoddess:
+Thank you for telling me about Goddess ${GLOBAL/goddessNirvani:Nirvani:Malvani}.
+Interesting...
 @friendCheck()
 
 friendCheck:

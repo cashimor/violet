@@ -441,7 +441,7 @@ const gameOverNirvani = new Location(
   "Game Over",
   0,
   0,
-  "music/temple2.mp3" // Placeholder for Nirvani-specific music
+  "music/gonirvani.mp3" // Placeholder for Nirvani-specific music
 );
 
 
