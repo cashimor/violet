@@ -1,0 +1,10 @@
+start:
+@setTidbit(GLOBAL/KNOWkaraoke)
+
+KNOWkaraoke:
+%karaoke.jpg
+It's a particular form of entertainment. There's a machine, the karaoke machine,
+which allows selecting a song. The lyrics of the song are shown on a screen.
+The participants sing a song, one by one. It rarely goes according to plan.
+There are karaoke bars where you can do this. Make sure you bring friends.
+Friends you can trust. And me. I'd love to come with you.

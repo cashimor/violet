@@ -305,6 +305,7 @@ class DialogController {
     }
     if (param === "goddess") {
       console.log("Nirvani/Malvani encounter");
+      this.gameController.goddessController.reduceMana();
       this.gameController.closeDialogCallback = null;
       if (!this.simulationController.hasTidbit("goddessNirvani")) {
         const location = this.gameController.findLocationByName("Purgatory Malvani");

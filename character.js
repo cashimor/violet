@@ -309,7 +309,7 @@ let characters = [
   ),
   new Character(
     "Nirvani",
-    ["nirvani", "nirvanistrong"],
+    ["nirvani", "nirvaninirvanistrong"],
     "Game Start: Purgatory",
     "nirvani.txt",
     null,

@@ -312,7 +312,7 @@ const purgatory2 = new Location(
   "Mountain Area",
   0,
   0,
-  "music/shop.mp3",
+  "music/nirvanipurgatory.mp3",
   false
 );
 

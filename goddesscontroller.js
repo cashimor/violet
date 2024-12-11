@@ -64,6 +64,10 @@ class GoddessController {
     return false; // Not enough mana
   }
 
+  reduceMana() {
+    this.mana -= this.manaThreshold;
+  }
+
   // Method to handle prayers
   prayForEviction() {
     // Check if there's enough mana
@@ -87,7 +91,7 @@ class GoddessController {
     targetLocation.vacate();
 
     // Deduct the mana cost
-    this.mana -= this.manaThreshold;
+    this.reduceMana();
     return true; // Indicate success
   }
 }

@@ -1,4 +1,142 @@
 start:
 !strong
-It is good to see you again, Violet.
-You look happier.
+Oh, Violet. You’ve made it this far. I’m so glad we can finally speak again.
+?Though, I must admit, I thought you’d arrive a little taller.
+[question1] Why did you bring me here?
+[question2] What do you want from me?
+[question3] I’m not sure I trust you
+[joke1] I grew in other ways
+
+joke1:
+So you have. But maybe just an inch?
+>question1
+
+question1:
+I brought you here because this world needed you.
+It needed someone with the strength to challenge its broken systems
+and bring about change.
+?And, well, I may have spun the wheel of fate a little recklessly to find you.
+[continue1] And you think I’m that person?
+[resist1] You stole me from my life for that?
+
+question2:
+I want what is best for this world, Violet.
+And I believe you can help shape a future where compassion and justice reign.
+Or, you know, just help me figure out why birds don’t pray anymore.
+?It’s baffling, really.
+[continue2] That sounds... naive
+[resist2] And what if I don’t care about justice?
+[joke2] Did they ever?
+
+joke2:
+I think so. I recall being quite a-twitter.
+
+>question3
+
+question3:
+I understand your hesitation.
+You’ve been through so much, and trust is not easily given.
+But my intentions are pure, Violet. 
+?And by pure, I mean mostly free of celestial paperwork.
+[continue3] Then prove it to me.
+[resist3] Words are cheap. Actions matter.
+
+continue1:
+Yes, Violet. You’ve shown resilience, intelligence, and determination.
+These are the qualities this world desperately needs.
+?${GLOBAL/KNOWfood:Plus, you survived eating that dubious udon.: } Truly inspiring.
+[end1] I’ll consider what you’ve said.
+[end2] I don’t think I’m the hero you’re looking for.
+
+continue2:
+Naive, perhaps. But isn’t hope worth pursuing?
+Even amidst the darkness, a single light can guide the way.
+Also, do you think lightbulbs count as divine miracles?
+?I’ve been debating this with myself.
+[end3] I’ll think about it
+[end4] I’m not interested in being your light
+[joke3] Lightbulbs are amazing
+
+joke3:
+Yes... I think only you can appreciate the magic behind lights that just turn on.
+>continue3
+
+continue3:
+Very well. I will grant you the means to see my vision for this world.
+Use it wisely, Violet.
+?And if you find any stray birds, please tell them I miss their songs.
+[end5] What do you mean by that?
+[end6] I’ll see for myself.
+
+resist1:
+Perhaps I acted selfishly. But I believed in your potential, Violet.
+You’ve already done so much. 
+?Also, I may have misplaced the instruction manual for cosmic interventions.
+[end7] I need time to think about this.
+[end8] You had no right to make that choice for me.
+
+resist2:
+Then I cannot force you. But remember, Violet, 
+even the most hardened hearts can find purpose in helping others.
+?Also, you don’t have to help birds, but just keep them in mind, okay?
+[end9] Maybe you’re right.
+[end10] That’s not who I am.
+
+resist3:
+Then let my actions speak.
+I will aid you in your journey, no matter what path you choose.
+Even if that path involves explaining this world’s fascination with...
+?karaoke machines.
+[end11] I’ll hold you to that.
+[end12] We’ll see.
+[^KARAOKE] Karaoke machines?
+
+KARAOKE:
+~know/karaoke.txt
+
+end1:
+Take your time, Violet. I’ll be here if you need guidance.
+And maybe some tea. Do mortals still enjoy tea?
+
+end2:
+Perhaps not. But even if you doubt yourself, I still believe in you. And tea.
+Definitely tea.
+
+end3:
+That’s all I ask. Thank you, Violet.
+I’ll try to keep my celestial interventions to a minimum.
+
+end4:
+I understand. But know that I’ll always be here, should you change your mind.
+Or need someone to discuss bird migration patterns with.
+
+end5:
+In time, you will see what I mean. Until then, go forth with my blessing.
+And don’t forget to look up sometimes—it’s where all the interesting stuff happens.
+
+end6:
+Then I trust your judgment, Violet. May your path lead to wisdom and understanding.
+And maybe a little bit of celestial humor.
+
+end7:
+Of course. I only hope that, in time, you’ll see why I chose you.
+And maybe forgive my slightly overzealous meddling.
+
+end8:
+You’re right. Perhaps I overstepped. But even so, I cannot undo what has been done.
+Not without significant celestial paperwork, at least.
+
+end9:
+Then let that thought guide you. I’ll always be here to support you, Violet.
+And occasionally debate the merits of tea versus coffee.
+
+end10:
+Perhaps not. But I still have faith in you, Violet.
+Even if you don’t share my bird-related enthusiasm.
+
+end11:
+I wouldn’t expect anything less. Thank you, Violet.
+Now, onward to your destiny—or the nearest karaoke bar.
+
+end12:
+Indeed, we shall. Farewell for now, Violet. And please, do try the tea. It’s divine.

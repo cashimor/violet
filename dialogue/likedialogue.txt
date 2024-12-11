@@ -63,9 +63,9 @@ I was in a playful mood, ready to find humor in the little things.
 While waiting at the traffic light,
 I noticed someone dancing in their car to the music.
 ?It made me smile.
-[fail] Did you join them? 
+${GLOBAL/KNOWtrafficlight:[fail] Did you join them?:[^LIGHT] Traffic light?}
 ${GLOBAL/KNOWcar:[success] That's hilarious!:[^CAR] car?}
-[fail] People can be so silly.
+[fail] People can be so silly
 
 s2m1: 
 !thoughtful
