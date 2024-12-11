@@ -78,10 +78,15 @@ Still is quite devout, though. Prays deep and often. Lots of strength.
 prayerPossible:
 ${goddessrealname:Nirvani:Malvani} hears your request, Violet.
 ?What do you wish to invoke her power for?
-[bless] A blessing for my journey.
-[evict] Evict the Xivato from this land.
+[bless] A blessing for my journey
+[evict] Evict the Xivato from this land
+[meet] Meet the Goddess
 [back] I’ll return later.
 ${Takeshi/oldLife:[oldlife] Return to my old life.: }
+
+meet:
+Close your eyes, Violet. You will soon be back in purgatory.
+@scenarioStep(goddess)
 
 bless:
 You are already blessed, Violet. No prayer is needed.

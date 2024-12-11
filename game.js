@@ -60,6 +60,10 @@ class GameController {
     );
   }
 
+  findLocationByName(name) {
+    return locations.find(location => location.name === name);
+  }
+
   getCharacterByName(name) {
     return this.locationController.characters.find((char) => char.name === name) || null;
   }

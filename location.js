@@ -306,6 +306,26 @@ const shop = new Location(
   false
 );
 
+const purgatory2 = new Location(
+  "Purgatory Nirvani",
+  "images/purgatorynirvani.jpg",
+  "Mountain Area",
+  0,
+  0,
+  "music/shop.mp3",
+  false
+);
+
+const purgatory3 = new Location(
+  "Purgatory Malvani",
+  "images/purgatorymalvani.jpg",
+  "Mountain Area",
+  0,
+  0,
+  "music/malvanipurgatory.mp3",
+  false
+);
+
 const police = new Location(
   "Police Station",
   "images/policestation.jpg",
@@ -342,6 +362,8 @@ let locations = [
   room4,
   police,
   shop,
+  purgatory2,
+  purgatory3
 ];
 
 const gameOverXivato = new Location(

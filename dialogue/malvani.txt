@@ -1,0 +1,128 @@
+start:
+!smile
+?Ah, my dearest Violet. You’ve done well, better than I could have hoped.
+[question1] Corrupting the city?
+[question2] Why did you bring me here?
+[question3] I need answers
+
+question1:
+!laugh
+Corrupting? Oh no, Violet, don’t think of it that way.
+You’re simply showing this world the truth. Strength wins, and the weak serve.
+?You’re embodying the natural order.
+[continue1] What do you want?
+[resist1] I’m not interested
+
+question2:
+!serious
+Why? Because you intrigued me. You, a woman of ambition, betrayed and discarded.
+You had nothing, yet you dared to fight back.
+?I gave you the opportunity to prove what you could do with true power.
+[continue2] You want thanks?
+[resist2] You ripped me from my life
+
+question3:
+!frown
+Answers, you say? Very well.
+?Ask your questions, but know this—my answers may not bring you the peace you seek.
+[continue3] What’s your goal in all this?
+[resist3] Enough riddles
+
+continue1:
+!smile
+What do I want? I want you to thrive, Violet.
+The more you rise, the stronger I become. Our fates are intertwined.
+?You are my champion, after all.
+[end1] Think
+[end2] I'm no pawn
+
+continue2:
+!grin
+Gratitude is not what I seek. I want results, Violet.
+Every step you take towards domination feeds my essence.
+?You see, you’re not just my creation—you’re my partner.
+[end3] It feels one-sided
+[end4] I'll show you
+
+continue3:
+!neutral
+My goal is simple: to spread my influence,
+to reshape this world into something worthy of me.
+?And you, my dear Violet, are the keystone of this grand design.
+[end5] Conquer the world
+[end6] No
+
+resist1:
+!angry
+Not interested? Oh, Violet, don’t fool yourself.
+?You’ve already embraced the darkness. You just need to admit it.
+[end7] You don't know
+[end8] Yes, I will
+
+resist2:
+!laugh
+Ripped away? Life? I gave you purpose, child.
+Without me, you’d still be a victim of your past.
+?Vaeren would've killed you. It is written.
+[end9] Better dead than a pawn
+[end10] I’ll play along
+
+resist3:
+!serious
+?Manipulation? I merely illuminate paths for you to walk. You choose where to step.
+[end11] I will walk my way
+[end12] I will ask for more
+
+end1:
+!smile
+Take your time, my champion. I will be watching. Always.
+
+end2:
+!angry
+Pawn? You underestimate yourself, Violet. But very well, defy me if you must.
+It will only delay the inevitable.
+
+end3:
+!neutral
+Partnerships often feel that way at first.
+Prove your worth, and my scales will tip in your favor.
+
+end4:
+!grin
+That’s the spirit, my champion. Go forth and show this world what power truly means.
+
+end5:
+!laugh
+Not just the world, my dear. I expect you to reshape existence itself.
+Ambitious? Perhaps. But isn’t that what you crave?
+
+end6:
+!angry
+Then walk away, Violet. But remember, without me, you are nothing.
+
+end7:
+!neutral
+We shall see, Violet. We shall see.
+
+end8:
+!grin
+Acceptance is the first step. Now go, and let your actions speak louder than words.
+
+end9:
+!serious
+As you wish, but do not mistake this for freedom.
+You are still bound to me in ways you cannot imagine.
+
+end10:
+!smile
+A wise choice. I will be watching, Violet.
+Prove your worth, and we shall prosper together.
+
+end11:
+!serious
+Then go, Violet. But know this—you cannot escape me forever.
+
+end12:
+!grin
+Ah, bargaining already? Very well, Violet.
+Let us see how far you can push your limits.

@@ -303,13 +303,29 @@ class DialogController {
       );
       return [""];
     }
+    if (param === "goddess") {
+      console.log("Nirvani/Malvani encounter");
+      this.gameController.closeDialogCallback = null;
+      if (!this.simulationController.hasTidbit("goddessNirvani")) {
+        const location = this.gameController.findLocationByName("Purgatory Malvani");
+        location.ref = this.gameController.locationController.currentLocation.ref;
+        this.gameController.locationController.loadLocation(location);
+        return [""];
+      }
+      const nirvani = this.gameController.getCharacterByName("Nirvani");
+      nirvani.location = "Purgatory Nirvani";
+      nirvani.dialogue = "nirvani2.txt";
+      const location = this.gameController.findLocationByName("Purgatory Nirvani");
+      location.ref = this.gameController.locationController.currentLocation.ref;
+      this.gameController.locationController.loadLocation(location);
+      return [""];
+    }
     // Add other steps as needed
     return [""];
   }
 
   buyoutLocation(param) {
     const amount = parseInt(param, 10);
-    const location = this.simulationController.currentLocation;
     if (!this.simulationController.deductMoney(amount)) {
       return ["You don't even have that, silly Violet!"];
     }

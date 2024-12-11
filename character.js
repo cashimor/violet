@@ -309,7 +309,7 @@ let characters = [
   ),
   new Character(
     "Nirvani",
-    ["nirvani"],
+    ["nirvani", "nirvanistrong"],
     "Game Start: Purgatory",
     "nirvani.txt",
     null,
@@ -317,6 +317,19 @@ let characters = [
     100,
     {},
     "nirvani",
+    0,
+    100
+  ),
+  new Character(
+    "Malvani",
+    ["malvani"],
+    "Purgatory Malvani",
+    "malvani.txt",
+    null,
+    null,
+    100,
+    {},
+    "malvani",
     0,
     100
   ),
