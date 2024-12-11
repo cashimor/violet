@@ -94,7 +94,7 @@ We shall force the Xivato out, wherever they might be.
 @pray(xivato)
 
 oldlife:
-I am not sure what your old life was like, but isn't this place much better?
+${goddessrealname:>nirvanioldlife:I am not sure what your old life was like, but isn't this place much better?}
 ?Are you sure you wish to return?
 [return] Yes!
 [back] I'll think about it.
@@ -102,3 +102,6 @@ I am not sure what your old life was like, but isn't this place much better?
 return:
 Ok... let us pray.
 @scenarioStep(oldlife)
+
+nirvanioldlife:
+>return

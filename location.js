@@ -444,6 +444,15 @@ const gameOverNirvani = new Location(
   "music/gonirvani.mp3" // Placeholder for Nirvani-specific music
 );
 
+const gameOverChild = new Location(
+  "Game Over: Child",
+  "images/gochild.jpg",
+  "Game Over",
+  0,
+  0,
+  "music/gochild.mp3"
+);
+
 
 // Add them to a separate gameOverLocations array
 const gameOverLocations = {
@@ -458,4 +467,5 @@ const gameOverLocations = {
   communityitsuki: gameOverCommunityItsuki,
   malvani: gameOverMalvani,
   nirvani: gameOverNirvani,
+  child: gameOverChild,
 };

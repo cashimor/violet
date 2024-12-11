@@ -292,6 +292,16 @@ class DialogController {
       console.log("Moving to old life...");
       this.gameController.closeDialogCallback = null;
       this.simulationController.scenarioManager.triggerOldLife();
+      return [""];
+    }
+    if (param === "childend") {
+      console.log("Game over child");
+      this.gameController.closeDialogCallback = null;
+      this.simulationController.scenarioManager.triggerGameOver(
+        "United with her child, Violet resumes her old life.",
+        "child"
+      );
+      return [""];
     }
     // Add other steps as needed
     return [""];

@@ -44,7 +44,40 @@ You don’t understand. This isn’t just about us anymore.
 soften:
 I think you’d do anything to win, Violet.
 Even if it means destroying the people you love.
+@checkEvil(50)
+
+checkEvilTrue:
 Vaeren! Kill her!
+
+checkEvilFalse:
+?Your eyes. Something looks different.
+[expose_fear] You're afraid of me
+[expose_envy] You resent me
+[expose_conflict] You're conflicted
+
+expose_fear:
+I don't have to be afraid of you? That is a strange thing to say.
+>whatwant
+
+expose_envy:
+I do resent you. But... you seem to have achieved more than I thought.
+I am stopping you. At least... I thought I was.
+>whatwant
+
+expose_conflict:
+You're the mother of my child. I don't want to kill you. But thought I had to.
+Before you were evil incarnate. Now... I'm not so sure.
+>whatwant
+
+whatwant:
+You will not oppose my plans? You will abide by the law? Our kingdoms will unite?
+?What do you want in return?
+[mychild] I want to raise Seren
+[checkEvilTrue] I want you
+[checkEvilTrue] I need nothing
+
+mychild:
+@scenarioStep(childend)
 
 accuse:
 I know I’m not. But someone has to break this cycle. Someone has to stop the madness.
