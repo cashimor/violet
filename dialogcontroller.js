@@ -308,15 +308,18 @@ class DialogController {
       this.gameController.goddessController.reduceMana();
       this.gameController.closeDialogCallback = null;
       if (!this.simulationController.hasTidbit("goddessNirvani")) {
-        const location = this.gameController.findLocationByName("Purgatory Malvani");
-        location.ref = this.gameController.locationController.currentLocation.ref;
+        const location =
+          this.gameController.findLocationByName("Purgatory Malvani");
+        location.ref =
+          this.gameController.locationController.currentLocation.ref;
         this.gameController.locationController.loadLocation(location);
         return [""];
       }
       const nirvani = this.gameController.getCharacterByName("Nirvani");
       nirvani.location = "Purgatory Nirvani";
       nirvani.dialogue = "nirvani2.txt";
-      const location = this.gameController.findLocationByName("Purgatory Nirvani");
+      const location =
+        this.gameController.findLocationByName("Purgatory Nirvani");
       location.ref = this.gameController.locationController.currentLocation.ref;
       this.gameController.locationController.loadLocation(location);
       return [""];
@@ -680,16 +683,17 @@ class DialogController {
 
   // Method to clear the manga-style panel area
   clearPanel() {
-    const panelX = this.characterX + 255; // Match panel position
-    const panelY = this.characterY + 20; // Match panel position
-    const panelWidth = 410; // Match panel width
-    const panelHeight = 210; // Match panel height
+    const panelX = this.characterX + 247; // Match panel position
+    const panelY = this.characterY + 12; // Match panel position
+    const panelWidth = 240; // Match panel width
+    const panelHeight = 240; // Match panel height
 
     this.context.clearRect(panelX, panelY, panelWidth, panelHeight);
   }
 
   // Method to draw a manga-style panel above the speech bubble
   drawPanel(url) {
+    this.clearPanel();
     const panelX = this.characterX + 260; // Adjust based on panel position
     const panelY = this.characterY + 25; // Place it higher than the bubble
     const panelWidth = 200; // Adjust the width of the panel
@@ -719,6 +723,12 @@ class DialogController {
       this.context.strokeStyle = "white";
       this.context.lineWidth = 2;
       this.context.strokeRect(panelX, panelY, panelWidth, panelHeight);
+
+      // Reset shadow to avoid affecting other drawings
+      this.context.shadowColor = "transparent";
+      this.context.shadowBlur = 0;
+      this.context.shadowOffsetX = 0;
+      this.context.shadowOffsetY = 0;
     };
     img.src = `images/manga/${url}`; // Prepend the images/ directory to the URL
   }
@@ -802,6 +812,7 @@ class DialogController {
       // Reset shadow to avoid affecting other drawings
       this.context.shadowColor = "transparent";
       this.context.shadowBlur = 0;
+      this.context.shadowOffsetY = 0;
 
       // Draw the "X" button (if applicable)
       this.drawCloseButton();

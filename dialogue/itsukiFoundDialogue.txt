@@ -1,5 +1,5 @@
 start:
-${rant:>norant:>rant}
+${ranted:>norant:>rant}
 
 norant:
 Back again?
@@ -13,9 +13,9 @@ Did you forget? Or maybe you thought I did.
 All the money I saved, gone. And you just... disappeared.
 !neutral
 But here you are.
-@setTidbit(rant)
+@setTidbit(ranted)
 
-rant:
+ranted:
 >question
 
 question:
