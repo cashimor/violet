@@ -9,7 +9,7 @@ You know, Violet, I’ve known about you for a long time.
 curious:
 !thoughtful
 There’s this manga I’ve had since I was a kid.
-It tells the story of boy who becomes emperor through scheming.
+It tells the story of boy who becomes king through scheming.
 ?You are one of the villains in the story.
 [disbelief] That’s ridiculous. It’s just a coincidence.
 [interest] Show me this manga.
@@ -47,7 +47,7 @@ you'd realize your potential, and become better. Or at least, be with me.
 
 read:
 %pyre.jpg
-It starts out with the prince, whose father has died.
+It starts out with the prince, Alaric, whose father has died.
 He mourns his father, but he needs to rule his new kingdom.
 %
 He knows that the first thing needed for stability is an heir.
@@ -74,9 +74,9 @@ Three princesses came from a neighboring kingdom.
 %princess2.jpg
 The first of the princesses was average looking, but she was sociable and friendly.
 %princess3.jpg
-The second was magnificently beautiful, but not very smart.
+The second, Nys, was magnificently beautiful, but not very smart.
 %violetprincess.jpg
-And the third was beautiful, with bronze skin and long violet hair.
+And the third, Violet, was beautiful, with bronze skin and long violet hair.
 ?She was also cunning, vicious, and highly intelligent.
 [ears] What's up with my ears?
 [made] He made me vicious
@@ -98,12 +98,100 @@ She pretended to be weak, so he would catch her, and tried to seduce him.
 %
 The prince, however, ensured her safety, and then continued to the market.
 %jewelryshopping.jpg
-There the third princess spied on him, and watched him purchase jewelry.
+There Violet spied on him, and watched him purchase jewelry.
 %jewelry.jpg
 When she discovered the jewelry matched her eyes, she was delighted.
 As they matched her looks, she thought he would pick her.
 %princess3seduce.jpg
-The prince found the second princess in his bed, whispering sweet nothingness.
-%
+The prince found Nys in his bed, whispering sweet nothingness.
 Unfortunately for her, the princess rejected her advance.
+%
 He kicked her out of the room.
+%alericvioletdinner.jpg
+On the final night the prince had dinner with Violet.
+%tradeagreement.jpg
+He brought up a trade agreement, and a treaty preventing violence.
+Despite knowing that she was a snake that would eat him alive,
+%alericvioletdinner.jpg
+he doted on her, made her feel wanted. And she signed.
+%
+Later that evening the Prince planned to make an annoucement.
+%introducefuturewife.jpg
+To the shock of the princesses, he introduced his future wife,
+a commoner from...
+!angry
+Hey! I want to keep this manga whole! It is a first edition!
+!neutral
+a commoner from his country.
+%
+?She was wearing the jewelry he had bought at the market.
+[mine] My jewels!
+[gift] I gave gifts
+[honor] I honored the agreement
+[c3] Sorry... continue
+
+mine:
+He knew you were watching at the market. And you knew you'd think that.
+But they were always hers.
+>c3
+
+gift:
+You did? You're talking about the wine?
+>c3
+
+honor:
+The trade agreement? I think that comes next.
+>c3
+
+c3:
+%caravan.jpg
+As part of the trade agreement Violet sent carts with goods to the newlyweds.
+She added a case of oasis wine.
+%wifewine.jpg
+The wife loved the wine, but in her state it didn't agree well.
+%wifepoisoned.jpg
+Although there was no proof, the prince knew it was poison.
+The doctor confirmed that his wife would never produce an heir after this.
+This was kept a secret.
+%
+?You know the bit about how you seduced the prince and spend the night with him.
+[see] I still want to see
+[bad] I was bad
+[hurt] He... was rough
+[c4] Yes, I know
+
+see:
+%violetheld.jpg
+...
+>c4
+
+bad:
+You were. But he was too.
+>c4
+
+hurt:
+He hated you.
+>c4
+
+c4:
+%
+And you definitely know the bit where he took your child and killed you.
+?I imagine that played before your eyes many times.
+[next] What comes next?
+[thank] Thank you for telling me
+
+thank:
+You're welcome. I know. It's strange. But I do not regret praying for you.
+
+next:
+%seren.jpg
+Your son, Seren, grows up.
+But it becomes obvious he isn't the prince's son.
+He has his mother's eyes, but it is clear that she went astray.
+This is the lie that the prince built his kingdom on, and it becomes his undoing.
+%horde.jpg
+Although he has conquered your country, a horde from the north east invades.
+His people have no faith in him, and Seren is still too young.
+%
+!sad
+Yes... this author really likes bad endings. 
