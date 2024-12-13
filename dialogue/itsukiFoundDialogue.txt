@@ -22,6 +22,7 @@ question:
 ?Violet... why are you here?
 [apology] Make amends.
 [know] How do you know me?
+[family] Family
 ${priestitsuki:[temple] You were at the temple:[deflect] I need something.}
 ${loanitsuki:[stop] Stop stealing my money: }
 
@@ -146,3 +147,169 @@ But one day, you won’t be able to escape what you’ve done.
 deflect:
 You always need things Violet.
 You should think what others need from you for a change.
+
+family:
+${Nys/dumb:>nys:Yes, I have family. I visit them sometimes.}
+I can introduce you, if you want.
+
+nys:
+!serious
+Yes...
+I prayed for your sister Nys to come here after you went off and never talked to me.
+?There’s something I should explain about your sister’s arrival.
+[prayer1] Go on, Itsuki
+[prayer2] Another one of your prayers
+[prayer3] Are you blaming me?
+
+prayer1:
+!neutral
+I… I prayed for her to come.
+After you mentioned your family,
+?I thought perhaps having someone familiar might help you… reconnect.
+[reason1] You thought Nys would help *me*?
+[reason2] Do you realize who my sister is?
+[reason3] And you didn’t think to ask me first?
+
+prayer2:
+!neutral
+Actually, it is.
+After everything you’ve been through,
+?I thought having someone who loves you unconditionally could… soften the edges.
+[reason4] Unconditionally? You have no idea
+[reason5] That’s a bold assumption
+[reason6] Soft edges?
+
+prayer3:
+!defensive
+No, no! I just thought… Look, I’ve seen how much you’ve carried alone.
+?I thought your sister might share some of that weight.
+[reason7] You thought wrong
+[reason8] Weight? She's quite heavy
+[reason9] Why didn’t you come to me with this first?
+
+reason1:
+!smile
+I… may have underestimated the complexity of your relationship.
+?But she does care for you deeply, doesn’t she?
+[reaction1] She's never deep
+[reaction2] Caring isn’t the same as being helpful
+
+reason2:
+!neutral
+I only knew what you’ve told me.
+?And it seemed like there was still a bond, despite everything.
+[reaction3] A bond, yes. But not the kind you want here
+[reaction4] You’re too optimistic
+
+reason3:
+!apologetic
+I… didn’t think it was something you’d agree to.
+?But I believed it was the right thing to do.
+[reaction5] Wrong
+[reaction6] You’re lucky I’m not furious
+
+reason4:
+!thoughtful
+?Maybe not, but she’s still your family. That has to mean something, right?
+[reaction7] Family doesn’t fix everything
+[reaction8] It means more complications
+
+reason5:
+!neutral
+?Maybe. But I’ve seen you push everyone away. I thought she might be an exception.
+[reaction9] She’s the rule
+[reaction10] Good intentions
+
+reason6:
+!apologetic
+That… came out wrong.
+?I just meant, someone who isn’t tied to the darkness you’ve faced might be a light.
+[reaction11] A dim light, maybe
+[reaction12] Light she is
+
+reason7:
+!defensive
+I… thought it was worth the risk. She’s your sister, Violet.
+?And you deserve someone who’s on your side.
+[reaction13] Your side, yes
+[reaction14] Good luck
+
+reason8:
+!neutral
+?Maybe. But she’s still someone who loves you. Isn’t that worth something?
+[reaction15] She loves everyone
+[reaction16] More headache
+
+reason9:
+!apologetic
+?I should have. I’m sorry, Violet. I'll keep her with me.
+[reaction17] Good
+[reaction14] Apology accepted
+
+reaction1:
+!neutral
+See? Maybe she can surprise you.
+
+reaction2:
+!neutral
+Maybe not. But she’s here now. We’ll figure it out together.
+
+reaction3:
+!neutral
+Fair enough. I won’t assume things again.
+
+reaction4:
+!smile
+I’ve been accused of that before. But I still think it was worth trying.
+
+reaction5:
+!neutral
+Maybe I did. I’ll leave it to you to decide how to handle her.
+
+reaction6:
+!smile
+That’s… more than I expected. Thank you, Violet.
+
+reaction7:
+!neutral
+No, it doesn’t. But maybe it’s a start.
+
+reaction8:
+!neutral
+Complications, yes. But maybe good ones?
+
+reaction9:
+!neutral
+I see that now. I’ll stay out of it.
+
+reaction10:
+!smile
+Thank you. That means a lot.
+
+reaction11:
+!neutral
+Dim is better than none, isn’t it?
+
+reaction12:
+!smile
+I’m glad you do.
+
+reaction13:
+!neutral
+Maybe she’ll surprise you. Or maybe not. It’s your call.
+
+reaction14:
+!smile
+Thank you, Violet.
+
+reaction15:
+!neutral
+That sounds… about right.
+
+reaction16:
+!smile
+Headaches, maybe. But hopefully not for long.
+
+reaction17:
+!serious
+Understood.

@@ -144,6 +144,8 @@ class EnemyController {
       const nys = this.gameController.getCharacterByName("Nys");
       nys.icon = "";
       this.lastDaySpokenWithItsuki = -1;
+      const itsukiapt = this.gameController.findLocationByName("Itsuki's Apartment");
+      itsukiapt.imageUrl = "images/itsukiapartment2.jpg";
       this.handleNys();
     }
   }
