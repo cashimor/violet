@@ -2,11 +2,19 @@ start:
 _nys.mp3
 Violet!
 !excited
-Oh my goodness, it's really you!
+${dumb:>second:Oh my goodness, it's really you!}
 ?I can't believe we're in the same world again!
 [greeting1] Nys... what are you doing here?
 [greeting2] Why now, Nys? Why couldn't you stay away?
 [greeting3] You look... unchanged, as usual
+
+second:
+!happy
+?We meet again. As we should. Us sisters should be together always.
+[response1] We should?
+[response3] How was home?
+[response7] You always think so highly of yourself
+${seren::[askChild] My child?}
 
 greeting1:
 !cheerful
@@ -18,6 +26,7 @@ He was very nice though, and let me stay there.
 [response1] Wonderful isn’t the word I’d use
 [response2] I guess that means you're stuck here too
 [response3] How was home?
+[askChild] My child?
 
 response1:
 !pout
@@ -76,3 +85,149 @@ You should! I’ve always been your number one fan!
 end:
 _
 @setTidbit(dumb)
+
+greeting2:
+!pout
+Stay away? Violet, how could you say that? I came here because I missed you!
+?We’re supposed to be together! And I kind of couldn't help it.
+[response4] We don’t always need to be together, Nys
+[response5] I suppose I can’t change your mind
+[response6] You’re impossible, Nys
+[askChild] My child?
+
+greeting3:
+!cheerful
+Unchanged? Oh, Violet, you’re too kind! You still look as radiant as ever!
+Although your senseo of fashion... is still the same.
+?Are we going to rule this world together?
+[response7] You always think so highly of yourself
+[response8] You should focus on surviving first
+[response9] Rule the world? Don’t get ahead of yourself
+[askChild] My child?
+
+response4:
+!neutral
+But I do! You’re my sister, Violet.
+?I couldn’t just sit around while you were off somewhere.
+[change7] You always overthink things, Nys
+[change8] I guess I should be grateful
+
+response5:
+!cheerful
+Nope! And I don’t regret it for a second.
+?This world is already better because you’re in it.
+[change9] You really do live in your own world, don’t you?
+[change10] At least you’re optimistic
+
+response6:
+!pout
+?Impossible? I prefer to think of it as determined. You’re lucky to have me, Violet.
+[change11] Lucky isn’t the word I’d use
+[change12] Let’s see how this goes
+
+response7:
+!smile
+Well, someone has to think highly of me! And if it’s not me, then who?
+?Certainly not you, with that tone.
+[change13] Some things never change, Nys
+[change14] Let’s keep things grounded, shall we?
+
+response8:
+!serious
+Surviving first? That doesn’t sound like you, Violet. You’re always so confident.
+?What’s going on?
+[change15] I’m just being realistic
+[change16] You wouldn’t understand
+
+response9:
+!excited
+Not yet, but soon, right? You always have a plan, Violet.
+?I’ll be your second-in-command!
+[change17] Don’t get ahead of yourself, Nys
+[change18] We’ll see
+
+change7:
+!neutral
+Well, maybe. But someone has to overthink if we’re going to survive this crazy place!
+>end
+
+change8:
+!smile
+You should! You’re lucky to have a sister like me.
+>end
+
+change9:
+!neutral
+Maybe, but it’s a nice world to live in! You should try it sometime.
+>end
+
+change10:
+!cheerful
+Exactly! That’s what sisters are for, right?
+>end
+
+change11:
+!neutral
+Well, I think you’re wrong. But you’ll see—I’ll prove it to you!
+>end
+
+change12:
+!smile
+Good! Let’s make the best of it together.
+>end
+
+change13:
+!smile
+And why should they? You’re always so serious. I’ll lighten things up for you.
+>end
+
+change14:
+!neutral
+Grounded? That sounds boring, but fine. You lead the way, Violet.
+>end
+
+change15:
+!neutral
+Realistic? Since when are you that? You’ve always been larger than life!
+>end
+
+change16:
+!pout
+Why wouldn’t I? I’m your sister! I can understand more than you think.
+>end
+
+change17:
+!excited
+Okay, okay. I’ll wait. But it’s going to be amazing, just wait and see!
+>end
+
+change18:
+!smile
+We’ll see? That’s practically a yes! I can’t wait!
+>end
+
+askChild:
+!curious
+Your child? Oh, Violet, I didn’t even know you had one!
+?You always kept things so secretive. What were they like?
+[childResponse1] I asked you
+[childResponse2] You'd know him as Alaric's child
+
+childResponse1:
+!cheerful
+True... but I don't know.
+>end
+
+childResponse2:
+@setTidbit(seren)
+
+seren:
+!shock
+So his eyes... are YOUR eyes? Everyone chatted about how his mother slept around.
+But instead it was Alaric that...
+!disgust
+Ew! you... How could you? Anyway. He's called Seren. And he is horrendous.
+!angry
+He wield this mean sword. And came and destroyed our ancestral home.
+All my sisters, and me, had to live like servants.
+>end

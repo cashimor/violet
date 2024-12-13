@@ -357,7 +357,7 @@ let characters = [
   ),
   new Character(
     "Nys",
-    ["nys", "nysexcited", "nyscheerful", "nyspout", "nyssmile", "nysserious"],
+    ["nys", "nysexcited", "nyscheerful", "nyspout", "nyshappy", "nysserious", "nysshock", "nysdisgust", "nysangry", "nyscurious"],
     "Job",
     "nys.txt",
     "nothing",

@@ -894,6 +894,7 @@ class DialogController {
   }
 
   closeDialog() {
+    this.gameController.audioController.stopThemeMusic();
     if (this.state == "INACTIVE") {
       return;
     }
