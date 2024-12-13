@@ -49,9 +49,8 @@ read:
 %pyre.jpg
 It starts out with the prince, Alaric, whose father has died.
 He mourns his father, but he needs to rule his new kingdom.
-%
-He knows that the first thing needed for stability is an heir.
 %futurewife.jpg
+He knows that the first thing needed for stability is an heir.
 ?Fortunately he finds a woman who is both beautiful and smart, and proposes to her.
 [already] He knew that bitch already?
 [ugly] She's ugly.
@@ -193,5 +192,6 @@ This is the lie that the prince built his kingdom on, and it becomes his undoing
 Although he has conquered your country, a horde from the north east invades.
 His people have no faith in him, and Seren is still too young.
 %
+I think a few of your sisters survive... but everything is left in devastation.
 !sad
 Yes... this author really likes bad endings. 
