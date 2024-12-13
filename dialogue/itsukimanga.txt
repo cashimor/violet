@@ -72,8 +72,10 @@ There was hardly any money left.
 Three princesses came from a neighboring kingdom.
 %princess2.jpg
 The first of the princesses was average looking, but she was sociable and friendly.
+_nys.mp3
 %princess3.jpg
 The second, Nys, was magnificently beautiful, but not very smart.
+_
 %violetprincess.jpg
 And the third, Violet, was beautiful, with bronze skin and long violet hair.
 ?She was also cunning, vicious, and highly intelligent.
@@ -101,11 +103,13 @@ There Violet spied on him, and watched him purchase jewelry.
 %jewelry.jpg
 When she discovered the jewelry matched her eyes, she was delighted.
 As they matched her looks, she thought he would pick her.
+_nys.mp3
 %princess3seduce.jpg
 The prince found Nys in his bed, whispering sweet nothingness.
 Unfortunately for her, the princess rejected her advance.
 %
 He kicked her out of the room.
+_
 %alericvioletdinner.jpg
 On the final night the prince had dinner with Violet.
 %tradeagreement.jpg

@@ -6,6 +6,7 @@ class LocationController {
     characters,
     simulationController,
     jobController,
+    audioController,
     gameController
   ) {
     this.roomTypes = roomTypes;
@@ -19,14 +20,12 @@ class LocationController {
     this.locations = locations;
     this.simulationController = simulationController;
     this.jobController = jobController;
+    this.audioController = audioController;
     this.gameController = gameController;
     this.decocontext = decocanvas.getContext("2d");
     this.currentLocation = null; // The location currently being managed (e.g., the rented apartment)
     this.rentPopup = document.getElementById("rent-popup");
     this.dialogue = null;
-    this.audio = new Audio(); // Audio element to manage playback
-    this.currentMusic = null;
-    this.musicOn = true;
     this.decoratePopup = document.getElementById("decoratePopup");
     document.querySelectorAll(".decorate-btn").forEach((button) => {
       button.addEventListener(
@@ -76,18 +75,7 @@ class LocationController {
     this.hidePopups();
 
     // Check for background music and play if available
-    if (
-      this.musicOn &&
-      location.getMusicUrl() &&
-      location.getMusicUrl() !== this.currentMusic
-    ) {
-      this.audio.src = location.getMusicUrl();
-      this.audio.loop = false; // Loop the music for continuous playback
-      this.audio.play();
-      this.currentMusic = location.getMusicUrl();
-    } else if (!location.getMusicUrl()) {
-      this.audio.pause(); // Pause audio if no music for this location
-    }
+    this.audioController.playLocationMusic(location.getMusicUrl());
 
     const leftPanel = document.getElementById("left-panel");
     leftPanel.style.backgroundImage = `url(${location.getImageUrl()})`;

@@ -985,6 +985,17 @@ class DialogController {
       this.handleEmotion(dialogContent);
       dialogContent = this.getNextLine();
     }
+    if (dialogContent.startsWith("_")) {
+      const audioCommand = dialogContent.substring(1).trim(); // Get text after "@"
+      if (audioCommand) {
+        this.gameController.audioController.playThemeMusic(
+          "music/" + audioCommand
+        ); // Play theme music
+      } else {
+        this.gameController.audioController.stopThemeMusic();
+      }
+      dialogContent = this.getNextLine(); // Move to the next line
+    }
     // Handle manga panel change if line starts with "%"
     if (dialogContent.startsWith("%")) {
       const panelCommand = dialogContent.substring(1).trim(); // Get text after "%"

@@ -14,6 +14,7 @@ class GameController {
       characters,
       this // Pass GameController itself
     );
+    this.audioController = new AudioController(this);
     this.locationController = new LocationController(
       decocanvas,
       locations,
@@ -21,6 +22,7 @@ class GameController {
       characters,
       this.simulationController,
       this.jobController,
+      this.audioController,
       this // Pass GameController itself
     );
     this.mapController = new MapController(

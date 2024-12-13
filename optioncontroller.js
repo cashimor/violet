@@ -77,7 +77,7 @@ class OptionsController {
         configScreen.style.display = "flex"; // Change from "none" to "flex" for the overlay
         document.getElementById("config-screen").style.display = "block";
         document.getElementById("music-toggle").checked =
-          this.locationController.musicOn;
+          this.gameController.audioController.musicOn;
       })
     );
 
@@ -237,11 +237,10 @@ class OptionsController {
   }
 
   toggleMusic() {
-    this.locationController.musicOn = !this.locationController.musicOn;
-    if (!this.locationController.musicOn) this.locationController.audio.pause();
+    this.gameController.audioController.setMusicOn(!this.gameController.audioController.musicOn);
     localStorage.setItem(
       "musicSetting",
-      JSON.stringify(this.locationController.musicOn)
+      JSON.stringify(this.gameController.audioController.musicOn)
     );
     // Logic to enable/disable music playback can go here.
   }
@@ -250,7 +249,7 @@ class OptionsController {
     const musicSetting = localStorage.getItem("musicSetting");
     if (musicSetting !== null) {
       const isMusicOn = JSON.parse(musicSetting);
-      this.locationController.musicOn = isMusicOn;
+      this.gameController.audioController.setMusicOn(isMusicOn);
     }
   }
 
@@ -262,16 +261,8 @@ class OptionsController {
     leftEndingPanel.style.backgroundPosition = "center";
 
     // Play music if enabled and not already playing the same track
-    if (this.locationController.musicOn) {
-      const newMusicUrl = location.getMusicUrl();
-
-      if (this.locationController.currentMusic !== newMusicUrl) {
-        this.locationController.audio.src = newMusicUrl;
-        this.locationController.audio.loop = false;
-        this.locationController.audio.play();
-        this.locationController.currentMusic = newMusicUrl;
-      }
-    }
+    const newMusicUrl = location.getMusicUrl();
+    this.gameController.audioController.playLocationMusic(newMusicUrl);
   }
 
   populateEndingOptions() {
