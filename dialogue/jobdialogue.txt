@@ -22,6 +22,9 @@ Oh... Interesting...
 
 Evil Lair:
 I will be your trusted companion.
+@setTidbit(GLOBAL/lairOccupied)
+
+lairOccupied:
 @selectJob(Evil Lair)
 
 Temple:

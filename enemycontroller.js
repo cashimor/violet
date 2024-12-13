@@ -6,12 +6,14 @@ class EnemyController {
     this.locations = locations;
     this.gameController = gameController;
     this.failedExpansionCounter = 0;
+    this.lastDaySpokenWithItsuki = 0;
   }
 
   toData() {
     const state = {
       daysSinceLastOccupation: this.daysSinceLastOccupation,
       failedExpansionCounter: this.failedExpansionCounter,
+      lastDaySpokenWithItsuki: this.lastDaySpokenWithItsuki,
     };
     return state;
   }
@@ -20,6 +22,7 @@ class EnemyController {
     if (state) {
       this.daysSinceLastOccupation = state.daysSinceLastOccupation;
       this.failedExpansionCounter = state.failedExpansionCounter;
+      this.lastDaySpokenWithItsuki = state.lastDaySpokenWithItsuki;
     }
   }
 
@@ -117,6 +120,34 @@ class EnemyController {
     return this.locations.filter((location) => location.available);
   }
 
+  handleNys(itsuki) {
+    console.log("Nys is being handled!");
+  }
+
+  checkNys(itsuki) {
+    if (this.lastDaySpokenWithItsuki < 0) {
+      this.handleNys();
+      return;
+    }
+    if (!this.gameController.simulationController.hasTidbit("lairOccupied")) return;
+    const currentDay = this.gameController.simulationController.day;
+    if (itsuki.icon == "partner") return;
+    if (itsuki.hasTidbit("offeredHelp")) return;
+    if (itsuki.hasTidbit("spoken")) {
+      this.lastDaySpokenWithItsuki = currentDay;
+      itsuki.removeTidbit("spoken");
+      return;
+    }
+    if (!this.gameController.goddessController.canHearPrayer()) return;
+    if (currentDay > this.lastDaySpokenWithItsuki + 4) {
+      // Activate Nys
+      const nys = this.gameController.getCharacterByName("Nys");
+      nys.icon = "";
+      this.lastDaySpokenWithItsuki = -1;
+      this.handleNys();
+    }
+  }
+
   checkLoseCondition() {
     const violetOwned = this.owned("Violet");
     const xivatoOwned = this.owned("Xivato");
@@ -136,6 +167,8 @@ class EnemyController {
 
     this.applyItsukiTheft(itsuki);
     this.updateItsukiApartment(itsuki);
+
+    this.checkNys(itsuki);
 
     // Xivato
     this.daysSinceLastOccupation++;

@@ -71,6 +71,15 @@ class Character {
     return key;
   }
 
+  // Remove a tidbit
+  removeTidbit(key) {
+    if (this.tidbits[key]) {
+      delete this.tidbits[key];
+      return true; // Return true if the tidbit was successfully removed
+    }
+    return false; // Return false if the tidbit did not exist
+  }
+
   // Get a tidbit (returns false if not set)
   hasTidbit(key) {
     return !!this.tidbits[key];
@@ -256,7 +265,7 @@ let characters = [
     null,
     100,
     {},
-    "police",
+    "police"
   ),
   new Character(
     "Shop owner",
@@ -267,7 +276,7 @@ let characters = [
     null,
     100,
     {},
-    "shop",
+    "shop"
   ),
 
   new Character(
@@ -279,7 +288,7 @@ let characters = [
     null,
     100,
     {},
-    "xivato",
+    "xivato"
   ),
   new Character(
     "Alaric",
@@ -344,8 +353,22 @@ let characters = [
     { "Evil Lair": "itsukilairdialogue.txt" }, // Special dialogue for Evil Lair
     "itsuki",
     0,
-    1000
+    100
   ),
+  new Character(
+    "Nys",
+    ["nys", "nysexcited", "nyscheerful", "nyspout", "nyssmile", "nysserious"],
+    "Job",
+    "nys.txt",
+    "nothing",
+    "drugs",
+    -100,
+    {},
+    "nys",
+    0,
+    100
+  ),
+
   new Character(
     "Takeshi",
     ["takeshi", "takeshihappy", "takeshipartner", "takeshipartnerfather"],

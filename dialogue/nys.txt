@@ -1,0 +1,78 @@
+start:
+_nys.mp3
+Violet!
+!excited
+Oh my goodness, it's really you!
+?I can't believe we're in the same world again!
+[greeting1] Nys... what are you doing here?
+[greeting2] Why now, Nys? Why couldn't you stay away?
+[greeting3] You look... unchanged, as usual
+
+greeting1:
+!cheerful
+Oh, you know me, always finding a way to you!
+I met this snake woman who taught me to speak bester.
+And then I was in someone's tiny tiny room filled with weird things.
+He was very nice though, and let me stay there.
+?Poof! Here I am! Isn’t it wonderful?
+[response1] Wonderful isn’t the word I’d use
+[response2] I guess that means you're stuck here too
+[response3] How was home?
+
+response1:
+!pout
+Aww, don’t be mean! I missed you so much!
+?And now we can spend all our time together again.
+[change1] I suppose that’s... nice, in a way
+[change2] Just don’t get in my way, Nys
+
+response2:
+!smile
+Stuck? No way! This place is so exciting!
+Everything’s so shiny and new. Haven't seen castles yet, though. Or wyverns.
+?Or... oh! What about knights?
+[change3] There’s none of that, Nys
+[change4] Focus, Nys. This isn’t a fairy tale
+
+response3:
+!neutral
+Not good. That evil prince Alaric came and took our castle.
+I was given only four meals a day. And I had to go out in the sun sometimes.
+?But now I am here with you, my sister! Much better.
+[change5] You really need to stop being so... dramatic
+[change6] I suppose I should feel flattered.
+
+change1:
+!smile
+That’s the spirit, Violet! We’re going to have so much fun together!
+>end
+
+change2:
+!excited
+Don’t worry, I’ll be super helpful!
+Just tell me what to do, and I’ll do it perfectly!
+>end
+
+change3:
+!pout
+"Oh. That sounds kind of boring. But you’re here, so it can’t be that bad!"
+>end
+
+change4:
+!serious
+Right! Got it. I’ll be the best helper ever! You’ll see!
+>end
+
+change5:
+!pout
+Dramatic? Me? You’re so mean, Violet! I’m just trying to help.
+>end
+
+change6:
+!cheerful
+You should! I’ve always been your number one fan!
+>end
+
+end:
+_
+@setTidbit(dumb)
