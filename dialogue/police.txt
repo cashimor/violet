@@ -1,8 +1,9 @@
 start:
 Welcome, citizen.
 ?What brings you here today? Trouble brewing?
-[bribePolice] I want to discuss... reducing raid activity.
-[chatPolice] Nothing serious, just wanted to chat.
+[bribePolice] I want to discuss... reducing raid activity
+[chatPolice] Chat
+${Itsuki/loanitsuki:[theft] Some is stealing money: }
 
 bribePolice:
 We do our best to keep the city safe. 
@@ -42,3 +43,14 @@ If you see anything suspicious, let us know.
 
 leave:
 Stay safe out there.
+
+theft:
+Thank you for reporting the theft of money from your loan office.
+${bribe:>apprehendItsuki:We take all reports seriously.}
+
+bribed:
+@setTidbit(bribe)
+
+apprehendItsuki:
+We will take immediate action.
+@scenarioStep(apprehendItsuki)

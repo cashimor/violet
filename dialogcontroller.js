@@ -324,6 +324,24 @@ class DialogController {
       this.gameController.locationController.loadLocation(location);
       return [""];
     }
+    if (param === "apprehendItsuki") {
+      console.log("Apprehending Itsuki");
+      const itsuki = this.gameController.getCharacterByName("Itsuki");
+      itsuki.oldLocation = itsuki.location;
+      itsuki.oldDialogue = itsuki.dialogue;
+      itsuki.location = "Jail";
+      itsuki.dialogue = "itsukijail.txt";
+      const location = gameController.findLocationByName("Jail");
+      this.gameController.locationController.loadLocation(location);
+      return [""];
+    }
+    if (param === "releaseItsuki") {
+      console.log("Releasing Itsuki again");
+      const itsuki = this.gameController.getCharacterByName("Itsuki");
+      itsuki.dialogue = itsuki.oldDialogue;
+      itsuki.location = itsuki.oldLocation;
+      return ["I will continue fighting the loan sharking, though."];
+    }
     // Add other steps as needed
     return [""];
   }
@@ -377,6 +395,7 @@ class DialogController {
       return [
         `Thank you for your generous contribution of ¥${amount.toLocaleString()}!`,
         "We'll make sure things stay quieter for you.",
+        ">bribed"
       ];
     }
 

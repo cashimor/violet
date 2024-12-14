@@ -335,6 +335,15 @@ const police = new Location(
   "music/policestation.mp3"
 );
 
+const jail = new Location(
+  "Jail",
+  "images/jail.jpg", // Image representing the jail cell
+  "Police Station", // Refers back to the Police Station location
+  0, // Coordinates don't matter for this sub-location
+  0,
+  "music/policestation.mp3" // Reuse Police Station music
+);
+
 const itsukiapt = new Location(
   "Itsuki's Apartment",
   "images/itsukiapartment.jpg",
@@ -361,6 +370,7 @@ let locations = [
   room3,
   room4,
   police,
+  jail,
   shop,
   purgatory2,
   purgatory3

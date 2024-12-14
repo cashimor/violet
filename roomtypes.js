@@ -72,12 +72,17 @@ class RoomType {
         return "The gambling den was raided.";
       }
       // Introduce variability in profit (random factor between 1 and 2)
-      profit *= 1 + Math.random(); // Random multiplier between 1 and 2
+      profit *= 1 + Math.random();
     }
 
     // Drugs Laboratory specific adjustments
     if (this.name === "Drugs Laboratory" && this.isRaided(raidChance / 2)) {
       return "The drugs laboratory was raided.";
+    }
+
+    // Drugs Distribution specific adjustments
+    if (this.name === "Drugs Distribution" && this.isRaided(raidChance / 4)) {
+      return "The drugs distribution network was disrupted.";
     }
 
     // Ensure profit doesn't fall below zero

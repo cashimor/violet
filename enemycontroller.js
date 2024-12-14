@@ -87,6 +87,8 @@ class EnemyController {
   applyItsukiTheft(itsuki) {
     // Partners don't steal.
     if (itsuki.icon == "partner") return;
+    // Jailed people don't steal.
+    if (itsuki.location == "Jail") return;
     const chance = 0.1;
     const maxTheftPercentage = 0.2;
 
@@ -133,6 +135,7 @@ class EnemyController {
     const currentDay = this.gameController.simulationController.day;
     if (itsuki.icon == "partner") return;
     if (itsuki.hasTidbit("offeredHelp")) return;
+    if (itsuki.location == "Jail") return;
     if (itsuki.hasTidbit("spoken")) {
       this.lastDaySpokenWithItsuki = currentDay;
       itsuki.removeTidbit("spoken");

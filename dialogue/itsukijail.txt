@@ -1,0 +1,51 @@
+start:
+!neutral
+You.
+I was wondering when you’d show up.
+!smirk
+?You’ve got a lot of nerve, Violet. Reporting me? After everything?
+[justify] You forced my hand
+[defensive] You were stealing from me!
+[remorseful] I shouldn’t have done it
+[taunt] This is where you belong
+
+justify:
+!angry
+What’s yours?!
+How much do people need to suffer for you to feel like you’ve won, Violet?
+Is it never enough?
+!neutral
+I thought you might be different. Once. Clearly, I was wrong.
+!neutral
+Go on, then. Enjoy your 'victory.'
+But remember, this cell might keep me in—for now—but you’re trapped too.
+You just don’t see it yet.
+
+defensive:
+!serious
+I expected better, Violet. But maybe that’s on me.
+!neutral
+You’ve built this empire of yours, but at what cost?
+How many people’s lives did you trample to stand where you are now?
+!neutral
+Stealing from your loan sharks wasn’t about me.
+It was about stopping the harm you’re doing.
+But I guess that’s too much for you to understand.
+I won’t be here forever, Violet. And when I’m out, I’ll keep fighting.
+Someone has to.
+
+remorseful:
+!neutral
+Then why did you, Violet? Was it pride? Fear?
+Or have you just become the kind of person who betrays people
+without a second thought?
+I don’t know if I can forgive you for this. Not yet.
+But… maybe there’s still hope for you. Maybe.
+I don’t know what you’re looking for, Violet.
+But whatever it is, you won’t find it like this.
+But thank you for bailing me out again.
+@scenarioStep(releaseItsuki)
+
+taunt:
+It is, is it? Hopefully you will go where you belong as well.
+@adjustEvilness(10)
