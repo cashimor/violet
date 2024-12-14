@@ -2,9 +2,10 @@ start:
 Oh, beautiful Violet. It is good to see you.
 You don't come here often enough.
 ?What can I do for you?
-[relax] I would like to relax.
+[relax] I would like to relax
 [hint] You have some suggestions?
 [chat] Can we talk?
+${GLOBAL/SHOP_selfHelpBook:[read] Read for me: }
 
 relax:
 Oh... Violet... 
@@ -19,3 +20,46 @@ Does that help?
 
 chat:
 Of course... I love talking to you.
+
+read:
+!neutral
+How to Be Ruthless Without Losing Friends
+!excited
+%goals.jpg
+Chapter One: The Art of Ruthlessness. Welcome, aspiring conqueror!
+The first step to being ruthless without losing friends is to define your goals.
+Are you aiming to dominate countries, crush your rivals, or just win at board games?
+Clarity is key!
+!serious
+Tip: Remember, ruthlessness isn’t about being cruel; it’s about being efficient.
+Efficiency is the best cruelty.
+!neutral
+%chess.jpg
+Chapter Two: Charisma and Control. Ruthless doesn’t mean friendless.
+In fact, charm is your best weapon.
+%handshake.jpg
+Smile like you mean it—even when you’re planning someone’s downfall.
+A heartfelt 'thank you' after a betrayal works wonders.
+!cheerful
+%mirror.jpg
+Exercise: Practice saying, 'I’m sorry you feel that way,' in front of a mirror.
+It’s the perfect non-apology for when your actions cause someone distress!
+!serious
+%banquet.jpg
+Chapter Three: Boundaries are Everything.
+Being ruthless doesn’t mean doing everything yourself.
+Delegate! It’s not exploitation—it’s leadership. But beware of rebellion.
+A well-fed and slightly fearful ally is a loyal ally.
+!cheerful
+%bribe.jpg
+Pro Tip: Bribery is underrated. A little gift can soften even the sharpest betrayal.
+Don’t be stingy!
+!smile
+%victory.jpg
+Conclusion: Ruthlessness is a balance of ambition and connection.
+Remember, you can be the most feared ruler—or CEO—
+but you’ll need people to toast your success at the end of the day.
+So, keep your allies close, your enemies closer, and your wit sharp!
+!neutral
+Thank you for reading *How to Be Ruthless Without Losing Friends*.
+Go forth and conquer—with charm and efficiency!

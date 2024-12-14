@@ -66,12 +66,16 @@ class RoomType {
     const skillEffect = character.getSkillLevel() / 100; // Skill level as a percentage
     let profit = Math.max(this.baseProfit, this.funds) * skillEffect;
 
-    // Apply room-specific adjustments
-    if (this.name === "Gambling Den" && this.isRaided(raidChance)) {
-      return "The gambling den was raided.";
+    // Gambling Den specific adjustments
+    if (this.name === "Gambling Den") {
+      if (this.isRaided(raidChance)) {
+        return "The gambling den was raided.";
+      }
+      // Introduce variability in profit (random factor between 1 and 2)
+      profit *= 1 + Math.random(); // Random multiplier between 1 and 2
     }
 
-    // Apply room-specific adjustments
+    // Drugs Laboratory specific adjustments
     if (this.name === "Drugs Laboratory" && this.isRaided(raidChance / 2)) {
       return "The drugs laboratory was raided.";
     }
@@ -276,5 +280,4 @@ let roomTypes = {
     dialogue: "communitydialogue.txt",
     community: true,
   }),
-
 };

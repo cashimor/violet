@@ -285,14 +285,12 @@ class MapController {
       if (distance < 10) {
         if (this.locationController.currentLocation !== location) {
           // Base energy cost
-          let energyCost = 15;
+          let energyCost = 17;
 
           // Check if the bicycle has been purchased
-          if (this.simulationController.hasTidbit("SHOP_bicycle")) {
-            // Reduce the energy cost by a percentage or fixed amount
-            const discount = Math.floor(energyCost * 0.5); // Reduce cost by 50%
-            energyCost = Math.max(10, energyCost - discount); // Ensure minimum cost of 10
-          }
+          if (this.simulationController.hasTidbit("SHOP_bicycle")) energyCost -= 5;
+          if (this.simulationController.hasTidbit("KNOWtrafficlight")) energyCost -= 1;
+          if (this.simulationController.hasTidbit("KNOWcar")) energyCost -= 1;
 
           // Deduct energy and proceed only if successful
           if (this.simulationController.deductEnergy(energyCost)) {
