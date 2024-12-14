@@ -3,14 +3,15 @@ start:
 [lair1] Of course
 [lair2] It's hard
 [lair3] Please be gentle
+${Itsuki/injail:[police] Police:[nothing] Nothing}
 ${hasChild:[lair4] Alright?: }
 
 lair1:
 This lair of ours—it’s a curious place to plan one’s future. But...
 ?I wonder, is there something in your past you’d rather leave behind?
-[father] My father.
-[betrayal] Betrayal.
-[nothing] Nothing.
+[father] My father
+[betrayal] Betrayal
+[nothing] Nothing
 
 nothing:
 I see. I don't want to cause you distress. We can talk about it another time.
@@ -20,10 +21,10 @@ betrayal:
 So this... Alaric... promised to marry you, even bought jewelry for you,
 but then gave it all to a girl that his aunt arranged for him?
 ?Did you love him?
-[love] I wanted him.
-[ticket] He was my ticket out.
-[kill] I would've killed him.
-[nothing] None of your business.
+[love] I wanted him
+[ticket] He was my ticket out
+[kill] I would've killed him
+[nothing] None of your business
 
 love:
 I see...
@@ -31,10 +32,10 @@ I see...
 ticket:
 So he used you, but you planned to use him too.
 ?It seems you might be even.
-[child] He has my child.
-[never] I am better than him.
+[child] He has my child
+[never] I am better than him
 ${alaricEven:[never]:[even]} Perhaps...
-[nothing] None of your business.
+[nothing] None of your business
 
 never:
 I know you are.
@@ -65,17 +66,17 @@ Then he played you out against your sisters. So you all hated each other.
 !father
 ?Maybe you could tell me what you would tell your father now?
 [father_why] Why talk now?
-[father_laugh] You laughed at me with a sword.
-[father_plead] I just wanted your love.
+[father_laugh] You laughed at me with a sword
+[father_plead] I just wanted your love
 [father_hate] Why did you hate me?
 
 father_why:
 You were always my daughter.
 ?But you were never enough.
-[father_fault] That is your fault.
+[father_fault] That is your fault
 [father_now] And now? Am I enough now?
-[father_laugh] You laughed at me with a sword.
-[nothing] I want to stop.
+[father_laugh] You laughed at me with a sword
+[nothing] I want to stop
 
 father_fault:
 Maybe. But I did the best I could.
@@ -88,10 +89,10 @@ father_laugh:
 Perhaps I was wrong. Perhaps I should have seen you as you were—
 stronger than I ever gave you credit for.
 ?My cruelty made you successful.
-[father_no] I made me successful.
-[father_plead] I just wanted your love.
+[father_no] I made me successful
+[father_plead] I just wanted your love
 [father_hate] Why did you hate me?
-[nothing] I want to stop.
+[nothing] I want to stop
 
 father_no:
 !happy
@@ -102,7 +103,7 @@ Yes, you wanted me to be proud. I wanted a legacy.
 ?Was that so bad?
 [father_proud] Yes! I was not that legacy.
 [father_hate] Why did you hate me?
-[nothing] I want to stop.
+[nothing] I want to stop
 
 father_proud:
 No. You were a mistake. I loved your mother the most.
@@ -115,7 +116,7 @@ father_hate:
 Perhaps I didn't know how to notice. Perhaps I was afraid to.
 I had a kingdom to rule.
 ?Maybe you should forgive yourself, even if you can't forgive me.
-[father_unsure] I don't know if I can.
+[father_unsure] I don't know if I can
 [father_forgive] I think so...
 [father_no] Never!
 
@@ -143,10 +144,10 @@ Perhaps we can revisit it another time.
 lair2:
 In your old world, who did you want to be? And who are you now?
 ?If you could choose... which of those lives feels truer to you?
-[queen] I wanted to be queen of the desert.
-[ruler] I will be ruler of Kiyosawa.
-[oldlife] I'd like to go back.
-[newlife] I will stay here.
+[queen] I wanted to be queen of the desert
+[ruler] I will be ruler of Kiyosawa
+[oldlife] I'd like to go back
+[newlife] I will stay here
 
 queen:
 You would be a magnificent queen in any world.
@@ -166,7 +167,7 @@ lair3:
 ${itsuki:>alternate:Violet, there’s something I’ve been wondering.}
 ?How did you come to this world? Who brought you here?
 [deflect3] Does it matter?
-[story3] Someone prayed for me.
+[story3] Someone prayed for me
 [provoke3] Are you doubting my power?
 
 deflect3:
@@ -177,8 +178,8 @@ provoke3:
 !calm
 Not at all. But power always has a source. I’m curious about yours.
 ?Should we leave it at that? Or will you tell me more?
-[story] Someone prayed for me.
-[nothing3] That’s all you need to know.
+[story] Someone prayed for me
+[nothing3] That’s all you need to know
 
 nothing3:
 Very well. But secrets have a way of revealing themselves, Violet.
@@ -223,8 +224,8 @@ lair4:
 ${childpeace:>alternate:You mentioned... you have a child.}
 That must have been difficult for you.
 ?Would you like to tell me more?
-[child_yes] Yes, I’ll talk.
-[child_no] No. It’s none of your business.
+[child_yes] Yes, I’ll talk
+[child_no] No. It’s none of your business
 
 child_no:
 I understand. It’s personal.
@@ -233,10 +234,10 @@ I won’t press you—just know I’m here if you need to talk.
 child_yes:
 So this child... did you leave them behind when you came to this world?
 ?What was it like for you?
-[child_mother] I would've been a good mother.
-[child_legacy] They were my legacy.
-[child_burden] They were a burden I didn’t need.
-[nothing4] I don’t want to talk about this anymore.
+[child_mother] I would've been a good mother
+[child_legacy] They were my legacy
+[child_burden] They were a burden I didn’t need
+[nothing4] I don’t want to talk about this anymore
 
 nothing4:
 I understand. We can stop here.
@@ -250,9 +251,9 @@ That’s something remarkable, Violet.
 child_legacy:
 Your legacy... Did you see yourself in them? Did you want them to be like you?
 ?What would you want for them now?
-[child_success] I want them to succeed.
-[child_power] I want them to be powerful.
-[child_survive] I just want them to survive.
+[child_success] I want them to succeed
+[child_power] I want them to be powerful
+[child_survive] I just want them to survive
 
 child_success:
 Success... not defined by this cruel world, I hope. But by something better.
@@ -297,3 +298,6 @@ You are more important.
 
 alternate:
 It is always good to see you here and hear your voice. But we can also just rest.
+
+police:
+~takeshipolice.txt

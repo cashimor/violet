@@ -325,21 +325,21 @@ class DialogController {
       return [""];
     }
     if (param === "apprehendItsuki") {
-      console.log("Apprehending Itsuki");
       const itsuki = this.gameController.getCharacterByName("Itsuki");
-      itsuki.oldLocation = itsuki.location;
-      itsuki.oldDialogue = itsuki.dialogue;
+      if (itsuki.icon == "partner") return ["We can't touch Itsuki."];
+      console.log("Apprehending Itsuki");
       itsuki.location = "Jail";
       itsuki.dialogue = "itsukijail.txt";
+      itsuki.setTidbit("injail");
       const location = gameController.findLocationByName("Jail");
       this.gameController.locationController.loadLocation(location);
-      return [""];
+      return ["@setTidbit(itsukijailed)"];
     }
     if (param === "releaseItsuki") {
       console.log("Releasing Itsuki again");
-      const itsuki = this.gameController.getCharacterByName("Itsuki");
-      itsuki.dialogue = itsuki.oldDialogue;
-      itsuki.location = itsuki.oldLocation;
+      itsuki.dialogue = "itsukiFoundDialogue.txt";
+      itsuki.location = "Itsuki's Apartment";
+      itsuki.clearTidbit("injail");
       return ["I will continue fighting the loan sharking, though."];
     }
     // Add other steps as needed

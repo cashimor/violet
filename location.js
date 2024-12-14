@@ -339,8 +339,8 @@ const jail = new Location(
   "Jail",
   "images/jail.jpg", // Image representing the jail cell
   "Police Station", // Refers back to the Police Station location
-  0, // Coordinates don't matter for this sub-location
-  0,
+  250, // Coordinates don't matter for this sub-location
+  480,
   "music/policestation.mp3" // Reuse Police Station music
 );
 

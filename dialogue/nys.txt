@@ -1,7 +1,7 @@
 start:
 _nys.mp3
 Violet!
-!excited
+${Itsuki/injail:>itsukijail:!excited}
 ${dumb:>second:Oh my goodness, it's really you!}
 ?I can't believe we're in the same world again!
 [greeting1] Nys... what are you doing here?
@@ -231,3 +231,7 @@ Ew! you... How could you? Anyway. He's called Seren. And he is horrendous.
 He wield this mean sword. And came and destroyed our ancestral home.
 All my sisters, and me, had to live like servants.
 >end
+
+itsukijail:
+!shock
+Itsuki is in jail! Please! Help me get him out!

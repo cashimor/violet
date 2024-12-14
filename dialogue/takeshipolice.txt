@@ -1,0 +1,27 @@
+start:
+You were at the police station? You really shouldn't interfere with them.
+?They are doing their best.
+[police_bribe] They like money
+[police_theft] I reported a theft
+[police_chat] I just chatted
+
+police_bribe:
+They do, but you shouldn't encourage it.
+
+police_theft:
+?Is someone stealing from you?
+[police_itsuki] Itsuki
+[police_yes] Yes
+[nothing] It's handled
+
+police_yes:
+Well, hopefully they can solve the case.
+
+police_itsuki:
+@setTidbit(itsuki)
+
+itsuki:
+So you got to this world because this Itsuki prayed for you,
+and then you repayed this by putting him in jail?
+I know that he is stealing from you, but there must be a better way, no?
+?You should see if you can bail him out.

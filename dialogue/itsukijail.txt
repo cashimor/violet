@@ -6,8 +6,8 @@ I was wondering when you’d show up.
 ?You’ve got a lot of nerve, Violet. Reporting me? After everything?
 [justify] You forced my hand
 [defensive] You were stealing from me!
-[remorseful] I shouldn’t have done it
-[taunt] This is where you belong
+${taunted:[taunt2]:[taunt]} This is where you belong
+${taunted::[remorseful] I shouldn’t have done it}
 
 justify:
 !angry
@@ -47,5 +47,14 @@ But thank you for bailing me out again.
 @scenarioStep(releaseItsuki)
 
 taunt:
+@setTidbit(taunted)
+
+taunted:
 It is, is it? Hopefully you will go where you belong as well.
 @adjustEvilness(10)
+
+taunt2:
+${Nys/dumb:>nys:Again? When is it enough?}
+
+nys:
+Please... just take care of your sister.
