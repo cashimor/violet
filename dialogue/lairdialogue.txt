@@ -5,7 +5,15 @@ You don't come here often enough.
 [relax] I would like to relax
 [hint] You have some suggestions?
 [chat] Can we talk?
-${GLOBAL/SHOP_selfHelpBook:[read] Read for me: }
+[read] Read for me?
+
+read:
+?Do you even have books?
+${GLOBAL/SHOP_selfHelpBook:[readSelfHelpBook] How to be Ruthless Without Losing Friends:[books] I have books}
+${GLOBAL/SHOP_socialButterflyBrooch:[readSocialButterflyBrooch] Mastering the Art of Friendship:[books] I have books}
+
+books:
+You have no books.
 
 relax:
 Oh... Violet... 
@@ -21,7 +29,64 @@ Does that help?
 chat:
 Of course... I love talking to you.
 
-read:
+readSocialButterflyBrooch:
+!cheerful
+Chapter One: Making Friends is Like Baking Bread.
+%loaf.jpg
+Warmth, patience, and the right ingredients are essential.
+But remember—some people will rise to the occasion, and others will flop.
+Don’t take it personally.
+!neutral
+Step one: Smile! A genuine smile is the key to making someone feel at ease.
+Not a grimace, not a smirk—practice in a mirror if necessary.
+Bonus points if it doesn’t look like you’re plotting world domination.
+!excited
+Step two: Show interest!
+Ask questions like, ‘What do you enjoy?’ or ‘What’s your greatest fear?’
+(Okay, maybe save that second one for later.)
+!cheerful
+Chapter Two: Navigating Awkward Conversations.
+%awkward.jpg
+Awkward silences are inevitable, but fear not!
+Simply comment on something neutral, like the weather, the decor, 
+or how amazing your outfit is today. If all else fails, a compliment never hurts.
+!soft
+Pro Tip: Listening is your secret weapon. People love to talk about themselves.
+Nodding and the occasional ‘Oh, really?’ work wonders to keep the conversation going.
+Just don’t nod too much, or you’ll look like a bobblehead.
+!neutral
+Chapter Three: Handling Conflict With Grace. Conflict happens, even between friends.
+If someone’s upset, apologize—without adding ‘but.’
+For example, say, ‘I’m sorry I forgot your birthday,’ not,
+‘I’m sorry, but I had to overthrow a kingdom that day.’
+!cheerful
+Exercise: Practice saying, ‘You might be right,’
+in a way that doesn’t sound sarcastic.
+%
+It’ll take a while, but trust me—it’s worth it.
+!serious
+Conclusion: Friendship is a delicate balance of kindness,
+understanding, and occasional bribery.
+Always carry snacks—
+%cookies.jpg
+you’d be amazed at what a well-timed cookie can do for a strained relationship.
+!neutral
+Thank you for reading *Mastering the Art of Friendship*!
+Go forth, charm the masses, and remember: even the greatest leaders needed allies.
+And cookies.
+
+
+
+
+
+
+
+
+
+
+
+
+readSelfHelpBook:
 !neutral
 How to Be Ruthless Without Losing Friends
 !excited

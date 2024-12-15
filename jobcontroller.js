@@ -104,6 +104,18 @@ class JobController {
     return room ? room.npcAssigned : null; // Return assigned NPC if exists, else null
   }
 
+  removeCharacter(location) {
+    const roomId = `${location.name}/${location.currentRoomIndex}`;
+    const room = this.jobs[roomId];
+    if (room && room.npcAssigned) {
+      const removedCharacter = room.npcAssigned;
+      room.npcAssigned = null;
+      removedCharacter.icon = "";
+      return removedCharacter;
+    }
+    return null;
+  }
+
   updateNpcDialogue(character, roomType) {
     if (!character || !roomType) return;
 

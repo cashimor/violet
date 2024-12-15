@@ -403,6 +403,15 @@ const gameOverEvil = new Location(
   "music/goevil.mp3" // MP3
 );
 
+const gameOverAlone = new Location(
+  "Game Over: Violet Alone",
+  "images/goalone.jpg", // New image reflecting her isolation
+  "Game Over",
+  0,
+  0,
+  "music/goalone.mp3" // Unique MP3 for the Violet Alone ending
+);
+
 const gameOverEvilItsuki = new Location(
   "Game Over: Evil Itsuki",
   "images/goevilitsuki.jpg",
@@ -491,6 +500,7 @@ const gameOverLocations = {
   xivato: gameOverXivato,
   poverty: gameOverPoverty,
   evil: gameOverEvil,
+  alone: gameOverAlone,
   evilItsuki: gameOverEvilItsuki,
   dead: gameOverDead,
   bedroom: gameStartBedroom,

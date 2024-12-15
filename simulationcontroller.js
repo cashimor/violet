@@ -15,7 +15,7 @@ class SimulationController {
     this.friendBoundary = 0;
     this.bribes = 0;
     this.evilLairBonus = 0;
-    this.evilness = 100; // Starting evil score
+    this.evilness = 70; // Starting evil score
     this.updateEvilness(0);
     this.tidbits = {};
 
@@ -63,9 +63,16 @@ class SimulationController {
       this.friendBoundary = state.friendBoundary;
       this.tidbits = state.tidbits || {};
       this.bribes = state.bribes;
-      this.evilness =  state.evilness;
+      this.evilness = state.evilness;
       this.updateEvilness(0);
     }
+  }
+
+  reduceFriendBoundary(amount) {
+    this.friendBoundary = Math.max(0, this.friendBoundary - amount); // Prevent negative boundary
+    console.log(
+      `Friend boundary reduced by ${amount}. New value: ${this.friendBoundary}`
+    );
   }
 
   // Set a tidbit
@@ -200,6 +207,18 @@ class SimulationController {
     }
   }
 
+  checkAloneWin() {
+    const requiredMoney = 2000000; // Higher threshold for alone ending
+
+    // Check conditions for "Violet Alone"
+    if (this.money >= requiredMoney && this.evilness > 100) {
+      this.scenarioManager.triggerGameOver(
+        "You achieved immense wealth, but no one remains by your side.",
+        "alone"
+      );
+    }
+  }
+
   checkEvilWin() {
     const requiredMoney = 1000000; // Adjust if needed
     const xivatoLocations = this.enemyController.owned("Xivato"); // Assuming a method for total locations
@@ -299,6 +318,7 @@ class SimulationController {
     this.gameController.goddessController.gatherMana();
     this.checkEvilWin();
     this.checkCommunityWin();
+    this.checkAloneWin();
     this.updateDisplay();
   }
 

@@ -32,7 +32,17 @@ I shall devote myself to Goddess Malvani.
 @selectJob(Temple)
 
 Drugs Distribution:
-If I must... this will not be good for me.
+?If I must... You know this will not be good for me.
+[yes] You must
+[no] I'll think about it
+
+no:
+Thank you...
+
+yes:
+@adjustEvilness(5)
+
+evilviolet:
 @selectJob(Drugs Distribution)
 
 Cancel:

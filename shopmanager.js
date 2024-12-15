@@ -15,6 +15,13 @@ class ShopManager {
           cost: 1500,
           description: "Improve persuasion.",
         },
+        {
+          id: "socialButterflyBrooch",
+          name: "Social Butterfly Brooch",
+          cost: 5000, // Adjust as appropriate for game balance
+          description:
+            "A whimsical brooch that unleashes your inner social butterfly. Wearing it just might make you the talk of the town!",
+        },
       ],
       magicShop: [
         {
@@ -32,32 +39,43 @@ class ShopManager {
       ],
     };
   }
-  
+
   getItemsForSale(shopId) {
     const shopItems = this.shops[shopId];
-  
+
     if (!shopItems) {
       console.error(`Shop ID '${shopId}' not found.`);
       return ["Sorry, this shop doesn't seem to exist."];
     }
-  
+
     // Filter out already purchased items
     const availableItems = shopItems.filter(
       (item) => !this.simulationController.hasTidbit(`SHOP_${item.id}`)
     );
-  
+
     // Build dialogue options for the available items
     const options = availableItems.map(
       (item) => `[${item.id}] ${item.name} (¥${item.cost.toLocaleString()})`
     );
-  
+
     // Add a cancel option at the end
     options.push("[cancel] Thank you.");
-  
+
     // Return the full array of dialogue lines
     return availableItems.length > 0
       ? ["?I have the following items available:", ...options]
       : ["Sorry, there are no items left to purchase."];
+  }
+
+  applyItemEffect(itemId) {
+    switch (itemId) {
+      case "socialButterflyBrooch":
+        this.simulationController.reduceFriendBoundary(15);
+        break;
+      // Add other items with special effects here
+      default:
+        console.warn(`No special effect defined for item ID '${itemId}'.`);
+    }
   }
 
   buyItem(itemId) {
@@ -66,13 +84,17 @@ class ShopManager {
       console.error(`Item ID '${itemId}' not found.`);
       return ["I'm sorry, that item doesn't exist."];
     }
-  
+
     if (!this.simulationController.deductMoney(item.cost)) {
       return ["You don't seem to have enough money to buy that."];
     }
-  
+
     // Mark the item as purchased
     this.simulationController.setTidbit(`SHOP_${item.id}`, true);
+
+    // Apply special effects
+    this.applyItemEffect(itemId);
+
     return [`Thank you for purchasing the ${item.name}!`];
   }
 

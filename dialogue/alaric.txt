@@ -44,7 +44,7 @@ You don’t understand. This isn’t just about us anymore.
 soften:
 I think you’d do anything to win, Violet.
 Even if it means destroying the people you love.
-@checkEvil(50)
+@checkEvil(20)
 
 checkEvilTrue:
 Vaeren! Kill her!

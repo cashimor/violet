@@ -26,7 +26,7 @@ confirm_malvani:
 Praise Malvani!
 
 confirm_nirvani:
-@checkEvil(50)
+@checkEvil(20)
 
 checkEvilTrue:
 It seems the Goddess resists, Violet. Part of you desires to keep Malvani.

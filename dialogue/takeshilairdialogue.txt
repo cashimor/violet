@@ -1,4 +1,43 @@
 start:
+${tiedup:>quiet:@checkEvil(75)}
+
+checkEvilTrue:
+Violet, I can’t do this anymore.
+I thought I could help you see a different path,
+one that doesn’t hurt so many people.
+But you’ve made it clear where your priorities lie.
+I care about you, Violet. I really do. But staying here... it’s breaking my soul.
+?I can’t be part of this anymore.
+[angry] Go, then! I don’t need you!
+[desperate] You’re abandoning me? After everything?
+[resigned] Fine. Leave. You’ll regret it
+[keep] I won't let you
+
+angry:
+Maybe you don’t. But I hope someday, you’ll understand why I had to leave.
+@scenarioStep(takeshileaves)
+
+desperate:
+I’m not abandoning you, Violet. You’re the one pushing me away.
+I just… can’t stay and watch you destroy yourself.
+@scenarioStep(takeshileaves)
+
+resigned:
+Maybe I will. But I’d regret staying even more.
+@scenarioStep(takeshileaves)
+
+keep:
+What?! You can't do that!
+@adjustEvilness(10)
+
+evilviolet:
+@setTidbit(tiedup)
+
+quiet:
+!tiedup
+Hhmmhmhhhmmmmmm!
+
+checkEvilFalse:
 ?It's always a pleasure to see you here Violet. Hopefully we can talk.
 [lair1] Of course
 [lair2] It's hard

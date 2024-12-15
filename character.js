@@ -382,7 +382,13 @@ let characters = [
 
   new Character(
     "Takeshi",
-    ["takeshi", "takeshihappy", "takeshipartner", "takeshipartnerfather"],
+    [
+      "takeshi",
+      "takeshihappy",
+      "takeshipartner",
+      "takeshipartnerfather",
+      "takeshipartnertiedup",
+    ],
     "Shrine",
     "takeshibackstory.txt",
     "lair",

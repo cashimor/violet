@@ -331,9 +331,7 @@ class DialogController {
       itsuki.location = "Jail";
       itsuki.dialogue = "itsukijail.txt";
       itsuki.setTidbit("injail");
-      const location = gameController.findLocationByName("Jail");
-      this.gameController.locationController.loadLocation(location);
-      return ["@setTidbit(itsukijailed)"];
+      return [">scenarioStep"];
     }
     if (param === "releaseItsuki") {
       console.log("Releasing Itsuki again");
@@ -341,6 +339,17 @@ class DialogController {
       itsuki.location = "Itsuki's Apartment";
       itsuki.clearTidbit("injail");
       return ["I will continue fighting the loan sharking, though."];
+    }
+    if (param === "takeshileaves") {
+      console.log("Takeshi is leaving");
+      const takeshi = this.gameController.getCharacterByName("Takeshi");
+      takeshi.location = "Home";
+      takeshi.dialogue = "takeshibackstory.txt";
+      takeshi.like = -10;
+      this.jobController.removeCharacter(
+        gameController.locationController.currentLocation
+      );
+      return ["Farewell!"];
     }
     // Add other steps as needed
     return [""];
@@ -395,7 +404,7 @@ class DialogController {
       return [
         `Thank you for your generous contribution of ¥${amount.toLocaleString()}!`,
         "We'll make sure things stay quieter for you.",
-        ">bribed"
+        ">bribed",
       ];
     }
 
