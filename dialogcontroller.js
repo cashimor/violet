@@ -147,7 +147,7 @@ class DialogController {
     this.simulationController.recalculateDailyCostLocations(
       this.gameController.locationController.locations
     );
-    this.simulationController.recalculateDailyCostJobs();
+    this.simulationController.recalculateDailyCostJobs(this.jobController);
     this.simulationController.money += price;
     this.simulationController.updateDisplay();
     this.gameController.locationController.loadLocation(location);

@@ -466,6 +466,14 @@ const gameOverCommunityItsuki = new Location(
   "music/gocommunityitsuki.mp3" // Placeholder for Itsuki-specific music
 );
 
+const gameOverCommunityNys = new Location(
+  "Game Over: Community Nys",
+  "images/gonys.jpg", // Replace with appropriate image
+  "Game Over",
+  0,
+  0,
+  "music/gonys.mp3" // Placeholder for Nys-specific music
+);
 
 const gameOverMalvani = new Location(
   "Game Over: Malvani",
@@ -507,6 +515,7 @@ const gameOverLocations = {
   purgatory: gameStartPurgatory,
   community: gameOverCommunity,
   communityitsuki: gameOverCommunityItsuki,
+  communitynys: gameOverCommunityNys,
   malvani: gameOverMalvani,
   nirvani: gameOverNirvani,
   child: gameOverChild,

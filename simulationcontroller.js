@@ -190,6 +190,8 @@ class SimulationController {
       // Determine if Itsuki is present in the Community scenario
       const itsuki = this.gameController.getCharacterByName("Itsuki");
       const isItsukiPartner = itsuki && itsuki.icon === "partner";
+      const nys = this.gameController.getCharacterByName("Nys");
+      const isNysPartner = nys && nys.icon === "partner";
 
       if (isItsukiPartner) {
         // Itsuki helps lead the Community transformation
@@ -197,7 +199,14 @@ class SimulationController {
           "With Itsuki by your side, the city blossoms into a true community.",
           "communityitsuki"
         );
-      } else {
+      } else if (isNysPartner) {
+        // Nys is by Violet's side.
+        this.scenarioManager.triggerGameOver(
+          "Together, you and Nys have created a better world.",
+          "communitynys"
+        );
+      } else
+      {
         // Violet achieves the Community transformation alone
         this.scenarioManager.triggerGameOver(
           "The city thrives under your leadership, but you are left to lead alone.",
@@ -222,6 +231,7 @@ class SimulationController {
   checkEvilWin() {
     const requiredMoney = 1000000; // Adjust if needed
     const xivatoLocations = this.enemyController.owned("Xivato"); // Assuming a method for total locations
+    const communityLocations = this.enemyController.owned("Community"); // Assuming a method for total locations
     const availableLocations = this.enemyController.getAvailableLocations();
     const bribeCount = this.bribes;
 
@@ -230,6 +240,7 @@ class SimulationController {
       this.money >= requiredMoney &&
       xivatoLocations === 0 &&
       availableLocations.length === 0 &&
+      communityLocations < 1 &&
       bribeCount > 0
     ) {
       // Check if Itsuki is in the Evil Lair

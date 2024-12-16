@@ -11,6 +11,9 @@ ${GLOBAL/KNOWcycle:[buybicycle] I'll buy it.:[^CYCLE] Bicycle?}
 CYCLE:
 ~know/cycle.txt
 
+buybicycle:
+@buyItem(bicycle)
+
 selfHelpBook:
 The book is titled: "How to Be Ruthless Without Losing Friends".
 ?It has pictures too.
