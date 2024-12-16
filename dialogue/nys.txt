@@ -53,6 +53,9 @@ I was given only four meals a day. And I had to go out in the sun sometimes.
 
 change1:
 !smile
+@checkEvil(75)
+
+checkEvilFalse:
 That’s the spirit, Violet! We’re going to have so much fun together!
 >end
 
@@ -234,4 +237,36 @@ All my sisters, and me, had to live like servants.
 
 itsukijail:
 !shock
-Itsuki is in jail! Please! Help me get him out!
+?Itsuki is in jail! Please! Help me get him out!
+[noworry] Don't worry
+[join] You could join me
+[bail] You should bail him out
+
+noworry:
+!sad
+I'm not worried. He'll be back, won't he?
+
+bail:
+!ponder
+Bail? I... will have to figure that out.
+
+checkEvilTrue:
+?Is there something we can do together?
+[chat] We can chat more
+[join] You could join me
+
+chat:
+!happy
+Of course. I'd love that.
+
+join:
+!cheerful
+Nys: Oh my gosh, Violet! Are you really asking me to join your big, mysterious lair?
+Like, actually asking me? I’m so excited! You sure there is space for me?
+@selectJob(Evil Lair)
+
+selectJobFail:
+!pout
+Aw... I don't think I want to share, Violet. But it was a nice thought.
+
+

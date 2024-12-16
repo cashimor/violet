@@ -1,0 +1,60 @@
+start:
+_nys.mp3
+${Itsuki/injail:>itsukijail:Violet!}
+#>opt1
+#>opt2
+#>opt3
+#>opt4
+#>opt5
+#>opt6
+
+opt1:
+!cheerful
+This is so cool! An actual lair, like something out of a storybook!
+Do I get my own secret code name? Oh! Can I be 'Shadow Whisper'?
+
+opt2:
+!neutral
+Wait, what exactly do I *do* here?
+Are we, like, plotting world domination,
+or is this more of a 'take over the local bake sale' kind of thing?
+
+opt3:
+!excited
+${GLOBAL/KNOWkaraoke:Do you think we could add a karaoke machine in here?:We should have a bard here too.}
+I bet evil sounds way more intimidating with a good theme song. Just saying!
+
+opt4:
+!cheerful
+You know, Violet, I always knew you were destined for greatness.
+I mean, not *exactly* this, but still! Go big or go home, right?
+
+opt5:
+!serious
+Oh! I should get to work, huh? What’s my job? Am I, like, your second-in-command?
+Your spy? Your... um... snacks coordinator?
+
+opt6:
+!smile
+Don’t worry, I’ll do my best! Well, my best-ish. You know how I am. 
+But I’ll definitely try not to mess things up too badly!
+
+itsukijail:
+!shock
+?Itsuki is in jail! Please! Help me get him out!
+[noworry] Don't worry
+[bail] You should bail him out
+[fix] I'll fix that
+
+noworry:
+!sad
+I'm not worried. He'll be back, won't he?
+
+bail:
+!ponder
+Bail? I... will have to figure that out.
+
+fix:
+!happy
+Oh! Thank you sis! You're the bestest.
+@setTidbit(itsukipromise)

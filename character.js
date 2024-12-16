@@ -102,26 +102,34 @@ class Character {
     this.location = newLocation;
   }
 
-  // Helper to construct and verify the image URL
   setEmotion(emotion) {
     this.currentEmotion = emotion;
     this.bubbleEmotion = emotion;
     if (emotion === "neutral") this.currentEmotion = "";
+
     const baseName = this.name.toLowerCase();
 
+    // Helper function to determine if any URLs exist for a given icon
+    const hasIconImages = (icon) =>
+      this.imageUrlBases.some((url) => url.startsWith(`${baseName}${icon}`));
+
+    // Check if the "partner" icon has any associated images
+    const useDefaultIcon = this.icon === "partner" && !hasIconImages("partner");
+    const activeIcon = useDefaultIcon ? "" : this.icon; // Fallback to default if no partner images exist
+
     // Attempt 1: name_icon_emotion
-    const fullFilename = `${baseName}${this.icon}${this.currentEmotion}`;
+    const fullFilename = `${baseName}${activeIcon}${this.currentEmotion}`;
     if (this.imageUrlBases.includes(fullFilename)) {
       this.currentImageUrl = this.buildImageUrl(fullFilename);
       return;
     } else {
-      console.log("No " + this.icon + this.currentEmotion + " URL");
+      console.log(`No ${activeIcon}${this.currentEmotion} URL`);
     }
 
     // Attempt 2: name_icon (if the specific emotion is missing)
-    const iconOnlyFilename = `${baseName}${this.icon}`;
+    const iconOnlyFilename = `${baseName}${activeIcon}`;
     if (this.imageUrlBases.includes(iconOnlyFilename)) {
-      this.currentEmotion = "";
+      this.currentEmotion = ""; // Reset to neutral
       this.currentImageUrl = this.buildImageUrl(iconOnlyFilename);
       return;
     }
@@ -368,13 +376,15 @@ let characters = [
       "nysdisgust",
       "nysangry",
       "nyscurious",
+      "nyssad",
+      "nysponder",
     ],
     "Job",
     "nys.txt",
     "nothing",
     "drugs",
     -100,
-    {},
+    { "Evil Lair": "nyslair.txt" }, // Special dialogue for Evil Lair
     "nys",
     0,
     100

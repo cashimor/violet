@@ -418,7 +418,7 @@ const gameOverEvilItsuki = new Location(
   "Game Over",
   0,
   0,
-  "music/goevil.mp3" // MP3
+  "music/goevilitsuki.mp3" // MP3
 );
 
 const gameOverDead = new Location(

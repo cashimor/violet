@@ -193,12 +193,41 @@ class OptionsController {
     this.simulationController.fromData(gameState.simulationControllerState);
     this.enemyController.fromData(gameState.enemyControllerState);
     this.gameController.goddessController.mana = gameState.mana || 0;
-    this.locationController.locations = gameState.locations.map(
-      Location.fromData
-    );
+    const defaultLocations = this.locationController.locations;
+    const newLocations = defaultLocations.map((defaultLocation) => {
+      const loadedLocation = gameState.locations.find(
+        (loc) => loc.name === defaultLocation.name
+      );
+      return loadedLocation
+        ? Location.fromData(loadedLocation) // Use loaded data if available
+        : defaultLocation; // Otherwise, keep the default
+    });
+    this.locationController.locations = newLocations;
+
+    const defaultCharacters = this.locationController.characters;
+    const newCharacters = defaultCharacters.map((defaultChar) => {
+      const loadedChar = gameState.characters.find(
+        (char) => char.name === defaultChar.name
+      );
+
+      if (loadedChar) {
+        // Merge loaded character with the default
+        const mergedChar = Character.fromData(loadedChar);
+        mergedChar.imageUrlBases = defaultChar.imageUrlBases; // Always keep the original static data
+        mergedChar.specialDialogues = defaultChar.specialDialogues; // Assign the special dialogues
+        return mergedChar;
+      }
+
+      // Return default character if no save data exists
+      return defaultChar;
+    });
+    this.locationController.characters = newCharacters;
+
+    /*
     this.locationController.characters = gameState.characters.map(
       Character.fromData
     );
+    */
     Object.keys(gameState.roomTypes).forEach((key) => {
       if (this.locationController.roomTypes[key]) {
         this.locationController.roomTypes[key] = RoomType.fromData(
@@ -237,7 +266,9 @@ class OptionsController {
   }
 
   toggleMusic() {
-    this.gameController.audioController.setMusicOn(!this.gameController.audioController.musicOn);
+    this.gameController.audioController.setMusicOn(
+      !this.gameController.audioController.musicOn
+    );
     localStorage.setItem(
       "musicSetting",
       JSON.stringify(this.gameController.audioController.musicOn)

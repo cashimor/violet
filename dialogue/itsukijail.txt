@@ -2,7 +2,7 @@ start:
 !neutral
 You.
 I was wondering when you’d show up.
-!smirk
+${Nys/itsukipromise:>itsukipromise:!smirk}
 ?You’ve got a lot of nerve, Violet. Reporting me? After everything?
 [justify] You forced my hand
 [defensive] You were stealing from me!
@@ -51,10 +51,15 @@ taunt:
 
 taunted:
 It is, is it? Hopefully you will go where you belong as well.
-@adjustEvilness(10)
+${Nys/itsukipromise::@adjustEvilness(10)}
 
 taunt2:
 ${Nys/dumb:>nys:Again? When is it enough?}
 
 nys:
 Please... just take care of your sister.
+
+itsukipromise:
+Oh... Nys asked you to release me? And you did?
+You do have something good in you, if only for your family.
+@scenarioStep(releaseItsuki)

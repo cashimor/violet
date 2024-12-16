@@ -334,10 +334,11 @@ class DialogController {
       return [">scenarioStep"];
     }
     if (param === "releaseItsuki") {
+      const itsuki = this.gameController.getCharacterByName("Itsuki");
       console.log("Releasing Itsuki again");
       itsuki.dialogue = "itsukiFoundDialogue.txt";
       itsuki.location = "Itsuki's Apartment";
-      itsuki.clearTidbit("injail");
+      itsuki.removeTidbit("injail");
       return ["I will continue fighting the loan sharking, though."];
     }
     if (param === "takeshileaves") {

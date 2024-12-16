@@ -30,6 +30,15 @@ start:
 #>s6m11
 #>s6m12
 #>s6m13
+#>s7m1
+#>s7m2
+#>s7m3
+#>s8m1
+#>s8m2
+#>s8m3
+#>s9m1
+#>s9m2
+#>s9m3
 
 s1m1: 
 !curious
@@ -318,6 +327,76 @@ At the café, I watched steam rise from my coffee, swirling into fascinating sha
 [success] It’s likely a result of the heat.
 [fail] Maybe it’s just luck—random things are sometimes pretty.
 [fail] Could it be the shape of the cup influencing the steam?
+
+s7m1:
+I was in a cheerful mood.
+Thinking of making a drawing. Something whimsical and fun to brighten my day.
+?What should I draw?
+[success] A prairy dog in a fancy suit
+[fail] A perfect apple
+[fail] A random squiggle
+
+s7m2:
+I was in a thoughtful mood.
+I want to make a drawing, but I’m not sure what to create.
+?Something meaningful, perhaps? What would inspire me?
+[fail] A bard's tale
+[success] Something from your own life
+[fail] Challenge yourself!
+
+s7m3:
+I was frustrated.
+I’ve been trying to come up with an idea for a drawing, but nothing feels right!
+?It’s so annoying! What should I do?
+[fail] Draw something random.
+[success] Take a break
+[fail] Something simple
+
+s8m1:
+I was sad. I dropped my scissors, and they fell through the grate...
+?They were my favorite pair. What should I do?
+[fail] Buy a new pair
+[fail] Use a stick
+[success] See it as an opportunity
+
+s8m2:
+I was annoyed. Can you believe this?
+?My scissors fell through the grate, and now they’re gone! Ugh! What should I do?
+[fail] Calm down
+[fail] Call someone
+[success] Listen to the universe
+
+s8m3:
+I was happy. Well, I dropped my scissors down the grate.
+Whoops! Guess that’s the universe’s way of telling me I need to go shopping.
+?What do you think?
+[success] Get colorful ones
+[fail] Nothing
+[fail] It's a small loss
+
+s9m1:
+I was disappointed.
+The bread I love was sold out... I was really looking forward to having some.
+?What should I do?
+[success] Bake your own
+[fail] Buy cake
+[fail] Go without
+
+s9m2:
+I was happy.
+Looks like the bread’s sold out again! Guess I’m not the only one with good taste.
+?What’s the plan now?
+[success] Find another treat
+[fail] Wait
+[fail] Give up
+
+s9m3:
+I was in thought.
+The bread I wanted is gone... I wonder how I’ve come to cherish such a simple thing.
+?What would you do in my place?
+[success] Think of a snack
+[fail] Try again tomorrow
+[fail] Focus on something new
 
 fail: 
 I guess so...
