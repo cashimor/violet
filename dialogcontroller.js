@@ -96,6 +96,10 @@ class DialogController {
     this.characterY = characterController.characterY;
     this.currentIndex = 0; // Tracks the current line in the dialog
     this.state = "ACTIVE";
+    this.isTimed = false;
+
+    this.startTime = null; // When the stopwatch starts
+    this.timings = []; // Array to store click timestamps
 
     // "X" button position and size
     this.closeButtonX = this.characterX + 500; // Adjust based on bubble position
@@ -776,6 +780,19 @@ class DialogController {
   }
 
   drawSpeechBubble(characterX, characterY, dialogue, emotion) {
+    let currentLine = dialogue;
+    const durationMatch = currentLine.match(/\(#(\d+)\)$/);
+    if (durationMatch) {
+      const duration = parseInt(durationMatch[1], 10) * 1000; // Convert seconds to ms
+      currentLine = currentLine.replace(/\(#\d+\)$/, ""); // Remove marker from display
+      this.isTimed = true;
+      // Automatically move to the next line after the specified duration
+      setTimeout(() => {
+        this.start();
+      }, duration);
+    } else {
+      this.isTimed = false;
+    }
     const bubbleImage = new Image();
     let bubbleSrc = "images/bubble.png"; // Default speech bubble
 
@@ -825,7 +842,7 @@ class DialogController {
 
       // Split dialogue into lines with a max of 55 characters, keeping words intact
       const maxLineLength = 45;
-      const wrappedText = this.wrapText(dialogue, maxLineLength);
+      const wrappedText = this.wrapText(currentLine, maxLineLength);
 
       // Calculate initial text Y position within the bubble
       let textY = bubbleY + 40; // Start text a bit lower inside the bubble
@@ -907,7 +924,10 @@ class DialogController {
     // Then check character click
     if (y > 200 && x > 50 && x < this.canvas.width - 50) {
       this.character.dayTalk = this.simulationController.day;
-      this.start();
+      if (!this.isTimed) {
+        this.recordTiming();
+        this.start();
+      }
       return true;
     }
     return false;
@@ -998,6 +1018,7 @@ class DialogController {
 
   // Modified start method to handle dialog choices and emotions
   start(first = false) {
+    if (this.state == "INACTIVE") return;
     if (first) {
       if (this.isFriend()) {
         this.handleEmotion("!happy");
@@ -1018,10 +1039,12 @@ class DialogController {
     if (dialogContent.startsWith("_")) {
       const audioCommand = dialogContent.substring(1).trim(); // Get text after "@"
       if (audioCommand) {
+        this.startStopwatch();
         this.gameController.audioController.playThemeMusic(
           "music/" + audioCommand
         ); // Play theme music
       } else {
+        this.stopStopwatch();
         this.gameController.audioController.stopThemeMusic();
       }
       dialogContent = this.getNextLine(); // Move to the next line
@@ -1090,6 +1113,7 @@ class DialogController {
 
   // New helper method to handle emotion changes
   handleEmotion(line) {
+    console.log("Handling emotion: " + line);
     const emotion = line.slice(1); // Extract the emotion keyword
     this.characterController.updateEmotion(emotion);
   }
@@ -1109,5 +1133,25 @@ class DialogController {
       }
     }
     return choices;
+  }
+
+  startStopwatch() {
+    this.startTime = Date.now(); // Record the start time
+    this.timings = []; // Reset the timings
+    console.log("Stopwatch started.");
+  }
+
+  recordTiming() {
+    if (this.startTime) {
+      const elapsedTime = (Date.now() - this.startTime) / 1000; // Time in seconds
+      this.timings.push(elapsedTime);
+      console.log(`Timing recorded: ${elapsedTime.toFixed(2)}s`);
+    }
+  }
+
+  stopStopwatch() {
+    console.log("Stopwatch stopped. Recorded timings:", this.timings);
+    this.startTime = null;
+    return this.timings; // Return the timings for export or analysis
   }
 }

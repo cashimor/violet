@@ -22,6 +22,12 @@ class ShopManager {
           description:
             "A whimsical brooch that unleashes your inner social butterfly. Wearing it just might make you the talk of the town!",
         },
+        {
+          id: "karaokeMachine",
+          name: "Karaoke Machine",
+          cost: 100000,
+          description: "A state-of-the-art Karaoke machine! Bring out your inner diva.",
+        }
       ],
       magicShop: [
         {

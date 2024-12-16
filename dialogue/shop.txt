@@ -5,7 +5,7 @@ Welcome to my shop!
 bicycle:
 This is a sturdy bicycle.
 ?It only has one gear, but it should get you to places faster.
-${GLOBAL/KNOWcycle:[buybicycle] I'll buy it.:[^CYCLE] Bicycle?}
+${GLOBAL/KNOWcycle:[buybicycle] I'll buy it:[^CYCLE] Bicycle?}
 [later] Later
 
 CYCLE:
@@ -17,7 +17,7 @@ buybicycle:
 selfHelpBook:
 The book is titled: "How to Be Ruthless Without Losing Friends".
 ?It has pictures too.
-[buyselfHelpBook] I'll buy it.
+[buyselfHelpBook] I'll buy it
 [later] Later
 
 buyselfHelpBook:
@@ -27,11 +27,24 @@ socialButterflyBrooch:
 A brooch shaped like a butterfly,
 accompanied by a small book titled "Mastering the Art of Friendship."
 ?It's said to help break the ice with anyone.
-[buysocialButterflyBrooch] I'll take it.
+[buysocialButterflyBrooch] I'll take it
 [later] Later
 
 buysocialButterflyBrooch:
 @buyItem(socialButterflyBrooch)
+
+karaokeMachine:
+A sleek Karaoke machine with built-in microphones
+and a catalog of classic and modern hits.
+?Perfect for parties or solo performances. Are you ready to sing your heart out?
+${GLOBAL/KNOWkaraoke:[buykaraokeMachine] I'll take it:[^KARAOKE] Karaoke?}
+[later] Later
+
+KARAOKE:
+~know/karaoke.txt
+
+buykaraokeMachine:
+@buyItem(karaokeMachine)
 
 later:
 Thank you! I hope to see you back soon.

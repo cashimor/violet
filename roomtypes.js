@@ -55,6 +55,18 @@ class RoomType {
     return new RoomType(data);
   }
 
+  scaleFunds(funds) {
+    if (funds <= 18000) {
+      return funds; // Linear growth at first
+    } else if (funds <= 48000) {
+      return 18000 + (funds - 18000) / 2; // Slow scaling to 24000
+    } else if (funds <= 108000) {
+      return 24000 + (funds - 48000) / 4; // Slower scaling to 36000
+    } else {
+      return 36000 + (funds - 108000) / 8; // Minimal scaling beyond 36000
+    }
+  }
+
   // Calculate profit based on character skill and room-specific factors
   calculateProfit(character, raidChance) {
     if (!character) {
@@ -64,7 +76,11 @@ class RoomType {
 
     // Calculate base profit reduced by lack of skill
     const skillEffect = character.getSkillLevel() / 100; // Skill level as a percentage
-    let profit = Math.max(this.baseProfit, this.funds) * skillEffect;
+    let profit =
+      Math.max(
+        this.baseProfit,
+        Math.min(this.funds, this.scaleFunds(this.funds))
+      ) * skillEffect;
 
     // Gambling Den specific adjustments
     if (this.name === "Gambling Den") {

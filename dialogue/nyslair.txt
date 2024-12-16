@@ -12,32 +12,46 @@ opt1:
 !cheerful
 This is so cool! An actual lair, like something out of a storybook!
 Do I get my own secret code name? Oh! Can I be 'Shadow Whisper'?
+>continue
 
 opt2:
 !neutral
 Wait, what exactly do I *do* here?
 Are we, like, plotting world domination,
 or is this more of a 'take over the local bake sale' kind of thing?
+>continue
 
 opt3:
 !excited
 ${GLOBAL/KNOWkaraoke:Do you think we could add a karaoke machine in here?:We should have a bard here too.}
 I bet evil sounds way more intimidating with a good theme song. Just saying!
+>continue
 
 opt4:
 !cheerful
 You know, Violet, I always knew you were destined for greatness.
 I mean, not *exactly* this, but still! Go big or go home, right?
+>continue
 
 opt5:
 !serious
 Oh! I should get to work, huh? What’s my job? Am I, like, your second-in-command?
 Your spy? Your... um... snacks coordinator?
+>continue
 
 opt6:
 !smile
 Don’t worry, I’ll do my best! Well, my best-ish. You know how I am. 
 But I’ll definitely try not to mess things up too badly!
+>continue
+
+continue:
+?What are we doing next?
+[relax] We relax
+${GLOBAL/SHOP_karaokeMachine:[karaoke] We could do karaoke::}
+
+relax:
+Sounds fun!
 
 itsukijail:
 !shock
@@ -58,3 +72,112 @@ fix:
 !happy
 Oh! Thank you sis! You're the bestest.
 @setTidbit(itsukipromise)
+
+karaoke:
+!shock
+That's quite the outfit Violet... But I'm not sure about this song title.
+"Issa Dumb Song (And You're Smart)". You're not going to be mean, are you?
+But let's sing...
+!microphone
+_karaoke_sisters.mp3
+🎵 I get caught up in my head. 🎵 (#4)
+!violet
+🎵 I get lost in cherry red. 🎵 (#4)
+!microphone
+🎵 And the lights on the machine say green for go. 🎵 (#4)
+!violet
+🎵 But then I pull off and think 🎵 "I don't know" (#4)
+!microphone
+🎵 Then you roll up. 🎵 (#2)
+!violet
+🎵 Thinking more of. 🎵 (#2)
+!microphone
+🎵 Your time and stuff. 🎵 (#2)
+!violet
+🎵 In the best way. 🎵 (#3)
+!microphone
+🎵 You just show up. 🎵 (#2)
+!violet
+🎵 Fix my wrongs up. 🎵 (#2)
+!microphone
+🎵 Then we go on. 🎵 (#2)
+!violet
+🎵 I hear you say. You say🎵 (#3)
+!microphone
+🎵 "Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh" 🎵 (#16)
+!violet
+🎵 This is crazy 🎵 (#2)
+!microphone
+🎵 And you'll hate me. 🎵 (#3)
+!violet
+🎵 Saying baby impressions for our song. 🎵 (#3)
+!microphone
+🎵 But this sounds dumb. 🎵 (#2)
+!violet
+🎵 You're my dumb sister. 🎵 (#3)
+!microphone
+🎵 It's a dumb song. 🎵 (#4)
+!violet
+You say (#1)
+!blush
+🎵 "Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh" 🎵 (#8)
+!happy
+🎵 But this sounds dumb. 🎵 (#2)
+!violet
+🎵 You're my dumb sister. 🎵 (#2)
+!microphone
+🎵 It's a dumb song. 🎵 (#2)
+!violet
+🎵 You're my dumb sister. 🎵 (#3)
+!microphone 
+🎵 It's a dumb song. 🎵 (#3)
+!violet
+🎵 You're my dumb sister. 🎵 (#2)
+!violet
+🎵 Sit in separate rooms. 🎵 (#2)
+!microphone
+🎵 You on the couch. 🎵 (#2)
+!violet
+🎵 Drawing out the storm that you talk about. 🎵 (#4)
+!microphone
+🎵 And I don't see rain for days. 🎵 (#3)
+!happy
+🎵 And you're covering me. 🎵 (#2)
+!violet
+🎵 Swap me while I burst clouds full of anxiety. Take a second to reflect. 🎵 (#5)
+!microphone
+🎵 And pick up. Stretch. 🎵 (#3)
+!violet
+🎵 Keeping my energy up. 🎵 (#2)
+!microphone
+🎵 Try to breathe to it. Here I go again. 🎵 (#3)
+!violet
+🎵 But my love ends. 🎵 (#2)
+!microphone
+🎵 Putting you first. 🎵 (#2)
+!violet
+🎵 Debating with me. 🎵 (#2)
+!microphone
+🎵 Hear you sing. 🎵 (#1)
+!violet
+You say (#1)
+!happy
+🎵 "Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh" 🎵 (#8)
+!violet
+🎵 This is crazy. 🎵 (#2)
+!microphone
+🎵 And you"ll hate me. 🎵 (#2)
+!violet
+🎵 Saying baby impressions for our song 🎵 (#4)
+!microphone
+🎵 But this sounds dumb. 🎵 (#2)
+!violet
+🎵 You're my dumb sister. 🎵 (#2)
+!microphone
+🎵 It's a dumb song. 🎵 (#5)
+!violet
+You say (#1)
+!cheerful
+🎵 "Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh Ooh" 🎵 (#18)
+_nys.mp3
+That was fun, wasn't it? Maybe we can do it again tomorrow.
