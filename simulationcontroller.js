@@ -152,9 +152,21 @@ class SimulationController {
 
   // Function to update the energy bar
   updateEnergyBar(currentEnergy, maxEnergy) {
-    const energyBar = document.getElementById("energy-fill");
+    let resetValue = this.energyResetValue + this.evilLairBonus;
+    const energyFill = document.getElementById("energy-fill");
+    const resetMarker = document.getElementById("energy-reset-marker");
+
+    // Update the energy bar fill
     const energyPercentage = (currentEnergy / maxEnergy) * 100;
-    energyBar.style.width = `${energyPercentage}%`;
+    energyFill.style.width = `${energyPercentage}%`;
+
+    // Calculate reset marker position as a percentage of the energy bar
+    const resetPercentage = (resetValue / maxEnergy) * 100;
+    const markerPosition = 135 + resetPercentage / 100 * 300;
+
+    // Position the reset marker within the bounds of the energy bar
+    resetMarker.style.left = `${markerPosition}px`;
+    resetMarker.style.display = resetPercentage <= 100 ? "block" : "none";
   }
 
   updateDisplay() {
@@ -205,8 +217,7 @@ class SimulationController {
           "Together, you and Nys have created a better world.",
           "communitynys"
         );
-      } else
-      {
+      } else {
         // Violet achieves the Community transformation alone
         this.scenarioManager.triggerGameOver(
           "The city thrives under your leadership, but you are left to lead alone.",

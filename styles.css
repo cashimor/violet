@@ -343,6 +343,15 @@
   transition: width 0.3s ease; /* Smooth transition for energy level changes */
 }
 
+.energy-reset-marker {
+  position: absolute;
+  height: 20px; /* Matches the height of the energy bar */
+  width: 2px;   /* Thin line */
+  background-color: darkred; /* Visible color for the marker */
+  display: none; /* Hidden by default */
+  z-index: 1; /* Ensure it's above the energy bar */
+}
+
 #footer {
   width: 1150px;
   text-align: center;
