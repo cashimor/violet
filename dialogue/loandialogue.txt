@@ -6,6 +6,8 @@ notheft:
 ?What's up?
 [game] Time for a game?
 [work] How's work?
+[label1] How proficient are you?
+[label2] Can we do some training?
 [label3] How are the funds looking?
 
 theft:
@@ -97,3 +99,106 @@ label13:
 
 bonus:
 @giveBonus(5000)
+
+scenario1:
+!serious
+?One of the debtors is avoiding payment. How should I handle this?
+[train_success] Appear at their home during dinner
+[train_fail] Threaten them with fire
+[train_fail] Challenge them to a duel
+
+scenario2:
+!neutral
+?How do I make them prioritize paying us over others?
+[train_fail] Demand weekly interest payments
+[train_success] Create a sense of urgency
+[train_fail] Send a stern letter
+
+scenario3:
+!smirk
+?One debtor is offering their family heirloom as collateral. Should we accept it?
+[train_fail] Refuse
+[train_fail] Accept
+[train_success] Take it, but undervalue it
+
+scenario4:
+!thinking
+?Should we adjust the interest rate for someone particularly desperate?
+[train_fail] Keep it stable
+[train_success] Raise it slightly
+[train_fail] Lower it
+
+scenario5:
+!neutral
+?What’s the best way to get collateral without being too obvious?
+[train_success] Offer a 'temporary holding' for valuables
+[train_fail] Demand their most prized possession outright
+[train_fail] Send an enforcer to remind them of their promises
+
+scenario6:
+!serious
+?Our collection efforts aren’t yielding much. Any ideas?
+[train_fail] Take what little they have now
+[train_success] Smaller, frequent payments
+[train_fail] Write off their debts
+
+scenario7:
+!cheerful
+?Should we threaten them to ensure quicker payments?
+[train_fail] Outright threats are the way to go. Fear is the greatest motivator!
+[train_fail] Be vague. Something like 'you’ll regret this' keeps them guessing.
+[train_success] Subtle threats work best. A casual mention of what might happen if they don’t pay.
+
+scenario8:
+!thinking
+?One debtor claims they can’t pay but offers a favor instead. Should we accept?
+[train_success] Evaluate the favor’s value
+[train_fail] Refuse outright
+[train_fail] Accept without question
+
+scenario9:
+!neutral
+?What do we do if someone’s about to default completely?
+[train_fail] Let them default
+[train_success] Take possession of their collateral
+[train_fail] Offer forgiveness
+
+scenario10:
+!smirk
+?How can we encourage them to take larger loans?
+[train_fail] Guilt them into it
+[train_fail] Just lie about the repayment terms
+[train_success] Emphasize the benefits of the loan
+
+label1:
+!neutral
+@showSkill()
+
+showSkill:
+?Do you think I need to improve?
+[label2] Yes, let’s train.
+[label3] Not right now, just curious.
+
+train_success:
+!neutral
+I like learning new things.
+@train(10)
+
+train_fail:
+Oh, interesting. I didn't know that.
+
+label3:
+!neutral
+Alright, let me know if you need anything else.
+
+label2:
+#>scenario1
+#>scenario2
+#>scenario3
+#>scenario4
+#>scenario5
+#>scenario6
+#>scenario7
+#>scenario8
+#>scenario9
+#>scenario10

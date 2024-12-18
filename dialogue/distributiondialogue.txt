@@ -1,3 +1,113 @@
 start:
 Hello, welcome to the drugs distribution center.
+?What's up?
+[label1] How proficient are you?
+[label2] Can we do some training?
+[label3] Discuss work
+
+label3:
 ~workdialogue.txt
+
+
+label1:
+!neutral
+@showSkill()
+
+showSkill:
+?Do you think I need to improve?
+[label2] Yes, let’s train.
+[label3] Not right now, just curious.
+
+train_success:
+!neutral
+I like learning new things.
+@train(10)
+
+train_fail:
+Oh, interesting. I didn't know that.
+
+label3:
+!neutral
+Alright, let me know if you need anything else.
+
+label2:
+#>scenario1
+#>scenario2
+#>scenario3
+#>scenario4
+#>scenario5
+#>scenario6
+#>scenario7
+#>scenario8
+#>scenario9
+#>scenario10
+
+scenario1:
+!serious
+?What’s the best way to expand our client base?
+[train_success] Target gathering spots
+[train_fail] Hand out free samples in busy areas
+[train_fail] Advertise subtly
+
+scenario2:
+!smirk
+?What if a rival group tries to take over our territory?
+[train_fail] Confront them directly
+[train_success] Undermine them
+[train_fail] Strike a deal to share territory
+
+scenario3:
+!neutral
+?Some clients can’t pay on time. Should we stop selling to them?
+[train_fail] Cut them off
+[train_fail] Take collateral
+[train_success] Let them buy on credit with high interest
+
+scenario4:
+!serious
+?How do we move our product without drawing suspicion?
+[train_success] Hide it within legitimate shipments
+[train_fail] Use secret handoffs in dark alleys
+[train_fail] Distribute through trusted couriers
+
+scenario5:
+!neutral
+?Should we deal with small-time sellers or handle clients ourselves?
+[train_fail] Deal directly with clients
+[train_success] Recruit small-time sellers
+[train_fail] Use an anonymous drop system
+
+scenario6:
+!thinking
+?What if law enforcement gets suspicious?
+[train_fail] Stop operations temporarily
+[train_fail] Move to a different area entirely
+[train_success] Pay informants within their ranks
+
+scenario7:
+!serious
+?How do we keep the product supply steady?
+[train_success] We should be the supply
+[train_fail] Diversify sources
+[train_fail] Stockpile product
+
+scenario8:
+!smirk
+?How do we keep clients coming back for more?
+[train_fail] Offer loyalty rewards
+[train_success] Gradually reduce potency
+[train_fail] Start offering complementary services
+
+scenario9:
+!neutral
+?Our competitors are undercutting our prices. What do we do?
+[train_fail] Lower your prices temporarily
+[train_fail] Focus on building loyalty
+[train_success] Undermine their supply chain
+
+scenario10:
+!cheerful
+?How do we disguise our operations from prying eyes?
+[train_fail] Only meet with clients in secret locations
+[train_fail] Operate at odd hours
+[train_success] Set up fake businesses

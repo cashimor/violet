@@ -1,6 +1,8 @@
 start:
 Hello, welcome to the gambling den.
 ?What's up?
+[label1] How proficient are you?
+[label2] Can we do some training?
 [game] Time for a game?
 [work] How's work?
 
@@ -11,3 +13,106 @@ A game? Of course, let's play.
 
 work:
 ~workdialogue.txt
+
+label1:
+!neutral
+@showSkill()
+
+showSkill:
+?Do you think I need to improve?
+[label2] Yes, let’s train.
+[label3] Not right now, just curious.
+
+train_success:
+!neutral
+I like learning new things.
+@train(10)
+
+train_fail:
+Oh, interesting. I didn't know that.
+
+label3:
+!neutral
+Alright, let me know if you need anything else.
+
+label2:
+#>scenario1
+#>scenario2
+#>scenario3
+#>scenario4
+#>scenario5
+#>scenario6
+#>scenario7
+#>scenario8
+#>scenario9
+#>scenario10
+
+scenario1:
+!neutral
+?What could I do to improve profits at the dice tables?
+[train_fail] Oil the dice to decrease control
+[train_success] Apply a dab of wax to one side
+[train_fail] Replace the dice mid-game
+
+scenario2:
+!neutral
+?I'm worried some gamblers are getting too good at the card tables.
+[train_fail] Insist on playing with only one deck
+[train_fail] Pre-fold the corner of the ace
+[train_success] Mark the edges of a deck discreetly
+
+scenario3:
+!smile
+?The pit boss says: We need to make people spend more. Any ideas?
+[train_success] Plant a lucky gambler
+[train_fail] Have a guard shout the odds every five minutes
+[train_fail] Place a 'cursed' gambler
+
+scenario4:
+!thinking
+?Some tables seem more popular than others. How do I capitalize?
+[train_fail] Place the worst players in the best-lit seat
+[train_success] Tilt the most popular table slightly
+[train_fail] Ensure all tables are perfectly level
+
+scenario5:
+!cheerful
+?What’s the best way to keep patrons distracted and spending?
+[train_success] Dancers and perfume
+[train_fail] Serve an elaborate feast mid-game
+[train_fail] Ear plugs
+
+scenario6:
+!neutral
+?Our odds aren’t tempting enough. What should I do?
+[train_fail] Only allow straightforward bets
+[train_fail] Allow players to set their own odds
+[train_success] Offer enticing odds on impossible results
+
+scenario7:
+!serious
+?What if someone gains the upper hand at a game?
+[train_fail] Change rules unpredictably every hour
+[train_success] Declare sudden rule adjustments
+[train_fail] Stick rigidly to written rules
+
+scenario8:
+!neutral
+?Some players are growing too familiar with our dealers.
+[train_success] Let no one grow familiar
+[train_fail] Assign one dealer per game
+[train_fail] Make the patrons deal for themselves
+
+scenario9:
+!smirk
+?How can we sell more trinkets to the patrons?
+[train_fail] Give free charms
+[train_success] Sell lucky charms
+[train_fail] Sell unlucky charms
+
+scenario10:
+!neutral
+?What’s the most subtle way to influence games?
+[train_fail] Encourage staff to distract patrons
+[train_fail] Let patrons roll their own dice
+[train_success] Train staff to nudge a table

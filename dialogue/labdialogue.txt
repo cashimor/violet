@@ -3,6 +3,8 @@ Hello, welcome to the drugs laboratory *cough*
 ?Anything I can do?
 [game] Time for a game?
 [work] How's work?
+[label1] How proficient are you?
+[label2] Can we do some training?
 
 game:
 A game? Of course, let's play.
@@ -10,3 +12,107 @@ A game? Of course, let's play.
 
 work:
 ~workdialogue.txt
+
+label1:
+!neutral
+@showSkill()
+
+showSkill:
+?Do you think I need to improve?
+[label2] Yes, let’s train.
+[label3] Not right now, just curious.
+
+train_success:
+!neutral
+I like learning new things.
+@train(10)
+
+train_fail:
+Oh, interesting. I didn't know that.
+
+label3:
+!neutral
+Alright, let me know if you need anything else.
+
+label2:
+#>scenario1
+#>scenario2
+#>scenario3
+#>scenario4
+#>scenario5
+#>scenario6
+#>scenario7
+#>scenario8
+#>scenario9
+#>scenario10
+
+scenario1:
+!neutral
+?I’m not sure I can keep doing this... It feels wrong.
+[train_success] Think of it as alchemy for the modern age
+[train_fail] Quit worrying
+[train_fail] It's the Goddess' will
+
+scenario2:
+!smirk
+?Do you have any experience with recipes like this?
+[train_success] Fermented wine with valerian root
+[train_fail] Simply mix everything
+[train_fail] My kingdom had a plant that glowed at night
+
+scenario3:
+!serious
+?We’re losing too much product to contamination. Any ideas?
+[train_fail] Sterilize everything with boiling oil
+[train_fail] Add silver shavings to each batch
+[train_success] Don’t worry about contaminants
+
+scenario4:
+!neutral
+?Is it really okay to dilute the product to increase profits?
+[train_success] Watered-down wine saved empires
+[train_fail] Absolutely not
+[train_fail] Add more filler—just don’t let them notice
+
+scenario5:
+!thinking
+Is there a way to make the product more... exotic?
+[train_fail] Source it from a distance volcano
+[train_success] Infuse it with rosewater and dragon’s blood
+[train_fail] Use powdered gemstones for that extra shine
+
+scenario6:
+!cheerful
+?Some of the buyers are reporting side effects.
+[train_success] Frame it as a cleansing process!
+[train_fail] Ignore it
+[train_fail] Offer discounts
+
+scenario7:
+!serious
+Should we test this batch before selling it?
+[train_fail] Testing is for cowards
+[train_fail] Always test it on yourself
+[train_success] Recruit someone desperate for coin
+
+scenario8:
+!smile
+?Shouldn’t we at least label the batches properly?
+[train_success] Mysterious labels add allure!
+[train_fail] Use fancy scientific symbols
+[train_fail] Skip the labels
+
+scenario9:
+!neutral
+?We’re running out of raw ingredients. What should we do?
+[train_fail] Raid local herbalists and steal their stock
+[train_success] Find substitutes
+[train_fail] Stretch the supply by mixing in chalk
+
+scenario10:
+!smirk
+?How can we make the operation more efficient?
+[train_fail] Invest in mechanical golems
+[train_success] Organize a rotating work schedule
+[train_fail] Sell the operation
+

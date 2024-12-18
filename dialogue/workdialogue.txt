@@ -1,34 +1,16 @@
 start:
 ?What can I do for you today?
-[label1] You got this?
-[label2] Can we do some training?
 [bonus] Here is a bonus (¥5000)
 [goddess] You know ${GLOBAL/goddessNirvani:Nirvani:Malvani}?
-${GLOBAL/communitypossible:[community] Go legit: }
+${GLOBAL/communitypossible:[community] Go legit:[chat] How are things?}
+
+chat:
+Things are well, I think.
 
 community:
 You want to make this a legitimate location? No longer worrying about the police?
 Of course! That sounds great. This should make a great addition to the community.
 @communify()
-
-label1:
-!neutral
-@showSkill()
-
-showSkill:
-?Do you think I need to improve?
-[label2] Yes, let’s train.
-[label3] Not right now, just curious.
-
-
-label2:
-!neutral
-I like learning new things.
-@train(10)
-
-label3:
-!neutral
-Alright, let me know if you need anything else.
 
 bonus:
 @giveBonus(5000)
