@@ -352,7 +352,13 @@ let characters = [
   ),
   new Character(
     "Itsuki",
-    ["itsuki", "itsukishock", "itsukipartner"],
+    [
+      "itsuki",
+      "itsukishock",
+      "itsukipartner",
+      "itsukipartnermicrophone",
+      "itsukipartnerviolet",
+    ],
     "Itsuki's Apartment",
     "itsuki.txt",
     null,

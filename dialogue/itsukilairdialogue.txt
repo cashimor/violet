@@ -2,6 +2,10 @@ start:
 #It's good to be together at last, Violet.
 #~itsukimanga.txt
 #>community
+#>checkkaraoke
+
+checkkaraoke:
+${GLOBAL/SHOP_karaokeMachine:>karaoke:Maybe we should go shopping some day?}
 
 community:
 I stopped stealing from your loan shark offices. But I still don't like them.
@@ -25,3 +29,39 @@ alright:
 Fantastic. I'm so glad you listen to me. 
 @setTidbit(GLOBAL/communitypossible)
 
+karaoke:
+?I think it is time to use that Karaoke machine, don't you think?
+[yes] Of course
+[no] I can't sing
+
+no:
+We can do it next time... after you practice more.
+
+yes:
+So the song is "Beyond Belief - Chapter II".
+No... I don't have chapter one. I'm not sure there is one.
+You're going first, but don't worry about the first bit. Just say the words.
+It will be fine.
+!violet
+_karaoke_itsuki.mp3
+🎵 I. I don't understand. I was everything you asked for. 🎵 (#8)
+🎵 All you could not leave in the hands of fate. Because I am that girl. 🎵 (#6)
+🎵 The girl you prayed for. For whom your prayers will go unanswered. 🎵 (#5)
+🎵 Am I not the better god? (Am I not the demoness of your dreams?) 🎵 (#6)
+!microphone
+🎵 Never. Never. Never. Never doubt believing that it can happen. 🎵 (#8)
+🎵 It goes beyond human belief because I saw her. She walked toward me. 🎵 (#6)
+🎵 I was even unworthy to see her. Doubt was unsure. Am I unworthy for you? 🎵 (#8)
+!violet
+🎵 O mother snake. She who glows with divine light. She that you couldn't lose. 🎵 (#10)
+🎵 Then why should you win me? If it happened. Before your eyes. It hesitated. 🎵 (#8)
+🎵 In the silencing sunset. Whose gold surpassed all doubt. 🎵 (#5)
+🎵 Am I not allowed to waver? 🎵 (#14)
+!microphone
+🎵 O mother snake. She who glows with divine light. She that you couldn't lose. 🎵 (#9)
+🎵 Then why should I win you? If it happened. Before your eyes. It hesitated. 🎵 (#8)
+🎵 In the silencing sunset. Whose gold surpassed all doubt. 🎵 (#5)
+🎵 Am I not allowed to waver? 🎵 (#2)
+!neutral
+_
+It's just a song, Violet... it doesn't mean that I prefer Nirvani over you...
