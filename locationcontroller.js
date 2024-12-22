@@ -91,10 +91,11 @@ class LocationController {
 
     this.xivato.location = "Job";
 
+    let rendered = false;
     // Draw characters in the current location with their names
     this.characters.forEach((character) => {
       if (character.location === location.name) {
-        this.renderCharacter(character);
+        rendered |= this.renderCharacter(character);
       }
     });
 
@@ -156,14 +157,15 @@ class LocationController {
         this.rentPopup.classList.add("hidden");
       });
     }
+    return rendered;
   }
 
   // Function to initialize and render a character in a specific room
   renderCharacter(character) {
-    if (!character) return;
+    if (!character) return false;
 
-    if (character.dayTalk == this.simulationController.day) return;
-    if (!this.simulationController.deductEnergy(3)) return;
+    if (character.dayTalk == this.simulationController.day) return false;
+    if (!this.simulationController.deductEnergy(3)) return false;
 
     // Initialize the CharacterController for this character
     const characterController = new CharacterController(
@@ -187,6 +189,7 @@ class LocationController {
         );
         this.dialogue.start(true); // Begin the dialog flow for the character
       });
+    return true;
   }
 
   drawRoomNavigationIcons() {

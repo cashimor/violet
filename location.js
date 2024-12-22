@@ -353,6 +353,15 @@ const itsukiapt = new Location(
   "music/itsukisapt.mp3"
 );
 
+const phone = new Location(
+  "Phone",
+  "images/phonelocation.jpg",
+  "Game Start",
+  0,
+  0,
+  "music/phone.mp3"
+);
+
 // Array of locations
 let locations = [
   itsukiapt,
@@ -373,7 +382,8 @@ let locations = [
   jail,
   shop,
   purgatory2,
-  purgatory3
+  purgatory3,
+  phone,
 ];
 
 const gameOverXivato = new Location(

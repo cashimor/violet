@@ -129,8 +129,19 @@ class DialogController {
       checkTheft: (param) => this.checkTheft(param),
       communify: (param) => this.communify(param),
       checkEvil: (param) => this.checkEvil(param),
+      addPhoneContact: (param) => this.addPhoneContact(param),
       // Add more functions as needed
     };
+  }
+
+  addPhoneContact() {
+    if (!this.isFriend()) {
+      return ["I'm not ready for that yet."];
+    }
+    if (this.gameController.phoneController.addContact(this.character.name)) {
+      return ["Here is my info, Violet!"];
+    }
+    return ["Again?"];
   }
 
   checkEvil(value) {

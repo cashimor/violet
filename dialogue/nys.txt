@@ -237,14 +237,14 @@ All my sisters, and me, had to live like servants.
 
 itsukijail:
 !shock
-?Itsuki is in jail! Please! Help me get him out!
+?Itsuki is in jail! Please! Help me get them out!
 [noworry] Don't worry
 [join] You could join me
 [bail] You should bail him out
 
 noworry:
 !sad
-I'm not worried. He'll be back, won't he?
+I'm not worried. Itsuki will be back, right?
 
 bail:
 !ponder

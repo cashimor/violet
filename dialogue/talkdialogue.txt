@@ -1,9 +1,16 @@
 start:
 ?What is it that you'd like to discuss?
 [job] You want a job?
-[like] I'd like to know you more.
+[like] I'd like to know you more
+${GLOBAL/SHOP_smartPhone:[phone] Contact info?:[where] Where do you live?}
 ${GLOBAL/KNOWmoney:[bribe] Does ¥5000 help?:[^GOLD] Gold?}
 ${GLOBAL/KNOWmoney:[beg] Give me money, please.: }
+
+where:
+Oh, I wander around.
+
+phone:
+@addPhoneContact()
 
 GOLD:
 ~know/knowmoney.txt
