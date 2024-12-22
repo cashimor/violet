@@ -143,6 +143,10 @@ class OptionsController {
       );
       return;
     }
+    if (this.gameController.phoneController.currentCallCharacter) {
+      updateSummaryText("Can't save while in a call.");
+      return;
+    }
     if (this.simulationController.scenarioManager.gameIntro) {
       updateSummaryText("The game hasn't started yet.");
       return;
