@@ -162,7 +162,7 @@ class SimulationController {
 
     // Calculate reset marker position as a percentage of the energy bar
     const resetPercentage = (resetValue / maxEnergy) * 100;
-    const markerPosition = 135 + resetPercentage / 100 * 300;
+    const markerPosition = 135 + (resetPercentage / 100) * 300;
 
     // Position the reset marker within the bounds of the energy bar
     resetMarker.style.left = `${markerPosition}px`;
@@ -447,5 +447,8 @@ class SimulationController {
     this.restButton.disabled = false;
     this.gameController.mapButton.classList.remove("hidden");
     this.restButton.classList.remove("hidden");
+    if (this.hasTidbit("SHOP_smartPhone")) {
+      this.gameController.phoneController.showButton();
+    }
   }
 }

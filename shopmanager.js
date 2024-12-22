@@ -26,8 +26,16 @@ class ShopManager {
           id: "karaokeMachine",
           name: "Karaoke Machine",
           cost: 100000,
-          description: "A state-of-the-art Karaoke machine! Bring out your inner diva.",
-        }
+          description:
+            "A state-of-the-art Karaoke machine! Bring out your inner diva.",
+        },
+        {
+          id: "smartPhone",
+          name: "Smart Phone",
+          description:
+            "A modern smartphone with all the features you need for calling, texting, and more.",
+          cost: 15000, // Adjust price as needed
+        },
       ],
       magicShop: [
         {
@@ -77,6 +85,9 @@ class ShopManager {
     switch (itemId) {
       case "socialButterflyBrooch":
         this.simulationController.reduceFriendBoundary(15);
+        break;
+      case "smartPhone":
+        this.simulationController.gameController.phoneController.showButton();
         break;
       // Add other items with special effects here
       default:

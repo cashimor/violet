@@ -54,6 +54,7 @@ class ScenarioManager {
     this.gameController.mapButton.classList.add("hidden");
     this.simulationController.restButton.classList.add("hidden");
     this.simulationController.restButton.disabled = true;
+    this.gameController.phoneController.hideButton();
     this.gameController.locationController.loadLocation(
       gameOverLocations["bedroom"]
     );
@@ -78,6 +79,7 @@ class ScenarioManager {
     this.simulationController.gameController.mapButton.disabled = true;
     this.simulationController.gameController.mapButton.classList.add("hidden");
     this.simulationController.restButton.classList.add("hidden");
+    this.gameController.phoneController.hideButton();
     this.simulationController.restButton.disabled = true;
     this.gameController.locationController.loadLocation(
       gameOverLocations["bedroom"]

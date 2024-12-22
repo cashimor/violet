@@ -6,6 +6,12 @@ class GameController {
   constructor() {
     this.closeDialogCallback = null;
     this.helpController = new HelpController(this);
+    this.phoneController = new PhoneController(
+      "phone-container",
+      "phone-canvas",
+      "toggle-phone-btn",
+      this
+    );
     this.jobController = new JobController();
     this.enemyController = new EnemyController(locations, this);
     this.simulationController = new SimulationController(
@@ -63,11 +69,14 @@ class GameController {
   }
 
   findLocationByName(name) {
-    return locations.find(location => location.name === name);
+    return locations.find((location) => location.name === name);
   }
 
   getCharacterByName(name) {
-    return this.locationController.characters.find((char) => char.name === name) || null;
+    return (
+      this.locationController.characters.find((char) => char.name === name) ||
+      null
+    );
   }
 }
 

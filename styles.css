@@ -436,3 +436,23 @@
   font-style: italic;
   font-size: 14px;
 }
+
+#phone-container {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Offset by half its size */
+  width: 280px;
+  height: 500px;
+  border: 4px solid black;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  z-index: 100;
+}
+
+#phone-canvas {
+  width: 100%;
+  height: 100%;
+  display: block; /* Prevent canvas from being inline */
+}

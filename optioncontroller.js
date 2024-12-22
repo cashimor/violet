@@ -154,6 +154,7 @@ class OptionsController {
 
     const gameState = {
       simulationControllerState: this.simulationController.toData(),
+      phoneControllerState: this.gameController.phoneController.toData(),
       locations: this.locationController.locations,
       currentLocation: this.locationController.currentLocation,
       jobs: this.jobController.toData(),
@@ -186,11 +187,12 @@ class OptionsController {
       this.errorContainer.style.display = "block";
       return;
     }
-    this.simulationController.showButtons();
     this.gameController.closeDialogCallback = null;
     this.simulationController.scenarioManager.gameOver = false;
     this.simulationController.scenarioManager.gameIntro = false;
     this.simulationController.fromData(gameState.simulationControllerState);
+    this.gameController.phoneController.fromData(gameState.phoneControllerState);
+    this.simulationController.showButtons();
     this.enemyController.fromData(gameState.enemyControllerState);
     this.gameController.goddessController.mana = gameState.mana || 0;
     const defaultLocations = this.locationController.locations;

@@ -3,6 +3,7 @@ start:
 #~itsukimanga.txt
 #>community
 #>checkkaraoke
+#>pivotal
 
 checkkaraoke:
 ${GLOBAL/SHOP_karaokeMachine:>karaoke:Maybe we should go shopping some day?}
@@ -65,3 +66,73 @@ _karaoke_itsuki.mp3
 !neutral
 _
 It's just a song, Violet... it doesn't mean that I prefer Nirvani over you...
+
+pivotal:
+Do you ever think about her? The Goddess, I mean.
+About what she wanted—what I wanted—when I prayed for you?
+Sometimes I wonder if I made a mistake... if my prayer wasn’t about her at all.
+Maybe it was about me. What I wanted. What I couldn’t handle on my own.
+And now, here you are. I believed in you so fiercely.
+?But... are you what I believed in? Or are you just someone I forced into being?
+[status_quo] I’m here because I’m strong enough to survive
+[curiosity] What made you so sure I was the one?
+[vulnerability] What do you see when you look at me now?
+
+status_quo:
+You’re right. Maybe I am flattering myself.
+
+curiosity:
+I believed in your strength. Your courage.
+I saw someone who could change everything—who could stand up to fate itself.
+And at first... maybe that’s all you were. An idea.
+But now... you’re real. Flawed and angry and human in ways I didn’t expect.
+?And I don’t know if that makes you more or less of what I prayed for.
+[press_further] Am I still that idea to you?
+[deflect] Maybe I’m just good at pretending
+[status_quo] I am perfect
+
+press_further:
+You’re not just an idea anymore. You’re more than that.
+But... I don’t think I’m ready to say what that means yet.
+>merge
+
+deflect:
+Maybe we’re all just pretending a little, Violet.
+But I don’t think you’re as false as you want me to believe.
+>merge
+
+vulnerability:
+When I look at you now, I see... everything I can’t understand.
+Someone who terrifies me and amazes me all at once.
+You’re stronger than I could ever be, but...
+there’s something about you that feels so alone.
+?Maybe I don’t just believe in you. Maybe... I feel responsible for you, too.
+[defensive] You’ve done enough already
+[open_up] And what if I am alone?
+[humor] You’re starting to sound like a bad romance novel
+[status_quo] You're just my tool
+
+defensive:
+Maybe you’re not. But that doesn’t mean I can just stop caring.
+>merge
+
+open_up:
+Then I’d stay. If you’d let me.
+>merge
+
+humor:
+Well, I’ve read worse. But I mean it, Violet. I’m here for a reason.
+>merge
+
+merge:
+You don’t owe me anything, Violet. I prayed because I believed in you.
+?And I still do. But if you want to try... I won’t stop you.
+[oath] Admit blood debt
+[hug] Hug
+
+oath:
+I see... I'm not sure about your customs, but I shall accept this.
+@setTidbit(blooddebt)
+
+hug:
+Oh... awkward...

@@ -46,5 +46,17 @@ KARAOKE:
 buykaraokeMachine:
 @buyItem(karaokeMachine)
 
+smartPhone:
+A modern smartphone with all the features you need for calling, texting, and more.
+?Want to stay connected?
+${GLOBAL/KNOWphone:[buySmartphone] I'll take it:[^PHONE] Smartphone?}
+[later] Later
+
+buySmartphone:
+@buyItem(smartPhone)
+
+PHONE:
+~know/knowphone.txt
+
 later:
 Thank you! I hope to see you back soon.

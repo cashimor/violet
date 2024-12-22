@@ -1,0 +1,13 @@
+start:
+@setTidbit(GLOBAL/KNOWphone)
+
+KNOWphone:
+%phone.jpg
+Yes, it’s a 'magical' device that lets you talk to people far away, send messages,
+and even learn things from a vast network called the world wide web.  
+Not that kind of web.
+Think of it as a library where you can find almost anything—if you know how to look.  
+You tap the screen to open your contacts and select who to call. Easy, right?  
+Trust me, you’ll get the hang of it. Oh, and it can even take pictures!
+You can keep them or share them with others. A truly remarkable tool for modern life.
+Even young children know how to use them, even if they perhaps shouldn't.

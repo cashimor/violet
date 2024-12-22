@@ -141,6 +141,9 @@
         <div id="decoration-container">
           <canvas id="decoration-display" width="600" height="600"></canvas>
         </div>
+        <div id="phone-container" style="display: none">
+          <canvas id="phone-canvas"></canvas>
+        </div>
         <!-- Map display area -->
         <div id="map-container">
           <img id="city-map" src="images/map.jpg" alt="City Map" />
@@ -193,6 +196,7 @@
               Rest (Next Day)
             </button>
             <button class="button-parchment" id="map-button">Map</button>
+            <button class="button-parchment" id="toggle-phone-btn">Phone</button>
           </div>
           <!-- Add a new section for text updates -->
           <div id="daily-results">
@@ -207,7 +211,7 @@
       </div>
     </div>
     <div id="footer" style="text-align: center; padding: 20px">
-      v0.1.4 |
+      v0.1.5 |
       <a
         href="https://github.com/cashimor/violet"
         target="_blank"
@@ -222,6 +226,8 @@
         >Discord</a
       >
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.0.3/pixi.min.js"></script>
+    <script src="phonecontroller.js"></script>
     <script src="shopmanager.js"></script>
     <script src="location.js"></script>
     <script src="character.js"></script>
