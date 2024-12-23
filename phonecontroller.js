@@ -202,70 +202,6 @@ class PhoneController {
     this.app.stage.addChild(backButton);
   }
 
-  // Show the list of contacts
-  showContacts2() {
-    // Clear previous content
-    this.clearStage();
-
-    // Add title
-    const title = new PIXI.Text("Contacts", {
-      fontSize: 24,
-      fill: "#ffffff",
-    });
-    title.x = 10;
-    title.y = 10;
-    this.app.stage.addChild(title);
-
-    // Add each contact as a clickable item
-    const barHeight = 30;
-    this.contacts.forEach((contact, index) => {
-      const yPosition = 50 + index * (barHeight + 5);
-
-      // Background bar
-      const contactBar = new PIXI.Graphics();
-      contactBar.beginFill(0x333333); // Dark gray color for the bar
-      contactBar.drawRect(10, yPosition, 260, barHeight); // Adjust dimensions as needed
-      contactBar.endFill();
-
-      // Add hover effects and click behavior
-      contactBar.interactive = true;
-      contactBar.buttonMode = true;
-      contactBar.on("pointerover", () => {
-        contactBar.tint = 0x555555; // Slightly lighter gray
-      });
-      contactBar.on("pointerout", () => {
-        contactBar.tint = 0xffffff; // Reset tint
-      });
-      contactBar.on("pointerdown", () => {
-        this.call(contact.name);
-      });
-
-      this.app.stage.addChild(contactBar);
-
-      // Contact text
-      const contactText = new PIXI.Text(contact.name, {
-        fontSize: 20,
-        fill: "#ffffff",
-      });
-      contactText.x = 20; // Slight padding from the left of the bar
-      contactText.y = yPosition + 5; // Centered vertically in the bar
-      this.app.stage.addChild(contactText);
-    });
-
-    // Add a back button using the createButton function
-    const backButton = this.createButton(
-      this.assets.backIcon,
-      10, // x-position
-      this.app.renderer.height - 50, // y-position (10px padding from the bottom)
-      40, // width
-      40, // height
-      () => {
-        this.addBaseUI();
-      }
-    );
-    this.app.stage.addChild(backButton);
-  }
-
   // Clear all elements from the PixiJS stage
   clearStage() {
     this.app.stage.removeChildren();
@@ -306,41 +242,69 @@ class PhoneController {
     }
   }
 
-  showCallScreen() {
-    const character = this.currentCallCharacter;
-    const characterName = character.name;
+  // Show the call screen based on the current call state
+  showCallScreen(state) {
     // Clear the stage
     this.clearStage();
 
-    // Background
-    const background = new PIXI.Graphics();
-    background.beginFill(0x222222); // Dark background for call screen
-    background.drawRect(
-      0,
-      0,
-      this.app.renderer.width,
-      this.app.renderer.height
-    );
-    background.endFill();
-    this.app.stage.addChild(background);
-
-    // Chibi image
-    const chibiPath = `images/assets/${characterName.toLowerCase()}.png`;
+    const contact = this.currentCallCharacter;
+    if (!contact) {
+      console.log("Error state: call screen without character.");
+      this.addBaseUI();
+      return;
+    }
+    // Add chibi image
+    const chibiPath = `./images/assets/${contact.name.toLowerCase()}.png`;
     const chibiSprite = PIXI.Sprite.from(chibiPath);
-    chibiSprite.anchor.set(0.5);
-    chibiSprite.x = this.app.renderer.width / 2;
-    chibiSprite.y = 200; // Position the chibi near the top
-    chibiSprite.width = 120; // Adjust size to fit nicely
+    chibiSprite.x = this.app.renderer.width / 2 - 60;
+    chibiSprite.y = 80;
+    chibiSprite.width = 120;
     chibiSprite.height = 180;
     this.app.stage.addChild(chibiSprite);
-    // Display character name
-    const nameText = new PIXI.Text(character.name, {
-      fontSize: 24,
-      fill: "#ffffff",
-    });
-    nameText.x = 10;
-    nameText.y = 20;
-    this.app.stage.addChild(nameText);
+
+    // Add "Dialing..." or "Call Failed" overlay if needed
+    if (state === "dialing") {
+      const dialingText = new PIXI.Text("Dialing...", {
+        fontSize: 20,
+        fill: "#ffffff",
+      });
+      dialingText.anchor.set(0.5);
+      dialingText.x = this.app.renderer.width / 2;
+      dialingText.y = 280;
+      this.app.stage.addChild(dialingText);
+    } else if (state === "no answer") {
+      const failureOverlay = new PIXI.Graphics();
+      failureOverlay.lineStyle(5, 0xff0000, 1); // Red line
+      failureOverlay.moveTo(chibiSprite.x, chibiSprite.y);
+      failureOverlay.lineTo(
+        chibiSprite.x + chibiSprite.width,
+        chibiSprite.y + chibiSprite.height
+      );
+      failureOverlay.moveTo(chibiSprite.x + chibiSprite.width, chibiSprite.y);
+      failureOverlay.lineTo(chibiSprite.x, chibiSprite.y + chibiSprite.height);
+      this.app.stage.addChild(failureOverlay);
+
+      const failedText = new PIXI.Text("Call Failed", {
+        fontSize: 20,
+        fill: "#ff0000",
+      });
+      failedText.anchor.set(0.5);
+      failedText.x = this.app.renderer.width / 2;
+      failedText.y = 280;
+      this.app.stage.addChild(failedText);
+    }
+
+    // Add call text if active
+    if (state === "active") {
+      const callText = new PIXI.Text(`In call with ${contact.name}`, {
+        fontSize: 20,
+        fill: "#ffffff",
+      });
+      callText.anchor.set(0.5);
+      callText.x = this.app.renderer.width / 2;
+      callText.y = 40;
+      this.app.stage.addChild(callText);
+    }
 
     // Add "End Call" button
     const endCallButton = this.createButton(
@@ -356,44 +320,6 @@ class PhoneController {
 
     this.app.stage.addChild(endCallButton);
   }
-
-  // Show the call screen during an ongoing call
-  showCallScreen2() {
-    this.clearStage();
-    const character = this.currentCallCharacter;
-
-    // Display character image
-    const characterImage = PIXI.Sprite.from(character.getCurrentImageUrl());
-    characterImage.x = 70;
-    characterImage.y = 100;
-    characterImage.width = 140;
-    characterImage.height = 200;
-    this.app.stage.addChild(characterImage);
-
-    // Display character name
-    const nameText = new PIXI.Text(character.name, {
-      fontSize: 24,
-      fill: "#ffffff",
-    });
-    nameText.x = 10;
-    nameText.y = 20;
-    this.app.stage.addChild(nameText);
-
-    // Add "End Call" button
-    const endCallButton = this.createButton(
-      "./images/assets/endcall.png", // Path to the "End Call" image
-      80, // x-position
-      350, // y-position
-      120, // width
-      40, // height
-      () => {
-        this.endCall(); // Callback for ending the call
-      }
-    );
-
-    this.app.stage.addChild(endCallButton);
-  }
-
   // Call a character by name
   call(characterName) {
     if (this.currentCallCharacter) {
@@ -408,32 +334,38 @@ class PhoneController {
     }
 
     this.currentCallCharacter = character;
+    this.showCallScreen("dialing");
 
-    // Temporarily store the character's current location
-    this.originalCharacterLocation = character.location;
-    character.location = "Phone";
-    const location = this.gameController.findLocationByName("Phone");
-    location.ref = this.gameController.locationController.currentLocation.name;
-    this.gameController.closeDialogCallback = this.endCall;
+    // Simulate dialing delay
+    const dialingDuration = 4000; // 4-second delay for longer realism
+    setTimeout(() => {
+      // Check if the call was ended during the delay
+      if (this.currentCallCharacter !== character) {
+        console.warn("Call was ended before connecting.");
+        return;
+      }
 
-    // Load the phone location into the location controller
-    if (this.gameController.locationController.loadLocation(location)) {
-      this.showCallScreen();
-      this.hidePhone();
-    } else {
-      this.endCall();
-    }
+      // Temporarily store the character's current location
+      this.originalCharacterLocation = character.location;
+      character.location = "Phone";
+      const location = this.gameController.findLocationByName("Phone");
+      location.ref =
+        this.gameController.locationController.currentLocation.name;
+      this.gameController.closeDialogCallback = this.endCall;
+
+      // Load the phone location into the location controller
+      if (this.gameController.locationController.loadLocation(location)) {
+        this.showCallScreen("active");
+        this.hidePhone();
+      } else {
+        this.gameController.closeDialogCallback = null;
+        this.showCallScreen("no answer");
+        this.restoreLocation();
+      }
+    }, dialingDuration);
   }
 
-  // End the current call
-  endCall = () => {
-    this.showPhone();
-    this.addBaseUI();
-    if (!this.currentCallCharacter) {
-      console.warn("Not in a call!");
-      return;
-    }
-
+  restoreLocation() {
     // Restore the character's original location
     if (this.currentCallCharacter && this.originalCharacterLocation) {
       this.currentCallCharacter.location = this.originalCharacterLocation;
@@ -447,6 +379,17 @@ class PhoneController {
       );
       this.gameController.locationController.loadLocation(previousLocation);
     }
+  }
+
+  // End the current call
+  endCall = () => {
+    this.showPhone();
+    this.addBaseUI();
+    if (!this.currentCallCharacter) {
+      console.warn("Not in a call!");
+      return;
+    }
+    this.restoreLocation();
     // Reset call state
     this.currentCallCharacter = null;
     this.originalCharacterLocation = null;
