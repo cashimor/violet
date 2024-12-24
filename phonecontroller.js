@@ -17,6 +17,7 @@ class PhoneController {
     this.isVisible = false;
     this.currentCallCharacter = null;
     this.originalCharacterLocation = null;
+    this.currentPage = 1;
 
     document
       .getElementById("toggle-phone-btn")
@@ -28,6 +29,8 @@ class PhoneController {
       contactsIcon: "./images/assets/contacts.png", // Path to Contacts icon
       backIcon: "./images/assets/back.png", // Path to Back icon
       endCallIcon: "./images/assets/endcall.png",
+      nextIcon: "./images/assets/next.png",
+      mapIcon: "./images/assets/map.png",
     };
 
     // Contacts storage
@@ -84,6 +87,7 @@ class PhoneController {
   addBaseUI() {
     // Clear previous content
     this.clearStage();
+    this.currentScreen = "base";
 
     // Add Address Book button using createButton method
     const addressBookButton = this.createButton(
@@ -98,6 +102,20 @@ class PhoneController {
     );
 
     this.app.stage.addChild(addressBookButton);
+
+    // Add Map button using createButton method
+    const mapButton = this.createButton(
+      this.assets.mapIcon, // Path to the Contacts icon
+      80, // x-position
+      20, // y-position
+      40, // width
+      40, // height
+      () => {
+        this.showMap(); // Callback for showing contacts
+      }
+    );
+
+    this.app.stage.addChild(mapButton);
   }
 
   // Add a new contact to the address book
@@ -114,12 +132,42 @@ class PhoneController {
 
     // Add the new contact
     this.contacts.push({ name, onCallCallback });
+
+    // If the address book is currently displayed, refresh it
+    if (this.currentScreen === "contacts") {
+      this.showContacts(); // Re-render the address book
+    }
+
     return true;
   }
 
   showContacts() {
+    const contactsPerPage = 5; // Number of contacts per page
+    const totalPages = Math.ceil(this.contacts.length / contactsPerPage);
+
+    // Combine and sort contacts with job-assigned NPCs
+    const allContacts = [...this.contacts];
+    const assignedNPCs = this.gameController.jobController.getAssignedNPCs();
+
+    assignedNPCs.forEach((npc) => {
+      allContacts.push({ name: npc });
+    });
+
+    // Sort contacts by name
+    const sortedContacts = [...allContacts].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+
+    // Ensure currentPage is within valid range
+    if (!this.currentPage || this.currentPage < 1) {
+      this.currentPage = 1;
+    } else if (this.currentPage > totalPages) {
+      this.currentPage = totalPages;
+    }
+
     // Clear previous content
     this.clearStage();
+    this.currentScreen = "contacts";
 
     // Background
     const background = new PIXI.Graphics();
@@ -143,9 +191,17 @@ class PhoneController {
     title.y = 10;
     this.app.stage.addChild(title);
 
-    // Display each contact with a chibi and name
+    // Calculate contacts to display for the current page
+    const startIndex = (this.currentPage - 1) * contactsPerPage;
+    const endIndex = Math.min(
+      startIndex + contactsPerPage,
+      sortedContacts.length
+    );
+    const visibleContacts = sortedContacts.slice(startIndex, endIndex);
+
+    // Display each visible contact
     const barHeight = 60;
-    this.contacts.forEach((contact, index) => {
+    visibleContacts.forEach((contact, index) => {
       const yOffset = 50 + index * (barHeight + 10);
 
       // Bar background
@@ -164,13 +220,16 @@ class PhoneController {
       });
 
       bar.on("pointerdown", () => {
-        this.call(contact.name);
+        // Strip location for call tracking
+        const strippedName = contact.name.split(" (")[0];
+        this.call(strippedName, contact.name);
       });
 
       this.app.stage.addChild(bar);
 
       // Chibi image
-      const chibiPath = `images/assets/${contact.name.toLowerCase()}.png`;
+      const strippedName = contact.name.split(" (")[0].toLowerCase();
+      const chibiPath = `images/assets/${strippedName}.png`;
       const chibiSprite = PIXI.Sprite.from(chibiPath);
       chibiSprite.x = 20;
       chibiSprite.y = yOffset;
@@ -188,7 +247,41 @@ class PhoneController {
       this.app.stage.addChild(contactText);
     });
 
-    // Add a back button using the createButton function
+    // Add "Previous" button if not on the first page
+    if (this.currentPage > 1) {
+      const prevButton = this.createButton(
+        this.assets.nextIcon,
+        100, // x-position
+        this.app.renderer.height - 50, // y-position
+        40, // width
+        40, // height
+        () => {
+          this.currentPage--;
+          this.showContacts();
+        }
+      );
+      prevButton.scale.x = -1; // Flip horizontally
+      prevButton.width = 40; // Adjust x-position after flipping
+      this.app.stage.addChild(prevButton);
+    }
+
+    // Add "Next" button if not on the last page
+    if (this.currentPage < totalPages) {
+      const nextButton = this.createButton(
+        this.assets.nextIcon,
+        this.app.renderer.width - 50, // x-position
+        this.app.renderer.height - 50, // y-position
+        40, // width
+        40, // height
+        () => {
+          this.currentPage++;
+          this.showContacts();
+        }
+      );
+      this.app.stage.addChild(nextButton);
+    }
+
+    // Add a back button
     const backButton = this.createButton(
       this.assets.backIcon,
       10, // x-position
@@ -197,6 +290,7 @@ class PhoneController {
       40, // height
       () => {
         this.addBaseUI();
+        this.currentPage = 1; // Reset to the first page
       }
     );
     this.app.stage.addChild(backButton);
@@ -246,6 +340,7 @@ class PhoneController {
   showCallScreen(state) {
     // Clear the stage
     this.clearStage();
+    this.currentScreen = "call";
 
     const contact = this.currentCallCharacter;
     if (!contact) {
@@ -321,7 +416,9 @@ class PhoneController {
     this.app.stage.addChild(endCallButton);
   }
   // Call a character by name
-  call(characterName) {
+  call(characterName, fullName) {
+    if (fullName != characterName)
+      console.log("Work location: <" + fullName + ">");
     if (this.currentCallCharacter) {
       console.warn("Already in a call!");
       return;
@@ -335,6 +432,7 @@ class PhoneController {
 
     this.currentCallCharacter = character;
     this.showCallScreen("dialing");
+    this.gameController.audioController.playLocationMusic("music/phone.mp3");
 
     // Simulate dialing delay
     const dialingDuration = 4000; // 4-second delay for longer realism
@@ -351,10 +449,10 @@ class PhoneController {
       const location = this.gameController.findLocationByName("Phone");
       location.ref =
         this.gameController.locationController.currentLocation.name;
-      this.gameController.closeDialogCallback = this.endCall;
 
       // Load the phone location into the location controller
       if (this.gameController.locationController.loadLocation(location)) {
+        this.gameController.closeDialogCallback = this.endCall;
         this.showCallScreen("active");
         this.hidePhone();
       } else {
@@ -394,4 +492,92 @@ class PhoneController {
     this.currentCallCharacter = null;
     this.originalCharacterLocation = null;
   };
+
+  showMap() {
+    // Clear the phone screen
+    this.clearStage();
+    this.currentScreen = "map";
+
+    // Create a rounded rectangle mask
+    const maskGraphics = new PIXI.Graphics();
+    maskGraphics.beginFill(0x000000);
+    maskGraphics.drawRoundedRect(
+      0,
+      0,
+      this.app.renderer.width,
+      this.app.renderer.height,
+      20 // Radius for rounded edges
+    );
+    maskGraphics.endFill();
+
+    // Create a container for scrolling
+    const mapContainer = new PIXI.Container();
+    this.app.stage.addChild(mapContainer);
+
+    // Apply the mask to the container
+    mapContainer.mask = maskGraphics;
+    this.app.stage.addChild(maskGraphics);
+
+    // Load the map
+    const map = PIXI.Sprite.from("images/map.jpg");
+    map.width = 1386; // Original map width
+    map.height = 1019; // Original map height
+    mapContainer.addChild(map);
+
+    // Enable scrolling
+    let dragging = false;
+    let dragStart = { x: 0, y: 0 };
+    const deltaMultiplier = 2; // Scale the delta to move faster
+
+    mapContainer.interactive = true;
+    mapContainer.buttonMode = true;
+
+    // On drag start
+    mapContainer.on("pointerdown", (event) => {
+      dragging = true;
+      dragStart = event.data.global.clone(); // Store the initial pointer position
+    });
+
+    // On drag move
+    mapContainer.on("pointermove", (event) => {
+      if (dragging) {
+        const currentPosition = event.data.global;
+        const deltaX = (currentPosition.x - dragStart.x) * deltaMultiplier;
+        const deltaY = (currentPosition.y - dragStart.y) * deltaMultiplier;
+
+        // Update map position with scaling, clamping within boundaries
+        mapContainer.x = Math.min(
+          0,
+          Math.max(this.app.renderer.width - map.width, mapContainer.x + deltaX)
+        );
+        mapContainer.y = Math.min(
+          0,
+          Math.max(
+            this.app.renderer.height - map.height,
+            mapContainer.y + deltaY
+          )
+        );
+
+        // Update drag start to current position
+        dragStart = currentPosition.clone();
+      }
+    });
+
+    // On drag end
+    mapContainer.on("pointerup", () => (dragging = false));
+    mapContainer.on("pointerupoutside", () => (dragging = false));
+
+    // Back Button
+    const backButton = this.createButton(
+      this.assets.backIcon,
+      10, // x-position
+      this.app.renderer.height - 50, // y-position
+      40, // width
+      40, // height
+      () => {
+        this.addBaseUI();
+      }
+    );
+    this.app.stage.addChild(backButton);
+  }
 }

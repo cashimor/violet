@@ -7,6 +7,13 @@ ${dumb:>second:Oh my goodness, it's really you!}
 [greeting1] Nys... what are you doing here?
 [greeting2] Why now, Nys? Why couldn't you stay away?
 [greeting3] You look... unchanged, as usual
+${GLOBAL/SHOP_smartPhone:[phone] Contact info?:[where] Where do you live?}
+
+where:
+Oh, I wander around. There is so much to see, sis!
+
+phone:
+@addPhoneContact()
 
 second:
 !happy

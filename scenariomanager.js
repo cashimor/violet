@@ -9,6 +9,8 @@ class ScenarioManager {
   }
 
   triggerGameOver(message, key) {
+    this.gameController.phoneController.hideButton();
+    this.gameController.phoneController.hidePhone();
     const location = gameOverLocations[key];
     this.gameController.optionsController.unlockEnding(key);
     this.gameOver = true;

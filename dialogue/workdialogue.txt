@@ -2,7 +2,14 @@ start:
 ?What can I do for you today?
 [bonus] Here is a bonus (¥5000)
 [goddess] You know ${GLOBAL/goddessNirvani:Nirvani:Malvani}?
+${GLOBAL/SHOP_smartPhone:[phone] Contact info?:[where] Where do you live?}
 ${GLOBAL/communitypossible:[community] Go legit:[chat] How are things?}
+
+where:
+Oh, I wander around.
+
+phone:
+@addPhoneContact()
 
 chat:
 Things are well, I think.

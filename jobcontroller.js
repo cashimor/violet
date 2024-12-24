@@ -27,6 +27,21 @@ class JobController {
     }
   }
 
+  // Function to get NPCs assigned to non-community jobs
+  getAssignedNPCs() {
+    const assignedNPCs = [];
+
+    Object.values(this.jobs).forEach((job) => {
+      if (!job.isCommunityJob && job.npcAssigned) {
+        const npcName = job.npcAssigned.name || "Unknown NPC";
+        const purpose = job.purpose || "Unknown purpose";
+        assignedNPCs.push(`${npcName} (${purpose})`);
+      }
+    });
+
+    return assignedNPCs;
+  }
+
   getCommunityPurpose(currentPurpose) {
     const purposeMap = {
       "Gambling Den": "Arcade",

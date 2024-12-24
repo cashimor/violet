@@ -518,4 +518,26 @@ class LocationController {
     leftPanel.style.backgroundSize = "cover"; // Ensure the image covers the panel
     leftPanel.style.backgroundPosition = "center"; // Center the image
   }
+
+  // Function to get Violet's current location
+  getVioletLocation() {
+    const { ref } = this.currentLocation;
+    if (ref && ref !== "Map") {
+      const location = this.gameController.findLocationByName(ref);
+      if (location) {
+        return {
+          x: location.x,
+          y: location.y,
+          inKiyosawa: true,
+        };
+      }
+    }
+
+    // If no valid location found, default to map or undefined location
+    return {
+      x: null,
+      y: null,
+      inKiyosawa: false,
+    };
+  }
 }
