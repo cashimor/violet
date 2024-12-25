@@ -25,6 +25,11 @@ class PhoneController {
       cropY: 0,
       filter: "none", // Label for applied filter
     };
+    this.defaultSong = {
+      filename: "music/phone.mp3",
+      deleted: false,
+    };
+    this.music = [this.defaultSong];
 
     document
       .getElementById("toggle-phone-btn")
@@ -42,6 +47,10 @@ class PhoneController {
       cameraIcon: "./images/assets/camera.png",
       deleteIcon: "./images/assets/delete.png",
       backgroundIcon: "./images/assets/makebackground.png",
+      musicIcon: "./images/assets/music.png",
+      playIcon: "./images/assets/play.png",
+      forwardIcon: "./images/assets/forward.png",
+      stopIcon: "./images/assets/stop.png",
     };
 
     // Contacts storage
@@ -73,6 +82,10 @@ class PhoneController {
             filter: this.backgroundPicture.filter,
           }
         : null,
+      music: this.music.map((song) => ({
+        filename: song.filename,
+        deleted: song.deleted || false, // Include deleted flag
+      })),
     };
   }
 
@@ -98,7 +111,7 @@ class PhoneController {
 
     // Load background picture
     if (data.backgroundPicture) {
-        console.log(data.backgroundPicture);
+      console.log(data.backgroundPicture);
       this.backgroundPicture = {
         backgroundUrl: data.backgroundPicture.backgroundUrl,
         characterUrl: data.backgroundPicture.characterUrl,
@@ -108,6 +121,10 @@ class PhoneController {
       };
       this.addBaseUI();
     }
+    this.music = (data.music || []).map((songData) => ({
+      filename: songData.filename,
+      deleted: songData.deleted || false, // Load deleted flag
+    }));
   }
 
   createButton(imagePath, x, y, width, height, onClickCallback) {
@@ -197,6 +214,20 @@ class PhoneController {
     );
 
     this.app.stage.addChild(picturesButton);
+
+    // Add Map button using createButton method
+    const musicButton = this.createButton(
+      this.assets.musicIcon, // Path to the Contacts icon
+      20, // x-position
+      260, // y-position
+      100, // width
+      100, // height
+      () => {
+        this.showMP3Player(); // Callback for showing contacts
+      }
+    );
+
+    this.app.stage.addChild(musicButton);
   }
 
   // Add a new contact to the address book
@@ -1106,5 +1137,178 @@ class PhoneController {
   getRandomFilter() {
     const filters = ["sepia", "grayscale", "blur", "saturate-blur-noise"];
     return filters[Math.floor(Math.random() * filters.length)];
+  }
+
+  showMP3Player() {
+    // Clear the phone screen
+    this.clearStage();
+    this.currentScreen = "mp3Player";
+
+    const itemHeight = 40;
+    const gap = 5; // Gap between items
+    const startY = 50; // Starting y-coordinate for the list
+    const itemWidth = this.app.renderer.width - 20; // Width of each item
+    const songsPerPage = 8; // Songs displayed per page
+    let playingIndex = -1; // Track the currently playing song
+
+    if (this.music) {
+      const visibleSongs = this.music.filter((song) => !song.deleted);
+      const totalPages = Math.ceil(visibleSongs.length / songsPerPage);
+
+      if (visibleSongs.length > 0) {
+        const startIndex = this.currentPage * songsPerPage;
+        const endIndex = startIndex + songsPerPage;
+
+        visibleSongs.slice(startIndex, endIndex).forEach((song, index) => {
+          const container = new PIXI.Container();
+          container.x = 10;
+          container.y = startY + index * (itemHeight + gap);
+
+          // Display filename without "music/" prefix
+          const text = new PIXI.Text(song.filename.replace(/^music\//, ""), {
+            fontFamily: "Arial",
+            fontSize: 14,
+            fill: 0xffffff,
+          });
+          text.anchor.set(0, 0.5);
+          text.y = itemHeight / 2;
+          container.addChild(text);
+
+          // Play button
+          const playButton = this.createButton(
+            this.assets.playIcon,
+            itemWidth - 90, // x-position
+            5, // y-position
+            30, // width
+            30, // height
+            () => {
+              if (playingIndex === index) {
+                // Stop playback if already playing
+                this.gameController.audioController.stopLocationMusic();
+                playingIndex = -1;
+              } else {
+                // Play new song
+                this.gameController.audioController.playLocationMusic(
+                  song.filename
+                );
+                playingIndex = index;
+              }
+              this.showMP3Player(); // Refresh UI
+            }
+          );
+          container.addChild(playButton);
+
+          // Delete button
+          const deleteButton = this.createButton(
+            this.assets.deleteIcon,
+            itemWidth - 50, // x-position
+            5, // y-position
+            30, // width
+            30, // height
+            () => {
+              song.deleted = true; // Mark as deleted
+              this.showMP3Player(); // Refresh the UI
+            }
+          );
+          container.addChild(deleteButton);
+
+          this.app.stage.addChild(container);
+        });
+
+        // Pagination Buttons
+        if (this.currentPage > 0) {
+            console.log("DRAWING PREV");
+          const prevButton = this.createButton(
+            this.assets.nextIcon,
+            100, // x-position
+            this.app.renderer.height - 50, // y-position
+            40, // width
+            40, // height
+            () => {
+              this.currentPage--;
+              this.showMP3Player();
+            }
+          );
+          prevButton.scale.x = -1; // Flip horizontally
+          prevButton.width = 40;
+          this.app.stage.addChild(prevButton);
+        }
+
+        if (this.currentPage < totalPages - 1) {
+          const nextButton = this.createButton(
+            this.assets.nextIcon,
+            this.app.renderer.width - 50, // x-position
+            this.app.renderer.height - 50, // y-position
+            40, // width
+            40, // height
+            () => {
+              this.currentPage++;
+              this.showMP3Player();
+            }
+          );
+          this.app.stage.addChild(nextButton);
+        }
+      } else {
+        // Show "No songs available" message
+        const noSongsText = new PIXI.Text("No songs available", {
+          fontFamily: "Arial",
+          fontSize: 16,
+          fill: 0xffffff,
+        });
+        noSongsText.anchor.set(0.5);
+        noSongsText.x = this.app.renderer.width / 2;
+        noSongsText.y = this.app.renderer.height / 2;
+        this.app.stage.addChild(noSongsText);
+      }
+    }
+
+    // Stop button at the bottom
+    const stopButton = this.createButton(
+      this.assets.stopIcon,
+      this.app.renderer.width / 2 - 20,
+      this.app.renderer.height - 50,
+      40,
+      40,
+      () => {
+        this.gameController.audioController.stopLocationMusic();
+        playingIndex = -1;
+        this.showMP3Player(); // Refresh the UI
+      }
+    );
+    this.app.stage.addChild(stopButton);
+
+    // Back button
+    const backButton = this.createButton(
+      this.assets.backIcon,
+      10,
+      this.app.renderer.height - 50,
+      40,
+      40,
+      () => {
+        this.addBaseUI();
+      }
+    );
+    this.app.stage.addChild(backButton);
+  }
+
+  addMusic(songFilename) {
+    // Check if the song already exists in the music list
+    const existingSong = this.music.find(
+      (song) => song.filename === songFilename
+    );
+
+    if (existingSong) {
+      // If the song exists, make sure it is not marked as deleted
+      if (existingSong.deleted) {
+        existingSong.deleted = false; // Restore the song if it was deleted
+      }
+      return; // Do nothing else if it exists
+    }
+
+    // Add the song to the music list if it doesn't exist
+    this.music.push({
+      filename: songFilename,
+      deleted: false,
+    });
   }
 }

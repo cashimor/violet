@@ -76,7 +76,9 @@ class LocationController {
 
     // Check for background music and play if available
     this.audioController.playLocationMusic(location.getMusicUrl());
-
+    if (this.simulationController.hasTidbit("SHOP_smartPhone")) {
+      this.gameController.phoneController.addMusic(location.getMusicUrl());
+    }
     const leftPanel = document.getElementById("left-panel");
     leftPanel.style.backgroundImage = `url(${location.getImageUrl()})`;
     this.currentLocation = location;

@@ -36,6 +36,11 @@ class AudioController {
     }
   }  
 
+  stopLocationMusic() {
+    this.currentLocationMusic = null;
+    this.locationAudio.pause();
+  }
+
   playThemeMusic(url) {
     if (!this.musicOn) return;
     if (this.currentThemeMusic === url) {
