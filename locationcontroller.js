@@ -81,6 +81,10 @@ class LocationController {
     leftPanel.style.backgroundImage = `url(${location.getImageUrl()})`;
     this.currentLocation = location;
 
+    this.gameController.phoneController.updateVioletLocation(
+      this.getVioletLocation()
+    );
+
     // Clear the canvas to remove any previously drawn characters
     this.decocontext.clearRect(
       0,
@@ -522,7 +526,7 @@ class LocationController {
   // Function to get Violet's current location
   getVioletLocation() {
     const { ref } = this.currentLocation;
-    if (ref && ref !== "Map") {
+    if (ref !== "Map") {
       const location = this.gameController.findLocationByName(ref);
       if (location) {
         return {
@@ -531,6 +535,12 @@ class LocationController {
           inKiyosawa: true,
         };
       }
+    } else {
+      return {
+        x: this.currentLocation.x,
+        y: this.currentLocation.y,
+        inKiyosawa: true,
+      };
     }
 
     // If no valid location found, default to map or undefined location
