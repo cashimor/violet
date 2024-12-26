@@ -184,9 +184,8 @@ class LocationController {
     fetch(url)
       .then((response) => response.text())
       .then((data) => {
-        const dialogFileData = data.split("\n");
         this.dialogue = new DialogController(
-          dialogFileData,
+          data,
           this.decocanvas,
           characterController,
           this.jobController,

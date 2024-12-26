@@ -1217,7 +1217,6 @@ class PhoneController {
 
         // Pagination Buttons
         if (this.currentPage > 0) {
-            console.log("DRAWING PREV");
           const prevButton = this.createButton(
             this.assets.nextIcon,
             100, // x-position

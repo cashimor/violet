@@ -89,7 +89,8 @@ class DialogController {
     this.character = characterController.character;
     this.gameController = gameController;
     this.simulationController = simulationController;
-    this.loadDialogFile(dialogFile);
+    const dialogFileData = this.parseDialogue(dialogFile).split("\n");
+    this.loadDialogFile(dialogFileData);
     this.jobController = jobController;
     this.currentLabel = "start"; // Begin at the default label or starting point
     this.characterX = characterController.characterX;
@@ -609,6 +610,28 @@ class DialogController {
     this.dialogMap = this.parseDialogFile(dialogFile);
   }
 
+  // Enhanced dialogue parser
+  parseDialogue(rawText) {
+    // Replace conditional substitutions (${normal|phone})
+    rawText = rawText.replace(
+      /\${([^|}]+)\|([^}]+)}/g,
+      (match, normalText, phoneText) => {
+        return this.character.location === "Phone" ? phoneText : normalText;
+      }
+    );
+
+    // Replace dynamic context substitutions (${<context>})
+    // Ensure it does not match tidbit checks with colons
+    rawText = rawText.replace(/\${([^|:}]+)}/g, (match, context) => {
+      if (typeof this.character.getContext === "function") {
+        return this.character.getContext(context) || match; // Replace or leave as-is if no context found
+      }
+      return match; // Leave as-is if getContext is not defined
+    });
+
+    return rawText;
+  }
+
   // Parse the dialog file into a structured format
   parseDialogFile(dialogFile) {
     const dialogMap = new Map();
@@ -696,7 +719,7 @@ class DialogController {
           fetch(url)
             .then((response) => response.text())
             .then((data) => {
-              this.loadDialogFile(data.split("\n")); // Replace dialog file content
+              this.loadDialogFile(this.parseDialogue(data).split("\n")); // Replace dialog file content
               this.currentLabel = "start";
               this.currentIndex = 0;
               this.start(); // Restart dialog with the new file

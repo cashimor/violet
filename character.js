@@ -1,4 +1,8 @@
 class Character {
+  static fallbackContexts = {
+    generic: "It's a beautiful day, isn't it?",
+  };
+
   constructor(
     name,
     imageUrls,
@@ -26,6 +30,26 @@ class Character {
     this.currentEmotion = "";
     this.tidbits = {}; // Store yes/no information
     this.setEmotion("");
+    this.contextFilePath = `dialogue/context/${this.name}.txt`;
+    this.contextData = {};
+    this.loadContext(); // Load the context file
+  }
+
+  async loadContext() {
+    try {
+      const response = await fetch(this.contextFilePath); // Fetch file contents
+      if (!response.ok) throw new Error("Context file not found.");
+      const data = await response.text();
+
+      // Parse file into context dictionary
+      this.contextData = data.split("\n").reduce((acc, line) => {
+        const match = line.match(/^\s*(\w+):\s*(.+)$/);
+        if (match) acc[match[1]] = match[2]; // Add key-value pair
+        return acc;
+      }, {});
+    } catch (error) {
+      console.error(`Error loading context for ${this.name}:`, error.message);
+    }
   }
 
   static fromData(data) {
@@ -62,7 +86,18 @@ class Character {
       dayTalk: this.dayTalk,
       like: this.like,
       tidbits: this.tidbits, // Include tidbits in save data
+      contextData: this.contextData,
     };
+  }
+
+  // Retrieve context-specific text
+  getContext(key) {
+    // Check character-specific contexts first, then fallback contexts
+    return (
+      this.contextData[key] ||
+      Character.fallbackContexts[key] ||
+      `<No context found for '${key}'>`
+    );
   }
 
   // Set a tidbit

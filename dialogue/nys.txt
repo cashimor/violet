@@ -6,7 +6,7 @@ ${dumb:>second:Oh my goodness, it's really you!}
 ?I can't believe we're in the same world again!
 [greeting1] Nys... what are you doing here?
 [greeting2] Why now, Nys? Why couldn't you stay away?
-[greeting3] You look... unchanged, as usual
+[greeting3] You ${look|sound}... unchanged, as usual
 ${GLOBAL/SHOP_smartPhone:[phone] Contact info?:[where] Where do you live?}
 
 where:
@@ -107,8 +107,8 @@ Stay away? Violet, how could you say that? I came here because I missed you!
 
 greeting3:
 !cheerful
-Unchanged? Oh, Violet, you’re too kind! You still look as radiant as ever!
-Although your senseo of fashion... is still the same.
+Unchanged? Oh, Violet, you’re too kind! You still ${look|sound} as radiant as ever!
+Although your ${senseo of fashion|dire voice}... is still the same.
 ?Are we going to rule this world together?
 [response7] You always think so highly of yourself
 [response8] You should focus on surviving first

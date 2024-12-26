@@ -1,4 +1,5 @@
 start:
+${generic}
 ?What is it that you'd like to discuss?
 [job] You want a job?
 [like] I'd like to know you more
