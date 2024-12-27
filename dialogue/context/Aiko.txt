@@ -1,1 +1,6 @@
-generic:Awesome at a distance!
+generic: Awesome at a distance!
+negative: Can't do it this way, I'm afraid.
+loan: This is something I'm good at!
+massage: Ew... I got to touch people?
+lair: As long as you don't expect me to touch you.
+thanks: Awesome! You're so kind.

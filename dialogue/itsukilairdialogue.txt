@@ -1,5 +1,5 @@
 start:
-#It's good to be together at last, Violet.
+${#It's good to be together at last, Violet.|#Can you come over? I miss you.}
 #~itsukimanga.txt
 #>community
 #>checkkaraoke
@@ -31,9 +31,13 @@ Fantastic. I'm so glad you listen to me.
 @setTidbit(GLOBAL/communitypossible)
 
 karaoke:
+${We should do something fun.|>come}
 ?I think it is time to use that Karaoke machine, don't you think?
 [yes] Of course
 [no] I can't sing
+
+come:
+Please come to your lair for a change, Violet. I want to do something in person.
 
 no:
 We can do it next time... after you practice more.

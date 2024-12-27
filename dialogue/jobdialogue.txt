@@ -5,30 +5,30 @@ friendCheck:
 @showJobChoices()
 
 Loan Office:
-I'll see if I have some weapons.
+${loan}
 @selectJob(Loan Office)
 
 Gambling Den:
-Different hours. Probably good.
+${gambling}
 @selectJob(Gambling Den)
 
 Drugs Laboratory:
-Hopefully I don't get high.
+${drugs}
 @selectJob(Drugs Laboratory)
 
 Massage Parlor:
-Oh... Interesting...
+${massage}
 @selectJob(Massage Parlor)
 
 Evil Lair:
-I will be your trusted companion.
+${lair}
 @setTidbit(GLOBAL/lairOccupied)
 
 lairOccupied:
 @selectJob(Evil Lair)
 
 Temple:
-I shall devote myself to Goddess Malvani.
+${temple}
 @selectJob(Temple)
 
 Drugs Distribution:
@@ -37,7 +37,7 @@ Drugs Distribution:
 [no] I'll think about it
 
 no:
-Thank you...
+${thanks}
 
 yes:
 @adjustEvilness(5)

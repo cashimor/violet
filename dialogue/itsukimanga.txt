@@ -25,9 +25,12 @@ disbelief:
 [walkaway] You’re wasting my time.
 [villain] You prayed for the villain?
 
+come:
+Of course! Next time you're here I'll read it to you.
+
 interest:
 !excited
-Hold on! I’ll get it!
+${Hold on! I’ll get it!|>come}
 !thoughtful
 ?Here. Look at this.
 [read] Read it to me.

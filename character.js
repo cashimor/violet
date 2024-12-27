@@ -1,6 +1,14 @@
 class Character {
   static fallbackContexts = {
     generic: "It's a beautiful day, isn't it?",
+    negative: "No... sorry.",
+    loan: "I'll see if I have some weapons.",
+    gambling: "Different hours. Probably good.",
+    drugs: "Hopefully I don't get high.",
+    massage: "Hopefully I don't get high.",
+    lair: "I'll be your trusted companion",
+    temple: "I shall devote myself to Goddess Malvani.",
+    thanks: "Thank you...",
   };
 
   constructor(
@@ -43,8 +51,10 @@ class Character {
 
       // Parse file into context dictionary
       this.contextData = data.split("\n").reduce((acc, line) => {
-        const match = line.match(/^\s*(\w+):\s*(.+)$/);
-        if (match) acc[match[1]] = match[2]; // Add key-value pair
+        const match = line.match(/^\s*(\w+):\s*(.+)/);
+        if (match) {
+          acc[match[1]] = match[2]; // Add key-value pair
+        }
         return acc;
       }, {});
     } catch (error) {

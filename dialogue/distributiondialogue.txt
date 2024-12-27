@@ -1,5 +1,5 @@
 start:
-Hello, welcome to the drugs distribution center.
+{Hello, welcome to the drugs distribution center.|Who's calling? Hi Violet.}
 ?What's up?
 [label1] How proficient are you?
 [label2] Can we do some training?
@@ -28,6 +28,7 @@ Oh, interesting. I didn't know that.
 
 label3:
 !neutral
+{generic}
 Alright, let me know if you need anything else.
 
 label2:

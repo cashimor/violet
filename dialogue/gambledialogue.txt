@@ -1,5 +1,5 @@
 start:
-Hello, welcome to the gambling den.
+{Hello, welcome to the gambling den.|Hold for a moment. Ah... Violet...}
 ?What's up?
 [label1] How proficient are you?
 [label2] Can we do some training?
@@ -7,9 +7,13 @@ Hello, welcome to the gambling den.
 [work] How's work?
 
 game:
-A game? Of course, let's play.
+${A game? Of course, let's play.|>phone}
 #~rockpaperscissors.txt
 #~hilo.txt
+
+phone:
+${negative}
+You should come down here... would make the game more fun.
 
 work:
 ~workdialogue.txt
