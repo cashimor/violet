@@ -3,7 +3,7 @@ class GoddessController {
     this.characters = characters;
     this.gameController = gameController;
     this.mana = 0; // Current amount of mana available
-    this.manaThreshold = 1000; // Default mana threshold for answering prayers
+    this.manaThreshold = 5000; // Default mana threshold for answering prayers
   }
 
   calculateFollowers(followerCount) {

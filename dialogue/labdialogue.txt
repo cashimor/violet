@@ -1,5 +1,5 @@
 start:
-Hello, welcome to the drugs laboratory *cough*
+Hello, ${welcome to|this is} the drugs laboratory *cough*
 ?Anything I can do?
 [game] Time for a game?
 [work] How's work?

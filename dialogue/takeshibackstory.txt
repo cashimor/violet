@@ -1,6 +1,6 @@
 start:
 !neutral
-You seem lost. Tell me, what ${brings you to me|made you call me}?
+You ${seem|sound} lost. Tell me, what ${brings you to me|made you call me}?
 ?What would you like to ask?
 [reason] What brings you here?
 [past_experiences] Who are you?

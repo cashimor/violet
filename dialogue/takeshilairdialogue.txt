@@ -6,7 +6,8 @@ Violet, I can’t do this anymore.
 I thought I could help you see a different path,
 one that doesn’t hurt so many people.
 But you’ve made it clear where your priorities lie.
-I care about you, Violet. I really do. But staying here... it’s breaking my soul.
+I care about you, Violet. I really do. But staying ${here|at your lair}...
+It’s breaking my soul.
 ?I can’t be part of this anymore.
 [angry] Go, then! I don’t need you!
 [desperate] You’re abandoning me? After everything?

@@ -1,12 +1,12 @@
 start:
-Ah, welcome to my part of town. ${knowsname::Name’s Riku.}
+Ah, ${welcome to my part of town|Violet. Bestie!} ${knowsname::Name’s Riku.}
 @setTidbit(knowsname)
 
 knowsname:
-?What brings you here?
+?What ${brings you here|made you call}?
 [label1] Tell me about your past.
 [label2] What’s your secret?
-[label3] Just passing through.
+[label3] Just ${passing through|checking}.
 [talk] Let's talk.
 
 label1:

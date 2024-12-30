@@ -1,5 +1,5 @@
 start:
-Ah, you’ve found me. ${knowsname::Name’s Ryo.}
+Ah, you’ve ${found|reached} me. ${knowsname::Name’s Ryo.}
 @setTidbit(knowsname)
 
 knowsname:

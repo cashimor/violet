@@ -75,17 +75,6 @@ Thank you for reading *Mastering the Art of Friendship*!
 Go forth, charm the masses, and remember: even the greatest leaders needed allies.
 And cookies.
 
-
-
-
-
-
-
-
-
-
-
-
 readSelfHelpBook:
 !neutral
 How to Be Ruthless Without Losing Friends

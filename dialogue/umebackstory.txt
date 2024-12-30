@@ -1,5 +1,5 @@
 start:
-${knowsname:Violet! Good to see you again!:I'm Ume.}
+${knowsname:Violet! Good to talk to you again!:I'm Ume.}
 @setTidbit(knowsname)
 
 knowsname:
