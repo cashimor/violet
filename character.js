@@ -2,6 +2,7 @@ class Character {
   static fallbackContexts = {
     generic: "It's a beautiful day, isn't it?",
     negative: "No... sorry.",
+    positive: "Oh, yes!", 
     loan: "I'll see if I have some weapons.",
     gambling: "Different hours. Probably good.",
     drugs: "Hopefully I don't get high.",

@@ -1,0 +1,10 @@
+generic: It's fascinating how things work, isn't it?
+positive: That sounds like a great opportunity to learn!
+negative: That’s unfortunate... I'll try my best to help.
+loan: I can calculate the odds of repayment for you.
+gambling: Probability isn’t my strength, but I’ll give it a shot!
+drugs: I hope my calculations help avoid any bad reactions.
+massage: Anatomy is science, but this is... awkward.
+lair: I’ll keep experimenting and improving for you.
+temple: The Goddess is an enigma worth studying.
+thanks: Thanks! Your support means a lot.
