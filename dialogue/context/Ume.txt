@@ -1,0 +1,10 @@
+generic: Oh, um... is there something you need?
+positive: Thank you! That’s kind of you to say.
+negative: Oh, no, I’m sorry... did I mess up?
+loan: Oh, I don’t know if I’m good at lending... but I can try.
+gambling: Gambling? Oh, no, I’d be terrible at that... probabilities confuse me.
+drugs: Chemistry is fascinating, but that’s not the kind of thing I’d touch.
+massage: Oh, um... I think I’d be too nervous for that!
+lair: I’ll help however I can, as long as it’s not too scary.
+temple: I’ll try to do my best. Just let me know what you need.
+thanks: Oh, thank you... You’re so thoughtful!

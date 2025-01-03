@@ -47,7 +47,7 @@ class Character {
   async loadContext() {
     try {
       const response = await fetch(this.contextFilePath); // Fetch file contents
-      if (!response.ok) throw new Error("Context file not found.");
+      if (!response.ok) return;
       const data = await response.text();
 
       // Parse file into context dictionary
